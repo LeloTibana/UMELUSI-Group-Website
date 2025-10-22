@@ -26,6 +26,41 @@ a:hover {
     text-decoration: none;
 }
 
+/* Breadcrumb Navigation */
+.breadcrumb-nav {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eee;
+}
+
+.breadcrumb {
+  background: transparent;
+  margin: 0;
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.breadcrumb-item a {
+  text-decoration: none;
+  color: #FF9933; /* Umelusi brand orange */
+  transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+  color: #cc7a29; /* Slightly darker orange */
+}
+
+.breadcrumb-item.active {
+  color: #555;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .breadcrumb {
+    font-size: 0.9rem;
+  }
+}
+
+
 /*Board Of Directors Carousel Company Info Page*/
 
 /* BOARD CAROUSEL SECTION BASE */

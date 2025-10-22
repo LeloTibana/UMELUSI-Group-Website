@@ -445,3 +445,18 @@ document.getElementById("convert-btn").addEventListener("click", async () => {
     document.getElementById("conversion-result").innerText = "Error fetching data. Please try again.";
   }
 });
+
+// Auto Breadcrumb Generator
+document.addEventListener("DOMContentLoaded", () => {
+  const breadcrumbContainer = document.querySelector(".breadcrumb-nav ol");
+  if (!breadcrumbContainer) return;
+
+  const path = window.location.pathname.split("/").pop().replace(".html", "");
+  const pageName = path.charAt(0).toUpperCase() + path.slice(1).replace("-", " ");
+
+  breadcrumbContainer.innerHTML = `
+    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">${pageName}</li>
+  `;
+});
+
