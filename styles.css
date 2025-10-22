@@ -251,7 +251,14 @@ a:hover {
 /* Staff Carousel Section */
 .staff-grid {
     background-color: #f8f9fa;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
   }
+
+  .staff-grid .row.g-4 {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 1.5rem;
+}
   
   .leader-card {
     background-color: #fff;
@@ -279,11 +286,14 @@ a:hover {
   }
   
   .leader-img {
-    width: 160px;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 50%;
-  }
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
   
 
 
