@@ -446,17 +446,52 @@ document.getElementById("convert-btn").addEventListener("click", async () => {
   }
 });
 
-// Auto Breadcrumb Generator
+// Dynamic Breadcrumb Trail System
 document.addEventListener("DOMContentLoaded", () => {
-  const breadcrumbContainer = document.querySelector(".breadcrumb-nav ol");
+  const breadcrumbContainer = document.getElementById("breadcrumb-trail");
   if (!breadcrumbContainer) return;
 
-  const path = window.location.pathname.split("/").pop().replace(".html", "");
-  const pageName = path.charAt(0).toUpperCase() + path.slice(1).replace("-", " ");
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const pageTitles = {
+    "index.html": "Home",
+    "about-company.html": "About Us",
+    "pressroom.html": "Pressroom",
+    "careers.html": "Career Opportunities",
+    "hierarchy.html": "Hierarchy",
+    "fund-managers.html": "Umelusi Fund Managers",
+    "partners.html": "Umelusi Partners",
+    "capital.html": "Umelusi Capital",
+    "finserve.html": "Umelusi FinServe",
+    "markets.html": "Markets",
+    "resources.html": "Resources & Insights"
+  };
 
-  breadcrumbContainer.innerHTML = `
-    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">${pageName}</li>
-  `;
+  const title = pageTitles[currentPage] || currentPage.replace(".html", "");
+
+  // Get stored breadcrumb trail or start a new one
+  let trail = JSON.parse(localStorage.getItem("breadcrumbTrail")) || [];
+
+  // Remove duplicates (if page already visited)
+  trail = trail.filter(page => page.file !== currentPage);
+
+  // Add current page to trail
+  trail.push({ title, file: currentPage });
+
+  // Keep only the last 5 pages (optional)
+  if (trail.length > 5) trail = trail.slice(trail.length - 5);
+
+  // Save back to localStorage
+  localStorage.setItem("breadcrumbTrail", JSON.stringify(trail));
+
+  // Render breadcrumb trail
+  breadcrumbContainer.innerHTML = trail
+    .map((page, index) => {
+      if (index === trail.length - 1) {
+        return `<li class="breadcrumb-item active" aria-current="page">${page.title}</li>`;
+      }
+      return `<li class="breadcrumb-item"><a href="${page.file}">${page.title}</a></li>`;
+    })
+    .join("");
 });
+
 
