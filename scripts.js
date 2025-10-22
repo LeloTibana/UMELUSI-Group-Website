@@ -446,12 +446,16 @@ document.getElementById("convert-btn").addEventListener("click", async () => {
   }
 });
 
-// Dynamic Breadcrumb Trail System
+// --------- Dynamic Breadcrumb Trail System (Updated) ----------
 document.addEventListener("DOMContentLoaded", () => {
   const breadcrumbContainer = document.getElementById("breadcrumb-trail");
   if (!breadcrumbContainer) return;
 
-  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  // Get current page filename
+  let currentPage = window.location.pathname.split("/").pop();
+  if (!currentPage || currentPage === "") currentPage = "index.html";
+
+  // Page title mappings
   const pageTitles = {
     "index.html": "Home",
     "about-company.html": "About Us",
@@ -466,24 +470,24 @@ document.addEventListener("DOMContentLoaded", () => {
     "resources.html": "Resources & Insights"
   };
 
-  const title = pageTitles[currentPage] || currentPage.replace(".html", "");
+  const currentTitle = pageTitles[currentPage] || currentPage.replace(".html", "");
 
-  // Get stored breadcrumb trail or start a new one
+  // Retrieve stored trail from localStorage
   let trail = JSON.parse(localStorage.getItem("breadcrumbTrail")) || [];
 
-  // Remove duplicates (if page already visited)
+  // Remove if current page already exists in trail (avoid duplicates)
   trail = trail.filter(page => page.file !== currentPage);
 
-  // Add current page to trail
-  trail.push({ title, file: currentPage });
+  // Add the new page at the end
+  trail.push({ title: currentTitle, file: currentPage });
 
-  // Keep only the last 5 pages (optional)
-  if (trail.length > 5) trail = trail.slice(trail.length - 5);
+  // Optional: keep only last 5 visited pages
+  if (trail.length > 5) trail = trail.slice(-5);
 
   // Save back to localStorage
   localStorage.setItem("breadcrumbTrail", JSON.stringify(trail));
 
-  // Render breadcrumb trail
+  // Build breadcrumb HTML
   breadcrumbContainer.innerHTML = trail
     .map((page, index) => {
       if (index === trail.length - 1) {
