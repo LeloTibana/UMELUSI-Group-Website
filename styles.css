@@ -1144,6 +1144,13 @@ a:hover {
 }
 
 
+/* UFM text section  */
+.custom-text {
+  font-size: 1rem;  /* same as regular paragraph */
+  line-height: 1.6;
+}
+
+
 
 /* Executive Message Section Home Page */
 .executive-carousel .carousel-wrapper {
@@ -1168,7 +1175,7 @@ a:hover {
     width: 100%;
     display: none; /* hide all cards by default */
     align-items: center;
-    background: #fff;
+    background: lightgray;
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
