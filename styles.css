@@ -26,6 +26,28 @@ a:hover {
     text-decoration: none;
 }
 
+
+/* --- Accessibility / Focus Styles --- */
+
+/* Highlight any link, button, or form control that receives focus */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+[tabindex]:focus {
+    /* Ensure the outline is visible over all backgrounds */
+    outline: 3px solid #FF9933; /* Use Umelusi primary color for focus */
+    outline-offset: 2px;
+    border-radius: 2px; /* Slight rounding for a cleaner look */
+}
+
+/* Ensure buttons remain accessible */
+.btn-brand:focus,
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 153, 51, 0.5); /* Use a shade of the brand color for bootstrap-style focus */
+}
+
 /* Breadcrumb Navigation */
 .breadcrumb-nav {
   background-color: #f8f9fa;
@@ -207,16 +229,40 @@ a:hover {
     background-position: center;
   }
   
-  .fund-hero {
-    background-image: linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
-    ), url('images/fmhero.jpg'); /* your orange sunset sailing image */
+ /* --- Fund Managers Page Specific Styles --- */
+.fund-hero {
+    /* Use a suitable background image that reflects stability and growth (e.g., a city skyline, a clean financial chart, or abstract lines) */
+    background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('images/fund-manager-hero-bg.jpg') no-repeat center center;
     background-size: cover;
-    background-position: center;
-    min-height: 500px;
-  }
- 
+    height: 65vh; /* Slightly taller hero */
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Style for the Portfolio Tabs */
+.nav-pills .nav-link {
+    color: #495057;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    margin: 0 5px;
+    font-weight: 600;
+}
+
+.nav-pills .nav-link.active, .nav-pills .nav-link:hover {
+    color: #fff;
+    background-color: #FF9933; /* Use brand orange */
+    border-color: #FF9933;
+}
+
+.product-card {
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    border-color: #FF9933;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
   
   .hero-text h1{
     max-width: 650px;
@@ -1612,9 +1658,12 @@ a:hover {
 
 /*Capital Page Styling*/
 .capital-hero {
-  background: url('images/capital-hero.jpg') center center/cover no-repeat;
-  height: 60vh;
-  position: relative;
+    /* Use a suitable background image that reflects corporate finance/investment banking */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/capital-hero-bg.jpg') no-repeat center center;
+    background-size: cover;
+    height: 60vh; /* Adjust height as needed */
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .capital-heo::before {
@@ -2623,4 +2672,47 @@ footer .text-center a:hover {
     footer .contact-details p {
         font-size: 0.8rem;
     }
+}
+
+/* --- Resources Page Card Fixes --- */
+
+/* Ensure all cards in the featured reports section have a consistent height */
+#featured-reports .card {
+    height: 100%;
+    /* Increase min-height to accommodate longer titles/descriptions */
+    min-height: 250px; 
+    display: flex; /* Use flex to manage inner content better */
+    flex-direction: column;
+}
+
+/* Ensure the card-body takes up the available space */
+#featured-reports .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes the button to the bottom */
+    flex-grow: 1; 
+}
+
+/* Prevent title overflow and ensure consistent line height */
+#featured-reports .card-title {
+    /* Use a fixed height or max lines for titles to prevent varying card heights */
+    min-height: 2.5em; /* Approximately 2 lines of text */
+    line-height: 1.25;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    margin-bottom: 0.5rem;
+}
+
+/* Add margin to description to separate it from the title and button */
+#featured-reports .card-text {
+    flex-grow: 1; /* Allows description to use the remaining space */
+    margin-bottom: 1rem;
+}
+
+/* Style for the button to ensure it stays at the bottom */
+#featured-reports .btn-sm {
+    margin-top: auto; /* Pushes the button to the bottom */
 }

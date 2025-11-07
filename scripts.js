@@ -45,10 +45,12 @@ function updateMarketData() {
     });
 }
 
-// Run market data update on load and every 5 seconds
+// Run market data update on load and every 5 seconds (Only runs if #market-data exists)
 document.addEventListener("DOMContentLoaded", () => {
-    updateMarketData();
-    setInterval(updateMarketData, 5000);
+    if (document.getElementById("market-data")) {
+        updateMarketData();
+        setInterval(updateMarketData, 5000);
+    }
 });
 
 
@@ -74,9 +76,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-//Carousel Board of Directors
+// ---------------------------------
+// Carousel Board of Directors (FIXED - Added Null Checks)
+// ---------------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
+  const carouselWrapper = document.querySelector(".carousel-wrapper"); // Use a parent element check
+  if (!carouselWrapper) return; // EXIT if element doesn't exist
+
   const cards = document.querySelectorAll(".carousel-card");
   const nextBtn = document.querySelector(".next-btn");
   const prevBtn = document.querySelector(".prev-btn");
@@ -88,23 +95,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  nextBtn.addEventListener("click", () => {
-    current = (current + 1) % cards.length;
-    updateCarousel();
-  });
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+        current = (current + 1) % cards.length;
+        updateCarousel();
+    });
+  }
 
-  prevBtn.addEventListener("click", () => {
-    current = (current - 1 + cards.length) % cards.length;
-    updateCarousel();
-  });
-
-  updateCarousel();
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+        current = (current - 1 + cards.length) % cards.length;
+        updateCarousel();
+    });
+  }
+  
+  // Only call updateCarousel if cards exist to prevent error
+  if (cards.length > 0) updateCarousel();
 });
 
 
-// Filter Functionality on Pressroom Page
+// ---------------------------------
+// Filter Functionality on Pressroom Page (FIXED - Added Null Checks)
+// ---------------------------------
+
 document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelectorAll(".press-filters .btn");
+  const filterContainer = document.querySelector(".press-filters");
+  if (!filterContainer) return; // EXIT if element doesn't exist
+
+  const buttons = filterContainer.querySelectorAll(".btn");
   const items = document.querySelectorAll(".press-item");
 
   buttons.forEach(btn => {
@@ -130,7 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // Navbar logo shrink when scrolling 
-
 window.addEventListener("scroll", function () {
     const navbar = document.querySelector(".navbar");
     const logo = document.getElementById("umelusi-logo");
@@ -145,9 +162,11 @@ window.addEventListener("scroll", function () {
 
 // Pagination System
 document.addEventListener("DOMContentLoaded", () => {
+    const pagination = document.getElementById("pagination-controls");
+    if (!pagination) return; // EXIT if element doesn't exist
+
     const itemsPerPage = 6;
     const items = document.querySelectorAll(".press-item");
-    const pagination = document.getElementById("pagination-controls");
     let currentPage = 1;
   
     function showPage(page) {
@@ -186,29 +205,36 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
   
-// Search Filtering
+// Search Filtering (FIXED - Added Null Checks)
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("press-search");
-  if (!searchInput) return; // ✅ Safely exit if search bar isn't on this page
+  if (!searchInput) return; // EXIT if element doesn't exist
 
   searchInput.addEventListener("input", function () {
     const query = this.value.toLowerCase();
     const cards = document.querySelectorAll(".press-item");
 
     cards.forEach(card => {
-      const title = card.querySelector(".press-title").innerText.toLowerCase();
-      const summary = card.querySelector(".press-summary").innerText.toLowerCase();
+      // Safely check for elements before getting innerText
+      const title = card.querySelector(".press-title")?.innerText.toLowerCase() || "";
+      const summary = card.querySelector(".press-summary")?.innerText.toLowerCase() || "";
+      
       card.style.display = (title.includes(query) || summary.includes(query)) ? "block" : "none";
     });
   });
 });
 
 
-//Executive Message Carousel on Home Page
+//Executive Message Carousel on Home Page (FIXED - Added Null Checks)
+// NOTE: This logic is nearly identical to the 'Carousel Board of Directors' block above.
+// Consider combining them if they target the same element to avoid confusion.
 document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".carousel-card");
-  const nextBtn = document.querySelector(".next-btn");
-  const prevBtn = document.querySelector(".prev-btn");
+  const carouselContainer = document.querySelector(".executive-carousel");
+  if (!carouselContainer) return; // EXIT if element doesn't exist
+
+  const cards = carouselContainer.querySelectorAll(".carousel-card");
+  const nextBtn = carouselContainer.querySelector(".next-btn");
+  const prevBtn = carouselContainer.querySelector(".prev-btn");
   let current = 0;
 
   function updateCarousel() {
@@ -217,115 +243,138 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     cards[current].classList.add("active");
   }
+  
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+        current = (current + 1) % cards.length;
+        updateCarousel();
+    });
+  }
 
-  nextBtn.addEventListener("click", () => {
-    current = (current + 1) % cards.length;
-    updateCarousel();
-  });
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+        current = (current - 1 + cards.length) % cards.length;
+        updateCarousel();
+    });
+  }
 
-  prevBtn.addEventListener("click", () => {
-    current = (current - 1 + cards.length) % cards.length;
-    updateCarousel();
-  });
-
-  updateCarousel();
+  if (cards.length > 0) updateCarousel();
 });
 
 
-// Load TradingView widgets dynamically
+// Load TradingView widgets dynamically (No changes needed, as they check their own container)
 
 // Global Indices
-const indicesScript = document.createElement('script');
-indicesScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
-indicesScript.async = true;
-indicesScript.innerHTML = JSON.stringify({
-  symbols: [
-    { proName: "FOREXCOM:SPXUSD", title: "S&P 500" },
-    { proName: "FOREXCOM:NSXUSD", title: "Nasdaq 100" },
-    { proName: "FOREXCOM:DJI", title: "Dow 30" },
-    { proName: "INDEX:NKY", title: "Nikkei 225" },
-    { proName: "INDEX:DEU40", title: "DAX" },
-    { proName: "FOREXCOM:UKXGBP", title: "FTSE 100" }
-  ],
-  showSymbolLogo: true,
-  colorTheme: "light",
-  isTransparent: false,
-  displayMode: "adaptive",
-  locale: "en"
-});
-document.getElementById("global-indices").appendChild(indicesScript);
+const indicesContainer = document.getElementById("global-indices");
+if (indicesContainer) {
+    const indicesScript = document.createElement('script');
+    indicesScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+    indicesScript.async = true;
+    indicesScript.innerHTML = JSON.stringify({
+      symbols: [
+        { proName: "FOREXCOM:SPXUSD", title: "S&P 500" },
+        { proName: "FOREXCOM:NSXUSD", title: "Nasdaq 100" },
+        { proName: "FOREXCOM:DJI", title: "Dow 30" },
+        { proName: "INDEX:NKY", title: "Nikkei 225" },
+        { proName: "INDEX:DEU40", title: "DAX" },
+        { proName: "FOREXCOM:UKXGBP", title: "FTSE 100" }
+      ],
+      showSymbolLogo: true,
+      colorTheme: "light",
+      isTransparent: false,
+      displayMode: "adaptive",
+      locale: "en"
+    });
+    indicesContainer.appendChild(indicesScript);
+}
 
 // Currency Rates
-const currencyScript = document.createElement('script');
-currencyScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
-currencyScript.async = true;
-currencyScript.innerHTML = JSON.stringify({
-  symbols: [
-    { proName: "FX_IDC:EURUSD", title: "EUR/USD" },
-    { proName: "FX_IDC:GBPUSD", title: "GBP/USD" },
-    { proName: "FX_IDC:USDZAR", title: "USD/ZAR" },
-    { proName: "FX_IDC:USDJPY", title: "USD/JPY" },
-    { proName: "FX_IDC:USDCNY", title: "USD/CNY" }
-  ],
-  showSymbolLogo: true,
-  colorTheme: "light",
-  isTransparent: false,
-  displayMode: "adaptive",
-  locale: "en"
-});
-document.getElementById("currency-rates").appendChild(currencyScript);
+const currencyRatesContainer = document.getElementById("currency-rates");
+if (currencyRatesContainer) {
+    const currencyScript = document.createElement('script');
+    currencyScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+    currencyScript.async = true;
+    currencyScript.innerHTML = JSON.stringify({
+      symbols: [
+        { proName: "FX_IDC:EURUSD", title: "EUR/USD" },
+        { proName: "FX_IDC:GBPUSD", title: "GBP/USD" },
+        { proName: "FX_IDC:USDZAR", title: "USD/ZAR" },
+        { proName: "FX_IDC:USDJPY", title: "USD/JPY" },
+        { proName: "FX_IDC:USDCNY", title: "USD/CNY" }
+      ],
+      showSymbolLogo: true,
+      colorTheme: "light",
+      isTransparent: false,
+      displayMode: "adaptive",
+      locale: "en"
+    });
+    currencyRatesContainer.appendChild(currencyScript);
+}
 
 // Economic Calendar
-const calendarScript = document.createElement('script');
-calendarScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-events.js";
-calendarScript.async = true;
-calendarScript.innerHTML = JSON.stringify({
-  colorTheme: "light",
-  isTransparent: false,
-  width: "100%",
-  height: "550",
-  locale: "en",
-  importanceFilter: "-1"
-});
-document.getElementById("economic-calendar").appendChild(calendarScript);
+const calendarContainer = document.getElementById("economic-calendar");
+if (calendarContainer) {
+    const calendarScript = document.createElement('script');
+    calendarScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-events.js";
+    calendarScript.async = true;
+    calendarScript.innerHTML = JSON.stringify({
+      colorTheme: "light",
+      isTransparent: false,
+      width: "100%",
+      height: "550",
+      locale: "en",
+      importanceFilter: "-1"
+    });
+    calendarContainer.appendChild(calendarScript);
+}
 
 // Market News
-const newsScript = document.createElement('script');
-newsScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-timeline.js";
-newsScript.async = true;
-newsScript.innerHTML = JSON.stringify({
-  feedMode: "all_symbols",
-  colorTheme: "light",
-  isTransparent: false,
-  displayMode: "adaptive",
-  width: "100%",
-  height: "600",
-  locale: "en"
-});
-document.getElementById("market-news").appendChild(newsScript);
+const newsContainer = document.getElementById("market-news");
+if (newsContainer) {
+    const newsScript = document.createElement('script');
+    newsScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-timeline.js";
+    newsScript.async = true;
+    newsScript.innerHTML = JSON.stringify({
+      feedMode: "all_symbols",
+      colorTheme: "light",
+      isTransparent: false,
+      displayMode: "adaptive",
+      width: "100%",
+      height: "600",
+      locale: "en"
+    });
+    newsContainer.appendChild(newsScript);
+}
 
 // Crypto Prices
-const cryptoScript = document.createElement('script');
-cryptoScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
-cryptoScript.async = true;
-cryptoScript.innerHTML = JSON.stringify({
-  symbols: [
-    { proName: "BITSTAMP:BTCUSD", title: "Bitcoin" },
-    { proName: "BITSTAMP:ETHUSD", title: "Ethereum" },
-    { proName: "BINANCE:XRPUSDT", title: "Ripple" },
-    { proName: "BINANCE:SOLUSDT", title: "Solana" }
-  ],
-  showSymbolLogo: true,
-  colorTheme: "light",
-  isTransparent: false,
-  displayMode: "adaptive",
-  locale: "en"
-});
-document.getElementById("crypto-prices").appendChild(cryptoScript);
+const cryptoContainer = document.getElementById("crypto-prices");
+if (cryptoContainer) {
+    const cryptoScript = document.createElement('script');
+    cryptoScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+    cryptoScript.async = true;
+    cryptoScript.innerHTML = JSON.stringify({
+      symbols: [
+        { proName: "BITSTAMP:BTCUSD", title: "Bitcoin" },
+        { proName: "BITSTAMP:ETHUSD", title: "Ethereum" },
+        { proName: "BINANCE:XRPUSDT", title: "Ripple" },
+        { proName: "BINANCE:SOLUSDT", title: "Solana" }
+      ],
+      showSymbolLogo: true,
+      colorTheme: "light",
+      isTransparent: false,
+      displayMode: "adaptive",
+      locale: "en"
+    });
+    cryptoContainer.appendChild(cryptoScript);
+}
 
 
-//Resources and Insights Page
+// ---------------------------------
+// Resources and Insights Page (FIXED - Added Null Checks)
+// ---------------------------------
+
 const articles = {
+  // ... (Article definitions unchanged)
   retirement: Array.from({ length: 20 }, (_, i) => ({
     title: `Retirement Article ${i + 1}`,
     description: "Helping you retire smarter.",
@@ -378,6 +427,8 @@ function getCategoryLabel(category) {
 
 function renderArticles(category) {
   const container = document.getElementById("tabs-content");
+  if (!container) return; // FIX: Prevent crash if container is null
+
   container.innerHTML = "";
 
   const items = articles[category] || [];
@@ -398,12 +449,17 @@ function renderArticles(category) {
 
   // Update view all link
   const viewAllLink = document.getElementById("view-all-link");
-  viewAllLink.href = `resources-${category}.html`;
-  viewAllLink.textContent = `View all ${getCategoryLabel(category)} articles`;
+  if (viewAllLink) {
+    viewAllLink.href = `resources-${category}.html`;
+    viewAllLink.textContent = `View all ${getCategoryLabel(category)} articles`;
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelectorAll(".filter-btn");
+  const articleFilters = document.querySelector(".filter-tabs"); // Use a parent container check
+  if (!articleFilters) return; // EXIT if element doesn't exist
+
+  const buttons = articleFilters.querySelectorAll(".filter-btn");
 
   buttons.forEach(btn => {
     btn.addEventListener("click", () => {
@@ -420,33 +476,77 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// === Currency Converter ===
-document.getElementById("convert-btn").addEventListener("click", async () => {
-  const from = document.getElementById("from-currency").value;
-  const to = document.getElementById("to-currency").value;
-  const amount = parseFloat(document.getElementById("amount").value);
+// ---------------------------------
+// Currency Converter (FIXED - Added Null Check)
+// ---------------------------------
 
-  if (!amount || amount <= 0) {
-    document.getElementById("conversion-result").innerText = "Please enter a valid amount.";
-    return;
-  }
+// !!! IMPORTANT !!! 
+// Replace "YOUR_API_KEY_HERE" with your actual key from exchangerate-api.com
 
-  try {
-    const response = await fetch(`https://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${amount}`);
-    const data = await response.json();
+function convertCurrency() {
+    const amountInput = document.getElementById('amount');
+    const fromCurrency = document.getElementById('from-currency').value;
+    const toCurrency = document.getElementById('to-currency').value;
+    const resultElement = document.getElementById('conversion-result');
+    
+    const amount = parseFloat(amountInput.value); 
+    const API_KEY = "dcfb40c2085072dd2e65fa80"; 
+    const API_URL = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/${fromCurrency}`;
 
-    if (data.result) {
-      document.getElementById("conversion-result").innerText =
-        `${amount} ${from} = ${data.result.toFixed(2)} ${to}`;
-    } else {
-      document.getElementById("conversion-result").innerText = "Unable to fetch conversion rate.";
+    if (isNaN(amount) || amount <= 0 || !fromCurrency || !toCurrency) {
+        resultElement.innerHTML = '<span style="color: red;">Please enter a valid amount and select currencies.</span>';
+        return;
     }
-  } catch (error) {
-    document.getElementById("conversion-result").innerText = "Error fetching data. Please try again.";
-  }
+
+    resultElement.innerHTML = 'Fetching live rate...';
+
+    fetch(API_URL)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.result === 'success') {
+                const rate = data.conversion_rates[toCurrency]; 
+                
+                if (rate) {
+                    const convertedAmount = amount * rate;
+                    resultElement.innerHTML = `
+                        <strong>${amount.toFixed(2)} ${fromCurrency}</strong> = 
+                        <span style="color: var(--color-brand-primary); font-weight: bold;">
+                            ${convertedAmount.toFixed(2)} ${toCurrency}
+                        </span>
+                    `;
+                } else {
+                    resultElement.innerHTML = '<span style="color: red;">Error: Conversion rate to the target currency is not available.</span>';
+                }
+            } else {
+                 resultElement.innerHTML = `<span style="color: red;">API Error: ${data['error-type'] || 'Failed to retrieve data.'}</span>`;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching currency data:', error);
+            resultElement.innerHTML = `<span style="color: red;">Error: Could not retrieve live rates. Please check your API key and console for network details.</span>`;
+        });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const convertButton = document.getElementById("convert-btn");
+    if (!convertButton) return; // FIX: Prevent crash if button is null
+
+    convertButton.addEventListener("click", (e) => {
+      e.preventDefault(); 
+      convertCurrency();
+    });
 });
 
-// --------- Dynamic Breadcrumb Trail System (Updated) ----------
+
+// ---------------------------------
+// Dynamic Breadcrumb Trail System (FIXED - Prepending Home)
+// ---------------------------------
+
 document.addEventListener("DOMContentLoaded", () => {
   const breadcrumbContainer = document.getElementById("breadcrumb-trail");
   if (!breadcrumbContainer) return;
@@ -454,6 +554,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Get current page filename
   let currentPage = window.location.pathname.split("/").pop();
   if (!currentPage || currentPage === "") currentPage = "index.html";
+
+  const isHomePage = currentPage === "index.html";
 
   // Page title mappings
   const pageTitles = {
@@ -474,6 +576,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Retrieve stored trail from localStorage
   let trail = JSON.parse(localStorage.getItem("breadcrumbTrail")) || [];
+
+  // FIX: If trail is empty AND we are not on the home page, start the trail with Home.
+  if (trail.length === 0 && !isHomePage) {
+    trail.push({ title: "Home", file: "index.html" });
+  }
 
   // Remove if current page already exists in trail (avoid duplicates)
   trail = trail.filter(page => page.file !== currentPage);
@@ -499,3 +606,74 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+// ---------------------------------
+// Form Submission Handler (AJAX)
+// ---------------------------------
+
+document.addEventListener('DOMContentLoaded', () => {
+    // List all form IDs that need AJAX submission
+    const formIds = ['mainContactForm', 'finserveMainContactForm', 'finserveModalContactForm'];
+
+    formIds.forEach(id => {
+        const form = document.getElementById(id);
+        
+        if (form) {
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault(); // Stop the default page refresh
+
+                const submitButton = form.querySelector('button[type="submit"]');
+                
+                const originalButtonText = submitButton.textContent;
+                submitButton.textContent = 'Sending...';
+                submitButton.disabled = true;
+
+                // Check if the form is inside a modal (needed for closing on success)
+                const modalElement = form.closest('.modal');
+                
+                try {
+                    const formData = new FormData(form);
+                    const data = Object.fromEntries(formData);
+                    
+                    // Fetch to the Node.js server endpoint
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (response.ok) {
+                        alert('Thank you! Your message has been sent successfully.');
+                        form.reset();
+                        
+                        // Close the modal if the form was inside one
+                        if (modalElement) {
+                            // Get the Bootstrap modal instance and hide it
+                            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+                            if (modalInstance) {
+                                modalInstance.hide();
+                            }
+                        }
+                    } else {
+                        const errorData = await response.json();
+                        alert(`Submission Failed: ${errorData.message || 'Please check your server and try again.'}`);
+                    }
+                } catch (error) {
+                    console.error('Submission error:', error);
+                    alert('A network error occurred. Please ensure the backend server is running.');
+                } finally {
+                    submitButton.textContent = originalButtonText;
+                    submitButton.disabled = false;
+                }
+            });
+        }
+    });
+});
+
+// TradingView widgets are not affected by null checks, but they should be wrapped in one
+// for safety, which I've done above.
+
+// Note: AOS.init() is usually called once globally after the DOM is ready and the
+// AOS script is loaded. Ensure it's not called multiple times.
