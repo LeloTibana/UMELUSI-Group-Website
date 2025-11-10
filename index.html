@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="description" content="Umelusi Group is a leading financial services company offering Investment Management, Wealth Planning, Capital Markets, and Consulting. Grow your future with our expertise.">
-    <meta name="keywords" content="Umelusi, Umelusi Group, Financial Services, Investment Management, Wealth Management, Capital Markets, Consulting, South Africa">
-    <link rel="canonical" href="https://www.umelusigroup.com/index.html"> <meta property="og:title" content="Umelusi Group | Home">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Umelusi Group is a leading financial services holding company offering strategic expertise in Investment Management, Wealth Planning, Capital Markets, and Consulting across the African continent.">
+    <meta name="keywords" content="Umelusi, Umelusi Group, Financial Services, Investment Management, Wealth Management, Capital Markets, Consulting, Africa, Growth">
+    <link rel="canonical" href="https://www.umelusigroup.com/index.html"> 
+    <meta property="og:title" content="Umelusi Group | Strategic Financial Partnerships for Growth">
     <meta property="og:description" content="Your trusted partner in investment management and wealth creation across the African continent.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.umelusigroup.com/index.html">
@@ -11,17 +14,14 @@
     <meta property="og:site_name" content="Umelusi Group">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@UmelusiGroup"> <meta name="twitter:title" content="Umelusi Group | Home">
+    <meta name="twitter:site" content="@UmelusiGroup"> 
+    <meta name="twitter:title" content="Umelusi Group | Home">
     <meta name="twitter:description" content="A leader in financial services, offering diverse expertise for your financial success.">
     <meta name="twitter:image" content="https://www.umelusigroup.com/images/umelusi-social-share-image.jpg">
-    <title>Umelusi Group</title>
-    <!-- Bootstrap CSS -->
+    <title>Umelusi Group | Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
-    <!-- Font Awesome Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Century+Gothic&display=swap" rel="stylesheet">
 
     <script type="application/ld+json">
@@ -42,13 +42,12 @@
 </head>
 <body>
 
-<!-- Sticky Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.html">
-            <img src="images/Umelusi-2ndLogo.png" alt="Umelusi Group Logo" class="navbar-logo" id="umelusi-logo" />
+            <img src="images/Umelusi-2ndLogo.png" alt="Umelusi Group Logo" class="navbar-logo" id="umelusi-logo" loading="eager" />
           </a>          
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation menu">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -89,75 +88,95 @@
     </div>
 </nav>
 
-<!-- Back to Top Button -->
-<button id="back-to-top" class="btn btn-floating" style="position: fixed; bottom: 20px; right: 20px; display: none;">
-    <i class="fas fa-arrow-up"></i>
-</button>
-
-<!-- Welcome Section with Background Video -->
-<section class="welcome-section py-5">
+<section class="hero-main d-flex align-items-center text-white text-center">
     <div class="video-background">
-        <video autoplay muted loop id="hero-video">
-            <source src="videos/herosection.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="video-overlay"></div>
+        <img src="images/hero-abstract-bg.jpg" alt="Abstract graphic showing upward financial trends and global connections" class="hero-fallback-image" loading="eager" />
     </div>
-    <div class="container position-relative z-index-1 text-center text-white">
-        <div class="hero-copy mx-auto">
-          <h1 class="display-4 fw-bold mb-3 text-white">Welcome To Umelusi Group.</h1>
-          <h2 class="display-4 fw-bold mb-3 text-white">GUIDE   |   GUARD   |  GROW</h2>
-          <p class="fs-5">
-            We believe true financial stewardship means more than performance — it means protecting legacies, enabling generational impact, and guiding our clients through every financial season with clarity, discipline, and trust</p>        
+    <div class="container hero-content" data-aos="fade-up">
+        <h1 class="display-3 fw-bolder">Building Africa's Financial Future.</h1>
+        <p class="lead fw-light mx-auto my-4" style="max-width: 800px;">
+            Umelusi Group is your strategic partner, connecting opportunity with capital across **Investment Management, Corporate Finance, and Advisory Services.**
+        </p>
+        <div class="d-flex justify-content-center">
+            <a href="#brand-ecosystem" class="btn btn-lg btn-orange text-white fw-bold me-3" aria-label="Explore Umelusi Group's Brands">Explore Our Brands</a>
+            <button type="button" class="btn btn-lg btn-outline-light fw-bold" data-bs-toggle="modal" data-bs-target="#advisorModal" aria-label="Contact a Financial Advisor">Talk to an Advisor</button>
         </div>
-      </div>
+    </div>
 </section>
 
+<section id="market-ticker" class="py-2 bg-dark text-white border-bottom border-top border-warning border-3">
+    <div class="container">
+        <h2 class="visually-hidden">Global Market Indices Snapshot</h2>
+        <div class="table-responsive">
+            <table class="table table-sm table-dark mb-0 align-middle">
+                <thead>
+                    <tr class="visually-hidden">
+                        <th>Index</th>
+                        <th>Value</th>
+                        <th>Change</th>
+                    </tr>
+                </thead>
+                <tbody id="market-data">
+                    <tr><td colspan="3" class="text-center text-muted small">Loading Live Market Data...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
 
-
-
-<!-- How Can We Help You Today? Section -->
-<section class="help-section py-5">
+<section id="brand-ecosystem" class="py-5 bg-light">
     <div class="container" data-aos="fade-up">
-        <h2 class="text-center mb-4">How can we help you today?</h2>
-        <div class="row">
-            <!-- Card 1: Umelusi Fund Managers -->
-            <div class="col-lg-3 col-md-6 mb-4">
-                <a href="#" class="card-link text-decoration-none">
-                    <div class="card h-100 d-flex flex-column justify-content-between p-3 text-center">
-                        <img src="images/Umelusi-FundManagers2.png" alt="Umelusi Fund Managers Logo" class="mb-3">
-                        <p class="mb-0">We manage your investments with expertise and integrity.</p>
-                        <a href="fund-managers.html" class="btn btn-outline-primary mt-3">Learn More</a>
+        <h2 class="text-center fw-bold mb-3 text-brand">The Umelusi Ecosystem: Integrated Expertise</h2>
+        <p class="text-center text-muted mb-5 mx-auto" style="max-width: 800px;">
+            Four specialized brands working in concert to provide comprehensive, integrated financial solutions for every stage of wealth and business growth.
+        </p>
+
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <a href="fund-managers.html" class="card-link">
+                    <div class="card h-100 shadow-sm border-0 brand-card p-3" aria-label="Umelusi Fund Managers Investment Services">
+                        <div class="card-body text-center">
+                            <i class="fas fa-chart-pie fa-3x text-orange mb-3" aria-hidden="true"></i>
+                            <h3 class="h5 fw-bold text-dark">Umelusi Fund Managers</h3>
+                            <p class="card-text text-muted small">Disciplined Investment Management and comprehensive Wealth Planning.</p>
+                            <span class="btn btn-sm btn-outline-brand mt-2">Discover Solutions</span>
+                        </div>
                     </div>
                 </a>
             </div>
-            <!-- Card 2: Umelusi Partners -->
-            <div class="col-lg-3 col-md-6 mb-4">
-                <a href="#" class="card-link text-decoration-none">
-                    <div class="card h-100 d-flex flex-column justify-content-between p-3 text-center">
-                        <img src="images/Umelusi-Partners.png" alt="Umelusi Partners Logo" class="mb-3">
-                        <p class="mb-0">Drive growth through strategic partnerships and advisory services.</p>
-                        <a href="partners.html" class="btn btn-outline-primary mt-3">Learn More</a>
+            <div class="col-lg-3 col-md-6">
+                <a href="partners.html" class="card-link">
+                    <div class="card h-100 shadow-sm border-0 brand-card p-3" aria-label="Umelusi Partners Advisory Services">
+                        <div class="card-body text-center">
+                            <i class="fas fa-users fa-3x text-orange mb-3" aria-hidden="true"></i>
+                            <h3 class="h5 fw-bold text-dark">Umelusi Partners</h3>
+                            <p class="card-text text-muted small">Expert Management Consulting, Strategy, and Corporate Advisory.</p>
+                            <span class="btn btn-sm btn-outline-brand mt-2">Learn More</span>
+                        </div>
                     </div>
                 </a>
             </div>
-            <!-- Card 3: Umelusi Capital -->
-            <div class="col-lg-3 col-md-6 mb-4">
-                <a href="#" class="card-link text-decoration-none">
-                    <div class="card h-100 d-flex flex-column justify-content-between p-3 text-center">
-                        <img src="images/Umelusi-Capital.png" alt="Umelusi Capital Logo" class="mb-3">
-                        <p class="mb-0">Secure your financial future with tailored capital solutions.</p>
-                        <a href="capital.html" class="btn btn-outline-primary mt-3">Learn More</a>
+            <div class="col-lg-3 col-md-6">
+                <a href="capital.html" class="card-link">
+                    <div class="card h-100 shadow-sm border-0 brand-card p-3" aria-label="Umelusi Capital Corporate Finance">
+                        <div class="card-body text-center">
+                            <i class="fas fa-handshake fa-3x text-orange mb-3" aria-hidden="true"></i>
+                            <h3 class="h5 fw-bold text-dark">Umelusi Capital</h3>
+                            <p class="card-text text-muted small">Corporate Finance, Investment Banking, and Tailored Funding Solutions.</p>
+                            <span class="btn btn-sm btn-outline-brand mt-2">Access Capital</span>
+                        </div>
                     </div>
                 </a>
             </div>
-            <!-- Card 4: Umelusi FinServe -->
-            <div class="col-lg-3 col-md-6 mb-4">
-                <a href="#" class="card-link text-decoration-none">
-                    <div class="card h-100 d-flex flex-column justify-content-between p-3 text-center">
-                        <img src="images/Umelusi Finserve.png" alt="Umelusi FinServe Logo" class="mb-3">
-                        <p class="mb-0">Access seamless financial services at your fingertips.</p>
-                        <a href="finserve.html" class="btn btn-outline-primary mt-3">Learn More</a>
+            <div class="col-lg-3 col-md-6">
+                <a href="finserve.html" class="card-link">
+                    <div class="card h-100 shadow-sm border-0 brand-card p-3" aria-label="Umelusi FinServe Transactional Services">
+                        <div class="card-body text-center">
+                            <i class="fas fa-money-bill-transfer fa-3x text-orange mb-3" aria-hidden="true"></i>
+                            <h3 class="h5 fw-bold text-dark">Umelusi FinServe</h3>
+                            <p class="card-text text-muted small">Transactional Banking, Foreign Exchange, and Money Transfer Services.</p>
+                            <span class="btn btn-sm btn-outline-brand mt-2">View Services</span>
+                        </div>
                     </div>
                 </a>
             </div>
@@ -165,361 +184,55 @@
     </div>
 </section>
 
-
-  <!-- Divider -->
-  <div class="section-divider" data-aos="fade-in"></div>
-
-<!-- Why Work with Us? Section -->
-<section class="why-work-with-us py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <!-- Left Column: Text Content -->
-            <div class="col-lg-6 mb-4">
-                <h2>Why work with us?</h2>
-                <h3 class="text-orange">Specialist wealth managers</h3>
-                <p>An accurate title. But we do far more than that.</p>
-                <p>We’re here to secure and grow your wealth. The kind of wealth that gives you peace of mind and something seemingly ordinary—the freedom to choose. Choose the size of your dreams and the content of your next chapters. What should always matter is that you have the kind of freedom that is beyond remarkable, freedom that only true wealth gives you.</p>
-                <button type="button" class="btn btn-brand" data-bs-toggle="modal" data-bs-target="#advisorContactModal">
-                    <i class="fas fa-user"></i> Speak to an advisor
-                  </button>
-                              </div>
-            <!-- Right Column: Statistics -->
-            <div class="col-lg-6">
-                <div class="stats-container text-center">
-                    <h1 class="mb-3">99%</h1>
-                    <p class="mb-1">Client retention rate</p>
-                    <hr />
-                    <h1 class="mb-3">+R1.6 billion assets under management</h1>
-                    <p class="mb-1">Managed with expertise</p>
-                    <hr />
-                    <h1 class="mb-3">30+ years</h1>
-                    <p class="mb-1">Of experience in financial services</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Executive Message Section -->
-<section class="executive-carousel py-5 bg-light" id="executive-carousel">
-    <div class="container">
-      <h2 class="text-center mb-5" data-aos="fade-up">Why Work With Umelusi Group</h2>
-      <div class="carousel-wrapper" data-aos="fade-up">
-        <button class="carousel-btn prev-btn" aria-label="Previous testimonial">&lt;</button>
-  
-        <div class="carousel-track">
-          <div class="carousel-card active">
-            <img src="images/staff1.png" alt="Nompilo Dlamini" class="carousel-img" loading="lazy">
-            <div class="carousel-content">
-              <h5>Thabo Magagula</h5>
-              <p class="text-muted">Chairperson</p>
-              <p>
-                “At Umelusi, we build long-term relationships based on trust and accountability. Our clients rely on us not only for performance but for partnership. 
-                We invest for the future — not the next quarter — and that’s a distinction that matters.”
-              </p>
-            </div>
-          </div>
-  
-          <div class="carousel-card">
-            <img src="images/staff2.png" alt="Sifiso Mabuza" class="carousel-img" loading="lazy">
-            <div class="carousel-content">
-              <h5>Gugulethu Thwala</h5>
-              <p class="text-muted">Group Manager</p>
-              <p>
-                “Umelusi Group is built on a philosophy of stewardship and strategic growth. Whether you’re an institutional investor or a private client, 
-                you can expect tailored strategies, transparent communication, and a firm that values your long-term goals.”
-              </p>
-            </div>
-          </div>
-  
-          <div class="carousel-card">
-            <img src="images/staff3.png" alt="Mandla Mkhonta" class="carousel-img" loading="lazy">
-            <div class="carousel-content">
-              <h5>Muzi Dlamini</h5>
-              <p class="text-muted">Chief Financial Officer</p>
-              <p>
-                “Financial resilience isn’t just a metric — it’s a mindset. That’s what we bring to every portfolio and every partnership. 
-                We protect, guide, and grow capital through any market cycle.”
-              </p>
-            </div>
-          </div>
-        </div>
-  
-        <button class="carousel-btn next-btn" aria-label="Next testimonial">&gt;</button>
-      </div>
-    </div>
-  </section>
-  
-  
-
-<!-- Latest News Carousel -->
-<section class="latest-news py-5">
-    <div class="container">
-        <!-- Title Above the Carousel -->
-        <h2 class="text-center mb-4 fw-bold">Latest News From Umelusi Group</h2>
-
-        <!-- Carousel -->
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <!-- Indicators -->
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
-            </div>
-            <!-- Slides -->
-            <div class="carousel-inner">
-                <!-- Slide 1 -->
-                <div class="carousel-item active">
-                    <img src="images/news1.jpg" class="d-block w-100" alt="News 1" loading="lazy">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h2>IMF Speech: What it Means for African Funds</h2>
-                        <p>A breakdown of the latest IMF address and its implications for fund managers operating in emerging African markets.</p>
-                        <a href="press-article-imf-speech.html" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-                <!-- Slide 2 -->
-                <div class="carousel-item">
-                    <img src="images/news2.jpg" class="d-block w-100" alt="News 2" loading="lazy">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h2>CEO Interview: Investing Beyond Borders</h2>
-                        <p>Thabo Magagula, CEO of Umelusi Group, shares insights on Africa’s investment landscape in a changing global economy..</p>
-                        <a href="press-article-ceo-interview.html" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-                <!-- Slide 3 -->
-                <div class="carousel-item">
-                    <img src="images/news3.jpg" class="d-block w-100" alt="News 3" loading="lazy">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h2>Umelusi Extends League Sponsorship Deal</h2>
-                        <p>The firm renews its title sponsorship of the National Golf League for the third year, strengthening its community and branding presence.</p>
-                        <a href="press-article-league-sponsorship.html" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-                <!-- Slide 4 -->
-                <div class="carousel-item">
-                    <img src="images/news4.jpg" class="d-block w-100" alt="News 4" loading="lazy">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h2>What Tariff Talks Mean for Regional Trade</h2>
-                        <p>Our macroeconomic research team analyzes the recent G7 tariff proposals and their potential ripple effect across Southern Africa.</p>
-                        <a href="press-article-tariff-analysis.html" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-                <!-- Slide 5 -->
-                <div class="carousel-item">
-                    <img src="images/news5.jpg" class="d-block w-100" alt="News 5" loading="lazy">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h2>Umelusi Capital Awarded Development Finance Mandate</h2>
-                        <p>A new partnership with Eswatini’s Infrastructure Authority will see Umelusi Capital manage a E600M infrastructure expansion fund.</p>
-                        <a href="press-article-pension-tender.html" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Controls -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
-</section>
-
-
-  <!-- Divider -->
-  <div class="section-divider" data-aos="fade-in"></div>
-
-
-<!-- Resources & Insights Section -->
-<section class="resources-insights py-5">
+<section id="value-proposition" class="py-5 bg-white">
     <div class="container" data-aos="fade-up">
-        <!-- Title -->
-        <h2 class="text-center mb-4">Learn More About</h2>
-
-        <!-- Tabs Navigation -->
-        <ul class="nav nav-tabs justify-content-center mb-5" id="learnMoreTabs" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="resources-tab" data-bs-toggle="tab" data-bs-target="#resources" type="button" role="tab" aria-controls="resources" aria-selected="true">
-                    Resources & Insights
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="work-tab" data-bs-toggle="tab" data-bs-target="#work" type="button" role="tab" aria-controls="work" aria-selected="false">
-                    Work At Umelusi Group
-                </button>
-            </li>
-        </ul>
-
-        <!-- Tab Content -->
-        <div class="tab-content" id="learnMoreTabsContent">
-            <!-- Resources & Insights Tab -->
-            <div class="tab-pane fade show active" id="resources" role="tabpanel" aria-labelledby="resources-tab">
-                <div class="row">
-                    <!-- Card 1 -->
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card h-100 text-center p-4">
-                            <img src="images/resource1.jpg" alt="Resource 1" class="mb-3 rounded" loading="lazy">
-                            <h5 class="mb-3">Market Trends</h5>
-                            <p class="mb-4">Stay informed about the latest trends shaping the financial markets.</p>
-                            <a href="markets.html" class="btn btn-outline-primary">Learn More</a>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card h-100 text-center p-4">
-                            <img src="images/resource2.jpg" alt="Resource 2" class="mb-3 rounded" loading="lazy">
-                            <h5 class="mb-3">Investment Strategies</h5>
-                            <p class="mb-4">Discover proven strategies to grow your wealth over time.</p>
-                            <a href="resources.html" class="btn btn-outline-primary">Learn More</a>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card h-100 text-center p-4">
-                            <img src="images/resource3.jpg" alt="Resource 3" class="mb-3 rounded" loading="lazy">
-                            <h5 class="mb-3">Financial Planning</h5>
-                            <p class="mb-4">Plan for your future with expert financial advice and tools.</p>
-                            <a href="capital.html" class="btn btn-outline-primary">Learn More</a>
-                        </div>
-                    </div>
-                    <!-- Card 4 -->
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card h-100 text-center p-4">
-                            <img src="images/resource4.jpg" alt="Resource 4" class="mb-3 rounded" loading="lazy">
-                            <h5 class="mb-3">Educational Resources</h5>
-                            <p class="mb-4">Access guides, webinars, and articles to enhance your financial knowledge.</p>
-                            <a href="resources.html" class="btn btn-outline-primary">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Work At Umelusi Group Tab -->
-            <div class="tab-pane fade" id="work" role="tabpanel" aria-labelledby="work-tab">
-                <div class="row">
-                    <!-- Card 1 -->
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card h-100 text-center p-4">
-                            <img src="images/career1.jpg" alt="Career 1" class="mb-3 rounded" loading="lazy">
-                            <h5 class="mb-3">Join Our Team</h5>
-                            <p class="mb-4">Explore exciting career opportunities at Umelusi Group.</p>
-                            <a href="careers.html" class="btn btn-outline-primary">View Openings</a>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card h-100 text-center p-4">
-                            <img src="images/career2.jpg" alt="Career 2" class="mb-3 rounded" loading="lazy">
-                            <h5 class="mb-3">Our Culture</h5>
-                            <p class="mb-4">Learn about our commitment to innovation, collaboration, and excellence.</p>
-                            <a href="about-company.html" class="btn btn-outline-primary">Discover Our Values</a>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card h-100 text-center p-4">
-                            <img src="images/career3.jpg" alt="Career 3" class="mb-3 rounded" loading="lazy">
-                            <h5 class="mb-3">Professional Growth</h5>
-                            <p class="mb-4">Advance your career with training, mentorship, and development programs.</p>
-                            <a href="careers.html" class="btn btn-outline-primary">Explore Development</a>
-                        </div>
-                    </div>
-                    <!-- Card 4 -->
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card h-100 text-center p-4">
-                            <img src="images/career4.jpg" alt="Career 4" class="mb-3 rounded" loading="lazy">
-                            <h5 class="mb-3">Employee Stories</h5>
-                            <p class="mb-4">Hear from our team members about their experiences at Umelusi Group.</p>
-                            <a href="careers.html" class="btn btn-outline-primary">Read Stories</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Contact Form Section -->
-<section class="contact-form py-5" style="background-color: #f9f9f9;">
-    <div class="container">
         <div class="row align-items-center">
-            <!-- Left Column: Text Content -->
-            <div class="col-lg-6 mb-4">
-                <h2 class="mb-3">Start Your Financial Journey with Umelusi Group</h2>
-                <p class="mb-4">
-                    At Umelusi Group, we’re here to guide you every step of the way. Whether you're planning for retirement, managing daily finances, or securing your legacy, our team of experts is ready to help. Fill out the form below, and let’s begin crafting a personalized financial strategy tailored just for you.
-                </p>
-                <p class="mb-4">
-                    <strong>Why Choose Us?</strong><br>
-                    - Over 50 years of trusted experience<br>
-                    - R1.6 billion in assets under management<br>
-                    - Personalized solutions for every financial goal
-                </p>
-                <a href="about-company.html" class="btn btn-outline-primary me-3">Learn More About Us</a>
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="images/core-values.jpg" class="img-fluid rounded shadow-lg" alt="Team members collaborating around a financial data screen" loading="lazy">
             </div>
-            <!-- Right Column: Contact Form -->
             <div class="col-lg-6">
-                <form id="mainContactForm" action="http://localhost:3000/submit-contact" method="POST" class="row g-3">
-    <div class="mb-3">
-        <label for="contactName" class="form-label">Full Name</label>
-        <input type="text" class="form-control" id="contactName" name="contactName" placeholder="Enter your full name" required>
-    </div>
-    <div class="mb-3">
-        <label for="contactEmail" class="form-label">Email Address</label>
-        <input type="email" class="form-control" id="contactEmail" name="contactEmail" placeholder="example@example.com" required>
-    </div>
-    <div class="mb-3">
-        <label for="phone" class="form-label">Contact Number</label>
-        <input type="tel" class="form-control" id="phone" name="contactPhone" placeholder="+268..." required>
-    </div>
-    <div class="mb-3">
-        <label for="office" class="form-label">Select Your Nearest Umelusi Group Office</label>
-        <select class="form-select" id="office" name="contactOffice" required>
-            <option value="">Choose an office</option>
-            <option value="Mbabane">Mbabane</option>
-            <option value="Manzini">Manzini</option>
-            <option value="South Africa">South Africa</option>
-            <option value="Sudan">Sudan</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="interest" class="form-label">What Would You Like to Discuss?</label>
-        <select class="form-select" id="interest" name="contactInterest" required>
-            <option value="">Choose an option</option>
-            <option value="Investment Advice">Investment Advice</option>
-            <option value="Wealth Management">Wealth Management</option>
-            <option value="Financial Planning">Financial Planning</option>
-            <option value="Retirement Planning">Retirement Planning</option>
-            <option value="Estate Planning">Estate Planning</option>
-            <option value="Other">Other</option>
-        </select>
-    </div>
-    <button type="submit" class="btn btn-primary w-100">Submit Your Inquiry</button>
-</form>
+                <h2 class="fw-bold mb-4 text-brand">Why Partner with Umelusi Group?</h2>
+                <div class="p-3 mb-3 border-start border-3 border-dark">
+                    <h3 class="h5 fw-bold">African Deep Roots, Global Reach</h3>
+                    <p class="text-muted small">We combine localized knowledge of African markets with the execution capability and governance standards of a global financial institution.</p>
+                </div>
+                <div class="p-3 mb-3 border-start border-3 border-dark">
+                    <h3 class="h5 fw-bold">Long-Term Value Creation</h3>
+                    <p class="text-muted small">Our focus is not on short-term gains but on crafting strategies that ensure sustainable growth and generational wealth preservation.</p>
+                </div>
+                <div class="p-3 mb-3 border-start border-3 border-dark">
+                    <h3 class="h5 fw-bold">Integrated, Client-Centric Service</h3>
+                    <p class="text-muted small">Benefit from the seamless expertise of all our brands under one trusted umbrella, tailored precisely to your unique financial trajectory.</p>
+                </div>
+                <a href="about-company.html" class="btn btn-brand mt-3" aria-label="Read more about Umelusi Group's company information">Our Story and Commitment</a>
             </div>
         </div>
     </div>
 </section>
 
+<section class="cta-block py-5 bg-dark text-white">
+    <div class="container text-center" data-aos="fade-up">
+        <h2 class="fw-bold mb-3">Insights That Drive Decisions</h2>
+        <p class="lead mb-4 mx-auto" style="max-width: 700px;">
+            Access our latest economic outlook, proprietary research, and strategic perspectives on market movements.
+        </p>
+        <a href="resources.html" class="btn btn-lg btn-outline-orange fw-bold" aria-label="Go to Resources and Insights Page">Explore Resources & Insights <i class="fas fa-arrow-right ms-2"></i></a>
+    </div>
+</section>
 
-
-<!-- Footer -->
 <footer class="bg-light text-center text-lg-start">
     <div class="container p-4">
         <div class="row align-items-center">
             <div class="col-lg-3 col-md-12 mb-4">
-                <img src="images/Umelusi-2ndLogo.png" alt="Umelusi Group Logo" class="footer-logo">
+                <img src="images/Umelusi-2ndLogo.png" alt="Umelusi Group Logo" class="footer-logo" loading="lazy">
             </div>
             <div class="col-lg-9 col-md-12 mb-4">
                 <div class="social-media mb-3 d-flex justify-content-end">
-                    <a href="#" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
+                    <a href="#" class="text-dark me-3" aria-label="Umelusi Group on LinkedIn"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="#" class="text-dark me-3" aria-label="Umelusi Group on Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" class="text-dark me-3" aria-label="Umelusi Group on Facebook"><i class="fab fa-facebook-f fa-lg"></i></a>
+                    <a href="#" class="text-dark me-3" aria-label="Umelusi Group on X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" class="text-dark" aria-label="Umelusi Group on YouTube"><i class="fab fa-youtube fa-lg"></i></a>
                 </div>
                 <div class="contact-details text-end">
                     <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Office D103, Development House, Swazi Plaza</p>
@@ -572,49 +285,46 @@
     </div>
 </footer>
 
-<!-- Advisor Contact Modal -->
-<div class="modal fade" id="advisorContactModal" tabindex="-1" aria-labelledby="advisorContactModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal fade" id="advisorModal" tabindex="-1" aria-labelledby="advisorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        
-        <div class="modal-header">
-          <h5 class="modal-title" id="advisorContactModalLabel">Speak to a Financial Advisor</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-header bg-brand text-white">
+          <h5 class="modal-title" id="advisorModalLabel">Request a Consultation</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        
-        <div class="modal-body">
-          <form>
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label for="advisorName" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="advisorName" placeholder="Enter your full name" required>
-              </div>
-              <div class="col-md-6">
-                <label for="advisorEmail" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="advisorEmail" placeholder="example@example.com" required>
-              </div>
-              <div class="col-md-6">
-                <label for="advisorPhone" class="form-label">Phone Number</label>
-                <input type="tel" class="form-control" id="advisorPhone" placeholder="+27000000000">
-              </div>
-              <div class="col-md-6">
-                <label for="advisorService" class="form-label">Service You're Interested In</label>
-                <select class="form-select" id="advisorService" required>
-                  <option value="">Choose one</option>
-                  <option value="investment">Investment Advice</option>
-                  <option value="wealth">Wealth Management</option>
-                  <option value="retirement">Retirement Planning</option>
-                  <option value="estate">Estate Planning</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div class="col-12">
-                <label for="advisorMessage" class="form-label">Additional Information</label>
-                <textarea class="form-control" id="advisorMessage" rows="3" placeholder="Tell us more..."></textarea>
-              </div>
-              <div class="col-12 text-center">
-                <button type="submit" class="btn btn-brand px-4">Submit Inquiry</button>
-              </div>
+        <div class="modal-body p-4">
+          <h6 class="text-center mb-4 text-muted">A dedicated advisor from the appropriate Umelusi brand will contact you shortly.</h6>
+          <form id="advisorContactForm" class="row g-3" action="http://localhost:3000/submit-contact" method="POST">
+            <div class="col-md-6">
+              <label for="advisorName" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="advisorName" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="col-md-6">
+              <label for="advisorEmail" class="form-label">Email Address</label>
+              <input type="email" class="form-control" id="advisorEmail" name="email" placeholder="email@example.com" required>
+            </div>
+            <div class="col-md-6">
+              <label for="advisorPhone" class="form-label">Phone Number (Optional)</label>
+              <input type="tel" class="form-control" id="advisorPhone" name="phone" placeholder="+27 00 000 0000">
+            </div>
+            <div class="col-md-6">
+              <label for="advisorService" class="form-label">Service You're Interested In</label>
+              <select class="form-select" id="advisorService" name="service" required>
+                <option value="">Choose one</option>
+                <option value="investment">Investment Advice (Fund Managers)</option>
+                <option value="wealth">Wealth Management (Fund Managers)</option>
+                <option value="capital">Corporate Finance (Capital)</option>
+                <option value="consulting">Management Consulting (Partners)</option>
+                <option value="transactional">Money/Forex Transfer (FinServe)</option>
+                <option value="other">Other Inquiry</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="advisorMessage" class="form-label">Additional Information</label>
+              <textarea class="form-control" id="advisorMessage" name="message" rows="3" placeholder="Tell us more about your needs or goals..."></textarea>
+            </div>
+            <div class="col-12 text-center">
+              <button type="submit" class="btn btn-brand px-4">Submit Inquiry</button>
             </div>
           </form>
         </div>
@@ -623,11 +333,12 @@
     </div>
   </div>
   
+<button id="back-to-top" class="btn btn-floating" style="position: fixed; bottom: 20px; right: 20px; display: none;" aria-label="Scroll back to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Custom JavaScript -->
 <script src="scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>AOS.init();</script>
 </body>
