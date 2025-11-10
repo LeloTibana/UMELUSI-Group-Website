@@ -98,7 +98,9 @@
     <div class="container text-center" data-aos="fade-up">
         <h1>Securing Your Financial Future</h1>
         <p class="lead mb-4">Umelusi Group is a leading financial services company offering Investment Management, Wealth Planning, Capital Markets, and Consulting.</p>
-        <a href="#welcome" class="btn btn-primary btn-lg px-4">Discover Our Services</a>
+        <button type="button" class="btn btn-brand btn-lg px-4" data-bs-toggle="modal" data-bs-target="#contactModal">
+    Discover Our Services
+</button>
     </div>
 </section>
 
@@ -259,6 +261,57 @@
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: var(--brand-primary, #FF9933); color: white;">
+                <h5 class="modal-title" id="contactModalLabel">Secure Your Financial Future</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <p class="lead text-center">
+                    Tell us a little about your financial goals and the service you require.
+                </p>
+                
+                <form id="modalContactForm" method="POST" action="submit_contact.php" class="p-3 border rounded-3 bg-white">
+                    <div class="row g-3">
+                        
+                        <div class="col-md-6">
+                            <label for="modalContactName" class="form-label">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="modalContactName" name="name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="modalContactEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="modalContactEmail" name="email" required>
+                        </div>
+                        
+                        <div class="col-12">
+                            <label for="modalContactSubject" class="form-label">Service of Interest <span class="text-danger">*</span></label>
+                            <select class="form-select" id="modalContactSubject" name="subject" required>
+                                <option value="" selected disabled>Select a brand/service...</option>
+                                <option value="Fund Managers">Umelusi Fund Managers (Investment)</option>
+                                <option value="Capital">Umelusi Capital (Corporate Finance)</option>
+                                <option value="FinServe">Umelusi FinServe (FX & Money Transfer)</option>
+                                <option value="Partners">Umelusi Partners (Consulting & Advisory)</option>
+                                <option value="General Inquiry">General Inquiry</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="modalContactMessage" class="form-label">Your Message <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="modalContactMessage" name="message" rows="3" required></textarea>
+                        </div>
+
+                        <div class="col-12 text-center pt-3">
+                            <button type="submit" class="btn btn-brand btn-lg px-5">Send Inquiry</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            </div>
+    </div>
+</div>
 
 <footer class="bg-light text-center text-lg-start">
     <div class="container p-4">

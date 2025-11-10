@@ -1078,6 +1078,51 @@ textarea:focus,
     padding-bottom: 3rem !important;
 }
 
+/* ================================================= */
+/* --- FINSERVE HERO SECTION STYLING (Background & Readability) --- */
+/* ================================================= */
+
+.finserve-hero {
+    /* Ensures the header takes up a reasonable height and centers content */
+    height: 60vh; 
+    min-height: 400px;
+    position: relative;
+    /* The image path is defined inline in the HTML, but the overlay is defined here */
+}
+
+.finserve-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Create a dark, transparent gradient overlay for text readability */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+    z-index: 1; /* Place the overlay beneath the text content */
+}
+
+/* Ensure the text content sits above the overlay */
+.finserve-hero .hero-text {
+    position: relative;
+    z-index: 2;
+}
+
+/* Optional: Ensure the button uses the correct FinServe primary color (usually warning/yellow/orange in your context) */
+.finserve-hero .btn-brand {
+    /* Use a custom variable or specific FinServe color for a unique look */
+    /* Assuming FinServe uses a yellow/warning theme: */
+    background-color: var(--bs-warning, #ffc107); 
+    border-color: var(--bs-warning, #ffc107);
+    color: #333; /* Dark text on bright button */
+    font-weight: bold;
+}
+
+.finserve-hero .btn-brand:hover {
+    background-color: #e0a800; /* Darker yellow on hover */
+    border-color: #e0a800;
+}
+
 /* Markets Page Hero */
 .markets-hero {
     position: relative;
