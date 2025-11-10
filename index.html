@@ -199,6 +199,67 @@
     </div>
 </section>
 
+<section id="contact-form-section" class="py-5 bg-light">
+    <div class="container" data-aos="fade-up">
+        <h2 class="text-center mb-5 display-4 text-primary">Get In Touch</h2>
+        <p class="text-center lead mb-5">
+            We are ready to assist you. Please fill out the form below, and a member of our team will contact you shortly.
+        </p>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <form id="contactForm" method="POST" action="submit_contact.php" class="p-4 p-md-5 border rounded-3 bg-white shadow-lg">
+                    <div class="row g-3">
+                        
+                        <div class="col-md-6">
+                            <label for="contactName" class="form-label">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="contactName" name="name" placeholder="John Doe" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="contactEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="contactEmail" name="email" placeholder="name@example.com" required>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="contactPhone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="contactPhone" name="phone" placeholder="(+00) 123-456-7890">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="contactSubject" class="form-label">Service of Interest <span class="text-danger">*</span></label>
+                            <select class="form-select" id="contactSubject" name="subject" required>
+                                <option value="" selected disabled>Select a brand/service...</option>
+                                <option value="Fund Managers">Umelusi Fund Managers (Investment)</option>
+                                <option value="Capital">Umelusi Capital (Corporate Finance)</option>
+                                <option value="FinServe">Umelusi FinServe (FX & Money Transfer)</option>
+                                <option value="Partners">Umelusi Partners (Consulting & Advisory)</option>
+                                <option value="General Inquiry">General Inquiry</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="contactMessage" class="form-label">Your Message <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="contactMessage" name="message" rows="5" placeholder="Tell us about your needs..." required></textarea>
+                        </div>
+
+                        <div class="col-12 text-center pt-3">
+                            <button type="submit" class="btn btn-brand btn-lg px-5">Send Message</button>
+                        </div>
+                    </div>
+                    
+                    <div id="submitSuccessMessage" class="d-none mt-4 text-center text-success fw-bold">
+                        Thank you for your inquiry! Your message has been sent successfully.
+                    </div>
+                    <div id="submitErrorMessage" class="d-none mt-4 text-center text-danger fw-bold">
+                        Error sending message! Please check your details and try again.
+                    </div>
+                </form>
+                </div>
+        </div>
+    </div>
+</section>
+
 <footer class="bg-light text-center text-lg-start">
     <div class="container p-4">
         <div class="row align-items-center">

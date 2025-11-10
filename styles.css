@@ -1574,6 +1574,40 @@ textarea:focus,
         font-size: 0.9rem;
     }
 
+    /* 1. HERO SECTION FIX: Prevents the hero section from becoming excessively tall on tablets. */
+    /* This sets a minimum height on the hero banner for a better visual presence. 
+       Note: The HTML structure of the hero section columns (e.g., col-md-6) should handle the horizontal split. */
+    #hero {
+        min-height: 450px;
+        /* Ensure content is vertically aligned */
+        display: flex;
+        align-items: center; 
+    }
+
+    /* Reduce vertical padding inside the hero section on tablets to make it less "vertical" */
+    #hero .container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    /* 2. BRAND ECOSYSTEM FIX: Prevents logos from being squished or too large. */
+    /* This targets the logo images within the brand-summary section. */
+    .brand-summary-logo {
+        /* Set a maximum width for the logo image on tablets and desktops */
+        max-width: 120px; 
+        height: auto;
+    }
+
+    /* Reduce the margin/padding for the brand blocks for a tighter look on tablets */
+    .brand-summary .row {
+        margin-bottom: 2.5rem !important; /* Slightly reduce the bottom margin */
+    }
+
+    /* Reduce the font size of the lead text slightly for better fitting */
+    .brand-summary .lead {
+        font-size: 1rem;
+    }
+
     /* Board of Directors Carousel Responsive */
     .board-carousel .carousel-card {
         flex-direction: column;
