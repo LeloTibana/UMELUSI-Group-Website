@@ -88,19 +88,17 @@
     </div>
 </nav>
 
-<section class="hero-main d-flex align-items-center text-white text-center">
-    <div class="video-background">
-        <img src="images/hero-abstract-bg.jpg" alt="Abstract graphic showing upward financial trends and global connections" class="hero-fallback-image" loading="eager" />
-    </div>
-    <div class="container hero-content" data-aos="fade-up">
-        <h1 class="display-3 fw-bolder">Building Africa's Financial Future.</h1>
-        <p class="lead fw-light mx-auto my-4" style="max-width: 800px;">
-            Umelusi Group is your strategic partner, connecting opportunity with capital across **Investment Management, Corporate Finance, and Advisory Services.**
-        </p>
-        <div class="d-flex justify-content-center">
-            <a href="#brand-ecosystem" class="btn btn-lg btn-orange text-white fw-bold me-3" aria-label="Explore Umelusi Group's Brands">Explore Our Brands</a>
-            <button type="button" class="btn btn-lg btn-outline-light fw-bold" data-bs-toggle="modal" data-bs-target="#advisorModal" aria-label="Contact a Financial Advisor">Talk to an Advisor</button>
-        </div>
+<section id="hero" class="hero-section text-white d-flex align-items-center">
+    <video autoplay muted loop playsinline preload="auto" poster="images/herosection-poster.jpg" id="heroVideo">
+        <source src="videos/herosection.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay"></div>
+    
+    <div class="container text-center" data-aos="fade-up">
+        <h1>Securing Your Financial Future</h1>
+        <p class="lead mb-4">Umelusi Group is a leading financial services company offering Investment Management, Wealth Planning, Capital Markets, and Consulting.</p>
+        <a href="#welcome" class="btn btn-primary btn-lg px-4">Discover Our Services</a>
     </div>
 </section>
 
@@ -125,63 +123,44 @@
 </section>
 
 <section id="brand-ecosystem" class="py-5 bg-light">
-    <div class="container" data-aos="fade-up">
-        <h2 class="text-center fw-bold mb-3 text-brand">The Umelusi Ecosystem: Integrated Expertise</h2>
-        <p class="text-center text-muted mb-5 mx-auto" style="max-width: 800px;">
-            Four specialized brands working in concert to provide comprehensive, integrated financial solutions for every stage of wealth and business growth.
-        </p>
-
-        <div class="row g-4">
-            <div class="col-lg-3 col-md-6">
-                <a href="fund-managers.html" class="card-link">
-                    <div class="card h-100 shadow-sm border-0 brand-card p-3" aria-label="Umelusi Fund Managers Investment Services">
-                        <div class="card-body text-center">
-                            <i class="fas fa-chart-pie fa-3x text-orange mb-3" aria-hidden="true"></i>
-                            <h3 class="h5 fw-bold text-dark">Umelusi Fund Managers</h3>
-                            <p class="card-text text-muted small">Disciplined Investment Management and comprehensive Wealth Planning.</p>
-                            <span class="btn btn-sm btn-outline-brand mt-2">Discover Solutions</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <a href="partners.html" class="card-link">
-                    <div class="card h-100 shadow-sm border-0 brand-card p-3" aria-label="Umelusi Partners Advisory Services">
-                        <div class="card-body text-center">
-                            <i class="fas fa-users fa-3x text-orange mb-3" aria-hidden="true"></i>
-                            <h3 class="h5 fw-bold text-dark">Umelusi Partners</h3>
-                            <p class="card-text text-muted small">Expert Management Consulting, Strategy, and Corporate Advisory.</p>
-                            <span class="btn btn-sm btn-outline-brand mt-2">Learn More</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <a href="capital.html" class="card-link">
-                    <div class="card h-100 shadow-sm border-0 brand-card p-3" aria-label="Umelusi Capital Corporate Finance">
-                        <div class="card-body text-center">
-                            <i class="fas fa-handshake fa-3x text-orange mb-3" aria-hidden="true"></i>
-                            <h3 class="h5 fw-bold text-dark">Umelusi Capital</h3>
-                            <p class="card-text text-muted small">Corporate Finance, Investment Banking, and Tailored Funding Solutions.</p>
-                            <span class="btn btn-sm btn-outline-brand mt-2">Access Capital</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <a href="finserve.html" class="card-link">
-                    <div class="card h-100 shadow-sm border-0 brand-card p-3" aria-label="Umelusi FinServe Transactional Services">
-                        <div class="card-body text-center">
-                            <i class="fas fa-money-bill-transfer fa-3x text-orange mb-3" aria-hidden="true"></i>
-                            <h3 class="h5 fw-bold text-dark">Umelusi FinServe</h3>
-                            <p class="card-text text-muted small">Transactional Banking, Foreign Exchange, and Money Transfer Services.</p>
-                            <span class="btn btn-sm btn-outline-brand mt-2">View Services</span>
-                        </div>
-                    </div>
-                </a>
+    <div class="row text-center g-4">
+    
+    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="card p-3 shadow-sm h-100 service-card d-flex flex-column">
+                <img src="images/UmelusiFinserve.png" alt="Umelusi FinServe Logo" class="ecosystem-logo mx-auto mb-3">
+                <h4 class="card-title">Umelusi FinServe</h4>
+                <p class="card-text flex-grow-1">Tailored investment advice, wealth planning, and advisory services.</p>
+                <a href="finserve.html" class="btn btn-brand mt-auto">Learn More</a>
             </div>
         </div>
-    </div>
+    
+    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="card p-3 shadow-sm h-100 service-card d-flex flex-column">
+                <img src="images/Umelusi-Capital.png" alt="Umelusi Capital Logo" class="ecosystem-logo mx-auto mb-3">
+                <h4 class="card-title">Umelusi Capital</h4>
+                <p class="card-text flex-grow-1">Securities trading, capital raising, and structured finance solutions.</p>
+                <a href="capital.html" class="btn btn-brand mt-auto">Learn More</a>
+            </div>
+        </div>
+
+    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="card p-3 shadow-sm h-100 service-card d-flex flex-column">
+                <img src="images/Umelusi-Partners.png" alt="Umelusi Partners Logo" class="ecosystem-logo mx-auto mb-3">
+                <h4 class="card-title">Umelusi Partners</h4>
+                <p class="card-text flex-grow-1">Specialist consulting in strategy, risk, and transformation.</p>
+                <a href="partners.html" class="btn btn-brand mt-auto">Learn More</a>
+            </div>
+        </div>
+
+    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+        <div class="card p-3 shadow-sm h-100 service-card d-flex flex-column">
+                <img src="images/Umelusi-FundManagers2.png" alt="Umelusi Fund Managers Logo" class="ecosystem-logo mx-auto mb-3">
+                <h4 class="card-title">Umelusi Fund Managers</h4>
+                <p class="card-text flex-grow-1">Managing collective investment schemes and pooled funds.</p>
+                <a href="fund-managers.html" class="btn btn-brand mt-auto">Learn More</a>
+            </div>
+        </div>
+</div>
 </section>
 
 <section id="value-proposition" class="py-5 bg-white">

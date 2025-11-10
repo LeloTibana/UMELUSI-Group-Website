@@ -685,31 +685,7 @@ textarea:focus,
 
 /* --- Index Page Specific Styles --- */
 
-.hero-main {
-    position: relative;
-    height: 90vh;
-    overflow: hidden;
-    background-color: #000;
-}
 
-.hero-content {
-    position: relative;
-    z-index: 10;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
-}
-
-.hero-fallback-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-    filter: brightness(50%);
-}
 
 /* Market Data Ticker Table Styling */
 #market-ticker .table-dark {
@@ -774,6 +750,64 @@ textarea:focus,
     overflow: hidden;
 }
 
+.hero-section{
+    position: relative;
+    z-index: 2;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Hide anything that spills outside */
+    padding: 0;
+    margin-top: -85px; /* Adjust for fixed navbar height if needed */
+    /* Ensure content is positioned relative to the hero section */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-section .container {
+    position: relative; 
+    z-index: 2; 
+}
+
+.hero-section h1 {
+    color: #ffffff;
+    font-size: 4.5rem; /* Larger, more appealing font size */
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Added shadow for better stand-out */
+}
+
+.hero-section p.lead {
+    color: #f0f0f0;
+    font-size: 1.5rem; /* Larger subheading */
+}
+
+/* Button Brand Color Fix */
+.hero-section .btn-primary {
+    background-color: #FF9933;
+    border-color: #FF9933;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.hero-section .btn-primary:hover {
+    background-color: #e68a2e;
+    border-color: #e68a2e;
+}
+
+#heroVideo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0; 
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    will-change: transform, opacity;
+}
+
 #hero-video {
     min-width: 100%;
     min-height: 100%;
@@ -786,7 +820,47 @@ textarea:focus,
     object-fit: cover;
 }
 
+/* Dark overlay for better text readability */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    /* Increased opacity from 0.4 to 0.7 for better contrast */
+    background: rgba(0, 0, 0, 0.7); 
+    z-index: 1; 
+}
+
 /* How Can We Help You Today? Home Page */
+.ecosystem-logo {
+    width: 90px; /* Increased from 60px to 90px */
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem; /* Better spacing */
+}
+
+/* Card Styling (Addressing 'too wide' and adding visual appeal) */
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px; /* Nicer rounded corners */
+    border: 1px solid #ddd; /* Light border for definition */
+    /* Add cursor pointer to indicate clickability */
+    cursor: pointer;
+}
+
+.service-card:hover {
+    transform: translateY(-5px); /* Lift card on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important; /* Stronger shadow on hover */
+}
+
+/* If you want all text in the card to be centered: */
+.service-card .card-text {
+    text-align: center;
+}
+
+
 .help-section {
     background-color: #ffffff;
     padding: 60px 0;
@@ -1281,6 +1355,29 @@ textarea:focus,
     background-color: #00a86b;
 }
 
+
+/* --- Featured Project Section Styling (partners.html) --- */
+
+/* Style for the quote card within the new section */
+.featured-project-section .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ensure the image fits nicely */
+.featured-project-section img.rounded-circle {
+    border: 3px solid var(--partners-primary);
+}
+
+/* Quote styling */
+.featured-project-section .blockquote {
+    border-left: none; /* Remove default bootstrap blockquote border */
+}
+
+.featured-project-section .blockquote p {
+    font-size: 0.95rem;
+    color: #495057;
+}
+
 /* Contact Section - Umelusi Partners */
 #contact-partners {
     background-color: #f8f9fa;
@@ -1387,6 +1484,86 @@ textarea:focus,
     box-shadow: 0 0 0 0.2rem rgba(80, 168, 176, 0.25);
 }
 
+
+/* --- Umelusi Capital Brand Colors (Orange Branding) --- */
+:root {
+    --capital-primary: #FF9933; /* Umelusi Group Orange */
+    --capital-dark: #cc7a29; /* Darker Orange for Hover */
+    /* The light background variable has been removed to allow custom white/light gray section backgrounds */
+}
+
+/* Capital Hero Section Styling */
+.capital-hero {
+    /* Set a professional background image (e.g., skyscraper lines, trading floor) */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/capital-hero.jpg') no-repeat center center; 
+    background-size: cover;
+    height: 70vh; 
+    color: white;
+    /* Ensure text is visible over the dark overlay */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); 
+}
+
+/* Capital Button Styling (Orange) - Solid Button */
+.capital-hero .btn-brand, 
+.capital-contact-form .btn-primary {
+    background-color: var(--capital-primary) !important;
+    border-color: var(--capital-primary) !important;
+    color: white !important;
+}
+.capital-hero .btn-brand:hover,
+.capital-contact-form .btn-primary:hover {
+    background-color: var(--capital-dark) !important;
+    border-color: var(--capital-dark) !important;
+}
+
+/* Capital Button Styling (Orange) - Outline Button */
+.btn-outline-brand {
+    color: var(--capital-primary) !important;
+    border-color: var(--capital-primary) !important;
+    background-color: transparent !important;
+}
+.btn-outline-brand:hover {
+    color: white !important;
+    background-color: var(--capital-primary) !important;
+    border-color: var(--capital-primary) !important;
+}
+
+
+/* Capital Product Cards Customization */
+.capital-section .service-focus-card {
+    border-top: 5px solid var(--capital-primary); 
+    background-color: #f8f9fa; /* Light Gray for cards (Requested) */
+    color: #333333; /* Default text color for card */
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    padding: 1.5rem;
+    height: 100%;
+}
+
+.capital-section .service-focus-card:hover {
+    /* Use an orange shadow */
+    box-shadow: 0 8px 16px rgba(255, 153, 51, 0.25); 
+    transform: translateY(-5px);
+}
+
+.capital-section .service-focus-card .icon {
+    color: var(--capital-primary); /* Icon remains Orange (Requested) */
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Ensure all text elements inside the card are dark */
+.capital-section .service-focus-card h5,
+.capital-section .service-focus-card p {
+    color: #333333 !important; /* Black font color (Requested) */
+}
+
+/* Reset headings outside of the card section to Umelusi Orange */
+.capital-section h2, 
+.capital-section h3,
+.capital-section h4 {
+    color: var(--capital-primary) !important; 
+}
 
 /* ========================================================= */
 /* 6. MEDIA QUERIES */

@@ -605,7 +605,60 @@ document.addEventListener("DOMContentLoaded", () => {
     .join("");
 });
 
+// ---------------------------------
+// TradingView Widget Loader: Umelusi Capital
+// ---------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+    const widgetContainer = document.getElementById("capital-market-widget");
+    
+    // Check if the container exists on this page before running
+    if (!widgetContainer) return;
 
+    // Configuration object (the source of the red underline issue)
+    const widgetConfig = {
+        "colorTheme": "light",
+        "dateRange": "12M",
+        "showChart": true,
+        "locale": "en",
+        "width": "100%",
+        "height": "100%",
+        "tabs": [
+            {
+            "title": "Global Equities",
+            "symbols": [
+                { "s": "INDEX:SPX", "d": "S&P 500" },
+                { "s": "INDEX:COMP", "d": "NASDAQ Composite" },
+                { "s": "INDEX:JSE", "d": "JSE All Share" },
+                { "s": "INDEX:NGSEALL", "d": "NGX All Share" },
+                { "s": "INDEX:UKX", "d": "FTSE 100" }
+            ],
+            "originalTitle": "Global Equities"
+            },
+            {
+            "title": "Fixed Income",
+            "symbols": [
+                { "s": "CBOT:ZN1!", "d": "US 10Y T-Note" },
+                { "s": "CBOT:ZB1!", "d": "US 30Y Bond" },
+                { "s": "EUREX:FGBL1!", "d": "German Bund" }
+            ],
+            "originalTitle": "Fixed Income"
+            }
+        ],
+        "isSymbolList": true
+    };
+
+    // 1. Create the <script> element
+    const tvScript = document.createElement('script');
+    tvScript.type = 'text/javascript';
+    tvScript.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js';
+    tvScript.async = true;
+    
+    // 2. Set the innerHTML to the JSON configuration (this is the key for TradingView's unusual parser)
+    tvScript.innerHTML = JSON.stringify(widgetConfig); 
+    
+    // 3. Append the script to the widget container
+    widgetContainer.appendChild(tvScript);
+});
 
 // ---------------------------------
 // Form Submission Handler (AJAX)
