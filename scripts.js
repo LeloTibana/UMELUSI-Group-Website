@@ -494,7 +494,7 @@ function convertCurrency() {
     const API_URL = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/${fromCurrency}`;
 
     if (isNaN(amount) || amount <= 0 || !fromCurrency || !toCurrency) {
-        resultElement.innerHTML = '<span style="color: red;">Please enter a valid amount and select currencies.</span>';
+        showNotification('Please enter a valid amount and select currencies.', false);
         return;
     }
 
@@ -520,15 +520,15 @@ function convertCurrency() {
                         </span>
                     `;
                 } else {
-                    resultElement.innerHTML = '<span style="color: red;">Error: Conversion rate to the target currency is not available.</span>';
+                    showNotification('Error: Conversion rate to the target currency is not available.', false);
                 }
             } else {
-                 resultElement.innerHTML = `<span style="color: red;">API Error: ${data['error-type'] || 'Failed to retrieve data.'}</span>`;
+                 showNotification(`API Error: ${data['error-type'] || 'Failed to retrieve data.'}`, false);
             }
         })
         .catch(error => {
             console.error('Error fetching currency data:', error);
-            resultElement.innerHTML = `<span style="color: red;">Error: Could not retrieve live rates. Please check your API key and console for network details.</span>`;
+            showNotification('Error: Could not retrieve live rates. Please check your API key and console for network details.', false);
         });
 }
 
@@ -661,11 +661,40 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ---------------------------------
+// Custom Notification System (Replaces alert() and confirm())
+// ---------------------------------
+function showNotification(message, isSuccess = true) {
+    // This is a minimal implementation for non-blocking notifications.
+    const notificationContainer = document.getElementById('notification-container');
+    let container = notificationContainer;
+
+    if (!container) {
+        const body = document.body;
+        const div = document.createElement('div');
+        div.id = 'notification-container';
+        div.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 9999; padding: 10px 20px; border-radius: 5px; color: white; transition: opacity 0.5s, transform 0.5s; opacity: 0; transform: translateY(-50px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-family: \'Roboto\', sans-serif;';
+        body.appendChild(div);
+        container = div;
+    }
+    
+    container.textContent = message;
+    container.style.backgroundColor = isSuccess ? '#4CAF50' : '#F44336'; // Success (green) or Error (red)
+    container.style.opacity = '1';
+    container.style.transform = 'translateY(0)';
+
+    setTimeout(() => {
+        container.style.opacity = '0';
+        container.style.transform = 'translateY(-50px)';
+    }, 4000); // Hide after 4 seconds
+}
+
+
+// ---------------------------------
 // Form Submission Handler (AJAX)
 // ---------------------------------
-
 document.addEventListener('DOMContentLoaded', () => {
     // List all form IDs that need AJAX submission
+    // 'finserveModalContactForm' is correctly included here.
     const formIds = ['mainContactForm', 'finserveMainContactForm', 'finserveModalContactForm'];
 
     formIds.forEach(id => {
@@ -681,15 +710,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitButton.textContent = 'Sending...';
                 submitButton.disabled = true;
 
-                // Check if the form is inside a modal (needed for closing on success)
+                // **THIS IS THE KEY PART**
+                // 1. Find the closest Bootstrap modal parent element
                 const modalElement = form.closest('.modal');
                 
                 try {
                     const formData = new FormData(form);
                     const data = Object.fromEntries(formData);
                     
-                    // Fetch to the Node.js server endpoint
-                    const response = await fetch(form.action, {
+                    // Mock Fetch to the Node.js server endpoint
+                    // Replace with your actual server URL in a real deployment
+                    const response = await fetch('http://localhost:3000/submit', { 
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -698,24 +729,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
 
                     if (response.ok) {
-                        alert('Thank you! Your message has been sent successfully.');
+                        showNotification('Thank you! Your message has been sent successfully.', true); // Success notification
                         form.reset();
                         
-                        // Close the modal if the form was inside one
+                        // 2. Close the modal if the form was inside one
                         if (modalElement) {
                             // Get the Bootstrap modal instance and hide it
+                            // The 'bootstrap' object is made globally available by the Bootstrap JS bundle
                             const modalInstance = bootstrap.Modal.getInstance(modalElement);
                             if (modalInstance) {
-                                modalInstance.hide();
+                                modalInstance.hide(); // Closes the modal
                             }
                         }
                     } else {
                         const errorData = await response.json();
-                        alert(`Submission Failed: ${errorData.message || 'Please check your server and try again.'}`);
+                        showNotification(`Submission Failed: ${errorData.message || 'Please check your server and try again.'}`, false); // Error notification
                     }
                 } catch (error) {
                     console.error('Submission error:', error);
-                    alert('A network error occurred. Please ensure the backend server is running.');
+                    showNotification('A network error occurred. Please ensure the backend server is running.', false); // Network error notification
                 } finally {
                     submitButton.textContent = originalButtonText;
                     submitButton.disabled = false;
@@ -724,9 +756,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
-// TradingView widgets are not affected by null checks, but they should be wrapped in one
-// for safety, which I've done above.
-
-// Note: AOS.init() is usually called once globally after the DOM is ready and the
-// AOS script is loaded. Ensure it's not called multiple times.
