@@ -115,198 +115,235 @@
         and JavaScript for the secondary topic filtering within each tab.
     -->
     <section id="the-resource-hub" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="fw-bold text-umelusi-blue">Explore Our Knowledge Hub</h2>
-                <p class="text-muted lead">Find in-depth analysis and actionable advice tailored for the African financial landscape.</p>
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="fw-bold text-umelusi-blue">Explore Our Knowledge Hub</h2>
+            <p class="text-muted lead">Find in-depth analysis and actionable advice tailored for the African financial landscape.</p>
+        </div>
+
+        <!-- Main Tabs: Content Type Switch (Articles vs. Reports) -->
+        <ul class="nav nav-pills justify-content-center mb-4 resource-tabs" id="contentTabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
+            <li class="nav-item" role="presentation">
+                <!-- Data attributes changed from data-bs-toggle to a simple data-target for custom JS -->
+                <button class="nav-link active" id="articles-tab" data-target="#articles-pane" type="button" role="tab" aria-controls="articles-pane" aria-selected="true">
+                    <i class="fas fa-newspaper me-2"></i> Articles & Guides
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="reports-tab" data-target="#reports-pane" type="button" role="tab" aria-controls="reports-pane" aria-selected="false">
+                    <i class="fas fa-chart-line me-2"></i> Proprietary Reports
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="webinars-tab" data-target="#webinars-pane" type="button" role="tab" aria-controls="webinars-pane" aria-selected="false">
+                    <i class="fas fa-video me-2"></i> Webinars & Events
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="contentTabsContent">
+            
+            <!-- Tab 1: Articles & Guides -->
+            <!-- Note: tab-pane is now targeted by custom JS for 'active' and 'show' classes -->
+            <div class="tab-pane fade show active" id="articles-pane" role="tabpanel" aria-labelledby="articles-tab" tabindex="0">
+                <div class="text-center mb-4">
+                    <!-- Secondary Filter Buttons (JS handles this filtering) -->
+                    <div class="d-flex flex-wrap justify-content-center gap-2 article-filters" data-aos="fade-up" data-aos-delay="200">
+                        <button class="btn btn-sm btn-outline-secondary active" data-filter="all">All Topics</button>
+                        <button class="btn btn-sm btn-outline-secondary" data-filter="investment">Investment Strategies</button>
+                        <button class="btn btn-sm btn-outline-secondary" data-filter="wealth">Wealth Planning</button>
+                        <button class="btn btn-sm btn-outline-secondary" data-filter="retirement">Retirement</button>
+                        <button class="btn btn-sm btn-outline-secondary" data-filter="business">Business Consulting</button>
+                    </div>
+                </div>
+                
+                <!-- Article Grid -->
+                <div class="row g-4 article-grid" data-aos="fade-up" data-aos-delay="300">
+                    
+                    <!-- Article 1: Investment -->
+                    <div class="col-md-6 col-lg-4 article-item" data-category="investment">
+                        <div class="card h-100 shadow-sm border-0 resource-card">
+                            <div class="card-body">
+                                <span class="badge bg-umelusi-orange mb-3">Investment Strategies</span>
+                                <h5 class="card-title fw-bold">Navigating the African Equity Market Volatility</h5>
+                                <p class="card-text text-muted">A practical guide to portfolio resilience and seeking undervalued growth opportunities amidst economic shifts.</p>
+                                <a href="#" class="stretched-link fw-bold text-umelusi-blue">Read Article <i class="fas fa-arrow-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Article 2: Wealth -->
+                    <div class="col-md-6 col-lg-4 article-item" data-category="wealth">
+                        <div class="card h-100 shadow-sm border-0 resource-card">
+                            <div class="card-body">
+                                <span class="badge bg-secondary mb-3">Wealth Planning</span>
+                                <h5 class="card-title fw-bold">Essential Steps for Multi-Generational Wealth Transfer</h5>
+                                <p class="card-text text-muted">Strategies for efficient estate planning and ensuring your legacy endures across future generations.</p>
+                                <a href="#" class="stretched-link fw-bold text-umelusi-blue">Read Guide <i class="fas fa-arrow-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Article 3: Business -->
+                    <div class="col-md-6 col-lg-4 article-item" data-category="business">
+                        <div class="card h-100 shadow-sm border-0 resource-card">
+                            <div class="card-body">
+                                <span class="badge bg-info mb-3">Business Consulting</span>
+                                <h5 class="card-title fw-bold">Optimizing Capital Structure for Mid-Sized African Enterprises</h5>
+                                <p class="card-text text-muted">How business owners can use strategic financing to accelerate growth and manage debt effectively.</p>
+                                <a href="#" class="stretched-link fw-bold text-umelusi-blue">Read Analysis <i class="fas fa-arrow-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Article 4: Retirement -->
+                     <div class="col-md-6 col-lg-4 article-item" data-category="retirement">
+                        <div class="card h-100 shadow-sm border-0 resource-card">
+                            <div class="card-body">
+                                <span class="badge bg-success mb-3">Retirement</span>
+                                <h5 class="card-title fw-bold">Maximizing Your Pension: Timing and Contributions</h5>
+                                <p class="card-text text-muted">Key considerations for maximizing retirement savings vehicles in the current regulatory environment.</p>
+                                <a href="#" class="stretched-link fw-bold text-umelusi-blue">Read Tips <i class="fas fa-arrow-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Article 5: Investment -->
+                    <div class="col-md-6 col-lg-4 article-item" data-category="investment">
+                        <div class="card h-100 shadow-sm border-0 resource-card">
+                            <div class="card-body">
+                                <span class="badge bg-umelusi-orange mb-3">Investment Strategies</span>
+                                <h5 class="card-title fw-bold">Understanding Fixed Income: Bonds and Yields Explained</h5>
+                                <p class="card-text text-muted">A beginner-to-intermediate guide to fixed income instruments and how they fit into a balanced portfolio.</p>
+                                <a href="#" class="stretched-link fw-bold text-umelusi-blue">View Explainer <i class="fas fa-arrow-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- Article 6: Wealth -->
+                    <div class="col-md-6 col-lg-4 article-item" data-category="wealth">
+                        <div class="card h-100 shadow-sm border-0 resource-card">
+                            <div class="card-body">
+                                <span class="badge bg-secondary mb-3">Wealth Planning</span>
+                                <h5 class="card-title fw-bold">Protecting Assets Against Currency Devaluation</h5>
+                                <p class="card-text text-muted">Advanced hedging techniques and diversification strategies to safeguard capital in volatile currency markets.</p>
+                                <a href="#" class="stretched-link fw-bold text-umelusi-blue">Read Strategy <i class="fas fa-arrow-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <button class="btn btn-lg btn-outline-secondary">Load More Articles <i class="fas fa-redo ms-2"></i></button>
+                </div>
+
             </div>
 
-            <!-- Main Tabs: Content Type Switch (Articles vs. Reports) -->
-            <ul class="nav nav-pills justify-content-center mb-4 resource-tabs" id="contentTabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="articles-tab" data-bs-toggle="tab" data-bs-target="#articles-pane" type="button" role="tab" aria-controls="articles-pane" aria-selected="true">
-                        <i class="fas fa-newspaper me-2"></i> Articles & Guides
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="reports-tab" data-bs-toggle="tab" data-bs-target="#reports-pane" type="button" role="tab" aria-controls="reports-pane" aria-selected="false">
-                        <i class="fas fa-chart-line me-2"></i> Proprietary Reports
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="webinars-tab" data-bs-toggle="tab" data-bs-target="#webinars-pane" type="button" role="tab" aria-controls="webinars-pane" aria-selected="false">
-                        <i class="fas fa-video me-2"></i> Webinars & Events
-                    </button>
-                </li>
-            </ul>
-
-            <div class="tab-content" id="contentTabsContent">
-                
-                <!-- Tab 1: Articles & Guides -->
-                <div class="tab-pane fade show active" id="articles-pane" role="tabpanel" aria-labelledby="articles-tab" tabindex="0">
-                    <div class="text-center mb-4">
-                        <!-- Secondary Filter Buttons (JS handles this filtering) -->
-                        <div class="d-flex flex-wrap justify-content-center gap-2 article-filters" data-aos="fade-up" data-aos-delay="200">
-                            <button class="btn btn-sm btn-outline-secondary active" data-filter="all">All Topics</button>
-                            <button class="btn btn-sm btn-outline-secondary" data-filter="investment">Investment Strategies</button>
-                            <button class="btn btn-sm btn-outline-secondary" data-filter="wealth">Wealth Planning</button>
-                            <button class="btn btn-sm btn-outline-secondary" data-filter="retirement">Retirement</button>
-                            <button class="btn btn-sm btn-outline-secondary" data-filter="business">Business Consulting</button>
+            <!-- Tab 2: Proprietary Reports -->
+            <div class="tab-pane fade" id="reports-pane" role="tabpanel" aria-labelledby="reports-tab" tabindex="0">
+                <div class="row g-4 pt-3">
+                    
+                    <!-- Report 1 -->
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm border-0 report-card">
+                            <div class="card-body">
+                                <span class="badge bg-umelusi-blue mb-2">Market Outlook</span>
+                                <h5 class="card-title fw-bold">The African Growth Thesis: 2025</h5>
+                                <p class="card-text text-muted">A deep dive into emerging market trends, investment opportunities, and risk management strategies for the coming year.</p>
+                                <a href="#" class="btn btn-sm btn-umelusi-orange mt-2">Download PDF <i class="fas fa-download ms-1"></i></a>
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Article Grid -->
-                    <div class="row g-4 article-grid" data-aos="fade-up" data-aos-delay="300">
-                        
-                        <!-- Article 1: Investment -->
-                        <div class="col-md-6 col-lg-4 article-item" data-category="investment">
-                            <div class="card h-100 shadow-sm border-0 resource-card">
-                                <div class="card-body">
-                                    <span class="badge bg-umelusi-orange mb-3">Investment Strategies</span>
-                                    <h5 class="card-title fw-bold">Navigating the African Equity Market Volatility</h5>
-                                    <p class="card-text text-muted">A practical guide to portfolio resilience and seeking undervalued growth opportunities amidst economic shifts.</p>
-                                    <a href="#" class="stretched-link fw-bold text-umelusi-blue">Read Article <i class="fas fa-arrow-right ms-1"></i></a>
-                                </div>
+                    <!-- Report 2 -->
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm border-0 report-card">
+                            <div class="card-body">
+                                <span class="badge bg-secondary mb-2">White Paper</span>
+                                <h5 class="card-title fw-bold">ESG in African Infrastructure</h5>
+                                <p class="card-text text-muted">How Environmental, Social, and Governance factors are reshaping private equity and capital deployment in key sectors.</p>
+                                <a href="#" class="btn btn-sm btn-outline-umelusi-blue mt-2">Request Access <i class="fas fa-arrow-right ms-1"></i></a>
                             </div>
                         </div>
-
-                        <!-- Article 2: Wealth -->
-                        <div class="col-md-6 col-lg-4 article-item" data-category="wealth">
-                            <div class="card h-100 shadow-sm border-0 resource-card">
-                                <div class="card-body">
-                                    <span class="badge bg-secondary mb-3">Wealth Planning</span>
-                                    <h5 class="card-title fw-bold">Essential Steps for Multi-Generational Wealth Transfer</h5>
-                                    <p class="card-text text-muted">Strategies for efficient estate planning and ensuring your legacy endures across future generations.</p>
-                                    <a href="#" class="stretched-link fw-bold text-umelusi-blue">Read Guide <i class="fas fa-arrow-right ms-1"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Article 3: Business -->
-                        <div class="col-md-6 col-lg-4 article-item" data-category="business">
-                            <div class="card h-100 shadow-sm border-0 resource-card">
-                                <div class="card-body">
-                                    <span class="badge bg-info mb-3">Business Consulting</span>
-                                    <h5 class="card-title fw-bold">Optimizing Capital Structure for Mid-Sized African Enterprises</h5>
-                                    <p class="card-text text-muted">How business owners can use strategic financing to accelerate growth and manage debt effectively.</p>
-                                    <a href="#" class="stretched-link fw-bold text-umelusi-blue">Read Analysis <i class="fas fa-arrow-right ms-1"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Article 4: Retirement -->
-                         <div class="col-md-6 col-lg-4 article-item" data-category="retirement">
-                            <div class="card h-100 shadow-sm border-0 resource-card">
-                                <div class="card-body">
-                                    <span class="badge bg-success mb-3">Retirement</span>
-                                    <h5 class="card-title fw-bold">Maximizing Your Pension: Timing and Contributions</h5>
-                                    <p class="card-text text-muted">Key considerations for maximizing retirement savings vehicles in the current regulatory environment.</p>
-                                    <a href="#" class="stretched-link fw-bold text-umelusi-blue">Read Tips <i class="fas fa-arrow-right ms-1"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Article 5: Investment -->
-                        <div class="col-md-6 col-lg-4 article-item" data-category="investment">
-                            <div class="card h-100 shadow-sm border-0 resource-card">
-                                <div class="card-body">
-                                    <span class="badge bg-umelusi-orange mb-3">Investment Strategies</span>
-                                    <h5 class="card-title fw-bold">Understanding Fixed Income: Bonds and Yields Explained</h5>
-                                    <p class="card-text text-muted">A beginner-to-intermediate guide to fixed income instruments and how they fit into a balanced portfolio.</p>
-                                    <a href="#" class="stretched-link fw-bold text-umelusi-blue">View Explainer <i class="fas fa-arrow-right ms-1"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                         <!-- Article 6: Wealth -->
-                        <div class="col-md-6 col-lg-4 article-item" data-category="wealth">
-                            <div class="card h-100 shadow-sm border-0 resource-card">
-                                <div class="card-body">
-                                    <span class="badge bg-secondary mb-3">Wealth Planning</span>
-                                    <h5 class="card-title fw-bold">Protecting Assets Against Currency Devaluation</h5>
-                                    <p class="card-text text-muted">Advanced hedging techniques and diversification strategies to safeguard capital in volatile currency markets.</p>
-                                    <a href="#" class="stretched-link fw-bold text-umelusi-blue">Read Strategy <i class="fas fa-arrow-right ms-1"></i></a>
-                                </div>
+                    </div>
+                    
+                    <!-- Report 3 -->
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm border-0 report-card">
+                            <div class="card-body">
+                                <span class="badge bg-info mb-2">Regulatory Update</span>
+                                <h5 class="card-title fw-bold">Q3 2024 Regulatory Brief</h5>
+                                <p class="card-text text-muted">Essential summaries and implications of the latest changes to financial regulations impacting African markets.</p>
+                                <a href="#" class="btn btn-sm btn-umelusi-orange mt-2">Read Briefing <i class="fas fa-book-open ms-1"></i></a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="text-center mt-5">
-                        <button class="btn btn-lg btn-outline-secondary">Load More Articles <i class="fas fa-redo ms-2"></i></button>
-                    </div>
-
-                </div>
-
-                <!-- Tab 2: Proprietary Reports (Reports are always visible here, no secondary filter needed) -->
-                <div class="tab-pane fade" id="reports-pane" role="tabpanel" aria-labelledby="reports-tab" tabindex="0">
-                    <div class="row g-4 pt-3">
-                        
-                        <!-- Report 1 -->
-                        <div class="col-md-4">
-                            <div class="card h-100 shadow-sm border-0 report-card">
-                                <div class="card-body">
-                                    <span class="badge bg-umelusi-blue mb-2">Market Outlook</span>
-                                    <h5 class="card-title fw-bold">The African Growth Thesis: 2025</h5>
-                                    <p class="card-text text-muted">A deep dive into emerging market trends, investment opportunities, and risk management strategies for the coming year.</p>
-                                    <a href="#" class="btn btn-sm btn-umelusi-orange mt-2">Download PDF <i class="fas fa-download ms-1"></i></a>
-                                </div>
+                    <!-- Report 4 -->
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm border-0 report-card">
+                            <div class="card-body">
+                                <span class="badge bg-umelusi-blue mb-2">Investment Thesis</span>
+                                <h5 class="card-title fw-bold">Technology and Financial Inclusion in Eswatini</h5>
+                                <p class="card-text text-muted">Our investment thesis on the growing digital economy and opportunities for FinTech integration in the region.</p>
+                                <a href="#" class="btn btn-sm btn-outline-umelusi-blue mt-2">Read Thesis <i class="fas fa-arrow-right ms-1"></i></a>
                             </div>
                         </div>
-                        
-                        <!-- Report 2 -->
-                        <div class="col-md-4">
-                            <div class="card h-100 shadow-sm border-0 report-card">
-                                <div class="card-body">
-                                    <span class="badge bg-secondary mb-2">White Paper</span>
-                                    <h5 class="card-title fw-bold">ESG in African Infrastructure</h5>
-                                    <p class="card-text text-muted">How Environmental, Social, and Governance factors are reshaping private equity and capital deployment in key sectors.</p>
-                                    <a href="#" class="btn btn-sm btn-outline-umelusi-blue mt-2">Request Access <i class="fas fa-arrow-right ms-1"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Report 3 -->
-                        <div class="col-md-4">
-                            <div class="card h-100 shadow-sm border-0 report-card">
-                                <div class="card-body">
-                                    <span class="badge bg-info mb-2">Regulatory Update</span>
-                                    <h5 class="card-title fw-bold">Q3 2024 Regulatory Brief</h5>
-                                    <p class="card-text text-muted">Essential summaries and implications of the latest changes to financial regulations impacting African markets.</p>
-                                    <a href="#" class="btn btn-sm btn-umelusi-orange mt-2">Read Briefing <i class="fas fa-book-open ms-1"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Report 4 -->
-                        <div class="col-md-4">
-                            <div class="card h-100 shadow-sm border-0 report-card">
-                                <div class="card-body">
-                                    <span class="badge bg-umelusi-blue mb-2">Investment Thesis</span>
-                                    <h5 class="card-title fw-bold">Technology and Financial Inclusion in Eswatini</h5>
-                                    <p class="card-text text-muted">Our investment thesis on the growing digital economy and opportunities for FinTech integration in the region.</p>
-                                    <a href="#" class="btn btn-sm btn-outline-umelusi-blue mt-2">Read Thesis <i class="fas fa-arrow-right ms-1"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center mt-5">
-                        <button class="btn btn-lg btn-outline-secondary">View Full Report Library <i class="fas fa-folder-open ms-2"></i></button>
                     </div>
                 </div>
-
-                <!-- Tab 3: Webinars & Events -->
-                <div class="tab-pane fade" id="webinars-pane" role="tabpanel" aria-labelledby="webinars-tab" tabindex="0">
-                     <div class="text-center pt-5 pb-4">
-                        <i class="fas fa-calendar-alt fa-4x text-umelusi-orange mb-3"></i>
-                        <h4 class="fw-bold text-umelusi-blue">Upcoming Events & On-Demand Content</h4>
-                        <p class="text-muted lead">Check back soon for our latest financial webinars and industry expert panel discussions.</p>
-                        <a href="#" class="btn btn-lg btn-umelusi-orange mt-3">Register for Updates</a>
-                    </div>
+                <div class="text-center mt-5">
+                    <button class="btn btn-lg btn-outline-secondary">View Full Report Library <i class="fas fa-folder-open ms-2"></i></button>
                 </div>
-
             </div>
+
+            <!-- Tab 3: Webinars & Events -->
+            <div class="tab-pane fade" id="webinars-pane" role="tabpanel" aria-labelledby="webinars-tab" tabindex="0">
+                 <div class="text-center pt-5 pb-4">
+                    <i class="fas fa-calendar-alt fa-4x text-umelusi-orange mb-3"></i>
+                    <h4 class="fw-bold text-umelusi-blue">Upcoming Events & On-Demand Content</h4>
+                    <p class="text-muted lead">Check back soon for our latest financial webinars and industry expert panel discussions.</p>
+                    <a href="#" class="btn btn-lg btn-umelusi-orange mt-3">Register for Updates</a>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
+    
+    <!-- FIX: Custom, Native JS for Tab Switching (Based on your working Pressroom logic) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tabButtons = document.querySelectorAll('#contentTabs button[data-target]');
+            const tabPanes = document.querySelectorAll('.tab-content .tab-pane');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    
+                    // 1. Remove 'active' and 'show' from all panes
+                    tabPanes.forEach(pane => {
+                        pane.classList.remove('active', 'show');
+                    });
+
+                    // 2. Remove 'active' from all buttons
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.setAttribute('aria-selected', 'false');
+                    });
+
+                    // 3. Add 'active' and 'show' to the target pane
+                    const targetPane = document.querySelector(targetId);
+                    if (targetPane) {
+                        targetPane.classList.add('active', 'show');
+                    }
+
+                    // 4. Add 'active' to the clicked button
+                    this.classList.add('active');
+                    this.setAttribute('aria-selected', 'true');
+                });
+            });
+        });
+    </script>
+</section>
 
     <!-- 
         --- REPLACEMENT SECTION 2: FAQ & SUPPORT ---
@@ -327,12 +364,12 @@
                         <div class="accordion-item shadow-sm mb-3">
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button fw-bold text-umelusi-blue" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    How do I access my investor portal?
+                                    How do I contact client service for my existing accounts?
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body text-muted">
-                                    Access to the Umelusi investor portal is managed through Umelusi FinServe. Please visit the <a href="finserve.html">Umelusi FinServe</a> page and click the 'Client Login' button. If you have misplaced your login credentials, please contact our support team directly.
+                                    For assistance with your existing accounts, statements, or transactions, please contact Umelusi's dedicated Client Support team. You can reach them directly via email at <a href="mailto:info@umelusi.com">info@umelusi.com</a> or call the main line at (+268) 2404 3795 during business hours.
                                 </div>
                             </div>
                         </div>
@@ -365,6 +402,31 @@
             </div>
         </div>
     </section>
+
+    <!-- Newsletter Subscription -->
+<section class="py-5 bg-gradient-light">
+  <div class="container" data-aos="fade-up">
+    <div class="row justify-content-center">
+      <div class="col-md-8 text-center">
+        <h2 class="mb-3">Subscribe to Our Monthly Newsletter</h2>
+        <p class="mb-4 text-muted">
+          Insights, updates, and news — straight to your inbox once a month. No spam. Just value.
+        </p>
+        <form class="row g-3 justify-content-center">
+          <div class="col-md-5">
+            <input type="text" class="form-control" placeholder="Full Name" required />
+          </div>
+          <div class="col-md-5">
+            <input type="email" class="form-control" placeholder="Email Address" required />
+          </div>
+          <div class="col-md-10">
+            <button type="submit" class="btn btn-orange w-100">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
   
 <footer class="bg-light text-center text-lg-start">
     <div class="container p-4">
