@@ -1892,6 +1892,185 @@ footer a:hover {
 }
 
 
+/* -------------------------------------------------------------------------
+   Custom Variables and Base Styles (Orange Palette Only)
+------------------------------------------------------------------------- */
+:root {
+    /* Primary Color (Replaces Navy Blue for contrast and text/borders) */
+    --umelusi-primary-dark: #A0522D; 
+    /* Accent Color (The main Umelusi Orange) */
+    --umelusi-orange: #FF9933; 
+    /* Light Background (Replaces Light Blue/Grey for subtle highlights) */
+    --umelusi-light-bg: #fff8ed; 
+}
+
+/* Update color definitions to the new orange palette */
+.text-umelusi-blue { color: var(--umelusi-primary-dark) !important; }
+.bg-umelusi-blue { background-color: var(--umelusi-primary-dark) !important; }
+.bg-umelusi-orange { background-color: var(--umelusi-orange) !important; }
+.text-umelusi-orange { color: var(--umelusi-orange) !important; } /* Added for convenience */
+
+/* -------------------------------------------------------------------------
+   1. Resource Hub Section (#the-resource-hub) Styling
+------------------------------------------------------------------------- */
+
+/* Main Tabs (Pills) Styling */
+.resource-tabs .nav-link {
+    color: var(--umelusi-primary-dark); /* Dark Orange Text */
+    border: 1px solid var(--umelusi-primary-dark); /* Dark Orange Border */
+    margin: 0 5px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    border-radius: 50px;
+}
+
+.resource-tabs .nav-link:hover {
+    background-color: var(--umelusi-light-bg); /* Cream Highlight */
+    color: var(--umelusi-primary-dark);
+}
+
+.resource-tabs .nav-link.active {
+    background-color: var(--umelusi-orange); /* Main Orange Fill */
+    color: #fff;
+    border-color: var(--umelusi-orange);
+    box-shadow: 0 4px 10px rgba(160, 82, 45, 0.4); /* Shadow using dark orange tone */
+}
+
+/* Secondary Filter Buttons (using orange for active state) */
+.article-filters .btn {
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.article-filters .btn-outline-secondary {
+    /* Keeping neutral for non-active filters */
+    color: #6c757d; 
+    border-color: #ced4da;
+}
+
+.article-filters .btn-outline-secondary.active,
+.article-filters .btn-outline-secondary:hover {
+    color: var(--umelusi-primary-dark); /* Dark Orange Text */
+    background-color: var(--umelusi-orange);
+    border-color: var(--umelusi-orange);
+    box-shadow: 0 2px 5px rgba(255, 153, 51, 0.4);
+}
+
+/* Resource Cards (Articles and Reports) */
+.resource-card, .report-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.resource-card:hover, .report-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.resource-card .card-title, .report-card .card-title {
+    min-height: 50px;
+}
+
+/* Badges for Content Type */
+.resource-card .badge, .report-card .badge {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.badge.bg-umelusi-orange {
+    background-color: var(--umelusi-orange) !important;
+    color: var(--umelusi-primary-dark); /* Text color contrast is dark orange */
+}
+/* Ensure the reports badge also uses the new dark color as its background */
+.report-card .badge.bg-umelusi-blue {
+    background-color: var(--umelusi-primary-dark) !important;
+    color: #fff !important;
+}
+
+/* Custom Themed Buttons (Download/Request) */
+.btn-umelusi-orange {
+    background-color: var(--umelusi-orange);
+    color: var(--umelusi-primary-dark); /* Dark orange text on orange background */
+    border-color: var(--umelusi-orange);
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.btn-umelusi-orange:hover {
+    background-color: #ffaa66; 
+    color: var(--umelusi-primary-dark);
+    border-color: #ffaa66;
+}
+
+/* Replaces btn-outline-umelusi-blue */
+.btn-outline-umelusi-blue {
+    color: var(--umelusi-primary-dark);
+    border-color: var(--umelusi-primary-dark);
+    font-weight: 600;
+}
+
+.btn-outline-umelusi-blue:hover {
+    background-color: var(--umelusi-primary-dark);
+    color: #fff;
+}
+
+
+/* -------------------------------------------------------------------------
+   2. FAQ Section (#faq-section) Styling
+------------------------------------------------------------------------- */
+
+#faq-section {
+    /* Use a light neutral background */
+    background-color: #f8f9fa;
+}
+
+.accordion-item {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.accordion-header .accordion-button {
+    background-color: #ffffff;
+    border: none;
+    padding: 18px 20px;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s ease;
+}
+
+.accordion-header .accordion-button:not(.collapsed) {
+    color: var(--umelusi-orange); /* Orange text for open item title */
+    background-color: var(--umelusi-light-bg); /* Light cream background for open item */
+    box-shadow: none;
+    border-bottom: 1px solid var(--umelusi-primary-dark); /* Dark orange border */
+}
+
+.accordion-body {
+    background-color: #ffffff;
+    font-size: 0.95rem;
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+
+/* Custom icon for accordion */
+.accordion-button:not(.collapsed)::after {
+    color: var(--umelusi-orange);
+    transform: rotate(180deg);
+}
+
+.accordion-button::after {
+    filter: brightness(0.5); 
+}
+
+
+
 /* ------------------------------------------------------------------------- */
 /* --- CONTACT PAGE STYLES (Image Background Version) --- */
 /* ------------------------------------------------------------------------- */
