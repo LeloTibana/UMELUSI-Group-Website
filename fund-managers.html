@@ -399,8 +399,8 @@
                     <h5 class="text-uppercase">Forms & Notices</h5>
                     <ul class="list-unstyled">
                         <li><a href="#">Accessibility</a></li>
-                        <li><a href="#">Reports</a></li>
-                        <li><a href="#">FAQs</a></li>
+                        <li><a href="resources.html">Reports</a></li>
+                        <li><a href="resources.html">FAQs</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
@@ -430,8 +430,9 @@
                         Secure your appointment to discuss our tailored funds and wealth management services.
                     </p>
                     
-                    <!-- NOTE: Form is set to POST to submit_contact.php to use your PHP backend -->
-                    <form id="modalFundManagersForm" method="POST" action="submit_contact.php" class="p-3 border rounded-3 bg-white">
+                    <!-- Form uses Node.js backend -->
+                    <form id="modalFundManagersForm" name="modalFundManagersForm" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="modalFMName" class="form-label">Full Name <span class="text-danger">*</span></label>

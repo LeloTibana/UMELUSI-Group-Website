@@ -44,55 +44,55 @@
 
    <!-- Sticky Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light">
-  <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">
-          <img src="images/Umelusi-2ndLogo.png" alt="Umelusi Group Logo" class="navbar-logo" id="umelusi-logo" />
-        </a>          
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-              </li>
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      About Us
-                  </a>
-                  <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="about-company.html">Company Information</a></li>
-                      <li><a class="dropdown-item" href="board-of-directors.html">Board of Directors</a></li>
-                      <li><a class="dropdown-item" href="pressroom.html">Pressroom</a></li>
-                      <li><a class="dropdown-item" href="careers.html">Career Opportunities</a></li>
-                      <li><a class="dropdown-item" href="hierarchy.html">Hierarchy</a></li>
-                  </ul>
-              </li>
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Brands
-                  </a>
-                  <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="fund-managers.html">Umelusi Fund Managers</a></li>
-                      <li><a class="dropdown-item" href="partners.html">Umelusi Partners</a></li>
-                      <li><a class="dropdown-item" href="capital.html">Umelusi Capital</a></li>
-                      <li><a class="dropdown-item" href="finserve.html">Umelusi FinServ</a></li>
-                  </ul>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="markets.html">Markets</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="resources.html">Resources & Insights</a>
-              </li>
-              <li class="nav-item">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+            <img src="images/Umelusi-2ndLogo.png" alt="Umelusi Group Logo" class="navbar-logo" id="umelusi-logo" loading="eager" />
+          </a>          
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        About Us
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="about-company.html">Company Information</a></li>
+                        <li><a class="dropdown-item" href="board-of-directors.html">Board of Directors</a></li>
+                        <li><a class="dropdown-item" href="pressroom.html">Pressroom</a></li>
+                        <li><a class="dropdown-item active" href="careers.html">Career Opportunities</a></li>
+                        <li><a class="dropdown-item" href="hierarchy.html">Hierarchy</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Brands
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="fund-managers.html">Umelusi Fund Managers</a></li>
+                        <li><a class="dropdown-item" href="partners.html">Umelusi Partners</a></li>
+                        <li><a class="dropdown-item" href="capital.html">Umelusi Capital</a></li>
+                        <li><a class="dropdown-item" href="finserve.html">Umelusi FinServ</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="markets.html">Markets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="resources.html">Resources & Insights</a>
+                </li>
+                <li class="nav-item">
                         <!-- CONTACT US LINK -->
                         <a class="nav-link active" href="contact.html">Contact Us</a>
                     </li>
-          </ul>
-      </div>
-  </div>
-</nav> 
+            </ul>
+        </div>
+    </div>
+</nav>
 
   <!-- Hero Section -->
   <header class="article-hero bg-dark text-white text-center py-5" data-aos="fade-up">
@@ -122,83 +122,171 @@
 
   
 
-  <!-- Job Listings Section -->
-  <section class="py-5 bg-white">
+ <!-- Replace the Job Listings Section (around line 88) with: -->
+<section class="py-5 bg-white">
     <div class="container">
-      <div class="row">
-        <div class="col-md-4 mb-4 job-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">Investment Analyst</h5>
-              <p class="card-subtitle mb-2 text-muted">Mbabane, Eswatini • Posted: May 10, 2025</p>
-              <p class="card-text">Support our Fund Managers team with market research, portfolio analysis, and performance reporting.</p>
-              <a href="job-investment-analyst.html" class="btn btn-warning text-white">View Details</a>
+        <div class="row" id="careers-container">
+            <!-- Jobs will be loaded here dynamically -->
+            <div class="col-12 text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading careers...</span>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="col-md-4 mb-4 job-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">Marketing & Communications Officer</h5>
-              <p class="card-subtitle mb-2 text-muted">Hybrid • Posted: May 5, 2025</p>
-              <p class="card-text">Craft compelling campaigns, manage our digital presence, and support stakeholder messaging.</p>
-              <a href="#" class="btn btn-warning text-white">View Details</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4 job-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">Client Services Administrator</h5>
-              <p class="card-subtitle mb-2 text-muted">Remote • Posted: April 29, 2025</p>
-              <p class="card-text">Engage with our clients, assist onboarding, and ensure excellent support across all divisions.</p>
-              <a href="#" class="btn btn-warning text-white">View Details</a>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
+</section>
 
-<!--Search Filter-->
-
-<div class="d-flex justify-content-end mb-4">
-    <select class="form-select w-auto" aria-label="Filter by Department">
-      <option selected>All Departments</option>
-      <option value="Fund Managers">Fund Managers</option>
-      <option value="Marketing">Marketing</option>
-      <option value="Client Services">Client Services</option>
-    </select>
-  </div>
-
-
-  <!-- Application Form Section -->
-  <section class="py-5 bg-light">
+<!-- Replace the Application Form Section (around line 128) with: -->
+<section class="py-5 bg-light">
     <div class="container">
-      <h2 class="text-center mb-4" data-aos="fade-up">Apply Now</h2>
-      <form class="row g-3">
-        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-          <label for="name" class="form-label">Full Name</label>
-          <input type="text" class="form-control" id="name" required>
-        </div>
-        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" required>
-        </div>
-        <div class="col-md-12">
-          <label for="cv" class="form-label">Upload CV</label>
-          <input type="file" class="form-control" id="cv">
-        </div>
-        <div class="col-md-12">
-          <label for="message" class="form-label">Message</label>
-          <textarea class="form-control" id="message" rows="4"></textarea>
-        </div>
-        <div class="col-12 text-center">
-          <button type="submit" class="btn btn-warning text-white px-5">Submit Application</button>
-        </div>
-      </form>
+        <h2 class="text-center mb-4" data-aos="fade-up">Apply Now</h2>
+        <form id="career-form" class="row g-3">
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <label for="name" class="form-label">Full Name *</label>
+                <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <label for="email" class="form-label">Email *</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="col-md-12">
+                <label for="position" class="form-label">Position Applying For *</label>
+                <select class="form-control" id="position" required>
+                    <option value="">Select a position</option>
+                    <!-- Will be populated by JavaScript -->
+                </select>
+            </div>
+            <div class="col-md-12">
+                <label for="cv" class="form-label">Upload CV (PDF, DOC, DOCX) *</label>
+                <input type="file" class="form-control" id="cv" accept=".pdf,.doc,.docx" required>
+            </div>
+            <div class="col-md-12">
+                <label for="message" class="form-label">Cover Letter</label>
+                <textarea class="form-control" id="message" rows="4" placeholder="Tell us why you're a good fit..."></textarea>
+            </div>
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-warning text-white px-5">
+                    <span id="submit-text">Submit Application</span>
+                    <span id="submit-spinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                </button>
+            </div>
+        </form>
     </div>
-  </section>
+</section>
+
+<!-- Add this script at the bottom (before closing body tag) -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('careers-container');
+    const positionSelect = document.getElementById('position');
+
+    // Load careers from JSON
+    fetch('/_data/careers.json')
+        .then(response => response.json())
+        .then(jobs => {
+            const activeJobs = jobs.filter(job => job.active);
+
+            if (activeJobs.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center">
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            No current openings right now, but sign up to our newsletter and be the first to know about new opportunities!
+                        </div>
+                    </div>`;
+                return;
+            }
+
+            let html = '';
+            let positionOptions = '<option value="">Select a position</option>';
+            const departments = new Set();
+
+            activeJobs.forEach((job, index) => {
+                html += `
+                    <div class="col-md-4 mb-4 job-card" data-aos="fade-up" data-aos-delay="${index*50}" data-department="${job.department}">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">${job.title}</h5>
+                                <p class="card-subtitle mb-2 text-muted">
+                                    ${job.location} • ${job.type}<br>
+                                    <small>Apply by: ${new Date(job.deadline).toLocaleDateString()}</small>
+                                </p>
+                                <p class="card-text flex-grow-1">${job.description ? job.description.substring(0,150) + '...' : ''}</p>
+                                <button onclick="applyForJob('${job.slug}')" class="btn btn-warning text-white mt-auto">
+                                    Apply Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>`;
+
+                positionOptions += `<option value="${job.slug}">${job.title}</option>`;
+                departments.add(job.department);
+            });
+
+            container.innerHTML = html;
+            positionSelect.innerHTML = positionOptions;
+
+            setupDepartmentFilter([...departments]);
+        })
+        .catch(error => {
+            console.error('Error loading careers:', error);
+            container.innerHTML = `
+                <div class="col-12 text-center">
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        Unable to load career opportunities. Please try again later.
+                    </div>
+                </div>`;
+        });
+
+    // Form submission
+    document.getElementById('career-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const submitText = document.getElementById('submit-text');
+        const spinner = document.getElementById('submit-spinner');
+
+        submitText.textContent = 'Submitting...';
+        spinner.classList.remove('d-none');
+        submitBtn.disabled = true;
+
+        // Simulate submission
+        setTimeout(() => {
+            alert('Application submitted successfully! We\'ll be in touch soon.');
+            this.reset();
+            submitText.textContent = 'Submit Application';
+            spinner.classList.add('d-none');
+            submitBtn.disabled = false;
+        }, 1500);
+    });
+});
+
+// Apply Now scroll function
+function applyForJob(slug) {
+    const positionSelect = document.getElementById('position');
+    positionSelect.value = slug;
+    positionSelect.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// Department filter setup
+function setupDepartmentFilter(departments) {
+    const filterContainer = document.querySelector('select[aria-label="Filter by Department"]');
+    if (!filterContainer) return;
+
+    let options = '<option value="all">All Departments</option>';
+    departments.forEach(dept => options += `<option value="${dept}">${dept}</option>`);
+    filterContainer.innerHTML = options;
+
+    filterContainer.addEventListener('change', function() {
+        const selected = this.value;
+        document.querySelectorAll('.job-card').forEach(card => {
+            const cardDept = card.dataset.department;
+            card.style.display = (selected === 'all' || cardDept === selected) ? 'block' : 'none';
+        });
+    });
+}
+</script>
+
 
 <!-- Footer -->
 <footer class="bg-light text-center text-lg-start">
@@ -209,11 +297,10 @@
             </div>
             <div class="col-lg-9 col-md-12 mb-4">
                 <div class="social-media mb-3 d-flex justify-content-end">
-                    <a href="#" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
+                    <a href="https://www.linkedin.com/company/umelusigroup/?viewAsMember=true" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://www.instagram.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="https://www.facebook.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                    <a href="https://www.youtube.com/@UmelusiGroup" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
                 </div>
                 <div class="contact-details text-end">
                     <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Office D103, Development House, Swazi Plaza</p>
@@ -254,14 +341,14 @@
                 <ul class="list-unstyled">
                     <li><a href="#">Accessibility</a></li>
                     <li><a href="#">Reports</a></li>
-                    <li><a href="#">FAQs</a></li>
+                    <li><a href="resources.html">FAQs</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </div>
         </div>
         <div class="text-center p-3" style="background-color: #FF9933; color: white;">
             © 2025 Copyright:
-            <a class="text-white" href="#">Umelusi Group</a>
+            <a class="text-white" href="index.html">Umelusi Group</a>
         </div>
     </div>
 </footer>

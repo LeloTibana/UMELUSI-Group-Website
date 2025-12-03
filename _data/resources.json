@@ -1,0 +1,30 @@
+{
+  "items": [
+    {
+      "title": "2025 Market Outlook",
+      "slug": "2025-market-outlook",
+      "type": "Report",
+      "category": "Global Markets",
+      "date": "2025-11-01",
+      "thumbnail": "/images/market-report.jpg",
+      "file": "/downloads/2025-market-outlook.pdf",
+      "description": "A detailed look at market trends and investment strategies for 2025.",
+      "content": "Full report content here...",
+      "featured": true,
+      "published": true
+    },
+    {
+      "title": "Investment Guide for Beginners",
+      "slug": "investment-guide-beginners",
+      "type": "Guide",
+      "category": "Wealth Building",
+      "date": "2025-10-15",
+      "thumbnail": "/images/investment-guide.jpg",
+      "file": "/downloads/investment-guide.pdf",
+      "description": "Step-by-step guide for novice investors.",
+      "content": "Full guide content here...",
+      "featured": true,
+      "published": true
+    }
+  ]
+}

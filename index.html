@@ -94,7 +94,7 @@
 </nav>
 
 <section id="hero" class="hero-section text-white d-flex align-items-center">
-    <video autoplay muted loop playsinline preload="auto" poster="images/herosection-poster.jpg" id="heroVideo">
+    <video autoplay muted loop playsinline preload="auto" id="heroVideo">
         <source src="videos/herosection.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -109,14 +109,19 @@
     </div>
 </section>
 
+<!-- ===========================
+     LIVE GLOBAL INDICES TICKER
+=========================== -->
 <section class="markets-content py-5" id="markets-data" data-aos="fade-up">
-    <div class="container">
-        <h2>Live Global Indices</h2>
-        <div id="global-indices" class="mb-5"></div>
-    
+  <div class="container">
   
-    </div>
+    <h2>Live Global Indices</h2>
+    <div id="global-indices" class="tradingview-widget-container "></div>
+  
+  </div>
 </section>
+
+
 
 <!-- What Sets Us Apart Section -->
 <section class="usp-section py-5">
@@ -275,7 +280,7 @@
     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
         <div class="card p-3 shadow-sm h-100 service-card d-flex flex-column">
                 <img src="images/logo-finserve.png" alt="Umelusi FinServe Logo" class="ecosystem-logo mx-auto mb-3">
-                <h4 class="card-title">Umelusi FinServe</h4>
+                <h4 class="card-title">Umelusi FinServ</h4>
                 <p class="card-text flex-grow-1">Trusted Foreign Exchange and Western Union Services</p>
                 <a href="finserve.html" class="btn btn-brand mt-auto">Learn More</a>
             </div>
@@ -378,7 +383,7 @@
                 <div class="p-4 p-lg-5 shadow-lg rounded" style="background-color: var(--bg-light);">
                     <h4 class="mb-4 text-center text-secondary">Submit Confidential Inquiry</h4>
                     
-                    <form class="row g-3 advisor-form" id="advisorForm" action="contact_handler.php" method="POST">
+                    <form class="row g-3 advisor-form" id="advisorForm" name="advisorForm" method="POST" data-netlify="true" netlify-honeypot="bot-field">
                         <div class="col-md-6">
                             <label for="advisorName" class="form-label">Full Name</label>
                             <input type="text" class="form-control" id="advisorName" name="name" placeholder="John Doe" required>
@@ -399,7 +404,7 @@
                                 <option value="wealth">Wealth Management (Fund Managers)</option>
                                 <option value="capital">Corporate Finance (Capital)</option>
                                 <option value="consulting">Management Consulting (Partners)</option>
-                                <option value="transactional">Money/Forex Transfer (FinServe)</option>
+                                <option value="transactional">Money/Forex Transfer (FinServ)</option>
                                 <option value="other">Other Inquiry</option>
                             </select>
                         </div>
@@ -430,9 +435,11 @@
                     Tell us a little about your financial goals and the service you require.
                 </p>
                 
-                <form id="modalContactForm" method="POST" action="submit_contact.php" class="p-3 border rounded-3 bg-white">
+                <!-- UPDATED FORM: Removed action and method, added correct ID -->
+                <form id="modalContactForm" class="p-3 border rounded-3 bg-white">
+                    <!-- REMOVED: action="submit_contact.php" method="POST" -->
+                    
                     <div class="row g-3">
-                        
                         <div class="col-md-6">
                             <label for="modalContactName" class="form-label">Full Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="modalContactName" name="name" required>
@@ -448,7 +455,7 @@
                                 <option value="" selected disabled>Select a brand/service...</option>
                                 <option value="Fund Managers">Umelusi Fund Managers (Investment)</option>
                                 <option value="Capital">Umelusi Capital (Corporate Finance)</option>
-                                <option value="FinServe">Umelusi FinServe (FX & Money Transfer)</option>
+                                <option value="FinServe">Umelusi FinServ (FX & Money Transfer)</option>
                                 <option value="Partners">Umelusi Partners (Consulting & Advisory)</option>
                                 <option value="General Inquiry">General Inquiry</option>
                             </select>
@@ -465,7 +472,7 @@
                     </div>
                 </form>
             </div>
-            </div>
+        </div>
     </div>
 </div>
 
@@ -477,11 +484,10 @@
             </div>
             <div class="col-lg-9 col-md-12 mb-4">
                 <div class="social-media mb-3 d-flex justify-content-end">
-                    <a href="#" class="text-dark me-3" aria-label="Umelusi Group on LinkedIn"><i class="fab fa-linkedin fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3" aria-label="Umelusi Group on Instagram"><i class="fab fa-instagram fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3" aria-label="Umelusi Group on Facebook"><i class="fab fa-facebook-f fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3" aria-label="Umelusi Group on X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="text-dark" aria-label="Umelusi Group on YouTube"><i class="fab fa-youtube fa-lg"></i></a>
+                    <a href="https://www.linkedin.com/company/umelusigroup/?viewAsMember=true" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://www.instagram.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="https://www.facebook.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                    <a href="https://www.youtube.com/@UmelusiGroup" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
                 </div>
                 <div class="contact-details text-end">
                     <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Office D103, Development House, Swazi Plaza</p>
@@ -521,8 +527,8 @@
                 <h5 class="text-uppercase">Forms & Notices</h5>
                 <ul class="list-unstyled">
                     <li><a href="#">Accessibility</a></li>
-                    <li><a href="#">Reports</a></li>
-                    <li><a href="#">FAQs</a></li>
+                    <li><a href="resources.html">Reports</a></li>
+                    <li><a href="resources.html">FAQs</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </div>
@@ -564,7 +570,7 @@
                 <option value="wealth">Wealth Management (Fund Managers)</option>
                 <option value="capital">Corporate Finance (Capital)</option>
                 <option value="consulting">Management Consulting (Partners)</option>
-                <option value="transactional">Money/Forex Transfer (FinServe)</option>
+                <option value="transactional">Money/Forex Transfer (FinServ)</option>
                 <option value="other">Other Inquiry</option>
               </select>
             </div>

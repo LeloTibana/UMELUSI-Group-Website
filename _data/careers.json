@@ -1,0 +1,28 @@
+{
+  "jobs": [
+    {
+      "title": "Marketing Specialist",
+      "slug": "marketing-specialist",
+      "department": "Marketing",
+      "location": "Mbabane, Eswatini",
+      "type": "Full-time",
+      "deadline": "2025-12-31",
+      "description": "Responsible for digital campaigns, social media, and content creation.",
+      "requirements": "3+ years in marketing, proficiency with Google Analytics, SEO, and social media management.",
+      "salary": "E5000/month",
+      "active": true
+    },
+    {
+      "title": "Financial Analyst",
+      "slug": "financial-analyst",
+      "department": "Finance",
+      "location": "Mbabane, Eswatini",
+      "type": "Full-time",
+      "deadline": "2025-12-20",
+      "description": "Analyze financial data and prepare reports for clients.",
+      "requirements": "Degree in Finance or Accounting, 2+ years experience in financial analysis.",
+      "salary": "E4500/month",
+      "active": true
+    }
+  ]
+}

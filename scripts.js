@@ -1,760 +1,1142 @@
-// ------------------------
-// Simulated Market Data
-// ------------------------
-
-const marketIndices = [
-    { name: "Dow Jones Global Index", initialValue: 12345.67 },
-    { name: "NASDAQ Global Select Index", initialValue: 8901.23 },
-    { name: "S&P Global 500", initialValue: 10123.45 },
-    { name: "MSCI World Index", initialValue: 1234.56 }
-];
-
-// Function to update market data in the table
-function updateMarketData() {
-    const marketDataContainer = document.getElementById("market-data");
-
-    if (!marketDataContainer) return;
-
-    marketDataContainer.innerHTML = ""; // Clear old data
-
-    marketIndices.forEach(index => {
-        const change = (Math.random() - 0.5) * 200;
-        const newValue = index.initialValue + change;
-
-        const changeClass = change >= 0 ? "text-success" : "text-danger";
-        const changeSymbol = change >= 0 ? "+" : "";
-        const trendIcon = change >= 0 ? "📈" : "📉";
-
-        const row = document.createElement("tr");
-
-        const nameCell = document.createElement("td");
-        nameCell.textContent = index.name;
-
-        const valueCell = document.createElement("td");
-        valueCell.textContent = newValue.toFixed(2);
-
-        const changeCell = document.createElement("td");
-        changeCell.className = changeClass;
-        changeCell.textContent = `${trendIcon} ${changeSymbol}${change.toFixed(2)}`;
-
-        row.appendChild(nameCell);
-        row.appendChild(valueCell);
-        row.appendChild(changeCell);
-
-        marketDataContainer.appendChild(row);
-    });
-}
-
-// Run market data update on load and every 5 seconds (Only runs if #market-data exists)
-document.addEventListener("DOMContentLoaded", () => {
-    if (document.getElementById("market-data")) {
-        updateMarketData();
-        setInterval(updateMarketData, 5000);
+/// ============================================
+// GLOBAL API CONFIG
+// ============================================
+const API_CONFIG = {
+    baseUrl: 'http://localhost:3000', // Use production URL when live
+    endpoints: {
+        contact: '/api/contact/submit',
+        form: '/api/form/submit',
+        currency: '/api/currency/convert',
+        health: '/api/health'
     }
-});
-
-
-// ------------------------
-// Back to Top Button Logic
-// ------------------------
-
-document.addEventListener("DOMContentLoaded", () => {
-    const backToTopButton = document.getElementById("back-to-top");
-
-    if (!backToTopButton) return;
-
-    window.addEventListener("scroll", () => {
-        backToTopButton.style.display = window.scrollY > 300 ? "block" : "none";
-    });
-
-    backToTopButton.addEventListener("click", () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    });
-});
-
-
-// ---------------------------------
-// Carousel Board of Directors (FIXED - Added Null Checks)
-// ---------------------------------
-
-document.addEventListener("DOMContentLoaded", () => {
-  const carouselWrapper = document.querySelector(".carousel-wrapper"); // Use a parent element check
-  if (!carouselWrapper) return; // EXIT if element doesn't exist
-
-  const cards = document.querySelectorAll(".carousel-card");
-  const nextBtn = document.querySelector(".next-btn");
-  const prevBtn = document.querySelector(".prev-btn");
-  let current = 0;
-
-  function updateCarousel() {
-    cards.forEach((card, i) => {
-      card.classList.toggle("active", i === current);
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-        current = (current + 1) % cards.length;
-        updateCarousel();
-    });
-  }
-
-  if (prevBtn) {
-    prevBtn.addEventListener("click", () => {
-        current = (current - 1 + cards.length) % cards.length;
-        updateCarousel();
-    });
-  }
-  
-  // Only call updateCarousel if cards exist to prevent error
-  if (cards.length > 0) updateCarousel();
-});
-
-
-// ---------------------------------
-// Filter Functionality on Pressroom Page (FIXED - Added Null Checks)
-// ---------------------------------
-
-document.addEventListener("DOMContentLoaded", () => {
-  const filterContainer = document.querySelector(".press-filters");
-  if (!filterContainer) return; // EXIT if element doesn't exist
-
-  const buttons = filterContainer.querySelectorAll(".btn");
-  const items = document.querySelectorAll(".press-item");
-
-  buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      // Set active state
-      buttons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const filter = btn.getAttribute("data-filter");
-
-      items.forEach(item => {
-        const category = item.getAttribute("data-category");
-
-        if (filter === "all" || category === filter) {
-          item.style.display = "block";
-        } else {
-          item.style.display = "none";
-        }
-      });
-    });
-  });
-});
-
-
-// Navbar logo shrink when scrolling 
-window.addEventListener("scroll", function () {
-    const navbar = document.querySelector(".navbar");
-    const logo = document.getElementById("umelusi-logo");
-  
-    if (window.scrollY > 30) {
-      navbar.classList.add("navbar-shrink");
-    } else {
-      navbar.classList.remove("navbar-shrink");
-    }
-  });
-
-
-// Pagination System
-document.addEventListener("DOMContentLoaded", () => {
-    const pagination = document.getElementById("pagination-controls");
-    if (!pagination) return; // EXIT if element doesn't exist
-
-    const itemsPerPage = 6;
-    const items = document.querySelectorAll(".press-item");
-    let currentPage = 1;
-  
-    function showPage(page) {
-      const start = (page - 1) * itemsPerPage;
-      const end = start + itemsPerPage;
-  
-      items.forEach((item, i) => {
-        item.style.display = i >= start && i < end ? "block" : "none";
-      });
-  
-      renderPaginationButtons(page);
-    }
-  
-    function renderPaginationButtons(activePage) {
-      const totalPages = Math.ceil(items.length / itemsPerPage);
-      pagination.innerHTML = "";
-  
-      for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement("li");
-        btn.classList.add("page-item");
-        if (i === activePage) btn.classList.add("active");
-  
-        btn.innerHTML = `<button class="page-link">${i}</button>`;
-        btn.addEventListener("click", () => {
-          currentPage = i;
-          showPage(currentPage);
-        });
-  
-        pagination.appendChild(btn);
-      }
-    }
-  
-    if (items.length > 0) {
-      showPage(currentPage);
-    }
-});
-
-  
-// Search Filtering (FIXED - Added Null Checks)
-document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.getElementById("press-search");
-  if (!searchInput) return; // EXIT if element doesn't exist
-
-  searchInput.addEventListener("input", function () {
-    const query = this.value.toLowerCase();
-    const cards = document.querySelectorAll(".press-item");
-
-    cards.forEach(card => {
-      // Safely check for elements before getting innerText
-      const title = card.querySelector(".press-title")?.innerText.toLowerCase() || "";
-      const summary = card.querySelector(".press-summary")?.innerText.toLowerCase() || "";
-      
-      card.style.display = (title.includes(query) || summary.includes(query)) ? "block" : "none";
-    });
-  });
-});
-
-
-//Executive Message Carousel on Home Page (FIXED - Added Null Checks)
-// NOTE: This logic is nearly identical to the 'Carousel Board of Directors' block above.
-// Consider combining them if they target the same element to avoid confusion.
-document.addEventListener("DOMContentLoaded", () => {
-  const carouselContainer = document.querySelector(".executive-carousel");
-  if (!carouselContainer) return; // EXIT if element doesn't exist
-
-  const cards = carouselContainer.querySelectorAll(".carousel-card");
-  const nextBtn = carouselContainer.querySelector(".next-btn");
-  const prevBtn = carouselContainer.querySelector(".prev-btn");
-  let current = 0;
-
-  function updateCarousel() {
-    cards.forEach((card, index) => {
-      card.classList.remove("active");
-    });
-    cards[current].classList.add("active");
-  }
-  
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-        current = (current + 1) % cards.length;
-        updateCarousel();
-    });
-  }
-
-  if (prevBtn) {
-    prevBtn.addEventListener("click", () => {
-        current = (current - 1 + cards.length) % cards.length;
-        updateCarousel();
-    });
-  }
-
-  if (cards.length > 0) updateCarousel();
-});
-
-
-// Load TradingView widgets dynamically (No changes needed, as they check their own container)
-
-// Global Indices
-const indicesContainer = document.getElementById("global-indices");
-if (indicesContainer) {
-    const indicesScript = document.createElement('script');
-    indicesScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
-    indicesScript.async = true;
-    indicesScript.innerHTML = JSON.stringify({
-      symbols: [
-        { proName: "FOREXCOM:SPXUSD", title: "S&P 500" },
-        { proName: "FOREXCOM:NSXUSD", title: "Nasdaq 100" },
-        { proName: "FOREXCOM:DJI", title: "Dow 30" },
-        { proName: "INDEX:NKY", title: "Nikkei 225" },
-        { proName: "INDEX:DEU40", title: "DAX" },
-        { proName: "FOREXCOM:UKXGBP", title: "FTSE 100" }
-      ],
-      showSymbolLogo: true,
-      colorTheme: "light",
-      isTransparent: false,
-      displayMode: "adaptive",
-      locale: "en"
-    });
-    indicesContainer.appendChild(indicesScript);
-}
-
-// Currency Rates
-const currencyRatesContainer = document.getElementById("currency-rates");
-if (currencyRatesContainer) {
-    const currencyScript = document.createElement('script');
-    currencyScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
-    currencyScript.async = true;
-    currencyScript.innerHTML = JSON.stringify({
-      symbols: [
-        { proName: "FX_IDC:EURUSD", title: "EUR/USD" },
-        { proName: "FX_IDC:GBPUSD", title: "GBP/USD" },
-        { proName: "FX_IDC:USDZAR", title: "USD/ZAR" },
-        { proName: "FX_IDC:USDJPY", title: "USD/JPY" },
-        { proName: "FX_IDC:USDCNY", title: "USD/CNY" }
-      ],
-      showSymbolLogo: true,
-      colorTheme: "light",
-      isTransparent: false,
-      displayMode: "adaptive",
-      locale: "en"
-    });
-    currencyRatesContainer.appendChild(currencyScript);
-}
-
-// Economic Calendar
-const calendarContainer = document.getElementById("economic-calendar");
-if (calendarContainer) {
-    const calendarScript = document.createElement('script');
-    calendarScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-events.js";
-    calendarScript.async = true;
-    calendarScript.innerHTML = JSON.stringify({
-      colorTheme: "light",
-      isTransparent: false,
-      width: "100%",
-      height: "550",
-      locale: "en",
-      importanceFilter: "-1"
-    });
-    calendarContainer.appendChild(calendarScript);
-}
-
-// Market News
-const newsContainer = document.getElementById("market-news");
-if (newsContainer) {
-    const newsScript = document.createElement('script');
-    newsScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-timeline.js";
-    newsScript.async = true;
-    newsScript.innerHTML = JSON.stringify({
-      feedMode: "all_symbols",
-      colorTheme: "light",
-      isTransparent: false,
-      displayMode: "adaptive",
-      width: "100%",
-      height: "600",
-      locale: "en"
-    });
-    newsContainer.appendChild(newsScript);
-}
-
-// Crypto Prices
-const cryptoContainer = document.getElementById("crypto-prices");
-if (cryptoContainer) {
-    const cryptoScript = document.createElement('script');
-    cryptoScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
-    cryptoScript.async = true;
-    cryptoScript.innerHTML = JSON.stringify({
-      symbols: [
-        { proName: "BITSTAMP:BTCUSD", title: "Bitcoin" },
-        { proName: "BITSTAMP:ETHUSD", title: "Ethereum" },
-        { proName: "BINANCE:XRPUSDT", title: "Ripple" },
-        { proName: "BINANCE:SOLUSDT", title: "Solana" }
-      ],
-      showSymbolLogo: true,
-      colorTheme: "light",
-      isTransparent: false,
-      displayMode: "adaptive",
-      locale: "en"
-    });
-    cryptoContainer.appendChild(cryptoScript);
-}
-
-
-// ---------------------------------
-// Resources and Insights Page (FIXED - Added Null Checks)
-// ---------------------------------
-
-const articles = {
-  // ... (Article definitions unchanged)
-  retirement: Array.from({ length: 20 }, (_, i) => ({
-    title: `Retirement Article ${i + 1}`,
-    description: "Helping you retire smarter.",
-    image: "https://via.placeholder.com/300x180?text=Retirement"
-  })),
-  business: Array.from({ length: 10 }, (_, i) => ({
-    title: `Business Consulting ${i + 1}`,
-    description: "Business growth strategies and insights.",
-    image: "https://via.placeholder.com/300x180?text=Business"
-  })),
-  wealth: Array.from({ length: 12 }, (_, i) => ({
-    title: `Wealth Building ${i + 1}`,
-    description: "Grow your wealth sustainably.",
-    image: "https://via.placeholder.com/300x180?text=Wealth"
-  })),
-  investment: Array.from({ length: 8 }, (_, i) => ({
-    title: `Investment Strategy ${i + 1}`,
-    description: "Smart investing for a better future.",
-    image: "https://via.placeholder.com/300x180?text=Investment"
-  })),
-  finance: Array.from({ length: 10 }, (_, i) => ({
-    title: `Personal Finance ${i + 1}`,
-    description: "Everyday financial tips and guides.",
-    image: "https://via.placeholder.com/300x180?text=Finance"
-  })),
-  company: Array.from({ length: 6 }, (_, i) => ({
-    title: `Company News ${i + 1}`,
-    description: "Latest updates from Umelusi Group.",
-    image: "https://via.placeholder.com/300x180?text=News"
-  })),
-  perspectives: Array.from({ length: 9 }, (_, i) => ({
-    title: `Perspective ${i + 1}`,
-    description: "Thought leadership and insights.",
-    image: "https://via.placeholder.com/300x180?text=Perspective"
-  }))
 };
 
-function getCategoryLabel(category) {
-  const labels = {
-    retirement: "Retirement",
-    business: "Business Consulting",
-    wealth: "Wealth Building",
-    investment: "Investment Strategies",
-    finance: "Personal Finance",
-    company: "Company News",
-    perspectives: "News & Perspectives"
-  };
-  return labels[category] || category;
-}
+// ============================================
+// ✅ TRADINGVIEW WIDGETS - WORKING VERSION
+// ============================================
 
-function renderArticles(category) {
-  const container = document.getElementById("tabs-content");
-  if (!container) return; // FIX: Prevent crash if container is null
-
-  container.innerHTML = "";
-
-  const items = articles[category] || [];
-  const paginatedItems = items.slice(0, 6); // Default 6 articles
-
-  paginatedItems.forEach(article => {
-    const card = document.createElement("div");
-    card.className = "article-card";
-    card.innerHTML = `
-      <img src="${article.image}" alt="${article.title}" loading="lazy">
-      <div class="article-content">
-        <h4>${article.title}</h4>
-        <p>${article.description}</p>
-      </div>
-    `;
-    container.appendChild(card);
-  });
-
-  // Update view all link
-  const viewAllLink = document.getElementById("view-all-link");
-  if (viewAllLink) {
-    viewAllLink.href = `resources-${category}.html`;
-    viewAllLink.textContent = `View all ${getCategoryLabel(category)} articles`;
-  }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const articleFilters = document.querySelector(".filter-tabs"); // Use a parent container check
-  if (!articleFilters) return; // EXIT if element doesn't exist
-
-  const buttons = articleFilters.querySelectorAll(".filter-btn");
-
-  buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      buttons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const category = btn.getAttribute("data-category");
-      renderArticles(category);
-    });
-  });
-
-  // Load default category
-  renderArticles("retirement");
-});
-
-
-// ---------------------------------
-// Currency Converter (FIXED - Added Null Check)
-// ---------------------------------
-
-// !!! IMPORTANT !!! 
-// Replace "YOUR_API_KEY_HERE" with your actual key from exchangerate-api.com
-
-function convertCurrency() {
-    const amountInput = document.getElementById('amount');
-    const fromCurrency = document.getElementById('from-currency').value;
-    const toCurrency = document.getElementById('to-currency').value;
-    const resultElement = document.getElementById('conversion-result');
+function loadTradingViewWidgets() {
+    console.log('🔧 Loading TradingView widgets...');
     
-    const amount = parseFloat(amountInput.value); 
-    const API_KEY = "dcfb40c2085072dd2e65fa80"; 
-    const API_URL = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/${fromCurrency}`;
-
-    if (isNaN(amount) || amount <= 0 || !fromCurrency || !toCurrency) {
-        showNotification('Please enter a valid amount and select currencies.', false);
-        return;
-    }
-
-    resultElement.innerHTML = 'Fetching live rate...';
-
-    fetch(API_URL)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.result === 'success') {
-                const rate = data.conversion_rates[toCurrency]; 
-                
-                if (rate) {
-                    const convertedAmount = amount * rate;
-                    resultElement.innerHTML = `
-                        <strong>${amount.toFixed(2)} ${fromCurrency}</strong> = 
-                        <span style="color: var(--color-brand-primary); font-weight: bold;">
-                            ${convertedAmount.toFixed(2)} ${toCurrency}
-                        </span>
-                    `;
-                } else {
-                    showNotification('Error: Conversion rate to the target currency is not available.', false);
-                }
-            } else {
-                 showNotification(`API Error: ${data['error-type'] || 'Failed to retrieve data.'}`, false);
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching currency data:', error);
-            showNotification('Error: Could not retrieve live rates. Please check your API key and console for network details.', false);
+    // Global Indices
+    const indicesContainer = document.getElementById("global-indices");
+    if (indicesContainer) {
+        indicesContainer.innerHTML = ''; // Clear any existing content
+        const indicesScript = document.createElement('script');
+        indicesScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+        indicesScript.async = true;
+        indicesScript.innerHTML = JSON.stringify({
+            symbols: [
+                { proName: "FOREXCOM:SPXUSD", title: "S&P 500" },
+                { proName: "FOREXCOM:NSXUSD", title: "Nasdaq 100" },
+                { proName: "FOREXCOM:DJI", title: "Dow 30" },
+                { proName: "INDEX:NKY", title: "Nikkei 225" },
+                { proName: "INDEX:DEU40", title: "DAX" },
+                { proName: "FOREXCOM:UKXGBP", title: "FTSE 100" }
+            ],
+            showSymbolLogo: true,
+            colorTheme: "light",
+            isTransparent: false,
+            displayMode: "adaptive",
+            locale: "en"
         });
-}
+        indicesContainer.appendChild(indicesScript);
+        console.log('✅ Global indices widget loaded');
+    }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const convertButton = document.getElementById("convert-btn");
-    if (!convertButton) return; // FIX: Prevent crash if button is null
-
-    convertButton.addEventListener("click", (e) => {
-      e.preventDefault(); 
-      convertCurrency();
-    });
-});
-
-
-// ---------------------------------
-// Dynamic Breadcrumb Trail System (FIXED - Prepending Home)
-// ---------------------------------
-
-document.addEventListener("DOMContentLoaded", () => {
-  const breadcrumbContainer = document.getElementById("breadcrumb-trail");
-  if (!breadcrumbContainer) return;
-
-  // Get current page filename
-  let currentPage = window.location.pathname.split("/").pop();
-  if (!currentPage || currentPage === "") currentPage = "index.html";
-
-  const isHomePage = currentPage === "index.html";
-
-  // Page title mappings
-  const pageTitles = {
-    "index.html": "Home",
-    "about-company.html": "About Us",
-    "pressroom.html": "Pressroom",
-    "careers.html": "Career Opportunities",
-    "hierarchy.html": "Hierarchy",
-    "fund-managers.html": "Umelusi Fund Managers",
-    "partners.html": "Umelusi Partners",
-    "capital.html": "Umelusi Capital",
-    "finserve.html": "Umelusi FinServe",
-    "markets.html": "Markets",
-    "resources.html": "Resources & Insights"
-  };
-
-  const currentTitle = pageTitles[currentPage] || currentPage.replace(".html", "");
-
-  // Retrieve stored trail from localStorage
-  let trail = JSON.parse(localStorage.getItem("breadcrumbTrail")) || [];
-
-  // FIX: If trail is empty AND we are not on the home page, start the trail with Home.
-  if (trail.length === 0 && !isHomePage) {
-    trail.push({ title: "Home", file: "index.html" });
-  }
-
-  // Remove if current page already exists in trail (avoid duplicates)
-  trail = trail.filter(page => page.file !== currentPage);
-
-  // Add the new page at the end
-  trail.push({ title: currentTitle, file: currentPage });
-
-  // Optional: keep only last 5 visited pages
-  if (trail.length > 5) trail = trail.slice(-5);
-
-  // Save back to localStorage
-  localStorage.setItem("breadcrumbTrail", JSON.stringify(trail));
-
-  // Build breadcrumb HTML
-  breadcrumbContainer.innerHTML = trail
-    .map((page, index) => {
-      if (index === trail.length - 1) {
-        return `<li class="breadcrumb-item active" aria-current="page">${page.title}</li>`;
-      }
-      return `<li class="breadcrumb-item"><a href="${page.file}">${page.title}</a></li>`;
-    })
-    .join("");
-});
-
-// ---------------------------------
-// TradingView Widget Loader: Umelusi Capital
-// ---------------------------------
-document.addEventListener("DOMContentLoaded", () => {
-    const widgetContainer = document.getElementById("capital-market-widget");
-    
-    // Check if the container exists on this page before running
-    if (!widgetContainer) return;
-
-    // Configuration object (the source of the red underline issue)
-    const widgetConfig = {
-        "colorTheme": "light",
-        "dateRange": "12M",
-        "showChart": true,
-        "locale": "en",
-        "width": "100%",
-        "height": "100%",
-        "tabs": [
-            {
-            "title": "Global Equities",
-            "symbols": [
-                { "s": "INDEX:SPX", "d": "S&P 500" },
-                { "s": "INDEX:COMP", "d": "NASDAQ Composite" },
-                { "s": "INDEX:JSE", "d": "JSE All Share" },
-                { "s": "INDEX:NGSEALL", "d": "NGX All Share" },
-                { "s": "INDEX:UKX", "d": "FTSE 100" }
+    // Currency Rates
+    const currencyRatesContainer = document.getElementById("currency-rates");
+    if (currencyRatesContainer) {
+        currencyRatesContainer.innerHTML = '';
+        const currencyScript = document.createElement('script');
+        currencyScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+        currencyScript.async = true;
+        currencyScript.innerHTML = JSON.stringify({
+            symbols: [
+                { proName: "FX_IDC:EURUSD", title: "EUR/USD" },
+                { proName: "FX_IDC:GBPUSD", title: "GBP/USD" },
+                { proName: "FX_IDC:USDZAR", title: "USD/ZAR" },
+                { proName: "FX_IDC:USDJPY", title: "USD/JPY" },
+                { proName: "FX_IDC:USDCNY", title: "USD/CNY" }
             ],
-            "originalTitle": "Global Equities"
-            },
-            {
-            "title": "Fixed Income",
-            "symbols": [
-                { "s": "CBOT:ZN1!", "d": "US 10Y T-Note" },
-                { "s": "CBOT:ZB1!", "d": "US 30Y Bond" },
-                { "s": "EUREX:FGBL1!", "d": "German Bund" }
+            showSymbolLogo: true,
+            colorTheme: "light",
+            isTransparent: false,
+            displayMode: "adaptive",
+            locale: "en"
+        });
+        currencyRatesContainer.appendChild(currencyScript);
+        console.log('✅ Currency rates widget loaded');
+    }
+
+    // Crypto Prices
+    const cryptoContainer = document.getElementById("crypto-prices");
+    if (cryptoContainer) {
+        cryptoContainer.innerHTML = '';
+        const cryptoScript = document.createElement('script');
+        cryptoScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+        cryptoScript.async = true;
+        cryptoScript.innerHTML = JSON.stringify({
+            symbols: [
+                { proName: "BITSTAMP:BTCUSD", title: "Bitcoin" },
+                { proName: "BITSTAMP:ETHUSD", title: "Ethereum" },
+                { proName: "BINANCE:XRPUSDT", title: "Ripple" },
+                { proName: "BINANCE:SOLUSDT", title: "Solana" }
             ],
-            "originalTitle": "Fixed Income"
-            }
-        ],
-        "isSymbolList": true
-    };
+            showSymbolLogo: true,
+            colorTheme: "light",
+            isTransparent: false,
+            displayMode: "adaptive",
+            locale: "en"
+        });
+        cryptoContainer.appendChild(cryptoScript);
+        console.log('✅ Crypto prices widget loaded');
+    }
 
-    // 1. Create the <script> element
-    const tvScript = document.createElement('script');
-    tvScript.type = 'text/javascript';
-    tvScript.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js';
-    tvScript.async = true;
-    
-    // 2. Set the innerHTML to the JSON configuration (this is the key for TradingView's unusual parser)
-    tvScript.innerHTML = JSON.stringify(widgetConfig); 
-    
-    // 3. Append the script to the widget container
-    widgetContainer.appendChild(tvScript);
-});
+    // Market News
+    const newsContainer = document.getElementById("market-news");
+    if (newsContainer) {
+        newsContainer.innerHTML = '';
+        const newsScript = document.createElement('script');
+        newsScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-timeline.js";
+        newsScript.async = true;
+        newsScript.innerHTML = JSON.stringify({
+            feedMode: "all_symbols",
+            colorTheme: "light",
+            isTransparent: false,
+            displayMode: "compact", // Changed from "adaptive" to match your screenshot
+            width: "100%",
+            height: "600",
+            locale: "en"
+        });
+        newsContainer.appendChild(newsScript);
+        console.log('✅ Market news widget loaded');
+    }
 
-// ---------------------------------
-// Custom Notification System (Replaces alert() and confirm())
-// ---------------------------------
-function showNotification(message, isSuccess = true) {
-    // This is a minimal implementation for non-blocking notifications.
-    const notificationContainer = document.getElementById('notification-container');
-    let container = notificationContainer;
-
-    if (!container) {
-        const body = document.body;
-        const div = document.createElement('div');
-        div.id = 'notification-container';
-        div.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 9999; padding: 10px 20px; border-radius: 5px; color: white; transition: opacity 0.5s, transform 0.5s; opacity: 0; transform: translateY(-50px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-family: \'Roboto\', sans-serif;';
-        body.appendChild(div);
-        container = div;
+    // Economic Calendar
+    const calendarContainer = document.getElementById("economic-calendar");
+    if (calendarContainer) {
+        calendarContainer.innerHTML = '';
+        const calendarScript = document.createElement('script');
+        calendarScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-events.js";
+        calendarScript.async = true;
+        calendarScript.innerHTML = JSON.stringify({
+            colorTheme: "light",
+            isTransparent: false,
+            width: "100%",
+            height: "550",
+            locale: "en",
+            importanceFilter: "-1"
+        });
+        calendarContainer.appendChild(calendarScript);
+        console.log('✅ Economic calendar widget loaded');
     }
     
-    container.textContent = message;
-    container.style.backgroundColor = isSuccess ? '#4CAF50' : '#F44336'; // Success (green) or Error (red)
-    container.style.opacity = '1';
-    container.style.transform = 'translateY(0)';
-
-    setTimeout(() => {
-        container.style.opacity = '0';
-        container.style.transform = 'translateY(-50px)';
-    }, 4000); // Hide after 4 seconds
+    console.log('✅ All TradingView widgets initialized');
 }
 
+// ============================================
+// ✅ INITIALIZE EVERYTHING ON DOM LOAD
+// ============================================
 
-// ---------------------------------
-// Form Submission Handler (AJAX)
-// ---------------------------------
-document.addEventListener('DOMContentLoaded', () => {
-    // List all form IDs that need AJAX submission
-    // 'finserveModalContactForm' is correctly included here.
-    const formIds = ['mainContactForm', 'finserveMainContactForm', 'finserveModalContactForm'];
-
-    formIds.forEach(id => {
-        const form = document.getElementById(id);
+document.addEventListener("DOMContentLoaded", function() {
+    console.log('🔧 DOM fully loaded, initializing scripts...');
+    
+    // Wait a bit to ensure all elements are ready
+    setTimeout(() => {
+        // 1. Load TradingView widgets FIRST
+        loadTradingViewWidgets();
         
-        if (form) {
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault(); // Stop the default page refresh
+        // 2. Then initialize all your other components...
+        
+        // Back to Top Button
+        const backToTop = document.getElementById("back-to-top");
+        if (backToTop) {
+            window.addEventListener("scroll", () => {
+                backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+            });
+            backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+        }
 
-                const submitButton = form.querySelector('button[type="submit"]');
-                
-                const originalButtonText = submitButton.textContent;
-                submitButton.textContent = 'Sending...';
-                submitButton.disabled = true;
+        // Generic Carousel Handler
+        function initCarousel(containerSelector) {
+            const container = document.querySelector(containerSelector);
+            if (!container) return;
 
-                // **THIS IS THE KEY PART**
-                // 1. Find the closest Bootstrap modal parent element
-                const modalElement = form.closest('.modal');
-                
-                try {
-                    const formData = new FormData(form);
-                    const data = Object.fromEntries(formData);
-                    
-                    // Mock Fetch to the Node.js server endpoint
-                    // Replace with your actual server URL in a real deployment
-                    const response = await fetch('http://localhost:3000/submit', { 
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    });
+            const cards = container.querySelectorAll(".carousel-card");
+            const nextBtn = container.querySelector(".next-btn");
+            const prevBtn = container.querySelector(".prev-btn");
+            let current = 0;
 
-                    if (response.ok) {
-                        showNotification('Thank you! Your message has been sent successfully.', true); // Success notification
-                        form.reset();
-                        
-                        // 2. Close the modal if the form was inside one
-                        if (modalElement) {
-                            // Get the Bootstrap modal instance and hide it
-                            // The 'bootstrap' object is made globally available by the Bootstrap JS bundle
-                            const modalInstance = bootstrap.Modal.getInstance(modalElement);
-                            if (modalInstance) {
-                                modalInstance.hide(); // Closes the modal
-                            }
-                        }
-                    } else {
-                        const errorData = await response.json();
-                        showNotification(`Submission Failed: ${errorData.message || 'Please check your server and try again.'}`, false); // Error notification
-                    }
-                } catch (error) {
-                    console.error('Submission error:', error);
-                    showNotification('A network error occurred. Please ensure the backend server is running.', false); // Network error notification
-                } finally {
-                    submitButton.textContent = originalButtonText;
-                    submitButton.disabled = false;
+            function update() {
+                cards.forEach((card, i) => card.classList.toggle("active", i === current));
+            }
+
+            if (nextBtn) nextBtn.addEventListener("click", () => { current = (current + 1) % cards.length; update(); });
+            if (prevBtn) prevBtn.addEventListener("click", () => { current = (current - 1 + cards.length) % cards.length; update(); });
+
+            if (cards.length) update();
+        }
+
+        initCarousel(".carousel-wrapper");
+        initCarousel(".executive-carousel");
+
+        // Pressroom Filters & Search
+        function setupPressroomFilters() {
+            const searchInput = document.getElementById('press-search');
+            const filterButtons = document.querySelectorAll('.press-filters .btn');
+            const pressItems = document.querySelectorAll('.press-item');
+            const noResults = document.querySelector('.no-results');
+            const itemsPerPage = 6;
+            const pagination = document.getElementById("pagination-controls");
+            if (!searchInput || !filterButtons.length || !pressItems.length) return;
+
+            let activeFilter = 'all';
+            let searchQuery = '';
+            let currentPage = 1;
+
+            function filterItems() {
+                let visibleItems = [];
+                pressItems.forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    const title = item.querySelector('.press-title')?.textContent.toLowerCase() || "";
+                    const summary = item.querySelector('.press-summary')?.textContent.toLowerCase() || "";
+                    const matchesFilter = activeFilter === 'all' || category === activeFilter;
+                    const matchesSearch = !searchQuery || title.includes(searchQuery) || summary.includes(searchQuery);
+
+                    item.style.display = (matchesFilter && matchesSearch) ? "block" : "none";
+                    if (matchesFilter && matchesSearch) visibleItems.push(item);
+                });
+
+                if (noResults) noResults.style.display = visibleItems.length ? "none" : "block";
+                renderPagination(visibleItems);
+            }
+
+            function renderPagination(items) {
+                if (!pagination) return;
+                const totalPages = Math.ceil(items.length / itemsPerPage);
+                pagination.innerHTML = "";
+                for (let i = 1; i <= totalPages; i++) {
+                    const li = document.createElement("li");
+                    li.classList.add("page-item");
+                    if (i === currentPage) li.classList.add("active");
+                    li.innerHTML = `<button class="page-link">${i}</button>`;
+                    li.addEventListener("click", () => { currentPage = i; showPage(items, currentPage); });
+                    pagination.appendChild(li);
                 }
+                showPage(items, currentPage);
+            }
+
+            function showPage(items, page) {
+                const start = (page - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                items.forEach((item, i) => item.style.display = (i >= start && i < end) ? "block" : "none");
+            }
+
+            searchInput.addEventListener('input', e => { searchQuery = e.target.value.toLowerCase().trim(); currentPage = 1; filterItems(); });
+            filterButtons.forEach(btn => btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeFilter = btn.getAttribute('data-filter');
+                currentPage = 1;
+                filterItems();
+            }));
+
+            filterItems();
+        }
+        setupPressroomFilters();
+
+        // Navbar Logo Shrink
+        const navbar = document.querySelector(".navbar");
+        if (navbar) {
+            window.addEventListener("scroll", () => {
+                navbar.classList.toggle("navbar-shrink", window.scrollY > 30);
             });
         }
+
+        // Resources & Insights Tabs
+        const articles = { /* your articles object */ };
+        function renderArticles(category) {
+            const container = document.getElementById("tabs-content");
+            if (!container) return;
+            container.innerHTML = "";
+            const items = (articles[category] || []).slice(0, 6);
+            items.forEach(a => {
+                const card = document.createElement("div");
+                card.className = "article-card";
+                card.innerHTML = `
+                    <img src="${a.image}" alt="${a.title}" loading="lazy">
+                    <div class="article-content">
+                        <h4>${a.title}</h4>
+                        <p>${a.description}</p>
+                    </div>`;
+                container.appendChild(card);
+            });
+            const viewAllLink = document.getElementById("view-all-link");
+            if (viewAllLink) {
+                viewAllLink.href = `resources-${category}.html`;
+                const labels = {
+                    retirement: "Retirement", business: "Business Consulting", wealth: "Wealth Building",
+                    investment: "Investment Strategies", finance: "Personal Finance",
+                    company: "Company News", perspectives: "News & Perspectives"
+                };
+                viewAllLink.textContent = `View all ${labels[category] || category} articles`;
+            }
+        }
+
+        const tabButtons = document.querySelectorAll(".filter-tabs .filter-btn");
+        if (tabButtons.length > 0) {
+            tabButtons.forEach(btn => btn.addEventListener("click", () => {
+                tabButtons.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                renderArticles(btn.getAttribute("data-category"));
+            }));
+            renderArticles("retirement");
+        }
+
+        // Breadcrumb Trail
+        const breadcrumbContainer = document.getElementById("breadcrumb-trail");
+        if (breadcrumbContainer) {
+            let currentPage = window.location.pathname.split("/").pop() || "index.html";
+            const pageTitles = {
+                "index.html": "Home", "about-company.html": "About Us", "pressroom.html": "Pressroom",
+                "careers.html": "Career Opportunities", "hierarchy.html": "Hierarchy",
+                "fund-managers.html": "Umelusi Fund Managers", "partners.html": "Umelusi Partners",
+                "capital.html": "Umelusi Capital", "finserve.html": "Umelusi FinServe",
+                "markets.html": "Markets", "resources.html": "Resources & Insights"
+            };
+            let trail = JSON.parse(localStorage.getItem("breadcrumbTrail")) || [];
+            if (!trail.length && currentPage !== "index.html") trail.push({ title: "Home", file: "index.html" });
+            trail = trail.filter(p => p.file !== currentPage);
+            trail.push({ title: pageTitles[currentPage] || currentPage.replace(".html", ""), file: currentPage });
+            if (trail.length > 5) trail = trail.slice(-5);
+            localStorage.setItem("breadcrumbTrail", JSON.stringify(trail));
+            breadcrumbContainer.innerHTML = trail.map((p, i) =>
+                i === trail.length - 1 ? `<li class="breadcrumb-item active">${p.title}</li>` : `<li class="breadcrumb-item"><a href="${p.file}">${p.title}</a></li>`
+            ).join("");
+        }
+
+        // Contact Form Debug Button (optional)
+        const form = document.getElementById('contactForm');
+        if (form) {
+            setTimeout(() => {
+                const btn = document.createElement('button');
+                btn.id = 'debugTestBtn';
+                btn.textContent = '🧪 TEST CONTACT FORM';
+                btn.style.cssText = 'position:fixed;top:20px;right:20px;z-index:99999;background:#FF0000;color:#fff;padding:15px 20px;border-radius:10px;border:none;font-weight:bold;font-size:16px;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,0.3);';
+                btn.onclick = async () => {
+                    const testData = { contactName: 'Debug Test User', contactEmail: 'debug@test.com', contactMessage: 'Test message from debug button.' };
+                    try {
+                        const res = await fetch('http://localhost:3000/api/contact/submit', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(testData) });
+                        const result = await res.json();
+                        alert(result.success ? `✅ SUCCESS!\n${result.message}` : `❌ FAILED\n${result.error}`);
+                    } catch (err) {
+                        alert(`💥 NETWORK ERROR\n${err.message}`);
+                    }
+                };
+                document.body.appendChild(btn);
+            }, 1000);
+        }
+
+        console.log('✅ All scripts initialized successfully');
+        
+    }, 100); // Small delay to ensure DOM is fully ready
+});
+
+// ============================================
+// 2. ENHANCED NOTIFICATION SYSTEM
+// ============================================
+function showNotification(message, isSuccess = true) {
+    let container = document.getElementById('notification-container');
+
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'notification-container';
+        document.body.appendChild(container);
+    }
+
+    // Clear any existing hide timer
+    if (container.timeoutId) clearTimeout(container.timeoutId);
+
+    container.innerHTML = `
+        <i class="${isSuccess ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle'} me-2"></i>
+        ${message}
+    `;
+    container.className = isSuccess ? 'success' : 'error';
+
+    // Animate in
+    setTimeout(() => container.classList.add('show'), 10);
+
+    // Hide after 5 seconds
+    container.timeoutId = setTimeout(() => container.classList.remove('show'), 5000);
+
+    // Remove from DOM after animation
+    setTimeout(() => {
+        if (!container.classList.contains('show')) container.remove();
+    }, 5500);
+}
+
+// ============================================
+// 3. FORM SUBMISSION HANDLER (NODE.JS VERSION) - CLEANED
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('🔧 Setting up forms for Node.js backend...');
+
+    const formConfigs = {
+        'mainContactForm': { endpoint: API_CONFIG.endpoints.contact, formType: 'general' },
+        'contactForm': { endpoint: API_CONFIG.endpoints.contact, formType: 'contact' },
+        'modalContactForm': { endpoint: API_CONFIG.endpoints.form, formType: 'modal' },
+        'pressroomNewsletterForm': { endpoint: API_CONFIG.endpoints.form, formType: 'newsletter' },
+        'advisorForm': { endpoint: API_CONFIG.endpoints.form, formType: 'advisor' },
+        'modalFundManagersForm': { endpoint: API_CONFIG.endpoints.form, formType: 'fund' },
+        'advisorContactForm': { endpoint: API_CONFIG.endpoints.form, formType: 'advisor' },
+        'finserveMainContactForm': { endpoint: API_CONFIG.endpoints.form, formType: 'finserve' },
+        'finserveModalContactForm': { endpoint: API_CONFIG.endpoints.form, formType: 'finserve' },
+        'contact-partners-form': { endpoint: API_CONFIG.endpoints.form, formType: 'partners' }
+    };
+
+    Object.entries(formConfigs).forEach(([formId, config]) => {
+        const form = document.getElementById(formId);
+        if (!form) return console.log('Form not found:', formId);
+
+        console.log('Setting up form:', formId);
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const submitButton = form.querySelector('button[type="submit"]');
+            if (!submitButton) return console.error('Submit button not found:', formId);
+
+            const originalButtonHTML = submitButton.innerHTML;
+            submitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
+            submitButton.disabled = true;
+
+            try {
+                // Collect and map form data
+                let formData = mapToContactFields(Object.fromEntries(new FormData(form)));
+                formData.formType = config.formType; // Ensure formType is set
+
+                // Validate required fields
+                const validation = validateContactForm(formData);
+                if (!validation.isValid) {
+                    showNotification(validation.errors.join('. '), false);
+                    submitButton.innerHTML = originalButtonHTML;
+                    submitButton.disabled = false;
+                    return;
+                }
+
+                // Send to backend
+                const response = await fetch(API_CONFIG.baseUrl + config.endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    showFormSuccess(form, result, form.closest('.modal'));
+                } else {
+                    showFormError(form, result.error || 'Submission failed. Please try again.', 'Submission Error');
+                    submitButton.innerHTML = originalButtonHTML;
+                    submitButton.disabled = false;
+                }
+
+            } catch (error) {
+                console.error('Form submission error:', error);
+                showNotification('Network error. Please check your connection and try again.', false);
+                submitButton.innerHTML = originalButtonHTML;
+                submitButton.disabled = false;
+            }
+        });
     });
+
+    console.log('✅ All forms setup complete');
+
+    // Optional: check backend health
+    fetch(API_CONFIG.baseUrl + API_CONFIG.endpoints.health)
+        .then(r => r.json())
+        .then(data => console.log('✅ Backend health:', data.status))
+        .catch(err => console.warn('⚠️ Backend not reachable:', err.message));
+});
+
+// ============================================
+// 4. ENHANCED FORM SUCCESS AND ERROR HANDLERS
+// ============================================
+
+function showFormSuccess(form, result, modalElement = null) {
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalButtonHTML = submitButton.innerHTML;
+    const originalButtonClasses = submitButton.className;
+
+    // Update button to show success
+    submitButton.innerHTML = '<i class="fas fa-check me-2"></i>Sent Successfully!';
+    submitButton.className = originalButtonClasses.replace('btn-primary', 'btn-success');
+    submitButton.disabled = true;
+    submitButton.style.animation = 'pulse 2s infinite';
+
+    // Show global notification
+    showNotification(result.message || 'Thank you! Your message has been sent successfully.', true);
+
+    // Handle dedicated confirmation element if exists
+    const confirmationElement = document.getElementById('confirmationMessage');
+    if (confirmationElement) {
+        form.classList.add('d-none');
+        confirmationElement.classList.remove('d-none');
+        confirmationElement.classList.add('success-animation');
+
+        if (result.reference) {
+            const refNumber = document.getElementById('refNumber');
+            const refContainer = document.getElementById('referenceNumber');
+            if (refNumber) refNumber.textContent = result.reference;
+            if (refContainer) refContainer.classList.remove('d-none');
+        }
+
+        const resetTimeout = setTimeout(() => {
+            resetFormToOriginal(form, submitButton, originalButtonHTML, originalButtonClasses, confirmationElement);
+        }, 8000);
+
+        form.resetTimeout = resetTimeout;
+
+        confirmationElement.addEventListener('click', function manualClose(e) {
+            if (!e.target.closest('.reference-number')) {
+                clearTimeout(resetTimeout);
+                resetFormToOriginal(form, submitButton, originalButtonHTML, originalButtonClasses, confirmationElement);
+                this.removeEventListener('click', manualClose);
+            }
+        });
+    } else {
+        // Fallback: just reset form after 3 seconds
+        setTimeout(() => {
+            form.reset();
+            submitButton.innerHTML = originalButtonHTML;
+            submitButton.className = originalButtonClasses;
+            submitButton.disabled = false;
+            submitButton.style.animation = '';
+        }, 3000);
+    }
+
+    // Close modal if applicable
+    if (modalElement) {
+        setTimeout(() => {
+            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+            if (modalInstance) modalInstance.hide();
+        }, 2000);
+    }
+
+    // Show reference notification separately
+    if (result.reference) {
+        setTimeout(() => {
+            showNotification(`Reference: ${result.reference} - Please keep this for your records.`, true);
+        }, 1000);
+    }
+}
+
+function showFormError(form, message, title = 'Submission Error') {
+    const errorElement = document.getElementById('errorMessage');
+    const confirmationElement = document.getElementById('confirmationMessage');
+
+    if (confirmationElement) confirmationElement.classList.add('d-none');
+
+    if (errorElement) {
+        const errorTitle = errorElement.querySelector('#errorTitle');
+        const errorDetail = errorElement.querySelector('#errorDetail');
+
+        if (errorTitle) errorTitle.textContent = title;
+        if (errorDetail) errorDetail.textContent = message;
+
+        errorElement.classList.remove('d-none');
+        errorElement.classList.add('success-animation');
+
+        setTimeout(() => {
+            errorElement.classList.add('d-none');
+            errorElement.classList.remove('success-animation');
+        }, 10000);
+    } else {
+        showNotification(message, false);
+    }
+}
+
+function resetFormToOriginal(form, button, originalHTML, originalClasses, confirmationElement) {
+    form.reset();
+    form.classList.remove('d-none');
+    if (confirmationElement) {
+        confirmationElement.classList.add('d-none');
+        const refContainer = document.getElementById('referenceNumber');
+        if (refContainer) refContainer.classList.add('d-none');
+        confirmationElement.classList.remove('success-animation');
+    }
+    button.innerHTML = originalHTML;
+    button.className = originalClasses;
+    button.disabled = false;
+    button.style.animation = '';
+    form.classList.remove('was-validated');
+    form.querySelectorAll('.invalid-feedback').forEach(el => (el.style.display = 'none'));
+}
+
+// ============================================
+// 5. FORM VALIDATION HELPERS
+// ============================================
+
+function validateFormData(data, requiredFields = ['contactName', 'contactEmail', 'contactMessage']) {
+    const errors = [];
+
+    requiredFields.forEach(field => {
+        if (!data[field] || data[field].trim() === '') {
+            const fieldLabel = field
+                .replace('contact', '')
+                .replace(/([A-Z])/g, ' $1')
+                .trim();
+            errors.push(`${fieldLabel} is required`);
+        }
+    });
+
+    if (data.contactEmail && !isValidEmail(data.contactEmail)) {
+        errors.push('Please enter a valid email address');
+    }
+
+    return {
+        isValid: errors.length === 0,
+        errors
+    };
+}
+
+function isValidEmail(email) {
+    // Basic RFC 5322 compliant regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// ============================================
+// 6. FORM FIELD MAPPING UTILITIES
+// ============================================
+
+function mapFormDataToContactFields(data, formType = 'general') {
+    const mapped = {
+        contactName: '',
+        contactEmail: '',
+        contactMessage: '',
+        contactPhone: '',
+        contactInterest: '',
+        contactOrganization: '',
+        formType
+    };
+
+    // Map name fields
+    mapped.contactName =
+        data.contactName ||
+        data.name ||
+        (data.firstName && data.lastName ? `${data.firstName} ${data.lastName}`.trim() : '') ||
+        data.firstName ||
+        data.lastName ||
+        '';
+
+    // Map email
+    mapped.contactEmail = data.contactEmail || data.email || '';
+
+    // Map message
+    mapped.contactMessage = data.contactMessage || data.message || '';
+
+    // Map phone
+    mapped.contactPhone = data.contactPhone || data.phone || '';
+
+    // Map interest / subject / service
+    mapped.contactInterest = data.contactInterest || data.subject || data.service || '';
+
+    // Map organization
+    mapped.contactOrganization = data.contactOrganization || data.organization || '';
+
+    // Remove empty fields
+    Object.keys(mapped).forEach(key => {
+        if (!mapped[key]) delete mapped[key];
+    });
+
+    return mapped;
+}
+
+
+// ============================================
+// 3. REMOVE LEGACY PHP ACTIONS FROM ALL FORMS
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('🔧 Cleaning up PHP actions from forms...');
+    
+    document.querySelectorAll('form').forEach(form => {
+        if (form.action && form.action.includes('.php')) {
+            console.log(`Removing PHP action from form: ${form.id}`);
+            form.removeAttribute('action');
+            form.removeAttribute('method');
+            form.onsubmit = null;
+        }
+        form.setAttribute('novalidate', 'novalidate'); // prevent default HTML5 submission
+    });
+
+    console.log('✅ PHP actions removed from all forms');
 });
 
 
+
+// ============================================
+// 1. NOTIFICATION UTILITY
+// ============================================
+function showNotification(message, success = true) {
+    const toast = document.createElement('div');
+    toast.className = `alert ${success ? 'alert-success' : 'alert-danger'} position-fixed top-0 end-0 m-3`;
+    toast.style.zIndex = 9999;
+    toast.innerHTML = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 5000);
+}
+
+// ============================================
+// 2. CURRENCY CONVERTER (FRONTEND ONLY FIX)
+// ============================================
+async function convertCurrency() {
+    const amountInput = document.getElementById('amount');
+    const fromCurrency = document.getElementById('from-currency');
+    const toCurrency = document.getElementById('to-currency');
+    const resultElement = document.getElementById('conversion-result');
+
+    if (!amountInput || !fromCurrency || !toCurrency || !resultElement) return;
+
+    const amount = parseFloat(amountInput.value);
+    const from = fromCurrency.value;
+    const to = toCurrency.value;
+
+    if (isNaN(amount) || amount <= 0)
+        return showNotification('Enter a valid positive amount.', false);
+
+    if (!from || !to)
+        return showNotification('Select both source and target currencies.', false);
+
+    if (from === to)
+        return showNotification('Source and target cannot be the same.', false);
+
+    resultElement.innerHTML = `
+        <div class="text-center">
+            <div class="spinner-border spinner-border-sm text-warning me-2"></div>
+            Fetching live rates...
+        </div>
+    `;
+
+    try {
+        // ✅ FREE PUBLIC API – no backend required
+        const response = await fetch(`https://open.er-api.com/v6/latest/${from}`);
+        const data = await response.json();
+
+        if (!data || data.result !== "success") {
+            throw new Error("Rate lookup failed");
+        }
+
+        const rate = data.rates[to];
+
+        if (!rate) {
+            throw new Error("Currency not supported");
+        }
+
+        const convertedAmount = (amount * rate).toFixed(2);
+
+        showConversionResult(resultElement, amount, from, to, {
+            rate,
+            convertedAmount,
+            demo: false
+        });
+
+        showNotification("Currency converted successfully!", true);
+
+    } catch (error) {
+        console.error("Currency conversion error:", error);
+
+        resultElement.innerHTML = `
+            <div class="text-danger">
+                <i class="fas fa-exclamation-circle me-1"></i>
+                Unable to fetch exchange rates
+            </div>
+        `;
+
+        showNotification("Currency service temporarily unavailable.", false);
+    }
+}
+
+function showConversionResult(container, amount, from, to, data) {
+    container.innerHTML = `
+        <div class="conversion-result">
+            <div class="fs-4 mb-2">
+                <span class="fw-bold">${amount.toFixed(2)} ${from}</span>
+                <span class="mx-2">=</span>
+                <span style="color: var(--umelusi-orange); font-weight: bold;">
+                    ${data.convertedAmount} ${to}
+                </span>
+            </div>
+            <div class="text-muted small">
+                Exchange rate: 1 ${from} = ${data.rate.toFixed(4)} ${to}
+            </div>
+        </div>
+    `;
+}
+
+// Initialize currency converter events
+document.addEventListener("DOMContentLoaded", () => {
+    const convertButton = document.getElementById("convert-btn");
+    const amountInput = document.getElementById("amount");
+
+    if (convertButton) {
+        convertButton.addEventListener("click", e => {
+            e.preventDefault();
+            convertCurrency();
+        });
+    }
+
+    if (amountInput) {
+        amountInput.addEventListener("keypress", e => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                convertCurrency();
+            }
+        });
+    }
+});
+
+
+// ============================================
+// 3. HEALTH CHECK
+// ============================================
+/* async function checkBackendHealth() {
+    try {
+        const response = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.health}`);
+        const data = await response.json();
+        console.log('Backend health:', data.status);
+        return data.status === 'healthy';
+    } catch (err) {
+        console.warn('Backend health check failed:', err.message);
+        return false;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    checkBackendHealth().then(isHealthy => {
+        if (!isHealthy) console.warn('⚠️ Backend server might not be running');
+    });
+}); */
+
+
+
+// ============================================
+// 5. GENERIC FORM HANDLER (CONTACT & OTHERS)
+// ============================================
+function setupForm(formId, endpoint) {
+    const form = document.getElementById(formId);
+    if (!form) return;
+
+    form.setAttribute('novalidate', 'novalidate');
+
+    form.addEventListener('submit', async e => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        form.classList.remove('was-validated');
+        if (!form.checkValidity()) {
+            form.classList.add('was-validated');
+            showNotification('Please fill in all required fields correctly.', false);
+            return;
+        }
+
+        const submitButton = form.querySelector('button[type="submit"]');
+        if (!submitButton) return;
+
+        const originalText = submitButton.innerHTML;
+        submitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
+        submitButton.disabled = true;
+
+        try {
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+
+            // Optional: process name fields
+            const processedData = {
+                name: data.firstName && data.lastName ? `${data.firstName} ${data.lastName}` : data.firstName || data.lastName || '',
+                email: data.email || '',
+                phone: data.phone || '',
+                subject: data.subject || '',
+                message: data.message || '',
+                formType: formId
+            };
+
+            Object.keys(processedData).forEach(k => { if (!processedData[k]) delete processedData[k]; });
+
+            const response = await fetch(`${API_CONFIG.baseUrl}${endpoint}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(processedData)
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                showFormSuccess(form, result);
+            } else {
+                showNotification(result.error || 'Submission failed. Please try again.', false);
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+            }
+        } catch (err) {
+            console.error('Form error:', err);
+            showNotification('Network error. Please try again.', false);
+            submitButton.innerHTML = originalText;
+            submitButton.disabled = false;
+        }
+    });
+}
+
+function showFormSuccess(form, result) {
+    const confirmation = document.getElementById('confirmationMessage');
+    if (confirmation) {
+        confirmation.classList.remove('d-none');
+        if (result.reference) {
+            let ref = confirmation.querySelector('#refNumber');
+            if (!ref) {
+                ref = document.createElement('div');
+                ref.id = 'refNumber';
+                ref.className = 'mt-2 small text-muted';
+                confirmation.appendChild(ref);
+            }
+            ref.textContent = `Reference: ${result.reference}`;
+        }
+    } else {
+        showNotification('Thank you! Your message has been sent.', true);
+    }
+
+    form.classList.add('d-none');
+    setTimeout(() => {
+        form.reset();
+        form.classList.remove('d-none');
+        if (confirmation) confirmation.classList.add('d-none');
+        const submitButton = form.querySelector('button[type="submit"]');
+        if (submitButton) {
+            submitButton.innerHTML = 'Submit Inquiry <i class="fas fa-paper-plane ms-2"></i>';
+            submitButton.disabled = false;
+        }
+    }, 8000);
+}
+
+// ============================================
+// 6. INITIALIZE FORMS ON PAGE LOAD
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('🔧 Initializing forms...');
+    setupForm('contactForm', API_CONFIG.endpoints.contact);
+    // Add other forms similarly:
+    // setupForm('newsletterForm', API_CONFIG.endpoints.newsletter);
+    console.log('✅ Forms initialized');
+});
+
+
+// ========================
+// LAST PART REFACTORED
+// ========================
+
+document.addEventListener("DOMContentLoaded", () => {
+  // ------------------------
+  // Back to Top Button
+  // ------------------------
+  const backToTop = document.getElementById("back-to-top");
+  if (backToTop) {
+    window.addEventListener("scroll", () => {
+      backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+    });
+    backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  }
+
+  // ------------------------
+  // Generic Carousel Handler
+  // ------------------------
+  function initCarousel(containerSelector) {
+    const container = document.querySelector(containerSelector);
+    if (!container) return;
+
+    const cards = container.querySelectorAll(".carousel-card");
+    const nextBtn = container.querySelector(".next-btn");
+    const prevBtn = container.querySelector(".prev-btn");
+    let current = 0;
+
+    function update() {
+      cards.forEach((card, i) => card.classList.toggle("active", i === current));
+    }
+
+    if (nextBtn) nextBtn.addEventListener("click", () => { current = (current + 1) % cards.length; update(); });
+    if (prevBtn) prevBtn.addEventListener("click", () => { current = (current - 1 + cards.length) % cards.length; update(); });
+
+    if (cards.length) update();
+  }
+
+  initCarousel(".carousel-wrapper");      // Board of Directors
+  initCarousel(".executive-carousel");    // Executive Message
+
+  // ------------------------
+  // Pressroom Filters & Search
+  // ------------------------
+  function setupPressroomFilters() {
+    const searchInput = document.getElementById('press-search');
+    const filterButtons = document.querySelectorAll('.press-filters .btn');
+    const pressItems = document.querySelectorAll('.press-item');
+    const noResults = document.querySelector('.no-results');
+    const itemsPerPage = 6;
+    const pagination = document.getElementById("pagination-controls");
+    if (!searchInput || !filterButtons.length || !pressItems.length) return;
+
+    let activeFilter = 'all';
+    let searchQuery = '';
+    let currentPage = 1;
+
+    function filterItems() {
+      let visibleItems = [];
+      pressItems.forEach(item => {
+        const category = item.getAttribute('data-category');
+        const title = item.querySelector('.press-title')?.textContent.toLowerCase() || "";
+        const summary = item.querySelector('.press-summary')?.textContent.toLowerCase() || "";
+        const matchesFilter = activeFilter === 'all' || category === activeFilter;
+        const matchesSearch = !searchQuery || title.includes(searchQuery) || summary.includes(searchQuery);
+
+        item.style.display = (matchesFilter && matchesSearch) ? "block" : "none";
+        if (matchesFilter && matchesSearch) visibleItems.push(item);
+      });
+
+      if (noResults) noResults.style.display = visibleItems.length ? "none" : "block";
+      renderPagination(visibleItems);
+    }
+
+    function renderPagination(items) {
+      if (!pagination) return;
+      const totalPages = Math.ceil(items.length / itemsPerPage);
+      pagination.innerHTML = "";
+      for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement("li");
+        li.classList.add("page-item");
+        if (i === currentPage) li.classList.add("active");
+        li.innerHTML = `<button class="page-link">${i}</button>`;
+        li.addEventListener("click", () => { currentPage = i; showPage(items, currentPage); });
+        pagination.appendChild(li);
+      }
+      showPage(items, currentPage);
+    }
+
+    function showPage(items, page) {
+      const start = (page - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      items.forEach((item, i) => item.style.display = (i >= start && i < end) ? "block" : "none");
+    }
+
+    searchInput.addEventListener('input', e => { searchQuery = e.target.value.toLowerCase().trim(); currentPage = 1; filterItems(); });
+    filterButtons.forEach(btn => btn.addEventListener('click', () => {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.getAttribute('data-filter');
+      currentPage = 1;
+      filterItems();
+    }));
+
+    filterItems();
+  }
+  setupPressroomFilters();
+
+  // ------------------------
+  // Navbar Logo Shrink
+  // ------------------------
+  const navbar = document.querySelector(".navbar");
+  window.addEventListener("scroll", () => {
+    if (!navbar) return;
+    navbar.classList.toggle("navbar-shrink", window.scrollY > 30);
+  });
+
+  // ------------------------
+  // Resources & Insights Tabs
+  // ------------------------
+  const articles = { /* same as your previous articles object */ };
+  function renderArticles(category) {
+    const container = document.getElementById("tabs-content");
+    if (!container) return;
+    container.innerHTML = "";
+    const items = (articles[category] || []).slice(0, 6);
+    items.forEach(a => {
+      const card = document.createElement("div");
+      card.className = "article-card";
+      card.innerHTML = `
+        <img src="${a.image}" alt="${a.title}" loading="lazy">
+        <div class="article-content">
+          <h4>${a.title}</h4>
+          <p>${a.description}</p>
+        </div>`;
+      container.appendChild(card);
+    });
+    const viewAllLink = document.getElementById("view-all-link");
+    if (viewAllLink) {
+      viewAllLink.href = `resources-${category}.html`;
+      const labels = {
+        retirement: "Retirement", business: "Business Consulting", wealth: "Wealth Building",
+        investment: "Investment Strategies", finance: "Personal Finance",
+        company: "Company News", perspectives: "News & Perspectives"
+      };
+      viewAllLink.textContent = `View all ${labels[category] || category} articles`;
+    }
+  }
+
+  const tabButtons = document.querySelectorAll(".filter-tabs .filter-btn");
+  tabButtons.forEach(btn => btn.addEventListener("click", () => {
+    tabButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderArticles(btn.getAttribute("data-category"));
+  }));
+  renderArticles("retirement");
+
+  // ------------------------
+  // Breadcrumb Trail
+  // ------------------------
+  const breadcrumbContainer = document.getElementById("breadcrumb-trail");
+  if (breadcrumbContainer) {
+    let currentPage = window.location.pathname.split("/").pop() || "index.html";
+    const pageTitles = {
+      "index.html": "Home", "about-company.html": "About Us", "pressroom.html": "Pressroom",
+      "careers.html": "Career Opportunities", "hierarchy.html": "Hierarchy",
+      "fund-managers.html": "Umelusi Fund Managers", "partners.html": "Umelusi Partners",
+      "capital.html": "Umelusi Capital", "finserve.html": "Umelusi FinServe",
+      "markets.html": "Markets", "resources.html": "Resources & Insights"
+    };
+    let trail = JSON.parse(localStorage.getItem("breadcrumbTrail")) || [];
+    if (!trail.length && currentPage !== "index.html") trail.push({ title: "Home", file: "index.html" });
+    trail = trail.filter(p => p.file !== currentPage);
+    trail.push({ title: pageTitles[currentPage] || currentPage.replace(".html", ""), file: currentPage });
+    if (trail.length > 5) trail = trail.slice(-5);
+    localStorage.setItem("breadcrumbTrail", JSON.stringify(trail));
+    breadcrumbContainer.innerHTML = trail.map((p, i) =>
+      i === trail.length - 1 ? `<li class="breadcrumb-item active">${p.title}</li>` : `<li class="breadcrumb-item"><a href="${p.file}">${p.title}</a></li>`
+    ).join("");
+  }
+
+
+
+  // ------------------------
+  // Contact Form Debug Button
+  // ------------------------
+  const form = document.getElementById('contactForm');
+  if (form) {
+    setTimeout(() => {
+      const btn = document.createElement('button');
+      btn.id = 'debugTestBtn';
+      btn.textContent = '🧪 TEST CONTACT FORM';
+      btn.style.cssText = 'position:fixed;top:20px;right:20px;z-index:99999;background:#FF0000;color:#fff;padding:15px 20px;border-radius:10px;border:none;font-weight:bold;font-size:16px;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,0.3);';
+      btn.onclick = async () => {
+        const testData = { contactName: 'Debug Test User', contactEmail: 'debug@test.com', contactMessage: 'Test message from debug button.' };
+        try {
+          const res = await fetch('http://localhost:3000/api/contact/submit', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(testData) });
+          const result = await res.json();
+          alert(result.success ? `✅ SUCCESS!\n${result.message}` : `❌ FAILED\n${result.error}`);
+        } catch (err) {
+          alert(`💥 NETWORK ERROR\n${err.message}`);
+        }
+      };
+      document.body.appendChild(btn);
+    }, 1000);
+  }
+});

@@ -278,7 +278,7 @@
       </div>
       <div class="col-md-9">
         <p class="lead">
-          <strong>Umelusi FinServe</strong> delivers reliable foreign exchange and global money transfer services. Through seamless digital platforms and our trusted Western Union partnership, we bridge secure transactional banking with instant cross-border payments, ensuring clients move money efficiently
+          <strong>Umelusi FinServ</strong> delivers reliable foreign exchange and global money transfer services. Through seamless digital platforms and our trusted Western Union partnership, we bridge secure transactional banking with instant cross-border payments, ensuring clients move money efficiently
         </p>
         <a href="finserve.html" class="btn btn-outline-warning mt-2">Visit Page</a>
       </div>
@@ -298,31 +298,46 @@
           </p>
         </div>
         <div class="col-lg-6">
-          <form>
-            <div class="mb-3"><input type="text" class="form-control" placeholder="Full Name" required></div>
-            <div class="mb-3"><input type="email" class="form-control" placeholder="Email Address" required></div>
-            <div class="mb-3"><input type="tel" class="form-control" placeholder="Contact Number" required></div>
-            <div class="mb-3">
-              <select class="form-select" required>
-                <option value="">Nearest Office</option>
-                <option value="manzini">Manzini</option>
-                <option value="mbabane">Mbabane</option>
-                
-              </select>
-            </div>
-            <div class="mb-3">
-              <select class="form-select" required>
-                <option value="">What Would You Like to Discuss?</option>
-                <option value="investment-advice">Investment Advice</option>
-                <option value="wealth-management">Wealth Management</option>
-                <option value="financial-planning">Financial Planning</option>
-                <option value="retirement-planning">Retirement Planning</option>
-                <option value="estate-planning">Estate Planning</option>
-                <option value="foreign-exchange">Foreign Exchange</option>
-              </select>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Submit Your Inquiry</button>
-          </form>
+          <form 
+  id="aboutContactForm"
+  name="aboutContactForm"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+>
+  <input type="hidden" name="form-name" value="aboutContactForm">
+  <input type="hidden" name="bot-field">
+
+  <div class="mb-3">
+    <input type="text" class="form-control" placeholder="Full Name" name="fullName" required>
+  </div>
+  <div class="mb-3">
+    <input type="email" class="form-control" placeholder="Email Address" name="email" required>
+  </div>
+  <div class="mb-3">
+    <input type="tel" class="form-control" placeholder="Contact Number" name="phone" required>
+  </div>
+  <div class="mb-3">
+    <select class="form-select" name="nearestOffice" required>
+      <option value="">Nearest Office</option>
+      <option value="manzini">Manzini</option>
+      <option value="mbabane">Mbabane</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <select class="form-select" name="discussionTopic" required>
+      <option value="">What Would You Like to Discuss?</option>
+      <option value="investment-advice">Investment Advice</option>
+      <option value="wealth-management">Wealth Management</option>
+      <option value="financial-planning">Financial Planning</option>
+      <option value="retirement-planning">Retirement Planning</option>
+      <option value="estate-planning">Estate Planning</option>
+      <option value="foreign-exchange">Foreign Exchange</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary w-100">Submit Your Inquiry</button>
+</form>
+
         </div>
       </div>
     </div>
@@ -339,11 +354,10 @@
             </div>
             <div class="col-lg-9 col-md-12 mb-4">
                 <div class="social-media mb-3 d-flex justify-content-end">
-                    <a href="#" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
+                    <a href="https://www.linkedin.com/company/umelusigroup/?viewAsMember=true" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://www.instagram.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="https://www.facebook.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                    <a href="https://www.youtube.com/@UmelusiGroup" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
                 </div>
                 <div class="contact-details text-end">
                     <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Office D103, Development House, Swazi Plaza</p>
@@ -383,8 +397,8 @@
                 <h5 class="text-uppercase">Forms & Notices</h5>
                 <ul class="list-unstyled">
                     <li><a href="#">Accessibility</a></li>
-                    <li><a href="#">Reports</a></li>
-                    <li><a href="#">FAQs</a></li>
+                    <li><a href="resources.html">Reports</a></li>
+                    <li><a href="resources.html">FAQs</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </div>

@@ -14,7 +14,9 @@
     <meta name="twitter:site" content="@UmelusiGroup"> <meta name="twitter:title" content="Umelusi Group | Pressroom">
     <meta name="twitter:description" content="A leader in financial services, offering diverse expertise for your financial success.">
     <meta name="twitter:image" content="https://www.umelusigroup.com/images/umelusi-social-share-image.jpg">
-    <title>Umelusi Group | FinServ</title>
+    <!-- Add these to pressroom.html -->
+<title>Umelusi Group | Pressroom & Media Center</title>
+<meta name="description" content="Stay updated with the latest news, press releases, and media coverage from Umelusi Group. Your source for financial insights and company announcements.">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -57,7 +59,8 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown">About Us</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item active" href="about-company.html">Company Information</a></li>
+              <li><a class="dropdown-item" href="about-company.html">Company Information</a></li>
+              <li><a class="dropdown-item active" href="board-of-directors.html">Board of Directors</a></li>
               <li><a class="dropdown-item" href="pressroom.html">Pressroom</a></li>
               <li><a class="dropdown-item" href="careers.html">Career Opportunities</a></li>
               <li><a class="dropdown-item" href="hierarchy.html">Hierarchy</a></li>
@@ -83,16 +86,12 @@
     </div>
   </nav>
 <!-- Hero Section -->
-<header class="pressroom-hero" role="banner">
-    <div class="hero-overlay d-flex align-items-center justify-content-center">
-      <div class="container text-center text-white">
-        <h1 class="display-5 fw-bold text-white">Pressroom</h1>
-        <p class="lead">
-          Stay up to date with the latest from Umelusi Group — announcements, market insights, interviews, and more.
-        </p>
-      </div>
-    </div>
-  </header>
+<header class="pressroom-hero position-relative">
+  <div class="hero-overlay"></div>
+  <div class="container text-center text-white hero-content">
+    <h1 class="display-5 fw-bold">Pressroom</h1>
+  </div>
+</header>
 
   <!-- Dynamic Breadcrumb -->
 <nav aria-label="breadcrumb" class="breadcrumb-nav py-2" data-aos="fade-down">
@@ -119,120 +118,214 @@
     </div>
   </section>
   
-  <!-- News Grid -->
-  <section class="py-5 bg-light" aria-label="Pressroom articles">
+ <!-- News Grid -->
+<section class="py-5 bg-light" aria-label="Pressroom articles">
     <div class="container">
-        <div class="container my-4" data-aos="fade-up">
-            <div class="row justify-content-center">
-              <div class="col-md-8">
-                <input type="text" id="press-search" class="form-control" placeholder="Search articles by keyword..." />
-              </div>
-            </div>
-        </div>            
         <div class="row g-4" id="pressroom-grid">
+            <!-- Articles will be loaded here dynamically -->
+            <div class="col-12 text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading articles...</span>
+                </div>
+            </div>
+        </div>
 
-        <!-- ARTICLE CARD EXAMPLE -->
-        <div class="col-md-4 press-item" data-category="Press Release" data-aos="fade-up">
-          <div class="press-card h-100 shadow-sm d-flex flex-column">
-            <div class="press-card-body flex-grow-1">
-              <span class="press-meta">April 2025 • Press Release</span>
-              <h5 class="press-title mt-2">Umelusi Wins National Pension Fund Tender</h5>
-              <p class="press-summary">
-                The Fund Managers subsidiary of Umelusi Group has secured the management of the Swazi National Pension Fund, representing E400M in AUM.
-              </p>
-            </div>
-            <div class="mt-auto pt-3">
-                <a href="press-article-pension-tender.html" class="btn btn-sm btn-orange w-100">Read More</a>
-            </div>
-          </div>
+        <!-- No results message -->
+        <div class="no-results d-none" id="no-results">
+            No articles found. Try a different search or filter.
         </div>
-  
-        <div class="col-md-4 press-item" data-category="Interview" data-aos="fade-up">
-          <div class="press-card h-100 shadow-sm d-flex flex-column">
-            <div class="press-card-body flex-grow-1">
-              <span class="press-meta">March 2025 • Interview</span>
-              <h5 class="press-title mt-2">CEO Interview: Investing Beyond Borders</h5>
-              <p class="press-summary">
-                Thabo Magagula, CEO of Umelusi Group, shares insights on Africa’s investment landscape in a changing global economy.
-              </p>
-            </div>
-            <div class="mt-auto pt-3">
-                <a href="press-article-ceo-interview.html" class="btn btn-sm btn-orange w-100">Read More</a>
-            </div>
-          </div>
-        </div>
-  
-        <div class="col-md-4 press-item" data-category="Global Markets" data-aos="fade-up">
-          <div class="press-card h-100 shadow-sm d-flex flex-column">
-            <div class="press-card-body flex-grow-1">
-              <span class="press-meta">March 2025 • Global Markets</span>
-              <h5 class="press-title mt-2">IMF Speech: What it Means for African Funds</h5>
-              <p class="press-summary">
-                A breakdown of the latest IMF address and its implications for fund managers operating in emerging African markets.
-              </p>
-            </div>
-            <div class="mt-auto pt-3">
-                <a href="press-article-imf-speech.html" class="btn btn-sm btn-orange w-100">Read More</a>
-            </div>
-          </div>
-        </div>
-  
-        <div class="col-md-4 press-item" data-category="Sports" data-aos="fade-up">
-          <div class="press-card h-100 shadow-sm d-flex flex-column">
-            <div class="press-card-body flex-grow-1">
-              <span class="press-meta">February 2025 • Sports</span>
-              <h5 class="press-title mt-2">Umelusi Extends League Sponsorship Deal</h5>
-              <p class="press-summary">
-                The firm renews its title sponsorship of the National Golf League for the third year, strengthening its community and branding presence.
-              </p>
-            </div>
-            <div class="mt-auto pt-3">
-                <a href="press-article-league-sponsorship.html" class="btn btn-sm btn-orange w-100">Read More</a>
-            </div>
-          </div>
-        </div>
-  
-        <div class="col-md-4 press-item" data-category="Tender" data-aos="fade-up">
-          <div class="press-card h-100 shadow-sm d-flex flex-column">
-            <div class="press-card-body flex-grow-1">
-              <span class="press-meta">February 2025 • Tender</span>
-              <h5 class="press-title mt-2">Umelusi Capital Awarded Development Finance Mandate</h5>
-              <p class="press-summary">
-                A new partnership with Eswatini’s Infrastructure Authority will see Umelusi Capital manage a E600M infrastructure expansion fund.
-              </p>
-              <div class="mt-auto pt-3">
-                <a href="press-article-pension-tender.html" class="btn btn-sm btn-orange w-100">Read More</a>
-            </div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="col-md-4 press-item" data-category="Global Markets" data-aos="fade-up">
-          <div class="press-card h-100 shadow-sm d-flex flex-column">
-            <div class="press-card-body flex-grow-1">
-              <span class="press-meta">January 2025 • Global Markets</span>
-              <h5 class="press-title mt-2">What Tariff Talks Mean for Regional Trade</h5>
-              <p class="press-summary">
-                Our macroeconomic research team analyzes the recent G7 tariff proposals and their potential ripple effect across Southern Africa.
-              </p>
-            </div>
-            <div class="mt-auto pt-3">
-                <a href="press-article-tariff-analysis.html" class="btn btn-sm btn-orange w-100">Read More</a>
-            </div>
-          </div>
-        </div>
-        <div class="no-results">No articles found. Try a different search or filter.</div>
 
-  
-      </div>
-           
+        <!-- Pagination Controls -->
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center" id="pagination-controls"></ul>
+        </nav>
     </div>
-    <nav aria-label="Pressroom pagination">
-        <ul class="pagination justify-content-center mt-5" id="pagination-controls">
-          <!-- Buttons will be inserted via JS -->
-        </ul>
-      </nav> 
-  </section>
+</section>
+
+<!-- Add this script at the bottom -->
+<script>
+let allArticles = [];
+let currentFilter = 'all';
+
+let currentPage = 1;
+const articlesPerPage = 6;
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Load press articles from JSON
+    fetch('/_data/press.json')
+        .then(response => response.json())
+        .then(articles => {
+            allArticles = articles.filter(article => article.published);
+            displayArticles(allArticles);
+            setupFilters();
+            setupSearch();
+            setupPagination();
+        })
+        .catch(error => {
+            console.error('Error loading press articles:', error);
+            document.getElementById('pressroom-grid').innerHTML = `
+                <div class="col-12 text-center">
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        Unable to load press articles. Please try again later.
+                    </div>
+                </div>`;
+        });
+});
+
+function displayArticles(articles) {
+    const container = document.getElementById('pressroom-grid');
+    const noResults = document.getElementById('no-results');
+    
+    if (articles.length === 0) {
+        container.innerHTML = '';
+        noResults.innerHTML = `
+            No news right now, but do sign up to our newsletter and be the first to know what's happening with Umelusi Group!
+        `;
+        noResults.classList.remove('d-none');
+        document.getElementById('pagination-controls').classList.add('d-none');
+        return;
+    }
+    
+    noResults.classList.add('d-none');
+    document.getElementById('pagination-controls').classList.remove('d-none');
+
+    // Pagination logic
+    const start = (currentPage - 1) * articlesPerPage;
+    const end = start + articlesPerPage;
+    const paginatedArticles = articles.slice(start, end);
+
+    let html = '';
+    paginatedArticles.forEach(article => {
+        html += `
+        <div class="col-md-4 press-item" data-category="${article.category}" data-aos="fade-up">
+            <div class="press-card h-100 shadow-sm d-flex flex-column">
+                <div class="press-card-body flex-grow-1">
+                    <span class="press-meta">
+                        ${new Date(article.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })} • ${article.category}
+                    </span>
+                    <h5 class="press-title mt-2">${article.title}</h5>
+                    <p class="press-summary">
+                        ${article.excerpt ? article.excerpt.substring(0, 150) + '...' : ''}
+                    </p>
+                </div>
+                <div class="mt-auto pt-3">
+                    <a href="/press-article.html?id=${article.slug}" class="btn btn-sm btn-orange w-100">Read More</a>
+                </div>
+            </div>
+        </div>`;
+    });
+
+    container.innerHTML = html;
+    setupPaginationControls(articles.length);
+}
+
+
+
+function setupFilters() {
+    const filterButtons = document.querySelectorAll('.press-filters button');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            currentFilter = this.dataset.filter;
+            filterArticles();
+        });
+    });
+}
+
+function filterArticles() {
+    let filtered = allArticles;
+    
+    // Apply category filter
+    if (currentFilter !== 'all') {
+        filtered = filtered.filter(article => article.category === currentFilter);
+    }
+    
+    // Apply search filter
+    const searchInput = document.getElementById('press-search');
+    if (searchInput && searchInput.value.trim()) {
+        const searchTerm = searchInput.value.toLowerCase();
+        filtered = filtered.filter(article => 
+            article.title.toLowerCase().includes(searchTerm) ||
+            article.excerpt.toLowerCase().includes(searchTerm) ||
+            article.body.toLowerCase().includes(searchTerm)
+        );
+    }
+    
+    displayArticles(filtered);
+}
+
+function setupSearch() {
+    const searchInput = document.getElementById('press-search');
+    if (searchInput) {
+        let debounceTimer;
+        searchInput.addEventListener('input', function() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                filterArticles();
+            }, 300);
+        });
+    }
+}
+
+function setupPaginationControls(totalArticles) {
+    const paginationContainer = document.getElementById('pagination-controls');
+    if (!paginationContainer) return;
+
+    const totalPages = Math.ceil(totalArticles / articlesPerPage);
+    if (totalPages <= 1) {
+        paginationContainer.innerHTML = '';
+        return;
+    }
+
+    let html = '';
+
+    // Previous button
+    html += `
+        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="${currentPage - 1}">Previous</a>
+        </li>
+    `;
+
+    // Page numbers
+    for (let i = 1; i <= totalPages; i++) {
+        html += `
+        <li class="page-item ${currentPage === i ? 'active' : ''}">
+            <a class="page-link" href="#" data-page="${i}">${i}</a>
+        </li>`;
+    }
+
+    // Next button
+    html += `
+        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="${currentPage + 1}">Next</a>
+        </li>
+    `;
+
+    paginationContainer.innerHTML = html;
+
+    // Add click events
+    const links = paginationContainer.querySelectorAll('a.page-link');
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const page = parseInt(this.dataset.page);
+            if (page >= 1 && page <= totalPages) {
+                currentPage = page;
+                filterArticles(); // refresh articles with new page
+                window.scrollTo({ top: document.getElementById('pressroom-grid').offsetTop - 100, behavior: 'smooth' });
+            }
+        });
+    });
+}
+
+</script>
   
 </main>
 
@@ -250,17 +343,23 @@
         <p class="mb-4 text-muted">
           Insights, updates, and news — straight to your inbox once a month. No spam. Just value.
         </p>
-        <form class="row g-3 justify-content-center">
-          <div class="col-md-5">
-            <input type="text" class="form-control" placeholder="Full Name" required />
-          </div>
-          <div class="col-md-5">
-            <input type="email" class="form-control" placeholder="Email Address" required />
-          </div>
-          <div class="col-md-10">
+        <form id="pressroomNewsletterForm" name="pressroomNewsletterForm" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <div class="row g-3 justify-content-center">
+        <div class="col-md-5">
+            <input type="text" class="form-control" name="fullName" placeholder="Full Name" required>
+        </div>
+        <div class="col-md-5">
+            <input type="email" class="form-control" name="email" placeholder="Email Address" required>
+        </div>
+        <div class="col-md-2">
             <button type="submit" class="btn btn-orange w-100">Subscribe</button>
-          </div>
-        </form>
+        </div>
+    </div>
+    <div class="mt-3 small text-muted">
+        <input type="checkbox" id="newsletterConsent" name="consent" required>
+        <label for="newsletterConsent">I agree to receive monthly newsletters from Umelusi Group</label>
+    </div>
+</form>
       </div>
     </div>
   </div>
@@ -275,11 +374,10 @@
             </div>
             <div class="col-lg-9 col-md-12 mb-4">
                 <div class="social-media mb-3 d-flex justify-content-end">
-                    <a href="#" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
+                    <a href="https://www.linkedin.com/company/umelusigroup/?viewAsMember=true" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://www.instagram.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="https://www.facebook.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                    <a href="https://www.youtube.com/@UmelusiGroup" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
                 </div>
                 <div class="contact-details text-end">
                     <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Office D103, Development House, Swazi Plaza</p>
@@ -321,14 +419,14 @@
                 <ul class="list-unstyled">
                     <li><a href="#">Accessibility</a></li>
                     <li><a href="#">Reports</a></li>
-                    <li><a href="#">FAQs</a></li>
+                    <li><a href="resources.html">FAQs</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </div>
         </div>
         <div class="text-center p-3" style="background-color: #FF9933; color: white;">
             © 2025 Copyright:
-            <a class="text-white" href="#">Umelusi Group</a>
+            <a class="text-white" href="index.html">Umelusi Group</a>
         </div>
     </div>
 </footer>

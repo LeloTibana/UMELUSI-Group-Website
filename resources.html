@@ -109,297 +109,242 @@
 </nav>
 
   
-<!-- 
-        --- REPLACEMENT SECTION 1: THE RESOURCE HUB (Combines all previous content discovery) ---
-        This section uses Bootstrap Tabs for the main content type (Reports vs. Articles)
-        and JavaScript for the secondary topic filtering within each tab.
-    -->
-    <section id="the-resource-hub" class="py-5">
+<!-- Replace the Reports & Whitepapers Section (around line 77) with: -->
+<section id="reports" class="py-5 bg-light">
     <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <h2 class="fw-bold text-umelusi-blue">Explore Our Knowledge Hub</h2>
-            <p class="text-muted lead">Find in-depth analysis and actionable advice tailored for the African financial landscape.</p>
+        <h2 class="text-center mb-5 fw-bold" style="color: var(--umelusi-dark-blue);" data-aos="fade-up">Reports & Whitepapers</h2>
+        <div class="row g-4" id="resources-container">
+            <!-- Resources will be loaded here dynamically -->
+            <div class="col-12 text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading resources...</span>
+                </div>
+            </div>
         </div>
+        
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="#" class="btn btn-brand btn-lg" id="view-all-resources">
+                <i class="fas fa-book-open me-2"></i> Explore Full Library
+            </a>
+        </div>
+    </div>
+</section>
 
-        <!-- Main Tabs: Content Type Switch (Articles vs. Reports) -->
-        <ul class="nav nav-pills justify-content-center mb-4 resource-tabs" id="contentTabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
-            <li class="nav-item" role="presentation">
-                <!-- Data attributes changed from data-bs-toggle to a simple data-target for custom JS -->
-                <button class="nav-link active" id="articles-tab" data-target="#articles-pane" type="button" role="tab" aria-controls="articles-pane" aria-selected="true">
-                    <i class="fas fa-newspaper me-2"></i> Articles & Guides
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="reports-tab" data-target="#reports-pane" type="button" role="tab" aria-controls="reports-pane" aria-selected="false">
-                    <i class="fas fa-chart-line me-2"></i> Proprietary Reports
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="webinars-tab" data-target="#webinars-pane" type="button" role="tab" aria-controls="webinars-pane" aria-selected="false">
-                    <i class="fas fa-video me-2"></i> Webinars & Events
-                </button>
-            </li>
-        </ul>
+<!-- Add this script at the bottom -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('/_data/resources.json')
+        .then(response => response.json())
+        .then(resources => {
+            const container = document.getElementById('resources-container');
+            const viewAllBtn = document.getElementById('view-all-resources');
 
-        <div class="tab-content" id="contentTabsContent">
+            if (!resources.length) {
+                container.innerHTML = `
+                    <div class="col-12 text-center">
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            No resources right now, but sign up to our newsletter to be the first to know what's happening with Umelusi Group!
+                        </div>
+                    </div>`;
+                return;
+            }
+
+            const publishedResources = resources.filter(res => res.published);
+            const displayResources = publishedResources.filter(res => res.featured).slice(0, 6);
+
+            let html = '';
+            displayResources.forEach(resource => {
+                html += `
+                    <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                        <div class="card h-100 shadow-sm border-0">
+                            ${resource.thumbnail ? `<img src="${resource.thumbnail}" class="card-img-top" alt="${resource.title}">` : ''}
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold text-umelusi-orange">
+                                    <i class="fas ${getResourceIcon(resource.type)} me-2"></i>
+                                    ${resource.title}
+                                </h5>
+                                <p class="card-text text-muted">
+                                    ${resource.description ? resource.description.substring(0, 120) + '...' : ''}
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    ${resource.file ? 
+                                        `<a href="${resource.file}" class="btn btn-outline-secondary btn-sm" target="_blank">
+                                            <i class="fas fa-download me-1"></i> Download
+                                        </a>` : 
+                                        `<a href="/resource/${resource.slug}" class="btn btn-outline-secondary btn-sm">
+                                            Read More
+                                        </a>`}
+                                    <span class="badge bg-light text-dark">${resource.type}</span>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-0 text-end">
+                                <small class="text-muted">
+                                    Published: ${new Date(resource.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                                </small>
+                            </div>
+                        </div>
+                    </div>`;
+            });
+
+            container.innerHTML = html;
+
+            viewAllBtn.innerHTML = `
+                <i class="fas fa-book-open me-2"></i>
+                Explore Full Library (${publishedResources.length})
+            `;
+        })
+        .catch(error => {
+            console.error('Error loading resources:', error);
+            document.getElementById('resources-container').innerHTML = `
+                <div class="col-12 text-center">
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        Unable to load resources. Please try again later.
+                    </div>
+                </div>`;
+        });
+});
+
+function getResourceIcon(type) {
+    const icons = {
+        'Whitepaper': 'fa-file-alt',
+        'Report': 'fa-chart-line',
+        'Market Insight': 'fa-lightbulb',
+        'FAQ': 'fa-question-circle',
+        'Case Study': 'fa-briefcase',
+        'Guide': 'fa-book'
+    };
+    return icons[type] || 'fa-file';
+}
+</script>
+
+    
+    <!-- FREQUENTLY ASKED QUESTIONS (FAQ) SECTION -->
+    <section id="faq" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold" style="color: var(--umelusi-dark-blue);" data-aos="fade-up">Frequently Asked Questions</h2>
             
-            <!-- Tab 1: Articles & Guides -->
-            <!-- Note: tab-pane is now targeted by custom JS for 'active' and 'show' classes -->
-            <div class="tab-pane fade show active" id="articles-pane" role="tabpanel" aria-labelledby="articles-tab" tabindex="0">
-                <div class="text-center mb-4">
-                    <!-- Secondary Filter Buttons (JS handles this filtering) -->
-                    <div class="d-flex flex-wrap justify-content-center gap-2 article-filters" data-aos="fade-up" data-aos-delay="200">
-                        <button class="btn btn-sm btn-outline-secondary active" data-filter="all">All Topics</button>
-                        <button class="btn btn-sm btn-outline-secondary" data-filter="investment">Investment Strategies</button>
-                        <button class="btn btn-sm btn-outline-secondary" data-filter="wealth">Wealth Planning</button>
-                        <button class="btn btn-sm btn-outline-secondary" data-filter="retirement">Retirement</button>
-                        <button class="btn btn-sm btn-outline-secondary" data-filter="business">Business Consulting</button>
+            <div class="accordion" id="faqAccordion">
+
+                <!-- FAQ 1 -->
+                <div class="accordion-item" data-aos="fade-up">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            What is the primary focus of Umelusi Group?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Umelusi Group is a diversified financial services holding company. Our primary focus is strategic financial growth, encompassing Investment Management (Fund Managers), Corporate Finance (Capital), Strategic Consulting (Partners), and Foreign Exchange/Money Transfer services (FinServ).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            How do I start an investment portfolio with Umelusi Fund Managers?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Getting started is easy. We recommend scheduling an initial consultation with one of our wealth advisors through the 'Contact' page. They will assess your financial goals, risk tolerance, and time horizon to recommend a suitable investment strategy and fund allocation.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Are there minimum investment thresholds for your funds?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Minimum investment thresholds vary depending on the specific product (e.g., collective investment schemes vs. bespoke mandates). For detailed information tailored to your investment class, please consult the Umelusi Fund Managers section or contact us directly.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            What types of businesses does Umelusi Capital typically advise?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Umelusi Capital works with mid-to-large corporate entities, institutional clients, and governments across Africa, specializing in mergers & acquisitions (M&A), debt structuring, equity placement, and strategic capital raising for major projects.
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Article Grid -->
-                <div class="row g-4 article-grid" data-aos="fade-up" data-aos-delay="300">
-                    
-                    <!-- Article 1: Investment -->
-                    <div class="col-md-6 col-lg-4 article-item" data-category="investment">
-                        <div class="card h-100 shadow-sm border-0 resource-card">
-                            <div class="card-body">
-                                <span class="badge bg-umelusi-orange mb-3">Investment Strategies</span>
-                                <h5 class="card-title fw-bold">Navigating the African Equity Market Volatility</h5>
-                                <p class="card-text text-muted">A practical guide to portfolio resilience and seeking undervalued growth opportunities amidst economic shifts.</p>
-                                <a href="#" class="stretched-link fw-bold text-umelusi-blue">Read Article <i class="fas fa-arrow-right ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Article 2: Wealth -->
-                    <div class="col-md-6 col-lg-4 article-item" data-category="wealth">
-                        <div class="card h-100 shadow-sm border-0 resource-card">
-                            <div class="card-body">
-                                <span class="badge bg-secondary mb-3">Wealth Planning</span>
-                                <h5 class="card-title fw-bold">Essential Steps for Multi-Generational Wealth Transfer</h5>
-                                <p class="card-text text-muted">Strategies for efficient estate planning and ensuring your legacy endures across future generations.</p>
-                                <a href="#" class="stretched-link fw-bold text-umelusi-blue">Read Guide <i class="fas fa-arrow-right ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Article 3: Business -->
-                    <div class="col-md-6 col-lg-4 article-item" data-category="business">
-                        <div class="card h-100 shadow-sm border-0 resource-card">
-                            <div class="card-body">
-                                <span class="badge bg-info mb-3">Business Consulting</span>
-                                <h5 class="card-title fw-bold">Optimizing Capital Structure for Mid-Sized African Enterprises</h5>
-                                <p class="card-text text-muted">How business owners can use strategic financing to accelerate growth and manage debt effectively.</p>
-                                <a href="#" class="stretched-link fw-bold text-umelusi-blue">Read Analysis <i class="fas fa-arrow-right ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Article 4: Retirement -->
-                     <div class="col-md-6 col-lg-4 article-item" data-category="retirement">
-                        <div class="card h-100 shadow-sm border-0 resource-card">
-                            <div class="card-body">
-                                <span class="badge bg-success mb-3">Retirement</span>
-                                <h5 class="card-title fw-bold">Maximizing Your Pension: Timing and Contributions</h5>
-                                <p class="card-text text-muted">Key considerations for maximizing retirement savings vehicles in the current regulatory environment.</p>
-                                <a href="#" class="stretched-link fw-bold text-umelusi-blue">Read Tips <i class="fas fa-arrow-right ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Article 5: Investment -->
-                    <div class="col-md-6 col-lg-4 article-item" data-category="investment">
-                        <div class="card h-100 shadow-sm border-0 resource-card">
-                            <div class="card-body">
-                                <span class="badge bg-umelusi-orange mb-3">Investment Strategies</span>
-                                <h5 class="card-title fw-bold">Understanding Fixed Income: Bonds and Yields Explained</h5>
-                                <p class="card-text text-muted">A beginner-to-intermediate guide to fixed income instruments and how they fit into a balanced portfolio.</p>
-                                <a href="#" class="stretched-link fw-bold text-umelusi-blue">View Explainer <i class="fas fa-arrow-right ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                     <!-- Article 6: Wealth -->
-                    <div class="col-md-6 col-lg-4 article-item" data-category="wealth">
-                        <div class="card h-100 shadow-sm border-0 resource-card">
-                            <div class="card-body">
-                                <span class="badge bg-secondary mb-3">Wealth Planning</span>
-                                <h5 class="card-title fw-bold">Protecting Assets Against Currency Devaluation</h5>
-                                <p class="card-text text-muted">Advanced hedging techniques and diversification strategies to safeguard capital in volatile currency markets.</p>
-                                <a href="#" class="stretched-link fw-bold text-umelusi-blue">Read Strategy <i class="fas fa-arrow-right ms-1"></i></a>
-                            </div>
+                <!-- FAQ 5 -->
+                <div class="accordion-item" data-aos="fade-up" data-aos-delay="400">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            How can Umelusi Partners help my organization achieve operational efficiency?
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Umelusi Partners provides management consulting focused on strategy execution, digital transformation, operational restructuring, and organizational design. We work closely with executive teams to identify bottlenecks and implement sustainable performance improvements.
                         </div>
                     </div>
                 </div>
 
-                <div class="text-center mt-5">
-                    <button class="btn btn-lg btn-outline-secondary">Load More Articles <i class="fas fa-redo ms-2"></i></button>
+                <!-- FAQ 6 -->
+                <div class="accordion-item" data-aos="fade-up" data-aos-delay="500">
+                    <h2 class="accordion-header" id="headingSix">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            Do you offer foreign exchange services for corporate clients?
+                        </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes, Umelusi FinServ offers comprehensive foreign exchange services, including spot transactions, forward contracts, and currency risk management solutions tailored to the needs of both corporate and individual clients engaging in international trade or remittance.
+                        </div>
+                    </div>
                 </div>
 
+                <!-- FAQ 7 -->
+                <div class="accordion-item" data-aos="fade-up" data-aos-delay="600">
+                    <h2 class="accordion-header" id="headingSeven">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                            How often are the market reports and whitepapers updated?
+                        </button>
+                    </h2>
+                    <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Our flagship reports (like the Global Market Outlook) are typically published quarterly or annually. Shorter market updates, economic commentaries, and sector-specific whitepapers are released on a rolling basis, often weekly or monthly, depending on market volatility and developments.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 8 -->
+                <div class="accordion-item" data-aos="fade-up" data-aos-delay="700">
+                    <h2 class="accordion-header" id="headingEight">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                            What is Umelusi Group's approach to risk management?
+                        </button>
+                    </h2>
+                    <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            We employ a holistic and conservative approach to risk management, which includes quantitative analysis, regulatory compliance adherence, and rigorous stress testing across all our business units—from investment portfolios to corporate financing activities. Client asset security is our paramount concern.
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="text-center mt-5" data-aos="fade-up">
+                <p class="lead text-muted">Can't find your answer? <a href="contact.html" style="color: var(--umelusi-orange); font-weight: 600;">Contact our support team.</a></p>
             </div>
 
-            <!-- Tab 2: Proprietary Reports -->
-            <div class="tab-pane fade" id="reports-pane" role="tabpanel" aria-labelledby="reports-tab" tabindex="0">
-                <div class="row g-4 pt-3">
-                    
-                    <!-- Report 1 -->
-                    <div class="col-md-4">
-                        <div class="card h-100 shadow-sm border-0 report-card">
-                            <div class="card-body">
-                                <span class="badge bg-umelusi-blue mb-2">Market Outlook</span>
-                                <h5 class="card-title fw-bold">The African Growth Thesis: 2025</h5>
-                                <p class="card-text text-muted">A deep dive into emerging market trends, investment opportunities, and risk management strategies for the coming year.</p>
-                                <a href="#" class="btn btn-sm btn-umelusi-orange mt-2">Download PDF <i class="fas fa-download ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Report 2 -->
-                    <div class="col-md-4">
-                        <div class="card h-100 shadow-sm border-0 report-card">
-                            <div class="card-body">
-                                <span class="badge bg-secondary mb-2">White Paper</span>
-                                <h5 class="card-title fw-bold">ESG in African Infrastructure</h5>
-                                <p class="card-text text-muted">How Environmental, Social, and Governance factors are reshaping private equity and capital deployment in key sectors.</p>
-                                <a href="#" class="btn btn-sm btn-outline-umelusi-blue mt-2">Request Access <i class="fas fa-arrow-right ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Report 3 -->
-                    <div class="col-md-4">
-                        <div class="card h-100 shadow-sm border-0 report-card">
-                            <div class="card-body">
-                                <span class="badge bg-info mb-2">Regulatory Update</span>
-                                <h5 class="card-title fw-bold">Q3 2024 Regulatory Brief</h5>
-                                <p class="card-text text-muted">Essential summaries and implications of the latest changes to financial regulations impacting African markets.</p>
-                                <a href="#" class="btn btn-sm btn-umelusi-orange mt-2">Read Briefing <i class="fas fa-book-open ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Report 4 -->
-                    <div class="col-md-4">
-                        <div class="card h-100 shadow-sm border-0 report-card">
-                            <div class="card-body">
-                                <span class="badge bg-umelusi-blue mb-2">Investment Thesis</span>
-                                <h5 class="card-title fw-bold">Technology and Financial Inclusion in Eswatini</h5>
-                                <p class="card-text text-muted">Our investment thesis on the growing digital economy and opportunities for FinTech integration in the region.</p>
-                                <a href="#" class="btn btn-sm btn-outline-umelusi-blue mt-2">Read Thesis <i class="fas fa-arrow-right ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-5">
-                    <button class="btn btn-lg btn-outline-secondary">View Full Report Library <i class="fas fa-folder-open ms-2"></i></button>
-                </div>
-            </div>
-
-            <!-- Tab 3: Webinars & Events -->
-            <div class="tab-pane fade" id="webinars-pane" role="tabpanel" aria-labelledby="webinars-tab" tabindex="0">
-                 <div class="text-center pt-5 pb-4">
-                    <i class="fas fa-calendar-alt fa-4x text-umelusi-orange mb-3"></i>
-                    <h4 class="fw-bold text-umelusi-blue">Upcoming Events & On-Demand Content</h4>
-                    <p class="text-muted lead">Check back soon for our latest financial webinars and industry expert panel discussions.</p>
-                    <a href="#" class="btn btn-lg btn-umelusi-orange mt-3">Register for Updates</a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    
-    <!-- FIX: Custom, Native JS for Tab Switching (Based on your working Pressroom logic) -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const tabButtons = document.querySelectorAll('#contentTabs button[data-target]');
-            const tabPanes = document.querySelectorAll('.tab-content .tab-pane');
-
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const targetId = this.getAttribute('data-target');
-                    
-                    // 1. Remove 'active' and 'show' from all panes
-                    tabPanes.forEach(pane => {
-                        pane.classList.remove('active', 'show');
-                    });
-
-                    // 2. Remove 'active' from all buttons
-                    tabButtons.forEach(btn => {
-                        btn.classList.remove('active');
-                        btn.setAttribute('aria-selected', 'false');
-                    });
-
-                    // 3. Add 'active' and 'show' to the target pane
-                    const targetPane = document.querySelector(targetId);
-                    if (targetPane) {
-                        targetPane.classList.add('active', 'show');
-                    }
-
-                    // 4. Add 'active' to the clicked button
-                    this.classList.add('active');
-                    this.setAttribute('aria-selected', 'true');
-                });
-            });
-        });
-    </script>
-</section>
-
-    <!-- 
-        --- REPLACEMENT SECTION 2: FAQ & SUPPORT ---
-        This is a clean, dedicated section for client questions.
-    -->
-    <section id="faq-section" class="py-5 bg-light">
-        <div class="container" data-aos="fade-up">
-            <div class="row">
-                <div class="col-lg-4">
-                    <h2 class="fw-bold text-umelusi-blue">Client Support & FAQs</h2>
-                    <p class="lead text-muted mb-4">Have specific questions about our services or need technical help? Start here.</p>
-                    <a href="contact.html" class="btn btn-lg btn-outline-secondary mb-4">
-                        <i class="fas fa-headset me-2"></i> Contact Support
-                    </a>
-                </div>
-                <div class="col-lg-8">
-                    <div class="accordion" id="faqAccordion">
-                        <div class="accordion-item shadow-sm mb-3">
-                            <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button fw-bold text-umelusi-blue" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    How do I contact client service for my existing accounts?
-                                </button>
-                            </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted">
-                                    For assistance with your existing accounts, statements, or transactions, please contact Umelusi's dedicated Client Support team. You can reach them directly via email at <a href="mailto:info@umelusi.com">info@umelusi.com</a> or call the main line at (+268) 2404 3795 during business hours.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item shadow-sm mb-3">
-                            <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed fw-bold text-umelusi-blue" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    What is the typical investment minimum for Fund Managers?
-                                </button>
-                            </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted">
-                                    Investment minimums vary depending on the fund vehicle and strategy you select. We offer a range of solutions for both high-net-worth individuals and institutional clients. We recommend scheduling a consultation with an advisor to discuss your specific needs.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item shadow-sm mb-3">
-                            <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button collapsed fw-bold text-umelusi-blue" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    Are you regulated by local financial authorities?
-                                </button>
-                            </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted">
-                                    Yes, Umelusi Group and its subsidiaries operate under strict compliance with all relevant financial regulatory bodies in Eswatini and other jurisdictions where we operate. We prioritize transparency and client security.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -412,17 +357,23 @@
         <p class="mb-4 text-muted">
           Insights, updates, and news — straight to your inbox once a month. No spam. Just value.
         </p>
-        <form class="row g-3 justify-content-center">
-          <div class="col-md-5">
-            <input type="text" class="form-control" placeholder="Full Name" required />
-          </div>
-          <div class="col-md-5">
-            <input type="email" class="form-control" placeholder="Email Address" required />
-          </div>
-          <div class="col-md-10">
+        <form id="pressroomNewsletterForm" novalidate>
+    <div class="row g-3 justify-content-center">
+        <div class="col-md-5">
+            <input type="text" class="form-control" name="fullName" placeholder="Full Name" required>
+        </div>
+        <div class="col-md-5">
+            <input type="email" class="form-control" name="email" placeholder="Email Address" required>
+        </div>
+        <div class="col-md-2">
             <button type="submit" class="btn btn-orange w-100">Subscribe</button>
-          </div>
-        </form>
+        </div>
+    </div>
+    <div class="mt-3 small text-muted">
+        <input type="checkbox" id="newsletterConsent" name="consent" required>
+        <label for="newsletterConsent">I agree to receive monthly newsletters from Umelusi Group</label>
+    </div>
+</form>
       </div>
     </div>
   </div>
@@ -436,11 +387,10 @@
             </div>
             <div class="col-lg-9 col-md-12 mb-4">
                 <div class="social-media mb-3 d-flex justify-content-end">
-                    <a href="#" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
+                    <a href="https://www.linkedin.com/company/umelusigroup/?viewAsMember=true" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://www.instagram.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="https://www.facebook.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                    <a href="https://www.youtube.com/@UmelusiGroup" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
                 </div>
                 <div class="contact-details text-end">
                     <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Office D103, Development House, Swazi Plaza</p>
@@ -480,15 +430,15 @@
                 <h5 class="text-uppercase">Forms & Notices</h5>
                 <ul class="list-unstyled">
                     <li><a href="#">Accessibility</a></li>
-                    <li><a href="#">Reports</a></li>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Contact Form</a></li>
+                    <li><a href="resources.html">Reports</a></li>
+                    <li><a href="resources.html">FAQs</a></li>
+                    <li><a href="contact.html">Contact Form</a></li>
                 </ul>
             </div>
         </div>
         <div class="text-center p-3" style="background-color: #FF9933; color: white;">
             © 2025 Copyright:
-            <a class="text-white" href="#">Umelusi Group</a>
+            <a class="text-white" href="index.html">Umelusi Group</a>
         </div>
     </div>
 </footer>

@@ -1,0 +1,37 @@
+<main>
+  <div class="container py-5">
+    <div id="article-content" class="article-body">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading article...</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('id'); // Example: ?id=umelusi-partners-signs-agreement
+
+    fetch('/_data/press.json')
+      .then(res => res.json())
+      .then(articles => {
+        const article = articles.find(a => a.slug === slug && a.published);
+        const container = document.getElementById('article-content');
+
+        if (!article) {
+          container.innerHTML = '<p class="text-danger">Article not found.</p>';
+          return;
+        }
+
+        container.innerHTML = `
+          <h1>${article.title}</h1>
+          <p class="text-muted">${new Date(article.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })} • ${article.category}</p>
+          <div>${article.body}</div>
+          <a href="/pressroom.html" class="btn btn-secondary mt-4">Back to Pressroom</a>
+        `;
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById('article-content').innerHTML = '<p class="text-danger">Failed to load article.</p>';
+      });
+  </script>
+</main>

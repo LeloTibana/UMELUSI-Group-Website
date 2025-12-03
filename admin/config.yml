@@ -1,0 +1,67 @@
+backend:
+  name: git-gateway
+  branch: main
+  repo: LeloTibana/UMELUSI-Group-Website
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "press"
+    label: "Press Articles"
+    files:
+      - file: "_data/press.json"
+        label: "Press Articles Data"
+        name: "press_articles"
+        fields:
+          - { label: "Articles", name: "articles", widget: "list", fields: [
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Slug", name: "slug", widget: "string" },
+              { label: "Publish Date", name: "date", widget: "datetime" },
+              { label: "Category", name: "category", widget: "select", options: ["Press Release", "Interview", "Global Markets", "Tender", "Sports", "Company News"] },
+              { label: "Featured Image", name: "image", widget: "image" },
+              { label: "Excerpt", name: "excerpt", widget: "text" },
+              { label: "Body", name: "body", widget: "markdown" },
+              { label: "Published", name: "published", widget: "boolean", default: true }
+          ]}
+
+  - name: "careers"
+    label: "Career Opportunities"
+    files:
+      - file: "_data/careers.json"
+        label: "Careers Data"
+        name: "careers_data"
+        fields:
+          - { label: "Jobs", name: "jobs", widget: "list", fields: [
+              { label: "Job Title", name: "title", widget: "string" },
+              { label: "Slug", name: "slug", widget: "string" },
+              { label: "Department", name: "department", widget: "string" },
+              { label: "Location", name: "location", widget: "string" },
+              { label: "Employment Type", name: "type", widget: "select", options: ["Full-time", "Part-time", "Contract", "Remote", "Hybrid"] },
+              { label: "Application Deadline", name: "deadline", widget: "datetime" },
+              { label: "Description", name: "description", widget: "markdown" },
+              { label: "Requirements", name: "requirements", widget: "markdown" },
+              { label: "Salary Range", name: "salary", widget: "string" },
+              { label: "Active", name: "active", widget: "boolean", default: true }
+          ]}
+
+  - name: "resources"
+    label: "Resources"
+    files:
+      - file: "_data/resources.json"
+        label: "Resources Data"
+        name: "resources_data"
+        fields:
+          - { label: "Items", name: "items", widget: "list", fields: [
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Slug", name: "slug", widget: "string" },
+              { label: "Type", name: "type", widget: "select", options: ["Whitepaper", "Report", "Market Insight", "FAQ", "Case Study", "Guide"] },
+              { label: "Category", name: "category", widget: "string" },
+              { label: "Publish Date", name: "date", widget: "datetime" },
+              { label: "Thumbnail", name: "thumbnail", widget: "image" },
+              { label: "File", name: "file", widget: "file", required: false },
+              { label: "Description", name: "description", widget: "text" },
+              { label: "Content", name: "content", widget: "markdown" },
+              { label: "Featured", name: "featured", widget: "boolean", default: false },
+              { label: "Published", name: "published", widget: "boolean", default: true }
+          ]}

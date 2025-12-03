@@ -110,19 +110,24 @@
   </div>
 </nav>
 
+<!-- ===========================
+     FINERVE MARKETS TICKERS
+=========================== -->
 <section class="markets-content py-5" id="markets-data" data-aos="fade-up">
-    <div class="container">
-        <h2>Live Global Indices</h2>
-        <div id="global-indices" class="mb-5"></div>
-    
-        <h2>Live Currency Rates</h2>
-        <div id="currency-rates" class="mb-5"></div>
-    
-        <h2>Cryptocurrency Prices</h2>
-        <div id="crypto-prices" class="mb-5"></div>
+  <div class="container">
   
-    </div>
+    <h2>Live Global Indices</h2>
+    <div id="global-indices" class="tradingview-widget-container "></div>
+  
+    <h2>Live Currency Rates</h2>
+    <div id="currency-rates" class="tradingview-widget-container"></div>
+  
+    <h2>Cryptocurrency Prices</h2>
+    <div id="crypto-prices" class="tradingview-widget-container"></div>
+  
+  </div>
 </section>
+
 
 
 <section class="about-brand-section py-5 finserve-section">
@@ -132,7 +137,7 @@
         <!-- Using the requested --capital-primary color variable here (Umelusi Orange) -->
         <h2 class="mb-4" style="color: var(--capital-primary);">Seamless Transactional Banking and FX Solutions</h2>
         <p class="lead">
-          Umelusi FinServe is the transactional and payment solutions arm of Umelusi Group. We deliver highly efficient banking services, secure cross-border payments, and reliable foreign exchange solutions to businesses and institutions across Africa.
+          Umelusi FinServ is the transactional and payment solutions arm of Umelusi Group. We deliver highly efficient banking services, secure cross-border payments, and reliable foreign exchange solutions to businesses and institutions across Africa.
         </p>
         <p>
           We empower clients to manage cash flow and transact globally with ease. Our expertise covers bespoke currency risk management, fast and secure international money transfers, and advanced payment platforms, ensuring operational continuity and financial agility in complex markets.
@@ -234,7 +239,7 @@
             <div class="col-lg-10 text-center">
                 <h2 class="mb-4 text-brand"><strong>Who We Are: Your Payment Partner</strong></h2>
                 <p class="lead">
-                    Umelusi FinServe specializes in fast, accessible, and secure payment and foreign exchange services, driving financial inclusion and growth for individuals and businesses across the continent.
+                    Umelusi FinServ specializes in fast, accessible, and secure payment and foreign exchange services, driving financial inclusion and growth for individuals and businesses across the continent.
                 </p>
                 <p>
                     From quick remittances to sophisticated business payment solutions, we combine local expertise with global technology to ensure your money gets where it needs to be, when it needs to be there.
@@ -339,12 +344,13 @@
     <div class="row align-items-center">
       
       <div class="col-lg-6 mb-4">
-        <h2 class="mb-3" style="color: var(--finserve-primary);">**Need Global Transaction Support?**</h2>
+        <h2 class="mb-3" style="color: var(--finserve-primary);">Need Global Transaction Support?</h2>
         <p class="lead mb-4">
-          Whether you are sending money home, receiving international payments, or need competitive forex rates, Umelusi FinServe is your trusted partner.
+          Whether you are sending money home, receiving international payments, or need competitive forex rates, Umelusi FinServ is your trusted partner.
         </p>
         <p>
-          Our services provide fast, reliable, and secure global money transfer and foreign exchange solutions. Contact our dedicated FinServe team today to discuss your personal or business transactional needs and get the best rates.
+          Our services provide fast, reliable, and secure global money transfer and foreign exchange solutions. 
+          Contact our dedicated FinServe team today to discuss your personal or business transactional needs and get the best rates.
         </p>
         <ul class="list-unstyled mt-4">
             <li><i class="fas fa-check-circle me-2" style="color: var(--finserve-primary);"></i> Reliable Western Union Money Transfer</li>
@@ -386,7 +392,7 @@
             <textarea class="form-control" id="finserve-message" rows="4" placeholder="e.g., I need to send $500 to Kenya via Western Union, or I require ZAR for an upcoming trip..."></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary w-100">Contact FinServe for Rates</button>
+          <button type="submit" class="btn btn-primary w-100">Contact FinServ for Rates</button>
         </form>
       </div>
     </div>
@@ -397,11 +403,11 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="finserveContactModalLabel">Get in Touch with Umelusi FinServe</h5>
+          <h5 class="modal-title" id="finserveContactModalLabel">Get in Touch with Umelusi FinServ</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close contact modal"></button>
         </div>
         <div class="modal-body">
-          <form id="finserveModalContactForm" action="http://localhost:3000/submit-contact" method="POST">
+          <form id="finserveModalContactForm" name="finserveModalContactForm" method="POST" data-netlify="true" netlify-honeypot="bot-field">
     <div class="row g-3">
         <div class="col-md-6">
             <label for="modalName" class="form-label">Full Name</label>
@@ -446,11 +452,10 @@
             </div>
             <div class="col-lg-9 col-md-12 mb-4">
                 <div class="social-media mb-3 d-flex justify-content-end">
-                    <a href="#" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
+                    <a href="https://www.linkedin.com/company/umelusigroup/?viewAsMember=true" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://www.instagram.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="https://www.facebook.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                    <a href="https://www.youtube.com/@UmelusiGroup" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
                 </div>
                 <div class="contact-details text-end">
                     <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Office D103, Development House, Swazi Plaza</p>
@@ -490,8 +495,8 @@
                 <h5 class="text-uppercase">Forms & Notices</h5>
                 <ul class="list-unstyled">
                     <li><a href="#">Accessibility</a></li>
-                    <li><a href="#">Reports</a></li>
-                    <li><a href="#">FAQs</a></li>
+                    <li><a href="resources.html">Reports</a></li>
+                    <li><a href="resources.html">FAQs</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </div>

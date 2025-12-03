@@ -98,122 +98,177 @@
 
     <!-- Main Contact Content & Form Section -->
     <section class="py-5 bg-light">
-        <div class="container">
-            <div class="row g-5">
-                
-                <!-- Left Column: Contact Form -->
-                <div class="col-lg-7">
-                    <div class="contact-form-card p-4 p-md-5 bg-white shadow-lg rounded-3" data-aos="fade-right">
-                        <h3 class="mb-4 text-umelusi-blue fw-bold">Send Us a Message</h3>
-                        <p class="text-muted mb-4">Fill out the form below for general inquiries, support, or to schedule a preliminary consultation.</p>
-                        
-                        <!-- Contact Form -->
-                        <form id="contactForm">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="firstName" class="form-label">First Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="firstName" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="lastName" class="form-label">Last Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="lastName" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phone">
-                                </div>
-                                <div class="col-12">
-                                    <label for="subject" class="form-label">Subject <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="subject" required>
-                                        <option selected disabled value="">Select Inquiry Type</option>
-                                        <option value="investment">Investment Inquiry (Fund Managers/Capital)</option>
-                                        <option value="consulting">Business Consulting (Partners)</option>
-                                        <option value="general">General Inquiry / Media</option>
-                                        <option value="support">Technical Support (FinServe)</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
-                                <div class="col-12">
-                                    <label for="message" class="form-label">Your Message <span class="text-danger">*</span></label>
-                                    <textarea class="form-control" id="message" rows="5" required></textarea>
-                                </div>
-                                <div class="col-12 mt-4">
-                                    <button type="submit" class="btn btn-primary w-100 contact-submit-btn">
-                                        Submit Inquiry <i class="fas fa-paper-plane ms-2"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                        
-                        <!-- Confirmation Modal (Placeholder for non-alert behavior) -->
-                        <div id="confirmationMessage" class="mt-4 p-3 rounded-3 text-center d-none" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;">
-                            Thank you for your message! We will get back to you within 1-2 business days.
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Right Column: Office Info & Map -->
-                <div class="col-lg-5">
-                    <div class="office-info-card p-4 p-md-5 bg-white shadow-lg rounded-3 h-100" data-aos="fade-left">
-                        <h3 class="mb-4 text-umelusi-orange fw-bold">Our Contact Details</h3>
-
-                        <!-- Office Location -->
-                        <div class="mb-4">
-                            <h6 class="fw-bold"><i class="fas fa-building me-2 text-umelusi-orange"></i> Headquarters</h6>
-                            <p class="mb-0">Office D103, Development House, Swazi Plaza</p>
-                            <p class="mb-0">Manzini, Eswatini</p>
-                        </div>
-                        
-                        <!-- Phone -->
-                        <div class="mb-4">
-                            <h6 class="fw-bold"><i class="fas fa-phone me-2 text-umelusi-orange"></i> General Line</h6>
-                            <p class="mb-0"><a href="tel:+26824043795" class="text-dark fw-bold">(+268) 2404 3795</a></p>
-                        </div>
-
-                        <!-- Email -->
-                        <div class="mb-4">
-                            <h6 class="fw-bold"><i class="fas fa-envelope me-2 text-umelusi-orange"></i> Email Support</h6>
-                            <p class="mb-0"><a href="mailto:info@umelusi.com" class="text-dark fw-bold">info@umelusi.com</a></p>
-                            <p class="small text-muted">For investor relations: <a href="mailto:ir@umelusi.com" class="text-muted">ir@umelusi.com</a></p>
-                        </div>
-
-                        <!-- Social Media -->
-                        <h6 class="fw-bold mb-3"><i class="fas fa-share-alt me-2 text-umelusi-orange"></i> Connect with Us</h6>
-                        <div class="social-links">
-                            <a href="#" class="text-dark me-3"><i class="fab fa-linkedin fa-2x"></i></a>
-                            <a href="#" class="text-dark me-3"><i class="fab fa-instagram fa-2x"></i></a>
-                            <a href="#" class="text-dark me-3"><i class="fab fa-facebook-f fa-2x"></i></a>
-                            <a href="#" class="text-dark"><i class="fa-brands fa-x-twitter fa-2x"></i></a>
-                        </div>
-                        
-                        <!-- Map Placeholder -->
-                        <div class="mt-5">
-                            <h6 class="fw-bold mb-3">Find Us</h6>
-                            <div class="map-placeholder rounded-3 shadow-sm">
-                                <!-- Placeholder for an embedded map (e.g., Google Maps iframe) -->
-                                <iframe 
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3550.569947915591!2d31.1340477!3d-26.4947938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x18731d77a87e5b29%3A0x1d5f2a1b5c2a4b86!2sDevelopment%20House!5e0!3m2!1sen!2szw!4v1684346761000!5m2!1sen!2szw" 
-                                    width="100%" 
-                                    height="250" 
-                                    style="border:0;" 
-                                    allowfullscreen="" 
-                                    loading="lazy" 
-                                    referrerpolicy="no-referrer-when-downgrade">
-                                </iframe>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
+    <div class="container">
+        <div class="row g-5">
+            
+            <!-- Left Column: Contact Form -->
+            <div class="col-lg-7">
+                <div class="contact-form-card p-4 p-md-5 bg-white shadow-lg rounded-3" data-aos="fade-right">
+                    <h3 class="mb-4 text-umelusi-blue fw-bold">Send Us a Message</h3>
+                    <p class="text-muted mb-4">Fill out the form below for general inquiries, support, or to schedule a preliminary consultation.</p>
+                    
+                    <!-- Contact Form - CLEAN VERSION -->
+                    <form id="contactForm" name="contactForm" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <div class="row g-3">
+        <div class="col-md-6">
+            <label for="firstName" class="form-label">First Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="firstName" name="firstName" required>
+            <div class="invalid-feedback">Please enter your first name.</div>
         </div>
-    </section>
+        <div class="col-md-6">
+            <label for="lastName" class="form-label">Last Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="lastName" name="lastName" required>
+            <div class="invalid-feedback">Please enter your last name.</div>
+        </div>
+        <div class="col-md-6">
+            <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
+            <input type="email" class="form-control" id="email" name="email" required>
+            <div class="invalid-feedback">Please enter a valid email address.</div>
+        </div>
+        <div class="col-md-6">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" name="phone" placeholder="+268 xxx xxxx">
+            <div class="invalid-feedback">Please enter a valid phone number.</div>
+        </div>
+        <div class="col-12">
+            <label for="subject" class="form-label">Subject <span class="text-danger">*</span></label>
+            <select class="form-select" id="subject" name="subject" required>
+                <option selected disabled value="">Select Inquiry Type</option>
+                <option value="investment">Investment Inquiry (Fund Managers/Capital)</option>
+                <option value="consulting">Business Consulting (Partners)</option>
+                <option value="general">General Inquiry / Media</option>
+                <option value="support">Technical Support (FinServe)</option>
+                <option value="other">Other</option>
+            </select>
+            <div class="invalid-feedback">Please select an inquiry type.</div>
+        </div>
+        <div class="col-12">
+            <label for="message" class="form-label">Your Message <span class="text-danger">*</span></label>
+            <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Tell us how we can help you..."></textarea>
+            <div class="invalid-feedback">Please enter your message.</div>
+        </div>
+        
+        <div class="col-12 mt-4">
+            <button type="submit" class="btn btn-primary w-100 contact-submit-btn">
+                Submit Inquiry <i class="fas fa-paper-plane ms-2"></i>
+            </button>
+        </div>
+    </div>
+</form>
+
+
+                    
+                    <!-- Success Message -->
+                    <!-- Success Message -->
+<div id="confirmationMessage" class="umelusi-success-message text-center d-none success-animation">
+    <div class="mb-4">
+        <i class="fas fa-check-circle fa-4x mb-3"></i>
+        <h5 class="fw-bold">Message Sent Successfully!</h5>
+        <p class="mb-2">Thank you for contacting Umelusi Group.</p>
+        <p class="mb-0">We will get back to you within 1-2 business days.</p>
+    </div>
+    <div id="referenceNumber" class="reference-number d-none">
+        <small>Reference: <strong id="refNumber"></strong></small>
+    </div>
+    <div class="mt-3 text-muted small">
+        <i class="fas fa-clock me-1"></i>This message will auto-close in 8 seconds
+    </div>
+</div>
+
+<!-- Error Message -->
+<div id="errorMessage" class="umelusi-error-message text-center d-none success-animation">
+    <div class="mb-4">
+        <i class="fas fa-exclamation-triangle fa-4x mb-3"></i>
+        <h5 class="fw-bold" id="errorTitle">Submission Error</h5>
+        <p id="errorDetail" class="mb-0">Please try again or contact us directly.</p>
+    </div>
+    <button class="btn retry-btn" onclick="retrySubmission()">
+        <i class="fas fa-redo me-2"></i> Retry Submission
+    </button>
+</div>
+            </div>
+
+            <!-- Right Column: Office Info & Map -->
+            <div class="col-lg-5">
+                <div class="office-info-card p-4 p-md-5 bg-white shadow-lg rounded-3 h-100" data-aos="fade-left">
+                    <h3 class="mb-4 text-umelusi-orange fw-bold">Our Contact Details</h3>
+
+                    <!-- Office Location -->
+                    <div class="mb-4">
+                        <h6 class="fw-bold"><i class="fas fa-building me-2 text-umelusi-orange"></i> Headquarters</h6>
+                        <p class="mb-0">Office D103, Development House, Swazi Plaza</p>
+                        <p class="mb-0">Manzini, Eswatini</p>
+                    </div>
+                    
+                    <!-- Phone -->
+                    <div class="mb-4">
+                        <h6 class="fw-bold"><i class="fas fa-phone me-2 text-umelusi-orange"></i> General Line</h6>
+                        <p class="mb-0"><a href="tel:+26824043795" class="text-dark fw-bold">(+268) 2404 3795</a></p>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-4">
+                        <h6 class="fw-bold"><i class="fas fa-envelope me-2 text-umelusi-orange"></i> Email Support</h6>
+                        <p class="mb-0"><a href="mailto:info@umelusi.com" class="text-dark fw-bold">info@umelusi.com</a></p>
+                        <p class="small text-muted">For investor relations: <a href="mailto:ir@umelusi.com" class="text-muted">ir@umelusi.com</a></p>
+                    </div>
+
+                    <!-- Business Hours -->
+                    <div class="mb-4">
+                        <h6 class="fw-bold"><i class="fas fa-clock me-2 text-umelusi-orange"></i> Business Hours</h6>
+                        <p class="mb-0">Monday - Friday: 8:00 AM - 5:00 PM</p>
+                        <p class="mb-0">Saturday: 9:00 AM - 1:00 PM</p>
+                        <p class="mb-0">Sunday: Closed</p>
+                    </div>
+
+                    <!-- Social Media -->
+                    <h6 class="fw-bold mb-3"><i class="fas fa-share-alt me-2 text-umelusi-orange"></i> Connect with Us</h6>
+                    <div class="social-links mb-4">
+                        <a href="https://www.linkedin.com/company/umelusigroup/?viewAsMember=true" 
+                           class="text-dark me-3" target="_blank" title="LinkedIn">
+                            <i class="fab fa-linkedin fa-2x"></i>
+                        </a>
+                        <a href="https://www.instagram.com/umelusigroup/" 
+                           class="text-dark me-3" target="_blank" title="Instagram">
+                            <i class="fab fa-instagram fa-2x"></i>
+                        </a>
+                        <a href="https://www.facebook.com/umelusigroup/" 
+                           class="text-dark me-3" target="_blank" title="Facebook">
+                            <i class="fab fa-facebook-f fa-2x"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@UmelusiGroup" 
+                           class="text-dark me-3" target="_blank" title="YouTube">
+                            <i class="fab fa-youtube fa-2x"></i>
+                        </a>
+                        <a href="#" class="text-dark" target="_blank" title="X (Twitter)">
+                            <i class="fa-brands fa-x-twitter fa-2x"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Map -->
+                    <div class="mt-5">
+                        <h6 class="fw-bold mb-3">Find Us</h6>
+                        <div class="map-placeholder rounded-3 shadow-sm overflow-hidden">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3550.569947915591!2d31.1340477!3d-26.4947938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x18731d77a87e5b29%3A0x1d5f2a1b5c2a4b86!2sDevelopment%20House!5e0!3m2!1sen!2szw!4v1684346761000!5m2!1sen!2szw" 
+                                width="100%" 
+                                height="250" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Umelusi Group Headquarters Location">
+                            </iframe>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 
     <!-- Footer -->
     <footer class="bg-light text-center text-lg-start">
@@ -224,11 +279,10 @@
                 </div>
                 <div class="col-lg-9 col-md-12 mb-4">
                     <div class="social-media mb-3 d-flex justify-content-lg-end justify-content-center">
-                        <a href="#" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
-                        <a href="#" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                        <a href="#" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
-                        <a href="#" class="text-dark me-3"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="#" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
+                        <a href="https://www.linkedin.com/company/umelusigroup/?viewAsMember=true" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="https://www.instagram.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="https://www.facebook.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="https://www.youtube.com/@UmelusiGroup" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
                     </div>
                     <div class="contact-details text-lg-end text-center">
                         <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Office D103, Development House, Swazi Plaza</p>
@@ -269,41 +323,21 @@
                     <ul class="list-unstyled">
                         <li><a href="#">Accessibility</a></li>
                         <li><a href="#">Reports</a></li>
-                        <li><a href="#">FAQs</a></li>
+                        <li><a href="resources.html">FAQs</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
             </div>
             <div class="text-center p-3 mt-4" style="background-color: var(--umelusi-orange); color: white;">
                 © 2025 Copyright:
-                <a class="text-white" href="#">Umelusi Group</a>
+                <a class="text-white" href="index.html">Umelusi Group</a>
             </div>
         </div>
     </footer>
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Simple form submission handler
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // In a real application, you would send this data to a server here.
-            
-            // Display confirmation message (instead of using alert())
-            const form = document.getElementById('contactForm');
-            const confirmation = document.getElementById('confirmationMessage');
-            
-            form.classList.add('d-none');
-            confirmation.classList.remove('d-none');
-
-            // Optionally reset the form after a delay
-            setTimeout(() => {
-                form.reset();
-                form.classList.remove('d-none');
-                confirmation.classList.add('d-none');
-            }, 8000); 
-        });
-    </script>
+    
+</script>
 </body>
 </html>
