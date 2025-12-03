@@ -377,49 +377,45 @@ function showNotification(message, isSuccess = true) {
 }
 
 // ============================================
-// 3. FORM SUBMISSION HANDLER (NODE.JS VERSION) - CLEANED
+// UNIVERSAL AJAX FORM HANDLER
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('🔧 Setting up forms for Node.js backend...');
+    console.log('🔧 Setting up universal AJAX forms...');
 
     const formConfigs = {
-        'mainContactForm': { endpoint: API_CONFIG.endpoints.contact, formType: 'general' },
-        'contactForm': { endpoint: API_CONFIG.endpoints.contact, formType: 'contact' },
-        'modalContactForm': { endpoint: API_CONFIG.endpoints.form, formType: 'modal' },
-        'pressroomNewsletterForm': { endpoint: API_CONFIG.endpoints.form, formType: 'newsletter' },
-        'advisorForm': { endpoint: API_CONFIG.endpoints.form, formType: 'advisor' },
-        'modalFundManagersForm': { endpoint: API_CONFIG.endpoints.form, formType: 'fund' },
-        'advisorContactForm': { endpoint: API_CONFIG.endpoints.form, formType: 'advisor' },
+        'career-form': { endpoint: API_CONFIG.endpoints.career, formType: 'career' },
+        'advisorForm': { endpoint: API_CONFIG.endpoints.contact, formType: 'advisor' },
+        'contactForm': { endpoint: API_CONFIG.endpoints.contact, formType: 'general' },
+        'aboutContactForm': { endpoint: API_CONFIG.endpoints.contact, formType: 'general' },
+        'capitalContactForm': { endpoint: API_CONFIG.endpoints.form, formType: 'partners' },
         'finserveMainContactForm': { endpoint: API_CONFIG.endpoints.form, formType: 'finserve' },
         'finserveModalContactForm': { endpoint: API_CONFIG.endpoints.form, formType: 'finserve' },
+        'modalFundManagersForm': { endpoint: API_CONFIG.endpoints.form, formType: 'fund' },
+        'fund-managers-contact': { endpoint: API_CONFIG.endpoints.form, formType: 'fund' },
         'contact-partners-form': { endpoint: API_CONFIG.endpoints.form, formType: 'partners' }
     };
 
     Object.entries(formConfigs).forEach(([formId, config]) => {
         const form = document.getElementById(formId);
-        if (!form) return console.log('Form not found:', formId);
-
-        console.log('Setting up form:', formId);
+        if (!form) return console.warn('Form not found:', formId);
 
         form.addEventListener('submit', async function (e) {
             e.preventDefault();
             e.stopPropagation();
 
             const submitButton = form.querySelector('button[type="submit"]');
-            if (!submitButton) return console.error('Submit button not found:', formId);
+            if (!submitButton) return console.error('Submit button not found for:', formId);
 
             const originalButtonHTML = submitButton.innerHTML;
-            submitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
+            submitButton.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Sending...`;
             submitButton.disabled = true;
 
             try {
-                // Collect and map form data
-                let formData = mapToContactFields(Object.fromEntries(new FormData(form)));
-                formData.formType = config.formType; // Ensure formType is set
+                let formData = mapFormDataToContactFields(Object.fromEntries(new FormData(form)), config.formType);
 
                 // Validate required fields
-                const validation = validateContactForm(formData);
+                const validation = validateFormData(formData);
                 if (!validation.isValid) {
                     showNotification(validation.errors.join('. '), false);
                     submitButton.innerHTML = originalButtonHTML;
@@ -427,7 +423,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     return;
                 }
 
-                // Send to backend
                 const response = await fetch(API_CONFIG.baseUrl + config.endpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -437,224 +432,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 const result = await response.json();
 
                 if (response.ok && result.success) {
-                    showFormSuccess(form, result, form.closest('.modal'));
+                    showFormSuccess(form, result);
                 } else {
-                    showFormError(form, result.error || 'Submission failed. Please try again.', 'Submission Error');
+                    showFormError(form, result.error || 'Submission failed. Please try again.');
                     submitButton.innerHTML = originalButtonHTML;
                     submitButton.disabled = false;
                 }
-
-            } catch (error) {
-                console.error('Form submission error:', error);
-                showNotification('Network error. Please check your connection and try again.', false);
+            } catch (err) {
+                console.error('Form submission error:', err);
+                showNotification('Network error. Please check your connection.', false);
                 submitButton.innerHTML = originalButtonHTML;
                 submitButton.disabled = false;
             }
         });
     });
-
-    console.log('✅ All forms setup complete');
-
-    // Optional: check backend health
-    fetch(API_CONFIG.baseUrl + API_CONFIG.endpoints.health)
-        .then(r => r.json())
-        .then(data => console.log('✅ Backend health:', data.status))
-        .catch(err => console.warn('⚠️ Backend not reachable:', err.message));
 });
 
-// ============================================
-// 4. ENHANCED FORM SUCCESS AND ERROR HANDLERS
-// ============================================
-
-function showFormSuccess(form, result, modalElement = null) {
-    const submitButton = form.querySelector('button[type="submit"]');
-    const originalButtonHTML = submitButton.innerHTML;
-    const originalButtonClasses = submitButton.className;
-
-    // Update button to show success
-    submitButton.innerHTML = '<i class="fas fa-check me-2"></i>Sent Successfully!';
-    submitButton.className = originalButtonClasses.replace('btn-primary', 'btn-success');
-    submitButton.disabled = true;
-    submitButton.style.animation = 'pulse 2s infinite';
-
-    // Show global notification
-    showNotification(result.message || 'Thank you! Your message has been sent successfully.', true);
-
-    // Handle dedicated confirmation element if exists
-    const confirmationElement = document.getElementById('confirmationMessage');
-    if (confirmationElement) {
-        form.classList.add('d-none');
-        confirmationElement.classList.remove('d-none');
-        confirmationElement.classList.add('success-animation');
-
-        if (result.reference) {
-            const refNumber = document.getElementById('refNumber');
-            const refContainer = document.getElementById('referenceNumber');
-            if (refNumber) refNumber.textContent = result.reference;
-            if (refContainer) refContainer.classList.remove('d-none');
-        }
-
-        const resetTimeout = setTimeout(() => {
-            resetFormToOriginal(form, submitButton, originalButtonHTML, originalButtonClasses, confirmationElement);
-        }, 8000);
-
-        form.resetTimeout = resetTimeout;
-
-        confirmationElement.addEventListener('click', function manualClose(e) {
-            if (!e.target.closest('.reference-number')) {
-                clearTimeout(resetTimeout);
-                resetFormToOriginal(form, submitButton, originalButtonHTML, originalButtonClasses, confirmationElement);
-                this.removeEventListener('click', manualClose);
-            }
-        });
-    } else {
-        // Fallback: just reset form after 3 seconds
-        setTimeout(() => {
-            form.reset();
-            submitButton.innerHTML = originalButtonHTML;
-            submitButton.className = originalButtonClasses;
-            submitButton.disabled = false;
-            submitButton.style.animation = '';
-        }, 3000);
-    }
-
-    // Close modal if applicable
-    if (modalElement) {
-        setTimeout(() => {
-            const modalInstance = bootstrap.Modal.getInstance(modalElement);
-            if (modalInstance) modalInstance.hide();
-        }, 2000);
-    }
-
-    // Show reference notification separately
-    if (result.reference) {
-        setTimeout(() => {
-            showNotification(`Reference: ${result.reference} - Please keep this for your records.`, true);
-        }, 1000);
-    }
-}
-
-function showFormError(form, message, title = 'Submission Error') {
-    const errorElement = document.getElementById('errorMessage');
-    const confirmationElement = document.getElementById('confirmationMessage');
-
-    if (confirmationElement) confirmationElement.classList.add('d-none');
-
-    if (errorElement) {
-        const errorTitle = errorElement.querySelector('#errorTitle');
-        const errorDetail = errorElement.querySelector('#errorDetail');
-
-        if (errorTitle) errorTitle.textContent = title;
-        if (errorDetail) errorDetail.textContent = message;
-
-        errorElement.classList.remove('d-none');
-        errorElement.classList.add('success-animation');
-
-        setTimeout(() => {
-            errorElement.classList.add('d-none');
-            errorElement.classList.remove('success-animation');
-        }, 10000);
-    } else {
-        showNotification(message, false);
-    }
-}
-
-function resetFormToOriginal(form, button, originalHTML, originalClasses, confirmationElement) {
-    form.reset();
-    form.classList.remove('d-none');
-    if (confirmationElement) {
-        confirmationElement.classList.add('d-none');
-        const refContainer = document.getElementById('referenceNumber');
-        if (refContainer) refContainer.classList.add('d-none');
-        confirmationElement.classList.remove('success-animation');
-    }
-    button.innerHTML = originalHTML;
-    button.className = originalClasses;
-    button.disabled = false;
-    button.style.animation = '';
-    form.classList.remove('was-validated');
-    form.querySelectorAll('.invalid-feedback').forEach(el => (el.style.display = 'none'));
-}
-
-// ============================================
-// 5. FORM VALIDATION HELPERS
-// ============================================
-
-function validateFormData(data, requiredFields = ['contactName', 'contactEmail', 'contactMessage']) {
-    const errors = [];
-
-    requiredFields.forEach(field => {
-        if (!data[field] || data[field].trim() === '') {
-            const fieldLabel = field
-                .replace('contact', '')
-                .replace(/([A-Z])/g, ' $1')
-                .trim();
-            errors.push(`${fieldLabel} is required`);
-        }
-    });
-
-    if (data.contactEmail && !isValidEmail(data.contactEmail)) {
-        errors.push('Please enter a valid email address');
-    }
-
-    return {
-        isValid: errors.length === 0,
-        errors
-    };
-}
-
-function isValidEmail(email) {
-    // Basic RFC 5322 compliant regex
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-// ============================================
-// 6. FORM FIELD MAPPING UTILITIES
-// ============================================
-
-function mapFormDataToContactFields(data, formType = 'general') {
-    const mapped = {
-        contactName: '',
-        contactEmail: '',
-        contactMessage: '',
-        contactPhone: '',
-        contactInterest: '',
-        contactOrganization: '',
-        formType
-    };
-
-    // Map name fields
-    mapped.contactName =
-        data.contactName ||
-        data.name ||
-        (data.firstName && data.lastName ? `${data.firstName} ${data.lastName}`.trim() : '') ||
-        data.firstName ||
-        data.lastName ||
-        '';
-
-    // Map email
-    mapped.contactEmail = data.contactEmail || data.email || '';
-
-    // Map message
-    mapped.contactMessage = data.contactMessage || data.message || '';
-
-    // Map phone
-    mapped.contactPhone = data.contactPhone || data.phone || '';
-
-    // Map interest / subject / service
-    mapped.contactInterest = data.contactInterest || data.subject || data.service || '';
-
-    // Map organization
-    mapped.contactOrganization = data.contactOrganization || data.organization || '';
-
-    // Remove empty fields
-    Object.keys(mapped).forEach(key => {
-        if (!mapped[key]) delete mapped[key];
-    });
-
-    return mapped;
-}
 
 
 // ============================================
