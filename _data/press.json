@@ -1,22 +1,14 @@
 {
   "articles": [
     {
-      "title": "Umelusi Partners Signs Major Agreement",
-      "slug": "umelusi-partners-signs-agreement",
-      "date": "2025-11-15",
+      "published": true,
+      "title": "Test Article ",
+      "slug": "test-article-for-testing",
+      "date": "2025-12-04T12:57:00.000+02:00",
       "category": "Press Release",
-      "excerpt": "Umelusi Partners has signed a landmark agreement to expand its financial services...",
-      "body": "<p>Full content of the press release goes here...</p>",
-      "published": true
-    },
-    {
-      "title": "Interview with Our CEO on Market Trends",
-      "slug": "interview-ceo-market-trends",
-      "date": "2025-10-28",
-      "category": "Interview",
-      "excerpt": "Our CEO discusses the latest market developments and how Umelusi Group is responding...",
-      "body": "<p>Full interview transcript here...</p>",
-      "published": true
+      "excerpt": "A simple test article to test whether an article from Netlify CMS works",
+      "body": "Good day viewer,\\\n\\\nYou are currently viewing a new article written by Mphumelelo, a novice web developer.",
+      "image": "/images/Umelusi-2ndLogo.png"
     }
   ]
 }
