@@ -156,8 +156,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load press articles from JSON
     fetch('/_data/press.json')
         .then(response => response.json())
-        .then(articles => {
-            allArticles = articles.filter(article => article.published);
+        .then(data => {
+            allArticles = Array.isArray(data.articles) ? data.articles.filter(article => article.published) : [];
             displayArticles(allArticles);
             setupFilters();
             setupSearch();
