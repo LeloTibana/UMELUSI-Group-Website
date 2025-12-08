@@ -156,94 +156,242 @@
 
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+let allArticles = [];
+let currentFilter = 'all';
 
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get("id");
+let currentPage = 1;
+const articlesPerPage = 6;
 
-    const titleEl = document.getElementById("article-title");
-    const metaEl  = document.getElementById("article-meta");
-    const bodyEl  = document.getElementById("article-body");
-    const imageEl = document.getElementById("article-image");
-    const loader  = document.getElementById("article-loader");
+document.addEventListener('DOMContentLoaded', function() {
 
-    function hideLoader() {
-        if (loader) loader.style.display = "none";
-    }
+    fetch('/_data/press.json')
 
-    function showError(msg) {
-        hideLoader();
-
-        console.error(msg);
-
-        if (bodyEl) {
-            bodyEl.innerHTML = `
-                <div class="alert alert-danger text-center">
-                    <i class="fas fa-exclamation-circle me-2"></i>
-                    ${msg}
-                </div>
-            `;
-        }
-    }
-
-    // ✅ hard stop if link is bad
-    if (!slug) {
-        showError("Invalid article link.");
-        return;
-    }
-
-    fetch("/_data/press.json")
-        .then(res => {
-            if (!res.ok) throw new Error("Failed loading JSON");
-            return res.json();
+        .then(response => {
+            if (!response.ok) throw new Error('Unable to fetch JSON');
+            return response.json();
         })
+
         .then(data => {
 
+            // ✅ FIX: correctly read array from JSON object
             if (!Array.isArray(data.articles)) {
-                throw new Error("Invalid JSON structure");
+                throw new Error('JSON format invalid - "articles" is not an array');
             }
 
-            const article = data.articles.find(a =>
-                a.slug === slug && a.published === true
-            );
+            allArticles = data.articles.filter(article => article.published === true);
 
-            if (!article) {
-                throw new Error("Article not found");
-            }
+            displayArticles(allArticles);
+            setupFilters();
+            setupSearch();
+            setupPaginationControls(allArticles.length);
 
-            // ✅ Render article safely
-            if (titleEl)
-                titleEl.textContent = article.title;
-
-            if (metaEl)
-                metaEl.textContent =
-                    `${new Date(article.date).toLocaleDateString("en-US", {
-                        month: "long",
-                        day: "numeric",
-                        year: "numeric"
-                    })} • ${article.category}`;
-
-            if (imageEl && article.image) {
-                imageEl.src = article.image;
-                imageEl.style.display = "block";
-            }
-
-            if (bodyEl) {
-                bodyEl.innerHTML = article.body
-                    .split(/\n+/)
-                    .map(p => `<p>${p.trim()}</p>`)
-                    .join('');
-            }
-
-            hideLoader();
         })
-        .catch(err => {
-            console.error(err);
-            showError("Failed to load article.");
+
+        .catch(error => {
+            console.error('Error loading press articles:', error);
+
+            document.getElementById('pressroom-grid').innerHTML = `
+                <div class="col-12 text-center">
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        Unable to load press articles. Please try again later.
+                    </div>
+                </div>
+            `;
         });
 
 });
+
+function displayArticles(articles) {
+
+    const container = document.getElementById('pressroom-grid');
+    const noResults = document.getElementById('no-results');
+
+    if (!articles.length) {
+        container.innerHTML = '';
+
+        noResults.innerHTML = `
+            No news right now, but do sign up to our newsletter and be the first to know what's happening with Umelusi Group!
+        `;
+
+        noResults.classList.remove('d-none');
+        document.getElementById('pagination-controls').classList.add('d-none');
+        return;
+    }
+
+    noResults.classList.add('d-none');
+    document.getElementById('pagination-controls').classList.remove('d-none');
+
+    // ✅ pagination slice
+    const start = (currentPage - 1) * articlesPerPage;
+    const end = start + articlesPerPage;
+    const paginatedArticles = articles.slice(start, end);
+
+    let html = '';
+
+    paginatedArticles.forEach(article => {
+
+        html += `
+            <div class="col-md-4 press-item" data-category="${article.category}" data-aos="fade-up">
+                <div class="press-card h-100 shadow-sm d-flex flex-column">
+
+                    <div class="press-card-body flex-grow-1">
+                        <span class="press-meta">
+                            ${new Date(article.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })} • ${article.category}
+                        </span>
+
+                        <h5 class="press-title mt-2">${article.title}</h5>
+
+                        <p class="press-summary">
+                            ${article.excerpt ? article.excerpt.substring(0,150) + '...' : ''}
+                        </p>
+                    </div>
+
+                    <div class="mt-auto pt-3">
+                        <a href="/press-article.html?id=${article.slug}" class="btn btn-sm btn-orange w-100">
+                            Read More
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+    setupPaginationControls(articles.length);
+}
+
+function setupFilters() {
+
+    const filterButtons = document.querySelectorAll('.press-filters button');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+
+            currentFilter = this.dataset.filter;
+
+            currentPage = 1; // ✅ reset page on new filter
+
+            filterArticles();
+        });
+    });
+
+}
+
+function filterArticles() {
+
+    let filtered = [...allArticles];
+
+    if (currentFilter !== 'all') {
+        filtered = filtered.filter(article => article.category === currentFilter);
+    }
+
+    const searchInput = document.getElementById('press-search');
+
+    if (searchInput && searchInput.value.trim()) {
+
+        const term = searchInput.value.toLowerCase();
+
+        filtered = filtered.filter(article =>
+            article.title.toLowerCase().includes(term) ||
+            article.excerpt.toLowerCase().includes(term) ||
+            article.body.toLowerCase().includes(term)
+        );
+
+    }
+
+    displayArticles(filtered);
+}
+
+function setupSearch() {
+
+    const searchInput = document.getElementById('press-search');
+    if (!searchInput) return;
+
+    let debounce;
+
+    searchInput.addEventListener('input', function() {
+
+        clearTimeout(debounce);
+
+        debounce = setTimeout(() => {
+            currentPage = 1; // ✅ reset to page 1 on search
+            filterArticles();
+        }, 300);
+
+    });
+}
+
+function setupPaginationControls(totalArticles) {
+
+    const paginationContainer = document.getElementById('pagination-controls');
+    if (!paginationContainer) return;
+
+    const totalPages = Math.ceil(totalArticles / articlesPerPage);
+
+    if (totalPages <= 1) {
+        paginationContainer.innerHTML = '';
+        return;
+    }
+
+    let html = '';
+
+    html += `
+        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="${currentPage - 1}">Previous</a>
+        </li>
+    `;
+
+    for (let i = 1; i <= totalPages; i++) {
+        html += `
+            <li class="page-item ${currentPage === i ? 'active' : ''}">
+                <a class="page-link" href="#" data-page="${i}">${i}</a>
+            </li>
+        `;
+    }
+
+    html += `
+        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="${currentPage + 1}">Next</a>
+        </li>
+    `;
+
+    paginationContainer.innerHTML = html;
+
+    paginationContainer.querySelectorAll('a.page-link')
+        .forEach(link => {
+            link.addEventListener('click', function(e) {
+
+                e.preventDefault();
+
+                const targetPage = parseInt(this.dataset.page);
+
+                if (targetPage >= 1 && targetPage <= totalPages) {
+
+                    currentPage = targetPage;
+
+                    filterArticles();
+
+                    window.scrollTo({
+                        top: document.getElementById('pressroom-grid').offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+
+                }
+            });
+        });
+}
 </script>
+
+
+
+
 
 
 
