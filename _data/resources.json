@@ -29,7 +29,7 @@
     {
       "slug": "test-resource-paper",
       "thumbnail": "/images/Umelusi-2ndLogo.png",
-      "featured": false,
+      "featured": true,
       "published": true,
       "date": "2025-12-07T17:08:00.000+02:00",
       "title": "Test Resource Paper",
