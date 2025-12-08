@@ -1,121 +1,521 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Similar head to careers.html -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Umelusi Group | Career Opportunity</title>
+    <meta name="description" content="Explore career opportunities at Umelusi Group">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Century+Gothic&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Additional styling for career post page */
+        .job-header {
+            background: linear-gradient(135deg, #FF9933 0%, #ff8000 100%);
+            color: white;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .job-detail-card {
+            border-left: 4px solid #FF9933;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        
+        .job-detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .job-detail-card .card-body {
+            padding: 1.5rem;
+        }
+        
+        .job-detail-icon {
+            color: #FF9933;
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        
+        .job-content-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        
+        .job-content-section h4 {
+            color: #333;
+            border-bottom: 2px solid #FF9933;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .apply-btn-large {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .apply-btn-large:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 153, 51, 0.3);
+        }
+        
+        .back-btn {
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+        
+        .job-meta-badge {
+            background: #FF9933;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .deadline-warning {
+            background: #ff4444;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .job-header {
+                padding: 3rem 0;
+            }
+            
+            .job-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .job-detail-card {
+                margin-bottom: 1rem;
+            }
+            
+            .apply-btn-large {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .back-btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Same navbar as careers.html -->
-    
-    <div class="container py-5">
-        <!-- Breadcrumb -->
-        <nav aria-label="breadcrumb" class="mb-4">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="careers.html">Careers</a></li>
-                <li class="breadcrumb-item active" id="job-breadcrumb">Job Posting</li>
-            </ol>
-        </nav>
-        
-        <!-- Job Loader -->
-        <div id="job-loader" class="text-center my-5">
-            <div class="spinner-border text-warning"></div>
-            <p class="mt-3">Loading job details...</p>
+
+<!-- Same Navbar as careers.html -->
+<nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+            <img src="images/Umelusi-2ndLogo.png" alt="Umelusi Group Logo" class="navbar-logo" id="umelusi-logo" loading="eager"/>
+        </a>          
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        About Us
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="about-company.html">Company Information</a></li>
+                        <li><a class="dropdown-item" href="board-of-directors.html">Board of Directors</a></li>
+                        <li><a class="dropdown-item" href="pressroom.html">Pressroom</a></li>
+                        <li><a class="dropdown-item" href="careers.html">Career Opportunities</a></li>
+                        <li><a class="dropdown-item" href="hierarchy.html">Hierarchy</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Brands
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="fund-managers.html">Umelusi Fund Managers</a></li>
+                        <li><a class="dropdown-item" href="partners.html">Umelusi Partners</a></li>
+                        <li><a class="dropdown-item" href="capital.html">Umelusi Capital</a></li>
+                        <li><a class="dropdown-item" href="finserve.html">Umelusi FinServ</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="markets.html">Markets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="resources.html">Resources & Insights</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
+            </ul>
         </div>
-        
-        <!-- Job Content -->
-        <article id="job-content" class="d-none">
-            <h1 id="job-title"></h1>
-            <div id="job-meta" class="mb-4"></div>
-            
-            <div class="row mb-4">
-                <div class="col-md-6">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">Location</h6>
-                            <p id="job-location" class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">Type</h6>
-                            <p id="job-type" class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">Salary</h6>
-                            <p id="job-salary" class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">Application Deadline</h6>
-                            <p id="job-deadline" class="card-text"></p>
-                        </div>
+    </div>
+</nav>
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="breadcrumb-nav py-2">
+    <div class="container">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="careers.html">Careers</a></li>
+            <li class="breadcrumb-item active" id="job-breadcrumb">Job Details</li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Job Header -->
+<header class="job-header text-center">
+    <div class="container">
+        <h1 id="job-title" class="display-5 fw-bold mb-3"></h1>
+        <div id="job-meta" class="mb-3"></div>
+        <div id="job-badges"></div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container py-5">
+    <!-- Job Loader -->
+    <div id="job-loader" class="text-center my-5">
+        <div class="spinner-border text-warning" style="width: 3rem; height: 3rem;"></div>
+        <p class="mt-3">Loading job details...</p>
+    </div>
+    
+    <!-- Job Content (hidden until loaded) -->
+    <div id="job-content" class="d-none">
+        <!-- Job Details Cards -->
+        <div class="row mb-5">
+            <div class="col-md-3 mb-4">
+                <div class="card job-detail-card h-100">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            <i class="fas fa-map-marker-alt job-detail-icon"></i>Location
+                        </h6>
+                        <p id="job-location" class="card-text fw-bold"></p>
                     </div>
                 </div>
             </div>
-            
-            <h4>Job Description</h4>
-            <div id="job-description" class="mb-4"></div>
-            
-            <h4>Requirements</h4>
-            <div id="job-requirements" class="mb-4"></div>
-            
-            <button onclick="applyForJob()" class="btn btn-warning text-white btn-lg">
-                Apply for this Position
-            </button>
-            
-            <a href="careers.html" class="btn btn-outline-secondary ms-2">
-                Back to All Jobs
-            </a>
-        </article>
+            <div class="col-md-3 mb-4">
+                <div class="card job-detail-card h-100">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            <i class="fas fa-briefcase job-detail-icon"></i>Job Type
+                        </h6>
+                        <p id="job-type" class="card-text fw-bold"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card job-detail-card h-100">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            <i class="fas fa-money-bill-wave job-detail-icon"></i>Salary
+                        </h6>
+                        <p id="job-salary" class="card-text fw-bold"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card job-detail-card h-100">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            <i class="fas fa-calendar-times job-detail-icon"></i>Application Deadline
+                        </h6>
+                        <p id="job-deadline" class="card-text fw-bold"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
         
-        <!-- Apply Form (hidden until user clicks Apply) -->
-        <div id="application-form" class="d-none mt-5 pt-4 border-top">
-            <h3>Apply Now</h3>
-            <!-- Same form as careers.html -->
+        <!-- Job Description -->
+        <div class="job-content-section">
+            <h4><i class="fas fa-file-alt me-2"></i>Job Description</h4>
+            <div id="job-description" class="mb-4"></div>
+        </div>
+        
+        <!-- Requirements -->
+        <div class="job-content-section">
+            <h4><i class="fas fa-list-check me-2"></i>Requirements</h4>
+            <div id="job-requirements" class="mb-4"></div>
+        </div>
+        
+        <!-- How to Apply -->
+        <div class="job-content-section">
+            <h4><i class="fas fa-rocket me-2"></i>How to Apply</h4>
+            <p>Ready to join our team? Click the "Apply Now" button below to submit your application.</p>
+            <p><strong>What you'll need:</strong></p>
+            <ul>
+                <li>Your updated CV/Resume (PDF or DOC format)</li>
+                <li>A cover letter explaining why you're the right fit</li>
+                <li>Any relevant certificates or portfolio items</li>
+            </ul>
+            <div id="deadline-warning" class="deadline-warning d-none">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                Hurry! Applications close soon. Apply before the deadline.
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="text-center py-4">
+            <button onclick="applyForJob()" class="btn btn-warning text-white apply-btn-large me-3">
+                <i class="fas fa-paper-plane me-2"></i>Apply Now
+            </button>
+            <a href="careers.html" class="btn btn-outline-secondary back-btn">
+                <i class="fas fa-arrow-left me-2"></i>Back to All Jobs
+            </a>
+        </div>
+        
+        <!-- Application Form (hidden until user clicks Apply) -->
+        <div id="application-form" class="d-none mt-5 pt-5 border-top">
+            <h3 class="mb-4">Application Form</h3>
+            <form id="job-application-form" class="row g-3">
+                <div class="col-md-6">
+                    <label for="applicant-name" class="form-label">Full Name *</label>
+                    <input type="text" class="form-control" id="applicant-name" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="applicant-email" class="form-label">Email Address *</label>
+                    <input type="email" class="form-control" id="applicant-email" required>
+                </div>
+                <div class="col-md-12">
+                    <label for="applicant-phone" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="applicant-phone">
+                </div>
+                <div class="col-md-12">
+                    <label for="applicant-cv" class="form-label">Upload CV * (PDF, DOC, DOCX, max 5MB)</label>
+                    <input type="file" class="form-control" id="applicant-cv" accept=".pdf,.doc,.docx" required>
+                </div>
+                <div class="col-md-12">
+                    <label for="applicant-cover-letter" class="form-label">Cover Letter *</label>
+                    <textarea class="form-control" id="applicant-cover-letter" rows="5" placeholder="Tell us about your experience and why you're interested in this position..." required></textarea>
+                </div>
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-warning text-white px-5">
+                        <span id="form-submit-text">Submit Application</span>
+                        <span id="form-submit-spinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                    </button>
+                    <button type="button" onclick="cancelApplication()" class="btn btn-outline-secondary ms-2">
+                        Cancel
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-light text-center text-lg-start">
+    <div class="container p-4">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-12 mb-4">
+                <img src="images/Umelusi-2ndLogo.png" alt="Umelusi Group Logo" class="footer-logo">
+            </div>
+            <div class="col-lg-9 col-md-12 mb-4">
+                <div class="social-media mb-3 d-flex justify-content-end">
+                    <a href="https://www.linkedin.com/company/umelusigroup/?viewAsMember=true" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://www.instagram.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="https://www.facebook.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                    <a href="https://www.youtube.com/@UmelusiGroup" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
+                </div>
+                <div class="contact-details text-end">
+                    <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Office D103, Development House, Swazi Plaza</p>
+                    <p class="mb-1"><i class="fas fa-phone me-2"></i>(+268) 2404 3795</p>
+                    <p class="mb-0"><i class="fas fa-envelope me-2"></i><a href="mailto:info@umelusi.com" class="text-dark">info@umelusi.com</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-3" style="background-color: #FF9933; color: white;">
+            © 2025 Copyright:
+            <a class="text-white" href="index.html">Umelusi Group</a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="scripts.js"></script>
+
+<!-- JavaScript for loading the job -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the job ID from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const jobSlug = urlParams.get('id');
     
-    <script>
-    // JavaScript similar to press-article.html
-    document.addEventListener('DOMContentLoaded', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const jobSlug = urlParams.get('id');
-        
-        fetch('/_data/careers.json')
-            .then(response => response.json())
-            .then(data => {
-                const job = data.jobs.find(j => j.slug === jobSlug);
-                if (job) {
-                    displayJob(job);
-                }
-            });
+    if (!jobSlug) {
+        showError('No job specified. Please select a job from the careers page.');
+        return;
+    }
+    
+    // Load the jobs JSON
+    fetch('/_data/careers.json')
+        .then(response => {
+            if (!response.ok) throw new Error('Unable to fetch job data');
+            return response.json();
+        })
+        .then(data => {
+            // Get the jobs array
+            let jobsArray;
+            if (Array.isArray(data)) {
+                jobsArray = data;
+            } else if (data.jobs && Array.isArray(data.jobs)) {
+                jobsArray = data.jobs;
+            } else {
+                throw new Error('Invalid JSON format');
+            }
+            
+            // Find the job by slug
+            const job = jobsArray.find(j => j.slug === jobSlug);
+            
+            if (!job) {
+                showError('Job not found. It may have been removed or expired.');
+                return;
+            }
+            
+            // Display the job
+            displayJob(job);
+        })
+        .catch(error => {
+            console.error('Error loading job:', error);
+            showError('Failed to load job details. Please try again later.');
+        });
+});
+
+function displayJob(job) {
+    // Update page title
+    document.title = `${job.title} | Umelusi Group Careers`;
+    
+    // Update breadcrumb
+    document.getElementById('job-breadcrumb').textContent = job.title;
+    
+    // Set the main job title
+    document.getElementById('job-title').textContent = job.title;
+    
+    // Format and display the date
+    const jobDeadline = new Date(job.deadline);
+    const formattedDeadline = jobDeadline.toLocaleDateString('en-US', { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
     });
     
-    function displayJob(job) {
-        // Fill in all job details
-        document.title = `${job.title} | Umelusi Group Careers`;
-        document.getElementById('job-title').textContent = job.title;
-        document.getElementById('job-location').textContent = job.location;
-        document.getElementById('job-type').textContent = job.type;
-        document.getElementById('job-salary').textContent = job.salary;
-        document.getElementById('job-deadline').textContent = new Date(job.deadline).toLocaleDateString();
-        document.getElementById('job-description').textContent = job.description;
-        document.getElementById('job-requirements').textContent = job.requirements;
-        
-        // Hide loader, show content
-        document.getElementById('job-loader').style.display = 'none';
-        document.getElementById('job-content').classList.remove('d-none');
+    // Set job meta
+    document.getElementById('job-meta').innerHTML = `
+        <p class="lead mb-0">${job.department} Department</p>
+    `;
+    
+    // Add badges
+    document.getElementById('job-badges').innerHTML = `
+        <span class="job-meta-badge">${job.type}</span>
+        <span class="job-meta-badge" style="background: #28a745;">${job.department}</span>
+        <span class="job-meta-badge" style="background: #17a2b8;">Apply by: ${formattedDeadline}</span>
+    `;
+    
+    // Fill job details
+    document.getElementById('job-location').textContent = job.location;
+    document.getElementById('job-type').textContent = job.type;
+    document.getElementById('job-salary').textContent = job.salary || 'Competitive Salary';
+    document.getElementById('job-deadline').textContent = formattedDeadline;
+    
+    // Set job description and requirements
+    document.getElementById('job-description').innerHTML = `
+        <p>${job.description || 'No description available.'}</p>
+    `;
+    
+    document.getElementById('job-requirements').innerHTML = `
+        <p>${job.requirements || 'No specific requirements listed.'}</p>
+    `;
+    
+    // Check if deadline is approaching (within 7 days)
+    const today = new Date();
+    const daysUntilDeadline = Math.ceil((jobDeadline - today) / (1000 * 60 * 60 * 24));
+    
+    if (daysUntilDeadline <= 7 && daysUntilDeadline > 0) {
+        document.getElementById('deadline-warning').classList.remove('d-none');
     }
-    </script>
+    
+    // Hide loader, show content
+    document.getElementById('job-loader').style.display = 'none';
+    document.getElementById('job-content').classList.remove('d-none');
+}
+
+function applyForJob() {
+    // Scroll to application form
+    const formSection = document.getElementById('application-form');
+    formSection.classList.remove('d-none');
+    formSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function cancelApplication() {
+    // Hide application form
+    document.getElementById('application-form').classList.add('d-none');
+}
+
+function showError(message) {
+    const loader = document.getElementById('job-loader');
+    loader.innerHTML = `
+        <div class="alert alert-danger" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            ${message}
+            <br><br>
+            <a href="careers.html" class="btn btn-orange btn-sm">
+                <i class="fas fa-arrow-left me-2"></i>Back to Careers
+            </a>
+        </div>
+    `;
+}
+
+// Handle form submission
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('job-application-form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const submitText = document.getElementById('form-submit-text');
+            const spinner = document.getElementById('form-submit-spinner');
+
+            submitText.textContent = 'Submitting...';
+            spinner.classList.remove('d-none');
+            submitBtn.disabled = true;
+
+            // Simulate form submission
+            setTimeout(() => {
+                alert('Application submitted successfully! We\'ll review your application and be in touch soon.');
+                this.reset();
+                document.getElementById('application-form').classList.add('d-none');
+                submitText.textContent = 'Submit Application';
+                spinner.classList.add('d-none');
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+    }
+});
+</script>
+
 </body>
 </html>
