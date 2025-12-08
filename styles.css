@@ -2123,6 +2123,14 @@ html {
     scroll-behavior: smooth;
 }
 
+
+.finserve-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), 
+                url('images/finserve-hero-bg.jpg') center/cover no-repeat;
+    min-height: 600px; /* Adjust as needed */
+}
+
+
 /* Pressroom Hero CSS */
 .pressroom-hero {
     background: url('images/pressroom-hero.jpg') center/cover no-repeat;
