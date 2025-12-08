@@ -1,59 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Essential Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- SEO & Metadata -->
+    
+    <!-- SEO Meta Tags -->
     <title>Umelusi Group | Fund Managers: Strategic Investment & Wealth Creation</title>
     <meta name="description" content="Umelusi Fund Managers provides expert collective investment schemes and bespoke wealth solutions, focusing on long-term growth and capital preservation for sophisticated investors.">
     <meta name="keywords" content="Umelusi Fund Managers, Investment Management, Collective Investment Schemes, Wealth Creation, Growth Funds, Fixed Income, Asset Management, Africa">
     <link rel="canonical" href="https://www.umelusigroup.com/fund-managers.html">
     
-    <!-- Open Graph / Social Sharing Meta -->
+    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Umelusi Group | Fund Managers: Strategic Investment & Wealth Creation">
     <meta property="og:description" content="Expert collective investment schemes and wealth solutions built for long-term growth and capital preservation.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.umelusigroup.com/fund-managers.html">
     <meta property="og:image" content="https://www.umelusigroup.com/images/umelusi-social-share-image.jpg">
     <meta property="og:site_name" content="Umelusi Group">
-
-    <!-- Twitter Card Meta -->
+    
+    <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@UmelusiGroup"> 
+    <meta name="twitter:site" content="@UmelusiGroup">
     <meta name="twitter:title" content="Umelusi Group | Fund Managers">
     <meta name="twitter:description" content="Strategic Asset Management for lasting value.">
     <meta name="twitter:image" content="https://www.umelusigroup.com/images/umelusi-social-share-image.jpg">
     
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialService",
+      "name": "Umelusi Fund Managers",
+      "url": "https://www.umelusigroup.com/fund-managers.html",
+      "logo": "https://www.umelusigroup.com/images/Umelusi-FundManagers2.png",
+      "description": "Investment Management and Wealth Planning division of Umelusi Group",
+      "parentOrganization": {
+        "@type": "FinancialService",
+        "name": "Umelusi Group"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "(+268) 2404 3795",
+        "contactType": "customer service",
+        "availableLanguage": "English"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Office D103, Development House, Swazi Plaza",
+        "addressLocality": "Mbabane",
+        "addressCountry": "Eswatini"
+      }
+    }
+    </script>
+    
     <!-- Favicon -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
-    <!-- Stylesheets & Scripts -->
+    
+    <!-- Stylesheets -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-
-    <!-- ============================================== -->
-    <!-- NAVBAR (User-Provided) -->
-    <!-- ============================================== -->
+    <!-- Skip Navigation Link -->
+    <a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
+    
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
-                <img src="images/Umelusi-2ndLogo.png" alt="Umelusi Group Logo" class="navbar-logo" id="umelusi-logo" loading="eager" />
-              </a>          
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation menu">
+            <a class="navbar-brand" href="index.html" aria-label="Umelusi Group Home">
+                <img src="images/Umelusi-2ndLogo.png" 
+                     alt="Umelusi Group Logo" 
+                     class="navbar-logo" 
+                     width="180" 
+                     height="60"
+                     loading="eager">
+            </a>
+            
+            <button class="navbar-toggler" 
+                    type="button" 
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" 
+                    aria-expanded="false" 
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Home</a>
                     </li>
+                    
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" 
+                           href="#" 
+                           role="button" 
+                           data-bs-toggle="dropdown" 
+                           aria-expanded="false">
                             About Us
                         </a>
                         <ul class="dropdown-menu">
@@ -64,409 +111,533 @@
                             <li><a class="dropdown-item" href="hierarchy.html">Hierarchy</a></li>
                         </ul>
                     </li>
+                    
                     <li class="nav-item dropdown">
-                        <!-- Mark the main Brands link as active since we are on a Brand page -->
-                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle active" 
+                           href="#" 
+                           role="button" 
+                           data-bs-toggle="dropdown" 
+                           aria-expanded="false"
+                           aria-current="page">
                             Brands
                         </a>
                         <ul class="dropdown-menu">
-                            <!-- Mark the specific page link as active -->
-                            <li><a class="dropdown-item active" aria-current="page" href="fund-managers.html">Umelusi Fund Managers</a></li>
+                            <li><a class="dropdown-item active" href="fund-managers.html" aria-current="page">Umelusi Fund Managers</a></li>
                             <li><a class="dropdown-item" href="partners.html">Umelusi Partners</a></li>
                             <li><a class="dropdown-item" href="capital.html">Umelusi Capital</a></li>
                             <li><a class="dropdown-item" href="finserve.html">Umelusi FinServ</a></li>
                         </ul>
                     </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="markets.html">Markets</a>
                     </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="resources.html">Resources & Insights</a>
                     </li>
+                    
                     <li class="nav-item">
-                        <!-- CONTACT US LINK -->
-                        <a class="nav-link active" href="contact.html">Contact Us</a>
+                        <a class="nav-link" href="contact.html">Contact Us</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-
-
-    <!-- ============================================== -->
-    <!-- HERO SECTION: Fund Managers -->
-    <!-- ============================================== -->
-    <!-- Hero Section -->
-    <header id="fund-managers-hero" class="fund-managers-hero d-flex align-items-left">
-    <div class="container text-left" data-aos="fade-up">
-        <!-- Added text-white class for explicit white color -->
-        <h1 class="display-3 fw-bold text-shadow text-white">Umelusi Fund Managers</h1>
-        <!-- Added text-white class for explicit white color -->
-        <p class="lead mb-4 text-shadow-sm text-white">
-            Strategic Investment Management for Long-Term Value Creation.
-        </p>
-        <!-- Replaced old button class with the new btn-umelusi-orange class -->
-        <a href="#contact" class="btn btn-lg btn-umelusi-orange shadow-lg">Discover Our Mandates</a>
-    </div>
-</header>
-
-     <!-- ============================================== -->
-    <!-- BREADCRUMBS -->
-    <!-- ============================================== -->
-    <nav aria-label="breadcrumb" class="breadcrumb-nav py-2" data-aos="fade-down">
-  <div class="container">
-    <ol class="breadcrumb mb-0" id="breadcrumb-trail" aria-label="You are here: Home > Umelusi FinServ">
-      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-    </ol>
-  </div>
-</nav>
-
-
-<section class="about-brand-section py-5 fund-managers-section">
-  <div class="container" data-aos="fade-up">
-    <div class="row justify-content-center">
-      <div class="col-lg-10 text-center">
-        <!-- Using the requested --capital-primary color variable here (Umelusi Orange) -->
-        <h2 class="mb-4" style="color: var(--capital-primary);">Strategic Asset Management and Wealth Creation</h2>
-        <p class="lead">
-          Umelusi Fund Managers is the dedicated investment and asset management arm of Umelusi Group. We deliver specialized investment strategies and wealth planning services designed to preserve and grow institutional capital and high-net-worth portfolios across Africa.
-        </p>
-        <p>
-          We partner with pension funds, corporate clients, and private individuals, focusing on long-term value creation through disciplined research and active portfolio management. Our expertise spans fixed income, equity, and alternative investment classes, tailored to meet complex fiduciary duties and specific client risk profiles.
-        </p>
-        <!-- Button text and style updated -->
-        <a href="#key-services" class="btn btn-outline-brand mt-3">Explore Our Investment Philosophy</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-    <!-- ============================================== -->
-    <!-- 2. CORE OFFERING: Funds and Mandates -->
-    <!-- ============================================== -->
-    <section id="investment-pillars" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Our Investment Pillars</h2>
-            <div class="row g-4 text-center">
-                
-                <!-- Pillar 1: Growth Funds -->
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card h-100 p-4 shadow-sm border-0">
-                        <i class="fas fa-rocket fa-4x text-brand mb-3"></i>
-                        <h4 class="fw-bold">Growth Mandates</h4>
-                        <p class="text-muted">Aggressive strategies focused on maximizing long-term capital appreciation through high-conviction equity and emerging market exposure.</p>
-                        <a href="#" class="mt-auto text-brand fw-bold">View Equity Funds <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Pillar 2: Balanced Solutions -->
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card h-100 p-4 shadow-sm border-0">
-                        <i class="fas fa-balance-scale fa-4x text-brand mb-3"></i>
-                        <h4 class="fw-bold">Balanced Solutions</h4>
-                        <p class="text-muted">Optimally managed funds that blend stable fixed income with calculated equity exposure to manage volatility and deliver steady returns.</p>
-                        <a href="#" class="mt-auto text-brand fw-bold">View Balanced Funds <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Pillar 3: Income & Fixed Income -->
-                <div class="col-lg-4 col-md-12" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card h-100 p-4 shadow-sm border-0">
-                        <i class="fas fa-hand-holding-usd fa-4x text-brand mb-3"></i>
-                        <h4 class="fw-bold">Income & Preservation</h4>
-                        <p class="text-muted">Conservative mandates focusing on predictable income generation and capital preservation, suitable for retirees and low-risk tolerance clients.</p>
-                        <a href="#" class="mt-auto text-brand fw-bold">View Income Funds <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <div class="section-divider" data-aos="fade-in"></div>
-
     
-    <!-- ============================================== -->
-    <!-- 3. WHY CHOOSE US (The Umelusi Fund Managers Difference) -->
-    <!-- ============================================== -->
-    <section id="why-umelusi" class="py-5 bg-light">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
-                    <h2 class="fw-bold mb-4">The Umelusi Fund Managers Difference</h2>
-                    <p class="lead">
-                        We are more than asset managers; we are stewards of your future. Our approach combines rigorous, research-driven analysis with a bespoke understanding of local and pan-African market dynamics.
-                    </p>
-                    <ul class="list-unstyled mt-4 feature-list">
-                        <li><i class="fas fa-check-circle text-brand me-2"></i> <b>Fiduciary Duty:</b> Your financial well-being is our highest priority.</li>
-                        <li><i class="fas fa-check-circle text-brand me-2"></i> <b>Proprietary Research:</b> Investment decisions backed by deep-dive, exclusive market intelligence.</li>
-                        <li><i class="fas fa-check-circle text-brand me-2"></i> <b>Risk-Adjusted Returns:</b> A constant focus on generating superior returns while minimizing downside volatility.</li>
-                    </ul>
-                    <a href="#market-data" class="btn btn-outline-brand mt-3">Explore Our Performance</a>
-                </div>
-                <div class="col-lg-6" data-aos="fade-left">
-                    <!-- Placeholder for a graph/chart image or team photo -->
-                    <img src="images/fund-managers-team.jpg" class="img-fluid rounded shadow-lg" alt="Team discussing investment strategy">
+    <!-- Main Content -->
+    <main id="main-content">
+        
+        <!-- Hero Section -->
+        <header id="fund-managers-hero" class="fund-managers-hero d-flex align-items-center" aria-label="Umelusi Fund Managers Hero Section">
+            <div class="container text-center text-lg-start" data-aos="fade-up">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <h1 class="display-3 fw-bold text-shadow text-white mb-4">Umelusi Fund Managers</h1>
+                        <p class="lead mb-5 text-shadow-sm text-white">
+                            Strategic Investment Management for Long-Term Value Creation.
+                        </p>
+                        <a href="#contact-form" class="btn btn-lg btn-umelusi-orange shadow-lg px-5 py-3">
+                            Discover Our Mandates
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <div class="section-divider" data-aos="fade-in"></div>
-
-
-    <!-- ============================================== -->
-    <!-- 4. Umelusi Golf League Sponsorship -->
-    <!-- ============================================== -->
-    <section id="golf-league-sponsorship" class="py-5">
-    <div class="container">
-        <div class="row g-5 align-items-center">
-            
-            <!-- Left Column: Image -->
-            <div class="col-lg-6 order-lg-1">
-                <img src="images/golf-league.jpg" alt="Umelusi Fund Managers Business Golf League at Mbabane Golf Club" class="img-fluid rounded shadow-lg golf-image">
+        </header>
+        
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav py-3" data-aos="fade-down">
+            <div class="container">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Umelusi Fund Managers</li>
+                </ol>
             </div>
-
-            <!-- Right Column: Text and Button -->
-            <div class="col-lg-6 order-lg-0">
-                <h3 class="fw-bold display-6 text-dark mb-4">Umelusi Business Golf League</h3>
-                
-                <!-- Text Block -->
-                <p class="fs-5 mb-4">
-                    Umelusi Fund Managers is proud to be the official sponsor of the **Business Golf League** at the prestigious **Mbabane Golf Club**. This monthly event is a key networking fixture for the Eswatini business community, providing a relaxed, professional setting for our clients and partners to connect. The league is held every **second Wednesday of the month** and brings together leading executives and decision-makers for competitive play and relationship building, reinforcing our commitment to community engagement and professional growth beyond traditional finance.
-                </p>
-                
-                <!-- Call to Action Button -->
-                <a href="#" class="btn btn-brand btn-lg league-button shadow-sm px-5" role="button">
-                    View League Schedule
-                </a>
+        </nav>
+        
+        <!-- About Brand Section -->
+        <section class="about-brand-section py-5 fund-managers-section" aria-labelledby="about-heading">
+            <div class="container" data-aos="fade-up">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center">
+                        <h2 id="about-heading" class="mb-4 text-umelusi-orange fw-bold">
+                            Strategic Asset Management and Wealth Creation
+                        </h2>
+                        <p class="lead mb-4">
+                            Umelusi Fund Managers is the dedicated investment and asset management arm of Umelusi Group. 
+                            We deliver specialized investment strategies and wealth planning services designed to preserve 
+                            and grow institutional capital and high-net-worth portfolios across Africa.
+                        </p>
+                        <p class="mb-0">
+                            We partner with pension funds, corporate clients, and private individuals, focusing on long-term 
+                            value creation through disciplined research and active portfolio management. Our expertise spans 
+                            fixed income, equity, and alternative investment classes, tailored to meet complex fiduciary 
+                            duties and specific client risk profiles.
+                        </p>
+                    </div>
+                </div>
             </div>
-
-        </div>
-    </div>
-</section>
-
-<div class="section-divider" data-aos="fade-in"></div>
-
-
-
-<!--Explore Other Brands Section-->
-
-    <div class="container py-5">
-    <h3 class="text-center mb-4">Explore Other Umelusi Brands</h3>
-    <div class="row g-4 justify-content-center">
-      <div class="col-md-3">
-        <a href="capital.html" class="brand-card d-block text-center">
-          <img src="images/Umelusi-Capital.png" alt="Umelusi Capital Logo" class="brand-logo mb-2" />
-          <h5 class="brand-fund-managers">Umelusi Capital</h5>
-          <p>Corporate finance & investment banking</p>
-        </a>
-      </div>
-      <div class="col-md-3">
-        <a href="partners.html" class="brand-card d-block text-center">
-          <img src="images/logo-partners.png" alt="Umelusi Partners Logo" class="brand-logo mb-2" />
-          <h5 class="brand-partners">Umelusi Partners</h5>
-          <p>Strategic advisory & consulting</p>
-        </a>
-      </div>
-      <div class="col-md-3">
-        <a href="finserve.html" class="brand-card d-block text-center">
-          <img src="images/logo-finserve.png" alt="Umelusi FinServe Logo" class="brand-logo mb-2" />
-          <h5 class="brand-finserve">Umelusi FinServ</h5>
-          <p>ForEX and Western Union Servicess</p>
-        </a>
-      </div>
-    </div>
-  </div>
-
-    <form 
-  name="fund-managers-contact" 
-  method="POST" 
-  data-netlify="true" 
-  netlify-honeypot="bot-field"
->
-  <input type="hidden" name="form-name" value="fund-managers-contact">
-  <div class="d-none">
-    <label>Don't fill this out: <input name="bot-field"></label>
-  </div>
-
-  <!-- ADD THIS (same URL for all forms) -->
-<input type="hidden" name="_redirect" value="https://thunderous-axolotl-e8f0a2.netlify.app/thank-you.html">
-
-  <div class="mb-3">
-    <label for="fund-managers-name" class="form-label">Full Name *</label>
-    <input type="text" class="form-control" id="fund-managers-name" name="fullName" placeholder="Enter your full name" required>
-  </div>
-
-  <div class="mb-3">
-    <label for="fund-managers-email" class="form-label">Work Email Address *</label>
-    <input type="email" class="form-control" id="fund-managers-email" name="email" placeholder="example@organization.com" required>
-  </div>
-
-  <div class="mb-3">
-    <label for="fund-managers-organization" class="form-label">Organization / Institution</label>
-    <input type="text" class="form-control" id="fund-managers-organization" name="organization" placeholder="Enter your institution name">
-  </div>
-
-  <div class="mb-3">
-    <label for="fund-managers-service" class="form-label">Investment Interest *</label>
-    <select class="form-select" id="fund-managers-service" name="investmentInterest" required>
-      <option value="">Select an investment focus</option>
-      <option value="institutional-mandate">Institutional Fund Mandate</option>
-      <option value="private-wealth">High Net Worth/Private Wealth</option>
-      <option value="alternative-assets">Alternative Assets (e.g., Private Equity)</option>
-      <option value="retirement-funds">Retirement & Pension Funds</option>
-    </select>
-  </div>
-
-  <div class="mb-3">
-    <label for="fund-managers-message" class="form-label">Briefly Outline Your Investment Objective</label>
-    <textarea class="form-control" id="fund-managers-message" name="message" rows="4" placeholder="e.g., We are seeking a fixed income mandate, or I need long-term wealth planning advice..."></textarea>
-  </div>
-
-  <button type="submit" class="btn btn-primary w-100">Submit Investment Inquiry</button>
-</form>
-
-    <!-- ============================================== -->
-    <!-- FOOTER (User-Provided) -->
-    <!-- ============================================== -->
-    <!-- Same Footer as other pages -->
+        </section>
+        
+        <!-- Investment Pillars -->
+        <section id="investment-pillars" class="py-5 bg-light" aria-labelledby="pillars-heading">
+            <div class="container">
+                <h2 id="pillars-heading" class="text-center mb-5 fw-bold" data-aos="fade-up">Our Investment Pillars</h2>
+                <div class="row g-4 text-center">
+                    
+                    <!-- Pillar 1: Growth Funds -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <article class="card h-100 p-4 shadow-sm border-0 bg-white">
+                            <div class="icon-wrapper mb-3">
+                                <i class="fas fa-rocket fa-3x text-umelusi-orange" aria-hidden="true"></i>
+                            </div>
+                            <h3 class="h4 fw-bold mb-3">Growth Mandates</h3>
+                            <p class="text-muted mb-4">
+                                Aggressive strategies focused on maximizing long-term capital appreciation through 
+                                high-conviction equity and emerging market exposure.
+                            </p>
+                            <a href="#contact-form" class="mt-auto text-umelusi-orange fw-bold text-decoration-none">
+                                Inquire About Growth Funds <i class="fas fa-arrow-right ms-1" aria-hidden="true"></i>
+                            </a>
+                        </article>
+                    </div>
+                    
+                    <!-- Pillar 2: Balanced Solutions -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <article class="card h-100 p-4 shadow-sm border-0 bg-white">
+                            <div class="icon-wrapper mb-3">
+                                <i class="fas fa-balance-scale fa-3x text-umelusi-orange" aria-hidden="true"></i>
+                            </div>
+                            <h3 class="h4 fw-bold mb-3">Balanced Solutions</h3>
+                            <p class="text-muted mb-4">
+                                Optimally managed funds that blend stable fixed income with calculated equity exposure 
+                                to manage volatility and deliver steady returns.
+                            </p>
+                            <a href="#contact-form" class="mt-auto text-umelusi-orange fw-bold text-decoration-none">
+                                Inquire About Balanced Funds <i class="fas fa-arrow-right ms-1" aria-hidden="true"></i>
+                            </a>
+                        </article>
+                    </div>
+                    
+                    <!-- Pillar 3: Income & Fixed Income -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <article class="card h-100 p-4 shadow-sm border-0 bg-white">
+                            <div class="icon-wrapper mb-3">
+                                <i class="fas fa-hand-holding-usd fa-3x text-umelusi-orange" aria-hidden="true"></i>
+                            </div>
+                            <h3 class="h4 fw-bold mb-3">Income & Preservation</h3>
+                            <p class="text-muted mb-4">
+                                Conservative mandates focusing on predictable income generation and capital preservation, 
+                                suitable for retirees and low-risk tolerance clients.
+                            </p>
+                            <a href="#contact-form" class="mt-auto text-umelusi-orange fw-bold text-decoration-none">
+                                Inquire About Income Funds <i class="fas fa-arrow-right ms-1" aria-hidden="true"></i>
+                            </a>
+                        </article>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <!-- Why Choose Us -->
+        <section id="why-umelusi" class="py-5 bg-white" aria-labelledby="difference-heading">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                        <h2 id="difference-heading" class="fw-bold mb-4 text-umelusi-orange">The Umelusi Fund Managers Difference</h2>
+                        <p class="lead mb-4">
+                            We are more than asset managers; we are stewards of your future. Our approach combines 
+                            rigorous, research-driven analysis with a bespoke understanding of local and pan-African 
+                            market dynamics.
+                        </p>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <i class="fas fa-check-circle text-umelusi-orange me-2" aria-hidden="true"></i>
+                                <strong class="text-dark">Fiduciary Duty:</strong> Your financial well-being is our highest priority.
+                            </li>
+                            <li class="mb-3">
+                                <i class="fas fa-check-circle text-umelusi-orange me-2" aria-hidden="true"></i>
+                                <strong class="text-dark">Proprietary Research:</strong> Investment decisions backed by deep-dive, exclusive market intelligence.
+                            </li>
+                            <li class="mb-3">
+                                <i class="fas fa-check-circle text-umelusi-orange me-2" aria-hidden="true"></i>
+                                <strong class="text-dark">Risk-Adjusted Returns:</strong> A constant focus on generating superior returns while minimizing downside volatility.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <img src="images/fund-managers-team.jpg" 
+                             class="img-fluid rounded shadow-lg" 
+                             alt="Team of investment professionals discussing strategy around a table"
+                             width="600"
+                             height="400"
+                             loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Golf League Sponsorship -->
+        <section id="golf-league-sponsorship" class="py-5 bg-light" aria-labelledby="golf-heading">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    
+                    <!-- Left Column: Image -->
+                    <div class="col-lg-6 order-lg-1" data-aos="fade-left">
+                        <img src="images/golf-league.jpg" 
+                             alt="Umelusi Fund Managers Business Golf League at Mbabane Golf Club" 
+                             class="img-fluid rounded shadow-lg golf-image"
+                             width="600"
+                             height="400"
+                             loading="lazy">
+                    </div>
+                    
+                    <!-- Right Column: Text and Button -->
+                    <div class="col-lg-6 order-lg-0" data-aos="fade-right">
+                        <h3 id="golf-heading" class="fw-bold display-6 text-dark mb-4">Umelusi Business Golf League</h3>
+                        
+                        <p class="fs-5 mb-4">
+                            Umelusi Fund Managers is proud to be the official sponsor of the <strong>Business Golf League</strong> 
+                            at the prestigious <strong>Mbabane Golf Club</strong>. This monthly event is a key networking fixture 
+                            for the Eswatini business community, providing a relaxed, professional setting for our clients 
+                            and partners to connect.
+                        </p>
+                        
+                        <p class="fs-5 mb-4">
+                            The league is held every <strong>second Wednesday of the month</strong> 
+                            and brings together leading executives and decision-makers for competitive play and relationship 
+                            building, reinforcing our commitment to community engagement and professional growth beyond 
+                            traditional finance.
+                        </p>
+                        
+                        <a href="documents/2026-umelusi-fund-managers-business-league-schedule.pdf" 
+                           class="btn btn-umelusi-orange btn-lg shadow-sm px-5 py-3"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="View the 2026 Umelusi Fund Managers Business League Schedule (PDF)">
+                            View League Schedule (PDF)
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <!-- Explore Other Brands -->
+        <section class="py-5 bg-white" aria-labelledby="other-brands-heading">
+            <div class="container">
+                <h3 id="other-brands-heading" class="text-center mb-5 fw-bold" data-aos="fade-up">Explore Other Umelusi Brands</h3>
+                <div class="row g-4 justify-content-center">
+                    
+                    <!-- Umelusi Capital -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <article class="brand-card d-block text-center h-100 p-4 rounded shadow-sm">
+                            <img src="images/Umelusi-Capital.png" 
+                                 alt="Umelusi Capital Logo" 
+                                 class="brand-logo mb-3"
+                                 width="120"
+                                 height="60"
+                                 loading="lazy">
+                            <h4 class="h5 fw-bold mb-2">Umelusi Capital</h4>
+                            <p class="text-muted mb-3">Corporate finance & investment banking</p>
+                            <a href="capital.html" class="btn btn-outline-umelusi-orange mt-2">Learn More</a>
+                        </article>
+                    </div>
+                    
+                    <!-- Umelusi Partners -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <article class="brand-card d-block text-center h-100 p-4 rounded shadow-sm">
+                            <img src="images/logo-partners.png" 
+                                 alt="Umelusi Partners Logo" 
+                                 class="brand-logo mb-3"
+                                 width="120"
+                                 height="60"
+                                 loading="lazy">
+                            <h4 class="h5 fw-bold mb-2">Umelusi Partners</h4>
+                            <p class="text-muted mb-3">Strategic advisory & consulting</p>
+                            <a href="partners.html" class="btn btn-outline-umelusi-orange mt-2">Learn More</a>
+                        </article>
+                    </div>
+                    
+                    <!-- Umelusi FinServ -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                        <article class="brand-card d-block text-center h-100 p-4 rounded shadow-sm">
+                            <img src="images/logo-finserve.png" 
+                                 alt="Umelusi FinServe Logo" 
+                                 class="brand-logo mb-3"
+                                 width="120"
+                                 height="60"
+                                 loading="lazy">
+                            <h4 class="h5 fw-bold mb-2">Umelusi FinServ</h4>
+                            <p class="text-muted mb-3">Foreign Exchange and Western Union Services</p>
+                            <a href="finserve.html" class="btn btn-outline-umelusi-orange mt-2">Learn More</a>
+                        </article>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Form Section -->
+        <section id="contact-form" class="py-5 bg-light" aria-labelledby="contact-heading">
+            <div class="container" data-aos="fade-up">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <h2 id="contact-heading" class="fw-bold mb-3 text-umelusi-orange">Start Your Investment Journey</h2>
+                        <p class="lead mb-4">
+                            Connect with our team of investment specialists to discuss tailored fund mandates, 
+                            wealth planning strategies, and portfolio management solutions.
+                        </p>
+                        
+                        <div class="contact-info mt-4 p-4 bg-white rounded shadow-sm">
+                            <h3 class="h5 mb-3 fw-bold">Quick Contact</h3>
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-2">
+                                    <i class="fas fa-phone text-umelusi-orange me-2" aria-hidden="true"></i>
+                                    <a href="tel:+26824043795" class="text-decoration-none">(+268) 2404 3795</a>
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-envelope text-umelusi-orange me-2" aria-hidden="true"></i>
+                                    <a href="mailto:fundmanagers@umelusi.com" class="text-decoration-none">fundmanagers@umelusi.com</a>
+                                </li>
+                                <li>
+                                    <i class="fas fa-map-marker-alt text-umelusi-orange me-2" aria-hidden="true"></i>
+                                    Office D103, Development House, Swazi Plaza, Mbabane
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="p-4 p-lg-5 shadow-lg rounded bg-white">
+                            <h3 class="h4 mb-4 text-center fw-bold">Investment Inquiry Form</h3>
+                            
+                            <!-- Netlify Form -->
+                            <form name="fund-managers-contact" 
+                                  method="POST" 
+                                  data-netlify="true" 
+                                  netlify-honeypot="bot-field">
+                                
+                                <input type="hidden" name="form-name" value="fund-managers-contact">
+                                <input type="hidden" name="_redirect" 
+                                       value="https://thunderous-axolotl-e8f0a2.netlify.app/thank-you.html">
+                                
+                                <!-- Honeypot Field -->
+                                <div class="d-none" aria-hidden="true">
+                                    <label>Don't fill this out: <input name="bot-field"></label>
+                                </div>
+                                
+                                <!-- Form Fields -->
+                                <div class="mb-3">
+                                    <label for="fund-managers-name" class="form-label fw-bold">Full Name <span class="text-danger">*</span></label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="fund-managers-name" 
+                                           name="fullName" 
+                                           placeholder="Enter your full name" 
+                                           required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="fund-managers-email" class="form-label fw-bold">Work Email Address <span class="text-danger">*</span></label>
+                                    <input type="email" 
+                                           class="form-control" 
+                                           id="fund-managers-email" 
+                                           name="email" 
+                                           placeholder="example@organization.com" 
+                                           required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="fund-managers-organization" class="form-label fw-bold">Organization / Institution</label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="fund-managers-organization" 
+                                           name="organization" 
+                                           placeholder="Enter your institution name">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="fund-managers-service" class="form-label fw-bold">Investment Interest <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="fund-managers-service" name="investmentInterest" required>
+                                        <option value="">Select an investment focus</option>
+                                        <option value="institutional-mandate">Institutional Fund Mandate</option>
+                                        <option value="private-wealth">High Net Worth/Private Wealth</option>
+                                        <option value="alternative-assets">Alternative Assets (e.g., Private Equity)</option>
+                                        <option value="retirement-funds">Retirement & Pension Funds</option>
+                                        <option value="general-inquiry">General Investment Inquiry</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="fund-managers-message" class="form-label fw-bold">Briefly Outline Your Investment Objective</label>
+                                    <textarea class="form-control" 
+                                              id="fund-managers-message" 
+                                              name="message" 
+                                              rows="4" 
+                                              placeholder="e.g., We are seeking a fixed income mandate, or I need long-term wealth planning advice..."></textarea>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-umelusi-orange w-100 py-3 fw-bold">
+                                    Submit Investment Inquiry
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
     <footer class="bg-light text-center text-lg-start">
-    <div class="container p-4">
-        <div class="row align-items-center">
-            <div class="col-lg-3 col-md-12 mb-4">
-                <img src="images/Umelusi-2ndLogo.png" alt="Umelusi Group Logo" class="footer-logo" loading="lazy">
-            </div>
-            <div class="col-lg-9 col-md-12 mb-4">
-                <div class="social-media mb-3 d-flex justify-content-end">
-                    <a href="https://www.linkedin.com/company/umelusigroup/?viewAsMember=true" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
-                    <a href="https://www.instagram.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                    <a href="https://www.facebook.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
-                    <a href="https://www.youtube.com/@UmelusiGroup" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
+        <div class="container p-4">
+            <div class="row align-items-center">
+                <div class="col-lg-3 col-md-12 mb-4">
+                    <img src="images/Umelusi-2ndLogo.png" 
+                         alt="Umelusi Group Logo" 
+                         class="footer-logo"
+                         width="200"
+                         height="70"
+                         loading="lazy">
                 </div>
-                <div class="contact-details text-end">
-                    <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Office D103, Development House, Swazi Plaza</p>
-                    <p class="mb-1"><i class="fas fa-phone me-2"></i>(+268) 2404 3795</p>
-                    <p class="mb-0"><i class="fas fa-envelope me-2"></i><a href="mailto:info@umelusi.com" class="text-dark">info@umelusi.com</a></p>
+                
+                <div class="col-lg-9 col-md-12 mb-4">
+                    <div class="social-media mb-3 d-flex justify-content-end">
+                        <a href="https://www.linkedin.com/company/umelusigroup/?viewAsMember=true" 
+                           class="text-dark me-3"
+                           aria-label="Visit our LinkedIn page">
+                            <i class="fab fa-linkedin fa-lg"></i>
+                        </a>
+                        <a href="https://www.instagram.com/umelusigroup/" 
+                           class="text-dark me-3"
+                           aria-label="Visit our Instagram page">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                        <a href="https://www.facebook.com/umelusigroup/" 
+                           class="text-dark me-3"
+                           aria-label="Visit our Facebook page">
+                            <i class="fab fa-facebook-f fa-lg"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@UmelusiGroup" 
+                           class="text-dark"
+                           aria-label="Visit our YouTube channel">
+                            <i class="fab fa-youtube fa-lg"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="contact-details text-end">
+                        <address>
+                            <p class="mb-1">
+                                <i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>
+                                Office D103, Development House, Swazi Plaza
+                            </p>
+                            <p class="mb-1">
+                                <i class="fas fa-phone me-2" aria-hidden="true"></i>
+                                (+268) 2404 3795
+                            </p>
+                            <p class="mb-0">
+                                <i class="fas fa-envelope me-2" aria-hidden="true"></i>
+                                <a href="mailto:info@umelusi.com" class="text-dark text-decoration-none">info@umelusi.com</a>
+                            </p>
+                        </address>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-6 mb-4">
-                <h5 class="text-uppercase">About Umelusi Group</h5>
-                <ul class="list-unstyled">
-                    <li><a href="about-company.html">Company Information</a></li>
-                    <li><a href="pressroom.html">Pressroom</a></li>
-                    <li><a href="careers.html">Career Opportunities</a></li>
-                    <li><a href="hierarchy.html">Hierarchy</a></li>
-                </ul>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="text-uppercase fw-bold">About Umelusi Group</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about-company.html" class="text-decoration-none">Company Information</a></li>
+                        <li><a href="board-of-directors.html" class="text-decoration-none">Board of Directors</a></li>
+                        <li><a href="pressroom.html" class="text-decoration-none">Pressroom</a></li>
+                        <li><a href="careers.html" class="text-decoration-none">Career Opportunities</a></li>
+                        <li><a href="hierarchy.html" class="text-decoration-none">Hierarchy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="text-uppercase fw-bold">Brands</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="fund-managers.html" class="active text-decoration-none fw-bold" aria-current="page">Umelusi Fund Managers</a></li>
+                        <li><a href="partners.html" class="text-decoration-none">Umelusi Partners</a></li>
+                        <li><a href="capital.html" class="text-decoration-none">Umelusi Capital</a></li>
+                        <li><a href="finserve.html" class="text-decoration-none">Umelusi FinServ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="text-uppercase fw-bold">Privacy & Security</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="privacy.html" class="text-decoration-none">Online Privacy Notice</a></li>
+                        <li><a href="security.html" class="text-decoration-none">Security at Umelusi</a></li>
+                        <li><a href="cookies.html" class="text-decoration-none">Manage Cookies</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="text-uppercase fw-bold">Forms & Notices</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="accessibility.html" class="text-decoration-none">Accessibility</a></li>
+                        <li><a href="resources.html" class="text-decoration-none">Reports</a></li>
+                        <li><a href="resources.html#faq" class="text-decoration-none">FAQs</a></li>
+                        <li><a href="contact.html" class="text-decoration-none">Contact Form</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <h5 class="text-uppercase">Brands</h5>
-                <ul class="list-unstyled">
-                    <li><a href="fund-managers.html">Umelusi Fund Managers</a></li>
-                    <li><a href="partners.html">Umelusi Partners</a></li>
-                    <li><a href="capital.html">Umelusi Capital</a></li>
-                    <li><a href="finserve.html">Umelusi FinServ</a></li>
-                </ul>
+            
+            <div class="text-center p-3" style="background-color: #FF9933; color: white;">
+                <small>
+                    © 2025 Copyright:
+                    <a class="text-white text-decoration-none fw-bold" href="index.html">Umelusi Group</a>
+                    | All rights reserved.
+                </small>
             </div>
-            <!-- Privacy & Security Section -->
-<div class="col-lg-3 col-md-6 mb-4">
-    <h5 class="text-uppercase">Privacy & Security</h5>
-    <ul class="list-unstyled">
-        <li><a href="privacy.html">Online Privacy Notice</a></li>
-        <li><a href="security.html">Security at Umelusi</a></li>
-        <li><a href="cookies.html">Manage Cookies</a></li>
-    </ul>
-</div>
-
-<!-- Forms & Notices Section -->
-<div class="col-lg-3 col-md-6 mb-4">
-    <h5 class="text-uppercase">Forms & Notices</h5>
-    <ul class="list-unstyled">
-        <li><a href="accessibility.html">Accessibility</a></li>
-        <li><a href="resources.html">Reports</a></li>
-        <li><a href="resources.html#faq">FAQs</a></li>
-        <li><a href="contact.html">Contact Form</a></li>
-    </ul>
-</div>
         </div>
-        <div class="text-center p-3" style="background-color: #FF9933; color: white;">
-            © 2025 Copyright:
-            <a class="text-white" href="index.html">Umelusi Group</a>
-        </div>
-    </div>
-</footer>
-
+    </footer>
+    
     <!-- Back to Top Button -->
-    <button id="back-to-top" class="btn btn-floating" style="position: fixed; bottom: 20px; right: 20px; display: none;" aria-label="Scroll back to top">
+    <button id="back-to-top" 
+            class="btn btn-umelusi-orange btn-floating rounded-circle shadow" 
+            style="position: fixed; bottom: 20px; right: 20px; display: none; width: 50px; height: 50px;"
+            aria-label="Scroll back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
-
-    <!-- CONTACT MODAL FOR FUND MANAGERS -->
-    <div class="modal fade" id="fundManagersContactModal" tabindex="-1" aria-labelledby="fundManagersContactModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: var(--brand-primary, #FF9933); color: white;">
-                    <h5 class="modal-title" id="fundManagersContactModalLabel">Investment Consultation Request</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4">
-                    <p class="lead text-center">
-                        Secure your appointment to discuss our tailored funds and wealth management services.
-                    </p>
-                    
-                    <!-- Form uses Node.js backend -->
-                    <form id="modalFundManagersForm" name="modalFundManagersForm" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="modalFMName" class="form-label">Full Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="modalFMName" name="name" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="modalFMEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" id="modalFMEmail" name="email" required>
-                            </div>
-                            
-                            <div class="col-12">
-                                <label for="modalFMSubject" class="form-label">Area of Interest <span class="text-danger">*</span></label>
-                                <select class="form-select" id="modalFMSubject" name="subject" required>
-                                    <option value="" selected disabled>Select a specific area...</option>
-                                    <option value="Fund Managers: Equity Growth Funds">Equity/Growth Funds</option>
-                                    <option value="Fund Managers: Balanced Mandate">Balanced Mandate & Retirement</option>
-                                    <option value="Fund Managers: Fixed Income">Fixed Income/Income Funds</option>
-                                    <option value="Fund Managers: Institutional Mandate">Institutional Mandate</option>
-                                    <option value="Fund Managers: General Investment Inquiry">General Investment Inquiry</option>
-                                </select>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="modalFMMessage" class="form-label">Your Goals <span class="text-danger">*</span></label>
-                                <textarea class="form-control" id="modalFMMessage" name="message" rows="3" required placeholder="Describe your investment goals or questions..."></textarea>
-                            </div>
-
-                            <div class="col-12 text-center pt-3">
-                                <button type="submit" class="btn btn-brand btn-lg px-5">Book Consultation</button>
-                            </div>
-                        </div>
-                        <!-- These messages are handled by scripts.js -->
-                        <div class="mt-3 d-none text-success fw-bold" id="submitSuccessMessage">Form submitted successfully!</div>
-                        <div class="mt-3 d-none text-danger fw-bold" id="submitErrorMessage">Error submitting form.</div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Bootstrap JS -->
+    
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AOS Script for Animations -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init();</script>
-    <!-- Custom JavaScript (scripts.js handles form submission and market data) -->
     <script src="scripts.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
 </body>
 </html>
