@@ -143,238 +143,82 @@
 </section>
 
 <script>
-let allArticles = [];
-let currentFilter = 'all';
+document.addEventListener("DOMContentLoaded", function () {
 
-let currentPage = 1;
-const articlesPerPage = 6;
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('id');
 
-document.addEventListener('DOMContentLoaded', function() {
+    if (!slug) {
+        showError("Invalid article link.");
+        return;
+    }
 
     fetch('/_data/press.json')
-
-        .then(response => {
-            if (!response.ok) throw new Error('Unable to fetch JSON');
-            return response.json();
+        .then(res => {
+            if (!res.ok) throw new Error('Failed to load JSON');
+            return res.json();
         })
-
         .then(data => {
 
-            // ✅ FIX: correctly read array from JSON object
+            // ✅ FIX: correct JSON parsing
             if (!Array.isArray(data.articles)) {
-                throw new Error('JSON format invalid - "articles" is not an array');
+                throw new Error('JSON format invalid');
             }
 
-            allArticles = data.articles.filter(article => article.published === true);
+            const articles = data.articles;
 
-            displayArticles(allArticles);
-            setupFilters();
-            setupSearch();
-            setupPaginationControls(allArticles.length);
+            const article = articles.find(a => a.slug === slug && a.published === true);
 
+            if (!article) {
+                showError("Article not found or unpublished.");
+                return;
+            }
+
+            renderArticle(article);
         })
-
-        .catch(error => {
-            console.error('Error loading press articles:', error);
-
-            document.getElementById('pressroom-grid').innerHTML = `
-                <div class="col-12 text-center">
-                    <div class="alert alert-danger">
-                        <i class="fas fa-exclamation-circle me-2"></i>
-                        Unable to load press articles. Please try again later.
-                    </div>
-                </div>
-            `;
+        .catch(err => {
+            console.error(err);
+            showError("Failed to load article.");
         });
-
 });
 
-function displayArticles(articles) {
+function renderArticle(article) {
 
-    const container = document.getElementById('pressroom-grid');
-    const noResults = document.getElementById('no-results');
+    document.getElementById('article-title').textContent = article.title;
 
-    if (!articles.length) {
-        container.innerHTML = '';
+    document.getElementById('article-meta').textContent =
+        `${new Date(article.date).toLocaleDateString('en-US', {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+        })} • ${article.category}`;
 
-        noResults.innerHTML = `
-            No news right now, but do sign up to our newsletter and be the first to know what's happening with Umelusi Group!
-        `;
-
-        noResults.classList.remove('d-none');
-        document.getElementById('pagination-controls').classList.add('d-none');
-        return;
+    if (article.image) {
+        document.getElementById('article-image').src = article.image;
     }
 
-    noResults.classList.add('d-none');
-    document.getElementById('pagination-controls').classList.remove('d-none');
+    // Convert line breaks into paragraphs
+    const formattedBody = article.body
+        .split(/\n+/)
+        .map(p => `<p>${p.trim()}</p>`)
+        .join('');
 
-    // ✅ pagination slice
-    const start = (currentPage - 1) * articlesPerPage;
-    const end = start + articlesPerPage;
-    const paginatedArticles = articles.slice(start, end);
-
-    let html = '';
-
-    paginatedArticles.forEach(article => {
-
-        html += `
-            <div class="col-md-4 press-item" data-category="${article.category}" data-aos="fade-up">
-                <div class="press-card h-100 shadow-sm d-flex flex-column">
-
-                    <div class="press-card-body flex-grow-1">
-                        <span class="press-meta">
-                            ${new Date(article.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })} • ${article.category}
-                        </span>
-
-                        <h5 class="press-title mt-2">${article.title}</h5>
-
-                        <p class="press-summary">
-                            ${article.excerpt ? article.excerpt.substring(0,150) + '...' : ''}
-                        </p>
-                    </div>
-
-                    <div class="mt-auto pt-3">
-                        <a href="/press-article.html?id=${article.slug}" class="btn btn-sm btn-orange w-100">
-                            Read More
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-        `;
-
-    });
-
-    container.innerHTML = html;
-
-    setupPaginationControls(articles.length);
+    document.getElementById('article-body').innerHTML = formattedBody;
 }
 
-function setupFilters() {
+function showError(msg) {
 
-    const filterButtons = document.querySelectorAll('.press-filters button');
+    const container = document.getElementById('article-body');
 
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-
-            currentFilter = this.dataset.filter;
-
-            currentPage = 1; // ✅ reset page on new filter
-
-            filterArticles();
-        });
-    });
-
-}
-
-function filterArticles() {
-
-    let filtered = [...allArticles];
-
-    if (currentFilter !== 'all') {
-        filtered = filtered.filter(article => article.category === currentFilter);
-    }
-
-    const searchInput = document.getElementById('press-search');
-
-    if (searchInput && searchInput.value.trim()) {
-
-        const term = searchInput.value.toLowerCase();
-
-        filtered = filtered.filter(article =>
-            article.title.toLowerCase().includes(term) ||
-            article.excerpt.toLowerCase().includes(term) ||
-            article.body.toLowerCase().includes(term)
-        );
-
-    }
-
-    displayArticles(filtered);
-}
-
-function setupSearch() {
-
-    const searchInput = document.getElementById('press-search');
-    if (!searchInput) return;
-
-    let debounce;
-
-    searchInput.addEventListener('input', function() {
-
-        clearTimeout(debounce);
-
-        debounce = setTimeout(() => {
-            currentPage = 1; // ✅ reset to page 1 on search
-            filterArticles();
-        }, 300);
-
-    });
-}
-
-function setupPaginationControls(totalArticles) {
-
-    const paginationContainer = document.getElementById('pagination-controls');
-    if (!paginationContainer) return;
-
-    const totalPages = Math.ceil(totalArticles / articlesPerPage);
-
-    if (totalPages <= 1) {
-        paginationContainer.innerHTML = '';
-        return;
-    }
-
-    let html = '';
-
-    html += `
-        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
-            <a class="page-link" href="#" data-page="${currentPage - 1}">Previous</a>
-        </li>
+    container.innerHTML = `
+        <div class="alert alert-danger text-center">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            ${msg}
+        </div>
     `;
-
-    for (let i = 1; i <= totalPages; i++) {
-        html += `
-            <li class="page-item ${currentPage === i ? 'active' : ''}">
-                <a class="page-link" href="#" data-page="${i}">${i}</a>
-            </li>
-        `;
-    }
-
-    html += `
-        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
-            <a class="page-link" href="#" data-page="${currentPage + 1}">Next</a>
-        </li>
-    `;
-
-    paginationContainer.innerHTML = html;
-
-    paginationContainer.querySelectorAll('a.page-link')
-        .forEach(link => {
-            link.addEventListener('click', function(e) {
-
-                e.preventDefault();
-
-                const targetPage = parseInt(this.dataset.page);
-
-                if (targetPage >= 1 && targetPage <= totalPages) {
-
-                    currentPage = targetPage;
-
-                    filterArticles();
-
-                    window.scrollTo({
-                        top: document.getElementById('pressroom-grid').offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-
-                }
-            });
-        });
 }
 </script>
+
 
   
 </main>
