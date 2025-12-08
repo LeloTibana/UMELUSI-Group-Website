@@ -145,89 +145,62 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             console.log('✅ JSON loaded successfully:', data);
-            console.log('Full data structure:', JSON.stringify(data, null, 2));
             
             const container = document.getElementById('resources-container');
             const viewAllBtn = document.getElementById('view-all-resources');
 
-            // Check what structure we have
-            console.log('Is data an array?', Array.isArray(data));
-            console.log('Data keys:', Object.keys(data));
-            
             let resourcesArray;
             
             if (Array.isArray(data)) {
-                console.log('Data is a direct array');
                 resourcesArray = data;
             } else if (data.resources && Array.isArray(data.resources)) {
-                console.log('Found "resources" array');
                 resourcesArray = data.resources;
             } else if (data.items && Array.isArray(data.items)) {
-                console.log('✅ Found "items" array (your format)');
-                console.log('Number of items:', data.items.length);
                 resourcesArray = data.items;
             } else if (data.reports && Array.isArray(data.reports)) {
-                console.log('Found "reports" array');
                 resourcesArray = data.reports;
             } else {
-                console.error('No recognizable array found in data');
                 throw new Error('Invalid JSON format - no array found');
             }
 
-            console.log('Resources array length:', resourcesArray.length);
-            console.log('All resources:', resourcesArray);
-
             if (!resourcesArray || resourcesArray.length === 0) {
-                console.warn('No resources found in array');
                 container.innerHTML = `
                     <div class="col-12 text-center">
-                        <div class="alert alert-warning">
-                            <i class="fas fa-exclamation-triangle me-2"></i>
-                            Found JSON file but no resources in the array.
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            No resources right now, but sign up to our newsletter to be the first to know what's happening with Umelusi Group!
                         </div>
                     </div>`;
                 viewAllBtn.style.display = 'none';
                 return;
             }
 
-            // Filter published resources
             const publishedResources = resourcesArray.filter(res => res.published === true);
-            console.log('Published resources:', publishedResources.length, publishedResources);
             
             if (publishedResources.length === 0) {
-                console.warn('No published resources found');
-                console.log('Check if items have "published: true":', resourcesArray.map(r => ({title: r.title, published: r.published})));
-                
                 container.innerHTML = `
                     <div class="col-12 text-center">
-                        <div class="alert alert-warning">
-                            <i class="fas fa-exclamation-triangle me-2"></i>
-                            Found ${resourcesArray.length} resources, but none are marked as "published: true".
-                            <br><small>Check your JSON file - each item needs "published": true</small>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            No published resources available at the moment.
                         </div>
                     </div>`;
                 viewAllBtn.style.display = 'none';
                 return;
             }
 
-            // Get featured resources
             const featuredResources = publishedResources.filter(res => res.featured === true);
-            console.log('Featured resources:', featuredResources.length, featuredResources);
-            
             const displayResources = featuredResources.length > 0 ? featuredResources.slice(0, 6) : publishedResources.slice(0, 6);
-            console.log('Will display:', displayResources.length, 'resources');
 
             let html = '';
             displayResources.forEach(resource => {
-                console.log('Processing resource:', resource.title);
-                
                 let description = resource.description || '';
                 description = description.replace(/\\n/g, ' ');
                 
                 html += `
                     <div class="col-md-6 col-lg-4" data-aos="fade-up">
                         <div class="card h-100 shadow-sm border-0">
-                            ${resource.thumbnail ? `<img src="${resource.thumbnail}" class="card-img-top" alt="${resource.title}" style="height: 180px; object-fit: cover;">` : '<div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 180px;"><i class="fas fa-file-pdf fa-3x text-muted"></i></div>'}
+                            ${resource.thumbnail ? `<img src="${resource.thumbnail}" class="card-img-top" alt="${resource.title}" style="height: 180px; object-fit: cover;">` : '<div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 180px;"><i class="fas fa-file-alt fa-3x text-muted"></i></div>'}
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title fw-bold text-umelusi-orange">
                                     <i class="fas ${getResourceIcon(resource.type)} me-2"></i>
@@ -239,10 +212,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <div class="d-flex justify-content-between align-items-center mt-auto">
                                     ${resource.file ? 
                                         `<a href="${resource.file}" class="btn btn-outline-secondary btn-sm" target="_blank" download>
-                                            <i class="fas fa-download me-1"></i> Download
+                                            <i class="fas fa-download me-1"></i> Download PDF
                                         </a>` : 
-                                        `<a href="#" class="btn btn-outline-secondary btn-sm" onclick="alert('No file available for this resource')">
-                                            <i class="fas fa-eye me-1"></i> View
+                                        `<a href="resource-post.html?id=${resource.slug}" class="btn btn-outline-secondary btn-sm">
+                                            <i class="fas fa-eye me-1"></i> Read More
                                         </a>`}
                                     <span class="badge bg-light text-dark">${resource.type || 'Resource'}</span>
                                 </div>
@@ -266,20 +239,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 Explore Full Library (${publishedResources.length})
             `;
             viewAllBtn.style.display = 'inline-block';
-            
-            console.log('✅ Resources displayed successfully!');
         })
         .catch(error => {
             console.error('❌ Error loading resources:', error);
-            console.error('Error stack:', error.stack);
             
             document.getElementById('resources-container').innerHTML = `
                 <div class="col-12 text-center">
                     <div class="alert alert-danger">
                         <i class="fas fa-exclamation-circle me-2"></i>
-                        <strong>Error loading resources</strong>
-                        <br>${error.message}
-                        <br><small>Check browser console for details (F12)</small>
+                        Unable to load resources. Please try again later.
                     </div>
                 </div>`;
         });

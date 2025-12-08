@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umelusi Group | Resource</title>
+    <meta name="description" content="Read resources and insights from Umelusi Group">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Century+Gothic&display=swap" rel="stylesheet">
+    
+    <style>
+        .resource-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .resource-content {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        
+        .download-btn-large {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn-large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .resource-meta-badge {
+            background: #FF9933;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        
+        @media (max-width: 768px) {
+            .resource-header {
+                padding: 3rem 0;
+            }
+            
+            .resource-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Same Navbar as resources.html -->
+<nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+            <img src="images/Umelusi-2ndLogo.png" alt="Umelusi Group Logo" class="navbar-logo" id="umelusi-logo" loading="eager"/>
+        </a>          
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        About Us
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="about-company.html">Company Information</a></li>
+                        <li><a class="dropdown-item" href="board-of-directors.html">Board of Directors</a></li>
+                        <li><a class="dropdown-item" href="pressroom.html">Pressroom</a></li>
+                        <li><a class="dropdown-item" href="careers.html">Career Opportunities</a></li>
+                        <li><a class="dropdown-item" href="hierarchy.html">Hierarchy</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Brands
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="fund-managers.html">Umelusi Fund Managers</a></li>
+                        <li><a class="dropdown-item" href="partners.html">Umelusi Partners</a></li>
+                        <li><a class="dropdown-item" href="capital.html">Umelusi Capital</a></li>
+                        <li><a class="dropdown-item" href="finserve.html">Umelusi FinServ</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="markets.html">Markets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="resources.html">Resources & Insights</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="breadcrumb-nav py-2">
+    <div class="container">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="resources.html">Resources</a></li>
+            <li class="breadcrumb-item active" id="resource-breadcrumb">Resource Details</li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Resource Header -->
+<header class="resource-header text-center">
+    <div class="container">
+        <h1 id="resource-title" class="display-5 fw-bold mb-3"></h1>
+        <div id="resource-meta"></div>
+        <div id="resource-badges" class="mt-3"></div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container py-5">
+    <!-- Resource Loader -->
+    <div id="resource-loader" class="text-center my-5">
+        <div class="spinner-border text-warning" style="width: 3rem; height: 3rem;"></div>
+        <p class="mt-3">Loading resource...</p>
+    </div>
+    
+    <!-- Resource Content (hidden until loaded) -->
+    <div id="resource-content" class="d-none">
+        <!-- Resource Info -->
+        <div class="row mb-5">
+            <div class="col-md-8">
+                <div class="resource-content">
+                    <h4><i class="fas fa-file-alt me-2"></i>Description</h4>
+                    <div id="resource-description" class="mb-4"></div>
+                    
+                    <h4><i class="fas fa-align-left me-2"></i>Full Content</h4>
+                    <div id="resource-body"></div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-info-circle me-2"></i>Resource Details</h5>
+                        
+                        <div class="mb-3">
+                            <strong><i class="fas fa-calendar me-2"></i>Published Date:</strong>
+                            <p id="resource-date" class="mb-0"></p>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <strong><i class="fas fa-tag me-2"></i>Type:</strong>
+                            <p id="resource-type" class="mb-0"></p>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <strong><i class="fas fa-folder me-2"></i>Category:</strong>
+                            <p id="resource-category" class="mb-0"></p>
+                        </div>
+                        
+                        <div id="file-download-section" class="mt-4">
+                            <h6><i class="fas fa-download me-2"></i>Download</h6>
+                            <p class="text-muted small mb-3">Download this resource as a PDF file.</p>
+                            <a id="download-btn" href="#" class="btn btn-warning text-white download-btn-large w-100">
+                                <i class="fas fa-file-pdf me-2"></i>Download PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4 text-center">
+                    <a href="resources.html" class="btn btn-outline-secondary w-100">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Resources
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- If no file available -->
+        <div id="no-file-section" class="alert alert-info d-none">
+            <i class="fas fa-info-circle me-2"></i>
+            This resource is available for online reading only. No downloadable file is currently available.
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-light text-center text-lg-start">
+    <div class="container p-4">
+        <div class="text-center p-3" style="background-color: #FF9933; color: white;">
+            © 2025 Copyright:
+            <a class="text-white" href="index.html">Umelusi Group</a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JavaScript for loading the resource -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const resourceSlug = urlParams.get('id');
+    
+    if (!resourceSlug) {
+        showError('No resource specified. Please select a resource from the resources page.');
+        return;
+    }
+    
+    fetch('/_data/resources.json')
+        .then(response => {
+            if (!response.ok) throw new Error('Unable to fetch resource data');
+            return response.json();
+        })
+        .then(data => {
+            let resourcesArray;
+            
+            if (Array.isArray(data)) {
+                resourcesArray = data;
+            } else if (data.resources && Array.isArray(data.resources)) {
+                resourcesArray = data.resources;
+            } else if (data.items && Array.isArray(data.items)) {
+                resourcesArray = data.items;
+            } else if (data.reports && Array.isArray(data.reports)) {
+                resourcesArray = data.reports;
+            } else {
+                throw new Error('Invalid JSON format');
+            }
+            
+            const resource = resourcesArray.find(r => r.slug === resourceSlug);
+            
+            if (!resource) {
+                showError('Resource not found. It may have been removed.');
+                return;
+            }
+            
+            displayResource(resource);
+        })
+        .catch(error => {
+            console.error('Error loading resource:', error);
+            showError('Failed to load resource. Please try again later.');
+        });
+});
+
+function displayResource(resource) {
+    document.title = `${resource.title} | Umelusi Group Resources`;
+    document.getElementById('resource-breadcrumb').textContent = resource.title;
+    document.getElementById('resource-title').textContent = resource.title;
+    
+    const resourceDate = new Date(resource.date);
+    document.getElementById('resource-date').textContent = resourceDate.toLocaleDateString('en-US', { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
+    
+    document.getElementById('resource-type').textContent = resource.type || 'Not specified';
+    document.getElementById('resource-category').textContent = resource.category || 'General';
+    
+    let description = resource.description || '';
+    description = description.replace(/\\n/g, '<br>');
+    document.getElementById('resource-description').innerHTML = `<p>${description}</p>`;
+    
+    let content = resource.content || resource.description || 'No content available.';
+    content = content.replace(/\\n/g, '<br>');
+    document.getElementById('resource-body').innerHTML = `<p>${content}</p>`;
+    
+    if (resource.file) {
+        document.getElementById('download-btn').href = resource.file;
+        document.getElementById('download-btn').setAttribute('download', `${resource.slug}.pdf`);
+    } else {
+        document.getElementById('file-download-section').classList.add('d-none');
+        document.getElementById('no-file-section').classList.remove('d-none');
+    }
+    
+    document.getElementById('resource-loader').style.display = 'none';
+    document.getElementById('resource-content').classList.remove('d-none');
+}
+
+function showError(message) {
+    const loader = document.getElementById('resource-loader');
+    loader.innerHTML = `
+        <div class="alert alert-danger" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            ${message}
+            <br><br>
+            <a href="resources.html" class="btn btn-orange btn-sm">
+                <i class="fas fa-arrow-left me-2"></i>Back to Resources
+            </a>
+        </div>
+    `;
+}
+</script>
+
+</body>
+</html>

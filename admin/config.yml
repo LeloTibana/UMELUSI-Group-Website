@@ -47,21 +47,17 @@ collections:
 
   - name: "resources"
     label: "Resources"
-    files:
-      - file: "_data/resources.json"
-        label: "Resources Data"
-        name: "resources_data"
-        fields:
-          - { label: "Items", name: "items", widget: "list", fields: [
-              { label: "Title", name: "title", widget: "string" },
-              { label: "Slug", name: "slug", widget: "string" },
-              { label: "Type", name: "type", widget: "select", options: ["Whitepaper", "Report", "Market Insight", "FAQ", "Case Study", "Guide"] },
-              { label: "Category", name: "category", widget: "string" },
-              { label: "Publish Date", name: "date", widget: "datetime" },
-              { label: "Thumbnail", name: "thumbnail", widget: "image" },
-              { label: "File", name: "file", widget: "file", required: false },
-              { label: "Description", name: "description", widget: "text" },
-              { label: "Content", name: "content", widget: "markdown" },
-              { label: "Featured", name: "featured", widget: "boolean", default: false },
-              { label: "Published", name: "published", widget: "boolean", default: true }
-          ]}
+    folder: "_data/resources"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Content", name: "content", widget: "markdown" }
+      - { label: "Type", name: "type", widget: "select", options: ["Report", "Whitepaper", "Guide", "Case Study", "Market Insight"] }
+      - { label: "Category", name: "category", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Published", name: "published", widget: "boolean", default: false }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Thumbnail Image", name: "thumbnail", widget: "image", required: false }
+      - { label: "PDF File", name: "file", widget: "file", required: false }  # ✅ This adds file upload
