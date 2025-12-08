@@ -142,25 +142,39 @@
     </div>
 </section>
 
+<div id="article-loader" class="text-center my-5">
+    <div class="spinner-border text-warning"></div>
+</div>
+
+<h1 id="article-title"></h1>
+
+<div id="article-meta" class="mb-3 text-muted"></div>
+
+<img id="article-image" class="img-fluid mb-4" style="display:none;" />
+
+<div id="article-body"></div>
+
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
     const params = new URLSearchParams(window.location.search);
-    const slug = params.get('id');
+    const slug = params.get("id");
 
-    const titleEl = document.getElementById('article-title');
-    const metaEl = document.getElementById('article-meta');
-    const bodyEl = document.getElementById('article-body');
-    const imageEl = document.getElementById('article-image');
-
-    const loader = document.getElementById('article-loader');
+    const titleEl = document.getElementById("article-title");
+    const metaEl  = document.getElementById("article-meta");
+    const bodyEl  = document.getElementById("article-body");
+    const imageEl = document.getElementById("article-image");
+    const loader  = document.getElementById("article-loader");
 
     function hideLoader() {
-        if (loader) loader.style.display = 'none';
+        if (loader) loader.style.display = "none";
     }
 
     function showError(msg) {
         hideLoader();
+
+        console.error(msg);
 
         if (bodyEl) {
             bodyEl.innerHTML = `
@@ -169,19 +183,18 @@ document.addEventListener("DOMContentLoaded", function () {
                     ${msg}
                 </div>
             `;
-        } else {
-            console.error("Error element missing:", msg);
         }
     }
 
+    // ✅ hard stop if link is bad
     if (!slug) {
         showError("Invalid article link.");
         return;
     }
 
-    fetch('/_data/press.json')
+    fetch("/_data/press.json")
         .then(res => {
-            if (!res.ok) throw new Error("Failed to load articles");
+            if (!res.ok) throw new Error("Failed loading JSON");
             return res.json();
         })
         .then(data => {
@@ -190,28 +203,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 throw new Error("Invalid JSON structure");
             }
 
-            const article = data.articles.find(a => a.slug === slug && a.published === true);
+            const article = data.articles.find(a =>
+                a.slug === slug && a.published === true
+            );
 
             if (!article) {
                 throw new Error("Article not found");
             }
 
-            // ✔ Rendering safely only into elements that exist
+            // ✅ Render article safely
+            if (titleEl)
+                titleEl.textContent = article.title;
 
-            if (titleEl) titleEl.textContent = article.title;
-
-            if (metaEl) {
+            if (metaEl)
                 metaEl.textContent =
-                    `${new Date(article.date).toLocaleDateString('en-US', {
-                        month: 'long',
-                        day: 'numeric',
-                        year: 'numeric'
+                    `${new Date(article.date).toLocaleDateString("en-US", {
+                        month: "long",
+                        day: "numeric",
+                        year: "numeric"
                     })} • ${article.category}`;
-            }
 
             if (imageEl && article.image) {
                 imageEl.src = article.image;
-                imageEl.style.display = 'block';
+                imageEl.style.display = "block";
             }
 
             if (bodyEl) {
@@ -227,8 +241,10 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error(err);
             showError("Failed to load article.");
         });
+
 });
 </script>
+
 
 
 
