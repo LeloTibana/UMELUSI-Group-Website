@@ -439,6 +439,33 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+// ============================================
+// FORM ANALYTICS
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Track form submissions
+    document.querySelectorAll('form[data-netlify="true"]').forEach(form => {
+        form.addEventListener('submit', function() {
+            const formName = this.getAttribute('name') || 'unknown-form';
+            
+            // Log to console for debugging
+            console.log(`📝 Form submitted: ${formName}`);
+            
+            // You can add Google Analytics here later
+            // if (typeof gtag !== 'undefined') {
+            //     gtag('event', 'form_submit', {
+            //         'event_category': 'Form',
+            //         'event_label': formName
+            //     });
+            // }
+        });
+    });
+    
+    console.log('✅ Form analytics initialized');
+});
+
+
 
 // ============================================
 // 1. NOTIFICATION UTILITY
