@@ -3,18 +3,22 @@
 <head>
     <meta name="description" content="Umelusi Group is a leading financial services company offering Investment Management, Wealth Planning, Capital Markets, and Consulting. Grow your future with our expertise.">
     <meta name="keywords" content="Umelusi, Umelusi Group, Financial Services, Investment Management, Wealth Management, Capital Markets, Consulting, South Africa">
-    <link rel="canonical" href="https://www.umelusigroup.com/careers.html"> <meta property="og:title" content="Umelusi Group | Careers">
+    <link rel="canonical" href="https://www.umelusigroup.com/careers.html">
+    <meta property="og:title" content="Umelusi Group | Careers">
     <meta property="og:description" content="Your trusted partner in investment management and wealth creation across the African continent.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.umelusigroup.com/[PAGE NAME].html">
+    <meta property="og:url" content="https://www.umelusigroup.com/careers.html">
     <meta property="og:image" content="https://www.umelusigroup.com/images/umelusi-social-share-image.jpg">
     <meta property="og:site_name" content="Umelusi Group">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@UmelusiGroup"> <meta name="twitter:title" content="Umelusi Group | [PAGE TITLE HERE]">
+    <meta name="twitter:site" content="@UmelusiGroup">
+    <meta name="twitter:title" content="Umelusi Group | Careers">
     <meta name="twitter:description" content="A leader in financial services, offering diverse expertise for your financial success.">
     <meta name="twitter:image" content="https://www.umelusigroup.com/images/umelusi-social-share-image.jpg">
+    
     <title>Umelusi Group | Careers</title>
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -86,9 +90,8 @@
                     <a class="nav-link" href="resources.html">Resources & Insights</a>
                 </li>
                 <li class="nav-item">
-                        <!-- CONTACT US LINK -->
-                        <a class="nav-link active" href="contact.html">Contact Us</a>
-                    </li>
+                    <a class="nav-link active" href="contact.html">Contact Us</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -106,7 +109,7 @@
     <div class="container">
       <h2 class="mb-3"><strong>Work At Umelusi Group</strong></h2>
       <p class="lead text-muted">
-        We’re building a future of long-term value and financial resilience. Explore how you can contribute to our mission.
+        We're building a future of long-term value and financial resilience. Explore how you can contribute to our mission.
       </p>
     </div>
   </section>
@@ -120,9 +123,22 @@
   </div>
 </nav>
 
-  
+<!-- Department Filter -->
+<section class="py-3 bg-light">
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="col-md-3">
+        <label for="department-filter" class="form-label">Filter by Department:</label>
+        <select class="form-select" id="department-filter" aria-label="Filter by Department">
+          <option value="all">All Departments</option>
+          <!-- Will be populated by JavaScript -->
+        </select>
+      </div>
+    </div>
+  </div>
+</section>
 
- <!-- Replace the Job Listings Section (around line 88) with: -->
+ <!-- Job Listings Section -->
 <section class="py-5 bg-white">
     <div class="container">
         <div class="row" id="careers-container">
@@ -136,7 +152,7 @@
     </div>
 </section>
 
-<!-- Replace the Application Form Section (around line 128) with: -->
+<!-- Application Form Section -->
 <section class="py-5 bg-light">
     <div class="container">
         <h2 class="text-center mb-4" data-aos="fade-up">Apply Now</h2>
@@ -174,7 +190,7 @@
     </div>
 </section>
 
-<!-- Add this script at the bottom (before closing body tag) -->
+<!-- JavaScript -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('careers-container');
@@ -182,9 +198,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Load careers from JSON
     fetch('/_data/careers.json')
-        .then(response => response.json())
-        .then(jobs => {
-            const activeJobs = jobs.filter(job => job.active);
+        .then(response => {
+            if (!response.ok) throw new Error('Unable to fetch careers data');
+            return response.json();
+        })
+        .then(data => {
+            // ✅ FIX: Check if data is an array or if it has a 'jobs' property
+            let jobsArray;
+            
+            if (Array.isArray(data)) {
+                // If data is directly an array
+                jobsArray = data;
+            } else if (data.jobs && Array.isArray(data.jobs)) {
+                // If data has a 'jobs' property that's an array (most likely)
+                jobsArray = data.jobs;
+            } else {
+                throw new Error('Invalid JSON format - expected array or object with "jobs" array');
+            }
+            
+            const activeJobs = jobsArray.filter(job => job.active);
 
             if (activeJobs.length === 0) {
                 container.innerHTML = `
@@ -212,8 +244,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <small>Apply by: ${new Date(job.deadline).toLocaleDateString()}</small>
                                 </p>
                                 <p class="card-text flex-grow-1">${job.description ? job.description.substring(0,150) + '...' : ''}</p>
-                                <button onclick="applyForJob('${job.slug}')" class="btn btn-warning text-white mt-auto">
-                                    Apply Now
+                                <button onclick="viewJobDetails('${job.slug}')" class="btn btn-warning text-white mt-auto">
+                                    View Details
                                 </button>
                             </div>
                         </div>
@@ -235,6 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="alert alert-danger">
                         <i class="fas fa-exclamation-circle me-2"></i>
                         Unable to load career opportunities. Please try again later.
+                        <br><small>Error: ${error.message}</small>
                     </div>
                 </div>`;
         });
@@ -261,7 +294,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Apply Now scroll function
+// View job details function
+function viewJobDetails(slug) {
+    // Redirect to career post page
+    window.location.href = `career-post.html?id=${slug}`;
+}
+
+// Apply Now scroll function (for the form on careers page)
 function applyForJob(slug) {
     const positionSelect = document.getElementById('position');
     positionSelect.value = slug;
@@ -270,7 +309,7 @@ function applyForJob(slug) {
 
 // Department filter setup
 function setupDepartmentFilter(departments) {
-    const filterContainer = document.querySelector('select[aria-label="Filter by Department"]');
+    const filterContainer = document.getElementById('department-filter');
     if (!filterContainer) return;
 
     let options = '<option value="all">All Departments</option>';
@@ -286,7 +325,6 @@ function setupDepartmentFilter(departments) {
     });
 }
 </script>
-
 
 <!-- Footer -->
 <footer class="bg-light text-center text-lg-start">
@@ -362,7 +400,5 @@ function setupDepartmentFilter(departments) {
 <button id="back-to-top" class="btn btn-floating" style="position: fixed; bottom: 20px; right: 20px; display: none;">
     <i class="fas fa-arrow-up"></i>
 </button>
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 </body>
 </html>
