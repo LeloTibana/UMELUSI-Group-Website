@@ -108,53 +108,73 @@
                         <p class="text-muted mb-4">Fill out the form below for general inquiries, support, or to schedule a preliminary consultation.</p>
                         
                         <!-- Contact Form - CLEAN VERSION -->
-                        <form id="contactForm" name="contactForm" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="firstName" class="form-label">First Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="firstName" name="firstName" required>
-                                    <div class="invalid-feedback">Please enter your first name.</div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="lastName" class="form-label">Last Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="lastName" name="lastName" required>
-                                    <div class="invalid-feedback">Please enter your last name.</div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
-                                    <div class="invalid-feedback">Please enter a valid email address.</div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="+268 xxx xxxx">
-                                    <div class="invalid-feedback">Please enter a valid phone number.</div>
-                                </div>
-                                <div class="col-12">
-                                    <label for="subject" class="form-label">Subject <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="subject" name="subject" required>
-                                        <option selected disabled value="">Select Inquiry Type</option>
-                                        <option value="investment">Investment Inquiry (Fund Managers/Capital)</option>
-                                        <option value="consulting">Business Consulting (Partners)</option>
-                                        <option value="general">General Inquiry / Media</option>
-                                        <option value="support">Technical Support (FinServe)</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                    <div class="invalid-feedback">Please select an inquiry type.</div>
-                                </div>
-                                <div class="col-12">
-                                    <label for="message" class="form-label">Your Message <span class="text-danger">*</span></label>
-                                    <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Tell us how we can help you..."></textarea>
-                                    <div class="invalid-feedback">Please enter your message.</div>
-                                </div>
-                                
-                                <div class="col-12 mt-4">
-                                    <button type="submit" class="btn btn-primary w-100 contact-submit-btn">
-                                        Submit Inquiry <i class="fas fa-paper-plane ms-2"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        <form 
+  id="contactForm" 
+  name="contact" 
+  method="POST" 
+  data-netlify="true" 
+  netlify-honeypot="bot-field"
+>
+  <!-- Hidden fields for Netlify -->
+  <input type="hidden" name="form-name" value="contact">
+  <div class="d-none">
+    <label>Don't fill this out: <input name="bot-field"></label>
+  </div>
+  
+  <!-- Redirect after successful submission -->
+  <input type="hidden" name="_redirect" value="https://thunderous-axolotl-e8f0a2.netlify.app/?form=success">
+  
+  <div class="row g-3">
+    <div class="col-md-6">
+      <label for="firstName" class="form-label">First Name <span class="text-danger">*</span></label>
+      <input type="text" class="form-control" id="firstName" name="firstName" required>
+      <div class="invalid-feedback">Please enter your first name.</div>
+    </div>
+    
+    <div class="col-md-6">
+      <label for="lastName" class="form-label">Last Name <span class="text-danger">*</span></label>
+      <input type="text" class="form-control" id="lastName" name="lastName" required>
+      <div class="invalid-feedback">Please enter your last name.</div>
+    </div>
+    
+    <div class="col-md-6">
+      <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
+      <input type="email" class="form-control" id="email" name="email" required>
+      <div class="invalid-feedback">Please enter a valid email address.</div>
+    </div>
+    
+    <div class="col-md-6">
+      <label for="phone" class="form-label">Phone Number</label>
+      <input type="tel" class="form-control" id="phone" name="phone" placeholder="+268 xxx xxxx">
+      <div class="invalid-feedback">Please enter a valid phone number.</div>
+    </div>
+    
+    <div class="col-12">
+      <label for="subject" class="form-label">Subject <span class="text-danger">*</span></label>
+      <select class="form-select" id="subject" name="subject" required>
+        <option selected disabled value="">Select Inquiry Type</option>
+        <option value="investment">Investment Inquiry (Fund Managers/Capital)</option>
+        <option value="consulting">Business Consulting (Partners)</option>
+        <option value="general">General Inquiry / Media</option>
+        <option value="support">Technical Support (FinServ)</option>
+        <option value="other">Other</option>
+      </select>
+      <div class="invalid-feedback">Please select an inquiry type.</div>
+    </div>
+    
+    <div class="col-12">
+      <label for="message" class="form-label">Your Message <span class="text-danger">*</span></label>
+      <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Tell us how we can help you..."></textarea>
+      <div class="invalid-feedback">Please enter your message.</div>
+    </div>
+    
+    <div class="col-12 mt-4">
+      <button type="submit" class="btn btn-primary w-100 contact-submit-btn">
+        Submit Inquiry <i class="fas fa-paper-plane ms-2"></i>
+      </button>
+    </div>
+  </div>
+</form>
                         
                         <!-- Success Message -->
                         <div id="confirmationMessage" class="umelusi-success-message text-center d-none success-animation">

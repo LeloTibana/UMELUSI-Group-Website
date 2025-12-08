@@ -383,6 +383,17 @@ function showNotification(message, isSuccess = true) {
 document.addEventListener('DOMContentLoaded', function () {
     console.log('🔧 Enhancing Netlify forms UX...');
     
+    // Check for success parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('form') === 'success') {
+        showNotification('Thank you! Your message has been sent successfully.', true);
+        
+        // Remove the parameter from URL without refreshing
+        const url = new URL(window.location);
+        url.searchParams.delete('form');
+        window.history.replaceState({}, '', url);
+    }
+    
     // Add UX enhancements to all Netlify forms
     document.querySelectorAll('form[data-netlify="true"]').forEach(form => {
         const submitButton = form.querySelector('button[type="submit"]');
@@ -426,47 +437,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
     console.log('✅ Netlify forms enhanced');
 });
-
-// ============================================
-// SIMPLE NOTIFICATION FUNCTION (optional)
-// ============================================
-function showNotification(message, success = true) {
-    // Remove existing notifications
-    document.querySelectorAll('.global-notification').forEach(el => el.remove());
-    
-    // Create new notification
-    const notification = document.createElement('div');
-    notification.className = `global-notification alert ${success ? 'alert-success' : 'alert-danger'} position-fixed`;
-    notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; max-width: 350px;';
-    notification.innerHTML = `
-        <div class="d-flex align-items-center">
-            <i class="fas fa-${success ? 'check-circle' : 'exclamation-circle'} me-3 fs-4"></i>
-            <div>${message}</div>
-        </div>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Auto-remove after 5 seconds
-    setTimeout(() => {
-        notification.remove();
-    }, 5000);
-}
-
-// ============================================
-// SHOW FORM SUCCESS MESSAGE (for Netlify redirect)
-// ============================================
-// This only runs if Netlify redirects to a success page with ?form=success
-if (window.location.search.includes('form=success')) {
-    document.addEventListener('DOMContentLoaded', function() {
-        showNotification('Thank you! Your message has been sent successfully.', true);
-        
-        // Clear the URL parameter
-        const url = new URL(window.location);
-        url.searchParams.delete('form');
-        window.history.replaceState({}, '', url);
-    });
-}
 
 
 
