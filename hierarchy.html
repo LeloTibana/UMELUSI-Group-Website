@@ -441,34 +441,52 @@
           </p>
         </div>
         <div class="col-lg-6">
-          <form>
-            <div class="mb-3"><input type="text" class="form-control" placeholder="Full Name" required></div>
-            <div class="mb-3"><input type="email" class="form-control" placeholder="Email Address" required></div>
-            <div class="mb-3"><input type="tel" class="form-control" placeholder="Contact Number" required></div>
-            
-            <div class="mb-3">
-              <select class="form-select" required>
-                <option value="">Nearest Office</option>
-                <option value="johannesburg">Johannesburg</option>
-                <option value="cape-town">Cape Town</option>
-                <option value="durban">Durban</option>
-                <option value="pretoria">Pretoria</option>
-              </select>
-            </div>
-            
-            <div class="mb-3">
-              <select class="form-select" required>
-                <option value="">What Would You Like to Discuss?</option>
-                <option value="fund-managers">Umelusi Fund Managers (Asset Management)</option>
-                <option value="capital">Umelusi Capital (Corporate Finance/Markets)</option>
-                <option value="finserve">Umelusi FinServe (Wealth/Financial Planning)</option>
-                <option value="partners">Umelusi Partners (Consulting/Advisory)</option>
-                <option value="general">General Inquiry or Partnership</option>
-              </select>
-            </div>
-            
-            <button type="submit" class="btn btn-brand w-100">Submit Your Inquiry</button>
-          </form>
+          <form 
+  name="hierarchy-contact" 
+  method="POST" 
+  data-netlify="true" 
+  netlify-honeypot="bot-field"
+>
+  <input type="hidden" name="form-name" value="hierarchy-contact">
+  <div class="d-none">
+    <label>Don't fill this out: <input name="bot-field"></label>
+  </div>
+
+  <div class="mb-3">
+    <input type="text" class="form-control" placeholder="Full Name *" name="fullName" required>
+  </div>
+  
+  <div class="mb-3">
+    <input type="email" class="form-control" placeholder="Email Address *" name="email" required>
+  </div>
+  
+  <div class="mb-3">
+    <input type="tel" class="form-control" placeholder="Contact Number *" name="phone" required>
+  </div>
+  
+  <div class="mb-3">
+    <select class="form-select" name="nearestOffice" required>
+      <option value="">Nearest Office *</option>
+      <option value="johannesburg">Johannesburg</option>
+      <option value="cape-town">Cape Town</option>
+      <option value="durban">Durban</option>
+      <option value="pretoria">Pretoria</option>
+    </select>
+  </div>
+  
+  <div class="mb-3">
+    <select class="form-select" name="discussionTopic" required>
+      <option value="">What Would You Like to Discuss? *</option>
+      <option value="fund-managers">Umelusi Fund Managers (Asset Management)</option>
+      <option value="capital">Umelusi Capital (Corporate Finance/Markets)</option>
+      <option value="finserve">Umelusi FinServe (Wealth/Financial Planning)</option>
+      <option value="partners">Umelusi Partners (Consulting/Advisory)</option>
+      <option value="general">General Inquiry or Partnership</option>
+    </select>
+  </div>
+  
+  <button type="submit" class="btn btn-brand w-100">Submit Your Inquiry</button>
+</form>
         </div>
       </div>
     </div>

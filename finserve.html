@@ -340,105 +340,94 @@
   <div class="section-divider" data-aos="fade-in"></div>
   
   <section id="contact-finserve" class="contact-form py-5 finserve-contact-form bg-white" >
-  <div class="container" data-aos="fade-up">
-    <div class="row align-items-center">
-      
-      <div class="col-lg-6 mb-4">
-        <h2 class="mb-3" style="color: var(--finserve-primary);">Need Global Transaction Support?</h2>
-        <p class="lead mb-4">
-          Whether you are sending money home, receiving international payments, or need competitive forex rates, Umelusi FinServ is your trusted partner.
-        </p>
-        <p>
-          Our services provide fast, reliable, and secure global money transfer and foreign exchange solutions. 
-          Contact our dedicated FinServe team today to discuss your personal or business transactional needs and get the best rates.
-        </p>
-        <ul class="list-unstyled mt-4">
-            <li><i class="fas fa-check-circle me-2" style="color: var(--finserve-primary);"></i> Reliable Western Union Money Transfer</li>
-            <li><i class="fas fa-check-circle me-2" style="color: var(--finserve-primary);"></i> Competitive Foreign Exchange (Forex) Rates</li>
-            <li><i class="fas fa-check-circle me-2" style="color: var(--finserve-primary);"></i> Dedicated Transaction Support</li>
-        </ul>
-      </div>
-
-      <div class="col-lg-6">
-        <form>
-          <div class="mb-3">
-            <label for="finserve-name" class="form-label">Full Name</label>
-            <input type="text" class="form-control" id="finserve-name" placeholder="Enter your full name" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="finserve-email" class="form-label">Email Address</label>
-            <input type="email" class="form-control" id="finserve-email" placeholder="example@user.com" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="finserve-organization" class="form-label">Organization (If applicable)</label>
-            <input type="text" class="form-control" id="finserve-organization" placeholder="Enter your organization name">
-          </div>
-
-          <div class="mb-3">
-            <label for="finserve-service" class="form-label">Type of Service</label>
-            <select class="form-select" id="finserve-service" required>
-              <option value="">Select a service need</option>
-              <option value="western-union">Western Union Money Transfer</option>
-              <option value="forex-buy">Foreign Currency Purchase (Buy Forex)</option>
-              <option value="forex-sell">Foreign Currency Sale (Sell Forex)</option>
-              <option value="business-payments">International Business Payments</option>
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <label for="finserve-message" class="form-label">Briefly Outline Your Transaction Need</label>
-            <textarea class="form-control" id="finserve-message" rows="4" placeholder="e.g., I need to send $500 to Kenya via Western Union, or I require ZAR for an upcoming trip..."></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary w-100">Contact FinServ for Rates</button>
-        </form>
-      </div>
-    </div>
+  <form 
+  name="finserve-contact" 
+  method="POST" 
+  data-netlify="true" 
+  netlify-honeypot="bot-field"
+>
+  <input type="hidden" name="form-name" value="finserve-contact">
+  <div class="d-none">
+    <label>Don't fill this out: <input name="bot-field"></label>
   </div>
+
+  <div class="mb-3">
+    <label for="finserve-name" class="form-label">Full Name *</label>
+    <input type="text" class="form-control" id="finserve-name" name="fullName" placeholder="Enter your full name" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="finserve-email" class="form-label">Email Address *</label>
+    <input type="email" class="form-control" id="finserve-email" name="email" placeholder="example@user.com" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="finserve-organization" class="form-label">Organization (If applicable)</label>
+    <input type="text" class="form-control" id="finserve-organization" name="organization" placeholder="Enter your organization name">
+  </div>
+
+  <div class="mb-3">
+    <label for="finserve-service" class="form-label">Type of Service *</label>
+    <select class="form-select" id="finserve-service" name="serviceType" required>
+      <option value="">Select a service need</option>
+      <option value="western-union">Western Union Money Transfer</option>
+      <option value="forex-buy">Foreign Currency Purchase (Buy Forex)</option>
+      <option value="forex-sell">Foreign Currency Sale (Sell Forex)</option>
+      <option value="business-payments">International Business Payments</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="finserve-message" class="form-label">Briefly Outline Your Transaction Need</label>
+    <textarea class="form-control" id="finserve-message" name="message" rows="4" placeholder="e.g., I need to send $500 to Kenya via Western Union, or I require ZAR for an upcoming trip..."></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100">Contact FinServ for Rates</button>
+</form>
 </section>
   
-  <div class="modal fade" id="finserveContactModal" tabindex="-1" aria-labelledby="finserveContactModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="finserveContactModalLabel">Get in Touch with Umelusi FinServ</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close contact modal"></button>
-        </div>
-        <div class="modal-body">
-          <form id="finserveModalContactForm" name="finserveModalContactForm" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-    <div class="row g-3">
-        <div class="col-md-6">
-            <label for="modalName" class="form-label">Full Name</label>
-            <input type="text" class="form-control" id="modalName" name="contactName" required>
-        </div>
-        <div class="col-md-6">
-            <label for="modalEmail" class="form-label">Email Address</label>
-            <input type="email" class="form-control" id="modalEmail" name="contactEmail" required>
-        </div>
-        <div class="col-md-6">
-            <label for="modalPhone" class="form-label">Phone Number</label>
-            <input type="tel" class="form-control" id="modalPhone" name="contactPhone" placeholder="+268..." required>
-        </div>
-        <div class="col-md-6">
-            <label for="modalService" class="form-label">Service of Interest</label>
-            <select class="form-select" id="modalService" name="contactService" required>
-              <option value="">Select a service</option>
-              <option value="western-union">Western Union Transfer</option>
-              <option value="foreign-exchange">Foreign Currency Exchange</option>
-              <option value="business-payments">Business Payment Solutions</option>
-              <option value="payments-collections">General Payments & Collections</option>
-            </select>
-        </div>
-        <div class="col-12">
-            <label for="modalMessage" class="form-label">Message</label>
-            <textarea class="form-control" id="modalMessage" rows="4" name="contactMessage" placeholder="Tell us about your financial needs..."></textarea>
-        </div>
-        <div class="col-12 text-center mt-3">
-            <button type="submit" class="btn btn-brand px-4">Submit Request</button>
-        </div>
+  <form 
+  name="finserve-modal-contact" 
+  method="POST" 
+  data-netlify="true" 
+  netlify-honeypot="bot-field"
+>
+  <input type="hidden" name="form-name" value="finserve-modal-contact">
+  <div class="d-none">
+    <label>Don't fill this out: <input name="bot-field"></label>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-md-6">
+      <label for="modalName" class="form-label">Full Name *</label>
+      <input type="text" class="form-control" id="modalName" name="fullName" required>
     </div>
+    <div class="col-md-6">
+      <label for="modalEmail" class="form-label">Email Address *</label>
+      <input type="email" class="form-control" id="modalEmail" name="email" required>
+    </div>
+    <div class="col-md-6">
+      <label for="modalPhone" class="form-label">Phone Number</label>
+      <input type="tel" class="form-control" id="modalPhone" name="phone" placeholder="+268...">
+    </div>
+    <div class="col-md-6">
+      <label for="modalService" class="form-label">Service of Interest *</label>
+      <select class="form-select" id="modalService" name="serviceInterest" required>
+        <option value="">Select a service</option>
+        <option value="western-union">Western Union Transfer</option>
+        <option value="foreign-exchange">Foreign Currency Exchange</option>
+        <option value="business-payments">Business Payment Solutions</option>
+        <option value="payments-collections">General Payments & Collections</option>
+      </select>
+    </div>
+    <div class="col-12">
+      <label for="modalMessage" class="form-label">Message</label>
+      <textarea class="form-control" id="modalMessage" rows="4" name="message" placeholder="Tell us about your financial needs..."></textarea>
+    </div>
+    <div class="col-12 text-center mt-3">
+      <button type="submit" class="btn btn-brand px-4">Submit Request</button>
+    </div>
+  </div>
 </form>
         </div>
       </div>

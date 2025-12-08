@@ -106,7 +106,7 @@
             Strategic Investment Management for Long-Term Value Creation.
         </p>
         <!-- Replaced old button class with the new btn-umelusi-orange class -->
-        <a href="#about" class="btn btn-lg btn-umelusi-orange shadow-lg">Discover Our Mandates</a>
+        <a href="#contact" class="btn btn-lg btn-umelusi-orange shadow-lg">Discover Our Mandates</a>
     </div>
 </header>
 
@@ -273,75 +273,57 @@
       <div class="col-md-3">
         <a href="finserve.html" class="brand-card d-block text-center">
           <img src="images/logo-finserve.png" alt="Umelusi FinServe Logo" class="brand-logo mb-2" />
-          <h5 class="brand-finserve">Umelusi FinServe</h5>
+          <h5 class="brand-finserve">Umelusi FinServ</h5>
           <p>ForEX and Western Union Servicess</p>
         </a>
       </div>
     </div>
   </div>
 
-    <!-- ============================================== -->
-    <!-- 5. CONTACT CTA -->
-    <!-- ============================================== -->
-    <section id="contact-fund-managers" class="contact-form py-5 fund-managers-contact-form bg-white" >
-  <div class="container" data-aos="fade-up">
-    <div class="row align-items-center">
-      
-      <div class="col-lg-6 mb-4">
-        <h2 class="mb-3" style="color: var(--fund-managers-primary);">Discuss Your Investment Mandate</h2>
-        <p class="lead mb-4">
-          Ready to align your capital with strategic, long-term growth opportunities? Our investment team is here to structure your ideal portfolio.
-        </p>
-        <p>
-          Umelusi Fund Managers offers disciplined investment strategies across various asset classes, tailored to meet the unique risk and return objectives of institutional and private clients. Contact us today to discuss how we can create lasting stakeholder value.
-        </p>
-        <ul class="list-unstyled mt-4">
-            <li><i class="fas fa-check-circle me-2" style="color: var(--fund-managers-primary);"></i> Dedicated Portfolio Manager</li>
-            <li><i class="fas fa-check-circle me-2" style="color: var(--fund-managers-primary);"></i> Custom Investment Mandate Structuring</li>
-            <li><i class="fas fa-check-circle me-2" style="color: var(--fund-managers-primary);"></i> Focus on Long-Term Capital Preservation</li>
-        </ul>
-      </div>
-
-      <div class="col-lg-6">
-        <form>
-          <div class="mb-3">
-            <label for="fund-managers-name" class="form-label">Full Name</label>
-            <input type="text" class="form-control" id="fund-managers-name" placeholder="Enter your full name" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="fund-managers-email" class="form-label">Work Email Address</label>
-            <input type="email" class="form-control" id="fund-managers-email" placeholder="example@organization.com" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="fund-managers-organization" class="form-label">Organization / Institution</label>
-            <input type="text" class="form-control" id="fund-managers-organization" placeholder="Enter your institution name">
-          </div>
-
-          <div class="mb-3">
-            <label for="fund-managers-service" class="form-label">Investment Interest</label>
-            <select class="form-select" id="fund-managers-service" required>
-              <option value="">Select an investment focus</option>
-              <option value="institutional-mandate">Institutional Fund Mandate</option>
-              <option value="private-wealth">High Net Worth/Private Wealth</option>
-              <option value="alternative-assets">Alternative Assets (e.g., Private Equity)</option>
-              <option value="retirement-funds">Retirement & Pension Funds</option>
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <label for="fund-managers-message" class="form-label">Briefly Outline Your Investment Objective</label>
-            <textarea class="form-control" id="fund-managers-message" rows="4" placeholder="e.g., We are seeking a fixed income mandate, or I need long-term wealth planning advice..."></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary w-100">Submit Investment Inquiry</button>
-        </form>
-      </div>
-    </div>
+    <form 
+  name="fund-managers-contact" 
+  method="POST" 
+  data-netlify="true" 
+  netlify-honeypot="bot-field"
+>
+  <input type="hidden" name="form-name" value="fund-managers-contact">
+  <div class="d-none">
+    <label>Don't fill this out: <input name="bot-field"></label>
   </div>
-</section>
 
+  <div class="mb-3">
+    <label for="fund-managers-name" class="form-label">Full Name *</label>
+    <input type="text" class="form-control" id="fund-managers-name" name="fullName" placeholder="Enter your full name" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="fund-managers-email" class="form-label">Work Email Address *</label>
+    <input type="email" class="form-control" id="fund-managers-email" name="email" placeholder="example@organization.com" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="fund-managers-organization" class="form-label">Organization / Institution</label>
+    <input type="text" class="form-control" id="fund-managers-organization" name="organization" placeholder="Enter your institution name">
+  </div>
+
+  <div class="mb-3">
+    <label for="fund-managers-service" class="form-label">Investment Interest *</label>
+    <select class="form-select" id="fund-managers-service" name="investmentInterest" required>
+      <option value="">Select an investment focus</option>
+      <option value="institutional-mandate">Institutional Fund Mandate</option>
+      <option value="private-wealth">High Net Worth/Private Wealth</option>
+      <option value="alternative-assets">Alternative Assets (e.g., Private Equity)</option>
+      <option value="retirement-funds">Retirement & Pension Funds</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="fund-managers-message" class="form-label">Briefly Outline Your Investment Objective</label>
+    <textarea class="form-control" id="fund-managers-message" name="message" rows="4" placeholder="e.g., We are seeking a fixed income mandate, or I need long-term wealth planning advice..."></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100">Submit Investment Inquiry</button>
+</form>
 
     <!-- ============================================== -->
     <!-- FOOTER (User-Provided) -->

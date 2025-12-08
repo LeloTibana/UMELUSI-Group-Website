@@ -156,37 +156,55 @@
 <section class="py-5 bg-light">
     <div class="container">
         <h2 class="text-center mb-4" data-aos="fade-up">Apply Now</h2>
-        <form id="career-form" class="row g-3">
-            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <label for="name" class="form-label">Full Name *</label>
-                <input type="text" class="form-control" id="name" required>
-            </div>
-            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <label for="email" class="form-label">Email *</label>
-                <input type="email" class="form-control" id="email" required>
-            </div>
-            <div class="col-md-12">
-                <label for="position" class="form-label">Position Applying For *</label>
-                <select class="form-control" id="position" required>
-                    <option value="">Select a position</option>
-                    <!-- Will be populated by JavaScript -->
-                </select>
-            </div>
-            <div class="col-md-12">
-                <label for="cv" class="form-label">Upload CV (PDF, DOC, DOCX) *</label>
-                <input type="file" class="form-control" id="cv" accept=".pdf,.doc,.docx" required>
-            </div>
-            <div class="col-md-12">
-                <label for="message" class="form-label">Cover Letter</label>
-                <textarea class="form-control" id="message" rows="4" placeholder="Tell us why you're a good fit..."></textarea>
-            </div>
-            <div class="col-12 text-center">
-                <button type="submit" class="btn btn-warning text-white px-5">
-                    <span id="submit-text">Submit Application</span>
-                    <span id="submit-spinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
-                </button>
-            </div>
-        </form>
+        <form 
+  id="career-form" 
+  name="career-application" 
+  method="POST" 
+  data-netlify="true" 
+  netlify-honeypot="bot-field"
+  class="row g-3"
+  enctype="multipart/form-data"
+>
+  <input type="hidden" name="form-name" value="career-application">
+  <div class="d-none">
+    <label>Don't fill this out: <input name="bot-field"></label>
+  </div>
+
+  <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+    <label for="name" class="form-label">Full Name *</label>
+    <input type="text" class="form-control" id="name" name="fullName" required>
+  </div>
+  
+  <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+    <label for="email" class="form-label">Email *</label>
+    <input type="email" class="form-control" id="email" name="email" required>
+  </div>
+  
+  <div class="col-md-12">
+    <label for="position" class="form-label">Position Applying For *</label>
+    <select class="form-control" id="position" name="position" required>
+      <option value="">Select a position</option>
+      <!-- Will be populated by JavaScript -->
+    </select>
+  </div>
+  
+  <div class="col-md-12">
+    <label for="cv" class="form-label">Upload CV (PDF, DOC, DOCX) *</label>
+    <input type="file" class="form-control" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+  </div>
+  
+  <div class="col-md-12">
+    <label for="message" class="form-label">Cover Letter</label>
+    <textarea class="form-control" id="message" name="coverLetter" rows="4" placeholder="Tell us why you're a good fit..."></textarea>
+  </div>
+  
+  <div class="col-12 text-center">
+    <button type="submit" class="btn btn-warning text-white px-5">
+      <span id="submit-text">Submit Application</span>
+      <span id="submit-spinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+    </button>
+  </div>
+</form>
     </div>
 </section>
 

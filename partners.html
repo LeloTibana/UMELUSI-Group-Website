@@ -262,7 +262,7 @@
         <a href="finserve.html" class="brand-card d-block text-center">
           <img src="images/logo-finserve.png" alt="Umelusi FinServe Logo" class="brand-logo mb-2" />
           <h5 class="brand-finserve">Umelusi FinServ</h5>
-          <p>Digital tools & client service solutions</p>
+          <p>ForEx and Western Union Services</p>
         </a>
       </div>
     </div>
@@ -270,93 +270,79 @@
 
 <div class="section-divider" data-aos="fade-in"></div>
 
-<section id="contact-capital" class="contact-form py-5 capital-contact-form bg-white" >
-  <div class="container" data-aos="fade-up">
-    <div class="row align-items-center">
-      
-      <div class="col-lg-6 mb-4">
-        <h2 class="mb-3" style="color: var(--capital-primary);">Start Your Growth Journey</h2>
-        <p class="lead mb-4">
-          Ready to structure your next corporate transaction? Our expert team provides end-to-end support for your most critical financial decisions.
-        </p>
-        <p>
-          We offer discreet, expert counsel built on years of market experience, focusing on minimizing risk and maximizing stakeholder value. Contact us today to discuss your firm's capital needs, whether for expansion, acquisition, or restructuring.
-        </p>
-        <ul class="list-unstyled mt-4">
-            <li><i class="fas fa-check-circle me-2" style="color: var(--capital-primary);"></i> Dedicated Corporate Finance Advisor</li>
-            <li><i class="fas fa-check-circle me-2" style="color: var(--capital-primary);"></i> Confidentiality Guaranteed</li>
-            <li><i class="fas fa-check-circle me-2" style="color: var(--capital-primary);"></i> Global Network of Institutional Investors</li>
-        </ul>
-      </div>
-
-      <div class="col-lg-6">
-        <form>
-          <div class="mb-3">
-            <label for="capital-name" class="form-label">Full Name</label>
-            <input type="text" class="form-control" id="capital-name" placeholder="Enter your full name" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="capital-email" class="form-label">Email Address</label>
-            <input type="email" class="form-control" id="capital-email" placeholder="example@organization.com" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="capital-organization" class="form-label">Organization / Institution</label>
-            <input type="text" class="form-control" id="capital-organization" placeholder="Enter your organization name">
-          </div>
-
-          <div class="mb-3">
-            <label for="capital-service" class="form-label">Transaction Type</label>
-            <select class="form-select" id="capital-service" required>
-              <option value="">Select a transaction type</option>
-              <option value="capital-raising">Equity/Debt Capital Raising</option>
-              <option value="m&a">Mergers & Acquisitions</option>
-              <option value="restructuring">Corporate Restructuring</option>
-              <option value="securities">Securities Trading / Brokerage</option>
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <label for="capital-message" class="form-label">Briefly Outline Your Need</label>
-            <textarea class="form-control" id="capital-message" rows="4" placeholder="e.g., Seeking to raise $10M in growth equity, or planning a strategic acquisition..."></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary w-100">Submit Confidential Inquiry</button>
-        </form>
-      </div>
-    </div>
+<form 
+  name="partners-contact" 
+  method="POST" 
+  data-netlify="true" 
+  netlify-honeypot="bot-field"
+>
+  <input type="hidden" name="form-name" value="partners-contact">
+  <div class="d-none">
+    <label>Don't fill this out: <input name="bot-field"></label>
   </div>
-</section>
+
+  <div class="mb-3">
+    <label for="capital-name" class="form-label">Full Name *</label>
+    <input type="text" class="form-control" id="capital-name" name="fullName" placeholder="Enter your full name" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="capital-email" class="form-label">Email Address *</label>
+    <input type="email" class="form-control" id="capital-email" name="email" placeholder="example@organization.com" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="capital-organization" class="form-label">Organization / Institution</label>
+    <input type="text" class="form-control" id="capital-organization" name="organization" placeholder="Enter your organization name">
+  </div>
+
+  <div class="mb-3">
+    <label for="capital-service" class="form-label">Transaction Type *</label>
+    <select class="form-select" id="capital-service" name="transactionType" required>
+      <option value="">Select a transaction type</option>
+      <option value="capital-raising">Equity/Debt Capital Raising</option>
+      <option value="m&a">Mergers & Acquisitions</option>
+      <option value="restructuring">Corporate Restructuring</option>
+      <option value="securities">Securities Trading / Brokerage</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="capital-message" class="form-label">Briefly Outline Your Need</label>
+    <textarea class="form-control" id="capital-message" name="message" rows="4" placeholder="e.g., Seeking to raise $10M in growth equity, or planning a strategic acquisition..."></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100">Submit Confidential Inquiry</button>
+</form>
 
 
 <div class="modal fade" id="heroContactModal" tabindex="-1" aria-labelledby="heroContactModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="heroContactModalLabel">Initiate Contact with Umelusi Capital</h5>
+        <h5 class="modal-title" id="heroContactModalLabel">Initiate Contact with Umelusi Partners</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body">
         <form 
-  id="partnersContactForm"
-  name="partnersContactForm"
-  method="POST"
-  data-netlify="true"
+  name="partners-modal-contact" 
+  method="POST" 
+  data-netlify="true" 
   netlify-honeypot="bot-field"
 >
-  <!-- Hidden fields for Netlify -->
-  <input type="hidden" name="form-name" value="partnersContactForm">
-  <input type="hidden" name="bot-field">
+  <input type="hidden" name="form-name" value="partners-modal-contact">
+  <div class="d-none">
+    <label>Don't fill this out: <input name="bot-field"></label>
+  </div>
 
   <div class="mb-3">
-    <label for="partners-name" class="form-label">Full Name</label>
+    <label for="partners-name" class="form-label">Full Name *</label>
     <input type="text" class="form-control" id="partners-name" name="fullName" placeholder="Enter your full name" required>
   </div>
 
   <div class="mb-3">
-    <label for="partners-email" class="form-label">Work Email Address</label>
+    <label for="partners-email" class="form-label">Work Email Address *</label>
     <input type="email" class="form-control" id="partners-email" name="email" placeholder="example@organization.com" required>
   </div>
 
@@ -366,7 +352,7 @@
   </div>
 
   <div class="mb-3">
-    <label for="partners-service" class="form-label">Area of Advisory Interest</label>
+    <label for="partners-service" class="form-label">Area of Advisory Interest *</label>
     <select class="form-select" id="partners-service" name="advisoryInterest" required>
       <option value="">Select an area of focus</option>
       <option value="corporate-finance">Corporate Finance Advisory</option>
