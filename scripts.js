@@ -377,97 +377,96 @@ function showNotification(message, isSuccess = true) {
 }
 
 // ============================================
-// UNIVERSAL AJAX FORM HANDLER
+// NETLIFY FORMS ENHANCEMENT
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('🔧 Setting up universal AJAX forms...');
-
-    const formConfigs = {
-        'career-form': { endpoint: API_CONFIG.endpoints.career, formType: 'career' },
-        'advisorForm': { endpoint: API_CONFIG.endpoints.contact, formType: 'advisor' },
-        'contactForm': { endpoint: API_CONFIG.endpoints.contact, formType: 'general' },
-        'aboutContactForm': { endpoint: API_CONFIG.endpoints.contact, formType: 'general' },
-        'capitalContactForm': { endpoint: API_CONFIG.endpoints.form, formType: 'partners' },
-        'finserveMainContactForm': { endpoint: API_CONFIG.endpoints.form, formType: 'finserve' },
-        'finserveModalContactForm': { endpoint: API_CONFIG.endpoints.form, formType: 'finserve' },
-        'modalFundManagersForm': { endpoint: API_CONFIG.endpoints.form, formType: 'fund' },
-        'fund-managers-contact': { endpoint: API_CONFIG.endpoints.form, formType: 'fund' },
-        'contact-partners-form': { endpoint: API_CONFIG.endpoints.form, formType: 'partners' }
-    };
-
-    Object.entries(formConfigs).forEach(([formId, config]) => {
-        const form = document.getElementById(formId);
-        if (!form) return console.warn('Form not found:', formId);
-
-        form.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            const submitButton = form.querySelector('button[type="submit"]');
-            if (!submitButton) return console.error('Submit button not found for:', formId);
-
-            const originalButtonHTML = submitButton.innerHTML;
-            submitButton.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Sending...`;
-            submitButton.disabled = true;
-
-            try {
-                let formData = mapFormDataToContactFields(Object.fromEntries(new FormData(form)), config.formType);
-
-                // Validate required fields
-                const validation = validateFormData(formData);
-                if (!validation.isValid) {
-                    showNotification(validation.errors.join('. '), false);
-                    submitButton.innerHTML = originalButtonHTML;
-                    submitButton.disabled = false;
-                    return;
-                }
-
-                const response = await fetch(API_CONFIG.baseUrl + config.endpoint, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
-
-                const result = await response.json();
-
-                if (response.ok && result.success) {
-                    showFormSuccess(form, result);
-                } else {
-                    showFormError(form, result.error || 'Submission failed. Please try again.');
-                    submitButton.innerHTML = originalButtonHTML;
-                    submitButton.disabled = false;
-                }
-            } catch (err) {
-                console.error('Form submission error:', err);
-                showNotification('Network error. Please check your connection.', false);
-                submitButton.innerHTML = originalButtonHTML;
-                submitButton.disabled = false;
-            }
-        });
-    });
-});
-
-
-
-// ============================================
-// 3. REMOVE LEGACY PHP ACTIONS FROM ALL FORMS
-// ============================================
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('🔧 Cleaning up PHP actions from forms...');
+    console.log('🔧 Enhancing Netlify forms UX...');
     
-    document.querySelectorAll('form').forEach(form => {
-        if (form.action && form.action.includes('.php')) {
-            console.log(`Removing PHP action from form: ${form.id}`);
-            form.removeAttribute('action');
-            form.removeAttribute('method');
-            form.onsubmit = null;
+    // Add UX enhancements to all Netlify forms
+    document.querySelectorAll('form[data-netlify="true"]').forEach(form => {
+        const submitButton = form.querySelector('button[type="submit"]');
+        
+        if (submitButton) {
+            // Store original button text
+            if (!submitButton.hasAttribute('data-original-text')) {
+                submitButton.setAttribute('data-original-text', submitButton.innerHTML);
+            }
+            
+            // Add loading state on submit
+            form.addEventListener('submit', function() {
+                const originalText = submitButton.getAttribute('data-original-text');
+                submitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
+                submitButton.disabled = true;
+                
+                // Reset button after 10 seconds (in case form fails silently)
+                setTimeout(() => {
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                }, 10000);
+            });
+            
+            // Add form validation styling
+            form.addEventListener('invalid', function(e) {
+                e.preventDefault();
+                form.classList.add('was-validated');
+            }, true);
+            
+            // Reset validation on input
+            form.querySelectorAll('input, textarea, select').forEach(input => {
+                input.addEventListener('input', function() {
+                    this.classList.remove('is-invalid');
+                    if (form.classList.contains('was-validated')) {
+                        form.classList.remove('was-validated');
+                    }
+                });
+            });
         }
-        form.setAttribute('novalidate', 'novalidate'); // prevent default HTML5 submission
     });
-
-    console.log('✅ PHP actions removed from all forms');
+    
+    console.log('✅ Netlify forms enhanced');
 });
+
+// ============================================
+// SIMPLE NOTIFICATION FUNCTION (optional)
+// ============================================
+function showNotification(message, success = true) {
+    // Remove existing notifications
+    document.querySelectorAll('.global-notification').forEach(el => el.remove());
+    
+    // Create new notification
+    const notification = document.createElement('div');
+    notification.className = `global-notification alert ${success ? 'alert-success' : 'alert-danger'} position-fixed`;
+    notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; max-width: 350px;';
+    notification.innerHTML = `
+        <div class="d-flex align-items-center">
+            <i class="fas fa-${success ? 'check-circle' : 'exclamation-circle'} me-3 fs-4"></i>
+            <div>${message}</div>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        notification.remove();
+    }, 5000);
+}
+
+// ============================================
+// SHOW FORM SUCCESS MESSAGE (for Netlify redirect)
+// ============================================
+// This only runs if Netlify redirects to a success page with ?form=success
+if (window.location.search.includes('form=success')) {
+    document.addEventListener('DOMContentLoaded', function() {
+        showNotification('Thank you! Your message has been sent successfully.', true);
+        
+        // Clear the URL parameter
+        const url = new URL(window.location);
+        url.searchParams.delete('form');
+        window.history.replaceState({}, '', url);
+    });
+}
 
 
 
@@ -616,114 +615,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// ============================================
-// 5. GENERIC FORM HANDLER (CONTACT & OTHERS)
-// ============================================
-function setupForm(formId, endpoint) {
-    const form = document.getElementById(formId);
-    if (!form) return;
-
-    form.setAttribute('novalidate', 'novalidate');
-
-    form.addEventListener('submit', async e => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        form.classList.remove('was-validated');
-        if (!form.checkValidity()) {
-            form.classList.add('was-validated');
-            showNotification('Please fill in all required fields correctly.', false);
-            return;
-        }
-
-        const submitButton = form.querySelector('button[type="submit"]');
-        if (!submitButton) return;
-
-        const originalText = submitButton.innerHTML;
-        submitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
-        submitButton.disabled = true;
-
-        try {
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData);
-
-            // Optional: process name fields
-            const processedData = {
-                name: data.firstName && data.lastName ? `${data.firstName} ${data.lastName}` : data.firstName || data.lastName || '',
-                email: data.email || '',
-                phone: data.phone || '',
-                subject: data.subject || '',
-                message: data.message || '',
-                formType: formId
-            };
-
-            Object.keys(processedData).forEach(k => { if (!processedData[k]) delete processedData[k]; });
-
-            const response = await fetch(`${API_CONFIG.baseUrl}${endpoint}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(processedData)
-            });
-
-            const result = await response.json();
-
-            if (response.ok && result.success) {
-                showFormSuccess(form, result);
-            } else {
-                showNotification(result.error || 'Submission failed. Please try again.', false);
-                submitButton.innerHTML = originalText;
-                submitButton.disabled = false;
-            }
-        } catch (err) {
-            console.error('Form error:', err);
-            showNotification('Network error. Please try again.', false);
-            submitButton.innerHTML = originalText;
-            submitButton.disabled = false;
-        }
-    });
-}
-
-function showFormSuccess(form, result) {
-    const confirmation = document.getElementById('confirmationMessage');
-    if (confirmation) {
-        confirmation.classList.remove('d-none');
-        if (result.reference) {
-            let ref = confirmation.querySelector('#refNumber');
-            if (!ref) {
-                ref = document.createElement('div');
-                ref.id = 'refNumber';
-                ref.className = 'mt-2 small text-muted';
-                confirmation.appendChild(ref);
-            }
-            ref.textContent = `Reference: ${result.reference}`;
-        }
-    } else {
-        showNotification('Thank you! Your message has been sent.', true);
-    }
-
-    form.classList.add('d-none');
-    setTimeout(() => {
-        form.reset();
-        form.classList.remove('d-none');
-        if (confirmation) confirmation.classList.add('d-none');
-        const submitButton = form.querySelector('button[type="submit"]');
-        if (submitButton) {
-            submitButton.innerHTML = 'Submit Inquiry <i class="fas fa-paper-plane ms-2"></i>';
-            submitButton.disabled = false;
-        }
-    }, 8000);
-}
-
-// ============================================
-// 6. INITIALIZE FORMS ON PAGE LOAD
-// ============================================
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('🔧 Initializing forms...');
-    setupForm('contactForm', API_CONFIG.endpoints.contact);
-    // Add other forms similarly:
-    // setupForm('newsletterForm', API_CONFIG.endpoints.newsletter);
-    console.log('✅ Forms initialized');
-});
 
 
 // ========================
@@ -909,27 +800,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-  // ------------------------
-  // Contact Form Debug Button
-  // ------------------------
-  const form = document.getElementById('contactForm');
-  if (form) {
-    setTimeout(() => {
-      const btn = document.createElement('button');
-      btn.id = 'debugTestBtn';
-      btn.textContent = '🧪 TEST CONTACT FORM';
-      btn.style.cssText = 'position:fixed;top:20px;right:20px;z-index:99999;background:#FF0000;color:#fff;padding:15px 20px;border-radius:10px;border:none;font-weight:bold;font-size:16px;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,0.3);';
-      btn.onclick = async () => {
-        const testData = { contactName: 'Debug Test User', contactEmail: 'debug@test.com', contactMessage: 'Test message from debug button.' };
-        try {
-          const res = await fetch('http://localhost:3000/api/contact/submit', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(testData) });
-          const result = await res.json();
-          alert(result.success ? `✅ SUCCESS!\n${result.message}` : `❌ FAILED\n${result.error}`);
-        } catch (err) {
-          alert(`💥 NETWORK ERROR\n${err.message}`);
-        }
-      };
-      document.body.appendChild(btn);
-    }, 1000);
-  }
-});
+  
