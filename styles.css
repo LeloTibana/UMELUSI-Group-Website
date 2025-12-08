@@ -2119,6 +2119,10 @@ footer a:hover {
     }
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* Pressroom Hero CSS */
 .pressroom-hero {
     background: url('images/pressroom-hero.jpg') center/cover no-repeat;
