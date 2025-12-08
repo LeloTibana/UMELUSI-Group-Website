@@ -142,7 +142,6 @@
     </div>
 </section>
 
-<!-- Add this script at the bottom -->
 <script>
 let allArticles = [];
 let currentFilter = 'all';
@@ -150,135 +149,179 @@ let currentFilter = 'all';
 let currentPage = 1;
 const articlesPerPage = 6;
 
-
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Load press articles from JSON
+
     fetch('/_data/press.json')
-        .then(response => response.json())
+
+        .then(response => {
+            if (!response.ok) throw new Error('Unable to fetch JSON');
+            return response.json();
+        })
+
         .then(data => {
-            allArticles = Array.isArray(data.articles) ? data.articles.filter(article => article.published) : [];
+
+            // ✅ FIX: correctly read array from JSON object
+            if (!Array.isArray(data.articles)) {
+                throw new Error('JSON format invalid - "articles" is not an array');
+            }
+
+            allArticles = data.articles.filter(article => article.published === true);
+
             displayArticles(allArticles);
             setupFilters();
             setupSearch();
-            setupPagination();
+            setupPaginationControls(allArticles.length);
+
         })
+
         .catch(error => {
             console.error('Error loading press articles:', error);
+
             document.getElementById('pressroom-grid').innerHTML = `
                 <div class="col-12 text-center">
                     <div class="alert alert-danger">
                         <i class="fas fa-exclamation-circle me-2"></i>
                         Unable to load press articles. Please try again later.
                     </div>
-                </div>`;
+                </div>
+            `;
         });
+
 });
 
 function displayArticles(articles) {
+
     const container = document.getElementById('pressroom-grid');
     const noResults = document.getElementById('no-results');
-    
-    if (articles.length === 0) {
+
+    if (!articles.length) {
         container.innerHTML = '';
+
         noResults.innerHTML = `
             No news right now, but do sign up to our newsletter and be the first to know what's happening with Umelusi Group!
         `;
+
         noResults.classList.remove('d-none');
         document.getElementById('pagination-controls').classList.add('d-none');
         return;
     }
-    
+
     noResults.classList.add('d-none');
     document.getElementById('pagination-controls').classList.remove('d-none');
 
-    // Pagination logic
+    // ✅ pagination slice
     const start = (currentPage - 1) * articlesPerPage;
     const end = start + articlesPerPage;
     const paginatedArticles = articles.slice(start, end);
 
     let html = '';
+
     paginatedArticles.forEach(article => {
+
         html += `
-        <div class="col-md-4 press-item" data-category="${article.category}" data-aos="fade-up">
-            <div class="press-card h-100 shadow-sm d-flex flex-column">
-                <div class="press-card-body flex-grow-1">
-                    <span class="press-meta">
-                        ${new Date(article.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })} • ${article.category}
-                    </span>
-                    <h5 class="press-title mt-2">${article.title}</h5>
-                    <p class="press-summary">
-                        ${article.excerpt ? article.excerpt.substring(0, 150) + '...' : ''}
-                    </p>
-                </div>
-                <div class="mt-auto pt-3">
-                    <a href="/press-article.html?id=${article.slug}" class="btn btn-sm btn-orange w-100">Read More</a>
+            <div class="col-md-4 press-item" data-category="${article.category}" data-aos="fade-up">
+                <div class="press-card h-100 shadow-sm d-flex flex-column">
+
+                    <div class="press-card-body flex-grow-1">
+                        <span class="press-meta">
+                            ${new Date(article.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })} • ${article.category}
+                        </span>
+
+                        <h5 class="press-title mt-2">${article.title}</h5>
+
+                        <p class="press-summary">
+                            ${article.excerpt ? article.excerpt.substring(0,150) + '...' : ''}
+                        </p>
+                    </div>
+
+                    <div class="mt-auto pt-3">
+                        <a href="/press-article.html?id=${article.slug}" class="btn btn-sm btn-orange w-100">
+                            Read More
+                        </a>
+                    </div>
+
                 </div>
             </div>
-        </div>`;
+        `;
+
     });
 
     container.innerHTML = html;
+
     setupPaginationControls(articles.length);
 }
 
-
-
 function setupFilters() {
+
     const filterButtons = document.querySelectorAll('.press-filters button');
-    
+
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Update active button
+
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
-            
+
             currentFilter = this.dataset.filter;
+
+            currentPage = 1; // ✅ reset page on new filter
+
             filterArticles();
         });
     });
+
 }
 
 function filterArticles() {
-    let filtered = allArticles;
-    
-    // Apply category filter
+
+    let filtered = [...allArticles];
+
     if (currentFilter !== 'all') {
         filtered = filtered.filter(article => article.category === currentFilter);
     }
-    
-    // Apply search filter
+
     const searchInput = document.getElementById('press-search');
+
     if (searchInput && searchInput.value.trim()) {
-        const searchTerm = searchInput.value.toLowerCase();
-        filtered = filtered.filter(article => 
-            article.title.toLowerCase().includes(searchTerm) ||
-            article.excerpt.toLowerCase().includes(searchTerm) ||
-            article.body.toLowerCase().includes(searchTerm)
+
+        const term = searchInput.value.toLowerCase();
+
+        filtered = filtered.filter(article =>
+            article.title.toLowerCase().includes(term) ||
+            article.excerpt.toLowerCase().includes(term) ||
+            article.body.toLowerCase().includes(term)
         );
+
     }
-    
+
     displayArticles(filtered);
 }
 
 function setupSearch() {
+
     const searchInput = document.getElementById('press-search');
-    if (searchInput) {
-        let debounceTimer;
-        searchInput.addEventListener('input', function() {
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(() => {
-                filterArticles();
-            }, 300);
-        });
-    }
+    if (!searchInput) return;
+
+    let debounce;
+
+    searchInput.addEventListener('input', function() {
+
+        clearTimeout(debounce);
+
+        debounce = setTimeout(() => {
+            currentPage = 1; // ✅ reset to page 1 on search
+            filterArticles();
+        }, 300);
+
+    });
 }
 
 function setupPaginationControls(totalArticles) {
+
     const paginationContainer = document.getElementById('pagination-controls');
     if (!paginationContainer) return;
 
     const totalPages = Math.ceil(totalArticles / articlesPerPage);
+
     if (totalPages <= 1) {
         paginationContainer.innerHTML = '';
         return;
@@ -286,22 +329,20 @@ function setupPaginationControls(totalArticles) {
 
     let html = '';
 
-    // Previous button
     html += `
         <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
             <a class="page-link" href="#" data-page="${currentPage - 1}">Previous</a>
         </li>
     `;
 
-    // Page numbers
     for (let i = 1; i <= totalPages; i++) {
         html += `
-        <li class="page-item ${currentPage === i ? 'active' : ''}">
-            <a class="page-link" href="#" data-page="${i}">${i}</a>
-        </li>`;
+            <li class="page-item ${currentPage === i ? 'active' : ''}">
+                <a class="page-link" href="#" data-page="${i}">${i}</a>
+            </li>
+        `;
     }
 
-    // Next button
     html += `
         <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
             <a class="page-link" href="#" data-page="${currentPage + 1}">Next</a>
@@ -310,22 +351,31 @@ function setupPaginationControls(totalArticles) {
 
     paginationContainer.innerHTML = html;
 
-    // Add click events
-    const links = paginationContainer.querySelectorAll('a.page-link');
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const page = parseInt(this.dataset.page);
-            if (page >= 1 && page <= totalPages) {
-                currentPage = page;
-                filterArticles(); // refresh articles with new page
-                window.scrollTo({ top: document.getElementById('pressroom-grid').offsetTop - 100, behavior: 'smooth' });
-            }
-        });
-    });
-}
+    paginationContainer.querySelectorAll('a.page-link')
+        .forEach(link => {
+            link.addEventListener('click', function(e) {
 
+                e.preventDefault();
+
+                const targetPage = parseInt(this.dataset.page);
+
+                if (targetPage >= 1 && targetPage <= totalPages) {
+
+                    currentPage = targetPage;
+
+                    filterArticles();
+
+                    window.scrollTo({
+                        top: document.getElementById('pressroom-grid').offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+
+                }
+            });
+        });
+}
 </script>
+
   
 </main>
 
