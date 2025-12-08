@@ -1,37 +1,227 @@
-<main>
-  <div class="container py-5">
-    <div id="article-content" class="article-body">
-      <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading article...</span>
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umelusi Group | Article</title>
+    <meta name="description" content="Read articles and press releases from Umelusi Group">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Century+Gothic&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar (same as pressroom.html) -->
+<nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+            <img src="images/Umelusi-2ndLogo.png" alt="Umelusi Group Logo" class="navbar-logo" id="umelusi-logo" />
+        </a>                   
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown">About Us</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="about-company.html">Company Information</a></li>
+                        <li><a class="dropdown-item active" href="board-of-directors.html">Board of Directors</a></li>
+                        <li><a class="dropdown-item" href="pressroom.html">Pressroom</a></li>
+                        <li><a class="dropdown-item" href="careers.html">Career Opportunities</a></li>
+                        <li><a class="dropdown-item" href="hierarchy.html">Hierarchy</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Brands</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="fund-managers.html">Umelusi Fund Managers</a></li>
+                        <li><a class="dropdown-item" href="partners.html">Umelusi Partners</a></li>
+                        <li><a class="dropdown-item" href="capital.html">Umelusi Capital</a></li>
+                        <li><a class="dropdown-item" href="finserve.html">Umelusi FinServ</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="markets.html">Markets</a></li>
+                <li class="nav-item"><a class="nav-link" href="resources.html">Resources & Insights</a></li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="contact.html">Contact Us</a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
+</nav>
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get('id'); // Example: ?id=umelusi-partners-signs-agreement
+<!-- Main Content -->
+<div class="container py-5">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="pressroom.html">Pressroom</a></li>
+            <li class="breadcrumb-item active" id="article-breadcrumb">Article</li>
+        </ol>
+    </nav>
+    
+    <!-- Article Loader -->
+    <div id="article-loader" class="text-center my-5">
+        <div class="spinner-border text-warning" style="width: 3rem; height: 3rem;"></div>
+        <p class="mt-3">Loading article...</p>
+    </div>
+    
+    <!-- Article Content (will be filled by JavaScript) -->
+    <article>
+        <h1 id="article-title" class="mb-3"></h1>
+        
+        <div id="article-meta" class="mb-4 text-muted"></div>
+        
+        <img id="article-image" class="img-fluid rounded mb-4" style="display:none; max-height: 400px; object-fit: cover;" />
+        
+        <div id="article-body" class="article-content"></div>
+        
+        <div class="mt-5 pt-4 border-top">
+            <a href="pressroom.html" class="btn btn-orange">
+                <i class="fas fa-arrow-left me-2"></i>Back to Pressroom
+            </a>
+        </div>
+    </article>
+</div>
 
+<!-- Footer (same as pressroom.html) -->
+<footer class="bg-light text-center text-lg-start">
+    <div class="container p-4">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-12 mb-4">
+                <img src="images/Umelusi-2ndLogo.png" alt="Umelusi Group Logo" class="footer-logo">
+            </div>
+            <div class="col-lg-9 col-md-12 mb-4">
+                <div class="social-media mb-3 d-flex justify-content-end">
+                    <a href="https://www.linkedin.com/company/umelusigroup/?viewAsMember=true" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://www.instagram.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="https://www.facebook.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                    <a href="https://www.youtube.com/@UmelusiGroup" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
+                </div>
+                <div class="contact-details text-end">
+                    <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Office D103, Development House, Swazi Plaza</p>
+                    <p class="mb-1"><i class="fas fa-phone me-2"></i>(+268) 2404 3795</p>
+                    <p class="mb-0"><i class="fas fa-envelope me-2"></i><a href="mailto:info@umelusi.com" class="text-dark">info@umelusi.com</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-3" style="background-color: #FF9933; color: white;">
+            © 2025 Copyright:
+            <a class="text-white" href="index.html">Umelusi Group</a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="scripts.js"></script>
+
+<!-- JavaScript for loading the article -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the article ID from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const articleSlug = urlParams.get('id');
+    
+    if (!articleSlug) {
+        showError('No article specified');
+        return;
+    }
+    
+    // Load the articles JSON
     fetch('/_data/press.json')
-      .then(res => res.json())
-      .then(articles => {
-        const article = articles.find(a => a.slug === slug && a.published);
-        const container = document.getElementById('article-content');
+        .then(response => {
+            if (!response.ok) throw new Error('Unable to fetch JSON');
+            return response.json();
+        })
+        .then(data => {
+            // Check if we have the articles array
+            if (!data.articles || !Array.isArray(data.articles)) {
+                throw new Error('Invalid JSON format - articles array not found');
+            }
+            
+            // Find the article by slug
+            const article = data.articles.find(article => article.slug === articleSlug);
+            
+            if (!article) {
+                showError('Article not found');
+                return;
+            }
+            
+            // Display the article
+            displayArticle(article);
+        })
+        .catch(error => {
+            console.error('Error loading article:', error);
+            showError('Failed to load article. Please try again later.');
+        });
+});
 
-        if (!article) {
-          container.innerHTML = '<p class="text-danger">Article not found.</p>';
-          return;
-        }
+function displayArticle(article) {
+    // Update page title
+    document.title = `${article.title} | Umelusi Group Pressroom`;
+    
+    // Update breadcrumb
+    document.getElementById('article-breadcrumb').textContent = article.title;
+    
+    // Set the article content
+    document.getElementById('article-title').textContent = article.title;
+    
+    // Format and display the date
+    const articleDate = new Date(article.date);
+    document.getElementById('article-meta').innerHTML = `
+        <i class="fas fa-calendar me-2"></i>
+        ${articleDate.toLocaleDateString('en-US', { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        })}
+        <span class="ms-3 badge bg-secondary">${article.category}</span>
+    `;
+    
+    // Display image if available
+    const articleImage = document.getElementById('article-image');
+    if (article.image) {
+        articleImage.src = article.image;
+        articleImage.alt = article.title;
+        articleImage.style.display = 'block';
+    }
+    
+    // Set the article body - fix the escaped newlines
+    let bodyContent = article.body || '<p class="text-muted">No content available for this article.</p>';
+    
+    // Replace escaped newlines with HTML line breaks
+    bodyContent = bodyContent.replace(/\\n/g, '<br>');
+    
+    document.getElementById('article-body').innerHTML = bodyContent;
+    
+    // Hide the loader
+    document.getElementById('article-loader').style.display = 'none';
+}
 
-        container.innerHTML = `
-          <h1>${article.title}</h1>
-          <p class="text-muted">${new Date(article.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })} • ${article.category}</p>
-          <div>${article.body}</div>
-          <a href="/pressroom.html" class="btn btn-secondary mt-4">Back to Pressroom</a>
-        `;
-      })
-      .catch(err => {
-        console.error(err);
-        document.getElementById('article-content').innerHTML = '<p class="text-danger">Failed to load article.</p>';
-      });
-  </script>
-</main>
+function showError(message) {
+    const loader = document.getElementById('article-loader');
+    loader.innerHTML = `
+        <div class="alert alert-danger" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            ${message}
+            <br><br>
+            <a href="pressroom.html" class="btn btn-orange btn-sm">
+                <i class="fas fa-arrow-left me-2"></i>Back to Pressroom
+            </a>
+        </div>
+    `;
+}
+</script>
+
+</body>
+</html>
