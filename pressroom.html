@@ -148,6 +148,32 @@ document.addEventListener("DOMContentLoaded", function () {
     const params = new URLSearchParams(window.location.search);
     const slug = params.get('id');
 
+    const titleEl = document.getElementById('article-title');
+    const metaEl = document.getElementById('article-meta');
+    const bodyEl = document.getElementById('article-body');
+    const imageEl = document.getElementById('article-image');
+
+    const loader = document.getElementById('article-loader');
+
+    function hideLoader() {
+        if (loader) loader.style.display = 'none';
+    }
+
+    function showError(msg) {
+        hideLoader();
+
+        if (bodyEl) {
+            bodyEl.innerHTML = `
+                <div class="alert alert-danger text-center">
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    ${msg}
+                </div>
+            `;
+        } else {
+            console.error("Error element missing:", msg);
+        }
+    }
+
     if (!slug) {
         showError("Invalid article link.");
         return;
@@ -155,69 +181,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
     fetch('/_data/press.json')
         .then(res => {
-            if (!res.ok) throw new Error('Failed to load JSON');
+            if (!res.ok) throw new Error("Failed to load articles");
             return res.json();
         })
         .then(data => {
 
-            // ✅ FIX: correct JSON parsing
             if (!Array.isArray(data.articles)) {
-                throw new Error('JSON format invalid');
+                throw new Error("Invalid JSON structure");
             }
 
-            const articles = data.articles;
-
-            const article = articles.find(a => a.slug === slug && a.published === true);
+            const article = data.articles.find(a => a.slug === slug && a.published === true);
 
             if (!article) {
-                showError("Article not found or unpublished.");
-                return;
+                throw new Error("Article not found");
             }
 
-            renderArticle(article);
+            // ✔ Rendering safely only into elements that exist
+
+            if (titleEl) titleEl.textContent = article.title;
+
+            if (metaEl) {
+                metaEl.textContent =
+                    `${new Date(article.date).toLocaleDateString('en-US', {
+                        month: 'long',
+                        day: 'numeric',
+                        year: 'numeric'
+                    })} • ${article.category}`;
+            }
+
+            if (imageEl && article.image) {
+                imageEl.src = article.image;
+                imageEl.style.display = 'block';
+            }
+
+            if (bodyEl) {
+                bodyEl.innerHTML = article.body
+                    .split(/\n+/)
+                    .map(p => `<p>${p.trim()}</p>`)
+                    .join('');
+            }
+
+            hideLoader();
         })
         .catch(err => {
             console.error(err);
             showError("Failed to load article.");
         });
 });
-
-function renderArticle(article) {
-
-    document.getElementById('article-title').textContent = article.title;
-
-    document.getElementById('article-meta').textContent =
-        `${new Date(article.date).toLocaleDateString('en-US', {
-            month: 'long',
-            day: 'numeric',
-            year: 'numeric'
-        })} • ${article.category}`;
-
-    if (article.image) {
-        document.getElementById('article-image').src = article.image;
-    }
-
-    // Convert line breaks into paragraphs
-    const formattedBody = article.body
-        .split(/\n+/)
-        .map(p => `<p>${p.trim()}</p>`)
-        .join('');
-
-    document.getElementById('article-body').innerHTML = formattedBody;
-}
-
-function showError(msg) {
-
-    const container = document.getElementById('article-body');
-
-    container.innerHTML = `
-        <div class="alert alert-danger text-center">
-            <i class="fas fa-exclamation-circle me-2"></i>
-            ${msg}
-        </div>
-    `;
-}
 </script>
+
 
 
   
