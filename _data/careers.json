@@ -1,28 +1,40 @@
 {
   "jobs": [
     {
-      "title": "Marketing Specialist",
+      "active": true,
+      "salary": "E5000/month",
       "slug": "marketing-specialist",
+      "requirements": "3+ years in marketing, proficiency with Google Analytics, SEO, and social media management.",
       "department": "Marketing",
       "location": "Mbabane, Eswatini",
-      "type": "Full-time",
+      "title": "Marketing Specialist",
       "deadline": "2025-12-31",
-      "description": "Responsible for digital campaigns, social media, and content creation.",
-      "requirements": "3+ years in marketing, proficiency with Google Analytics, SEO, and social media management.",
-      "salary": "E5000/month",
-      "active": true
+      "type": "Full-time",
+      "description": "Responsible for digital campaigns, social media, and content creation."
     },
     {
-      "title": "Financial Analyst",
+      "active": true,
+      "salary": "E4500/month",
       "slug": "financial-analyst",
+      "requirements": "Degree in Finance or Accounting, 2+ years experience in financial analysis.",
       "department": "Finance",
       "location": "Mbabane, Eswatini",
-      "type": "Full-time",
+      "title": "Financial Analyst",
       "deadline": "2025-12-20",
-      "description": "Analyze financial data and prepare reports for clients.",
-      "requirements": "Degree in Finance or Accounting, 2+ years experience in financial analysis.",
-      "salary": "E4500/month",
-      "active": true
+      "type": "Full-time",
+      "description": "Analyze financial data and prepare reports for clients."
+    },
+    {
+      "active": true,
+      "salary": "Test Job",
+      "slug": "test-job-post",
+      "requirements": "Test Job Post",
+      "department": "Test Dept",
+      "location": "Test Location",
+      "title": "Test Job Post",
+      "deadline": "2025-12-07T17:13:00.000+02:00",
+      "type": "Full-time",
+      "description": "Test Job Post"
     }
   ]
 }

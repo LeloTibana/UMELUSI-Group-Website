@@ -1,30 +1,42 @@
 {
   "items": [
     {
-      "title": "2025 Market Outlook",
       "slug": "2025-market-outlook",
-      "type": "Report",
-      "category": "Global Markets",
-      "date": "2025-11-01",
       "thumbnail": "/images/market-report.jpg",
+      "featured": true,
+      "published": true,
+      "date": "2025-11-01",
+      "title": "2025 Market Outlook",
+      "content": "Full report content here...",
+      "type": "Report",
       "file": "/downloads/2025-market-outlook.pdf",
       "description": "A detailed look at market trends and investment strategies for 2025.",
-      "content": "Full report content here...",
-      "featured": true,
-      "published": true
+      "category": "Global Markets"
     },
     {
-      "title": "Investment Guide for Beginners",
       "slug": "investment-guide-beginners",
-      "type": "Guide",
-      "category": "Wealth Building",
-      "date": "2025-10-15",
       "thumbnail": "/images/investment-guide.jpg",
+      "featured": true,
+      "published": true,
+      "date": "2025-10-15",
+      "title": "Investment Guide for Beginners",
+      "content": "Full guide content here...",
+      "type": "Guide",
       "file": "/downloads/investment-guide.pdf",
       "description": "Step-by-step guide for novice investors.",
-      "content": "Full guide content here...",
-      "featured": true,
-      "published": true
+      "category": "Wealth Building"
+    },
+    {
+      "slug": "test-resource-paper",
+      "thumbnail": "/images/Umelusi-2ndLogo.png",
+      "featured": false,
+      "published": true,
+      "date": "2025-12-07T17:08:00.000+02:00",
+      "title": "Test Resource Paper",
+      "content": "Good day Viewer,\\\n\\\nWhat you are seeing is a test resource paper to see how well the CMS system is working",
+      "type": "Market Insight",
+      "description": "This is a test resource paper written by Mphumelelo",
+      "category": "Test"
     }
   ]
 }
