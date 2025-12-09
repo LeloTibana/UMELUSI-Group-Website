@@ -1,5 +1,5 @@
 /* ========================================================= */
-/* 1. GLOBAL RESET & BASE STYLES */
+/* 1. GLOBAL STYLES & VARIABLES */
 /* ========================================================= */
 
 * {
@@ -40,36 +40,69 @@ a:hover {
 }
 
 /* ========================================================= */
-/* 2. CUSTOM VARIABLES & BRAND COLORS */
+/* 2. COLOR VARIABLES */
 /* ========================================================= */
 
 :root {
-    /* Main Brand Colors */
+    /* Brand Colors */
     --umelusi-orange: #FF9933;
     --umelusi-dark-navy: #000033;
     --umelusi-primary-dark: #A0522D;
     --umelusi-light-bg: #fff8ed;
     
-    /* Brand Specific Colors */
+    /* Fund Managers Colors */
     --fund-primary: #f58632;
     --brand-dark: #606162;
+    
+    /* Capital Brand Colors */
     --capital-primary: #FF9933;
     --capital-dark: #cc7a29;
+    
+    /* Card Background */
     --card-bg-light: #f8f9fa;
 }
 
 /* ========================================================= */
-/* 3. ACCESSIBILITY & UTILITIES */
+/* 3. UTILITY CLASSES & TEXT COLORS */
 /* ========================================================= */
 
-/* Focus Styles */
+.text-brand {
+    color: #FF9933 !important;
+}
+
+.text-umelusi-orange {
+    color: var(--umelusi-orange) !important;
+}
+
+.text-umelusi-blue {
+    color: var(--umelusi-primary-dark) !important;
+}
+
+.bg-umelusi-blue {
+    background-color: var(--umelusi-primary-dark) !important;
+}
+
+.bg-umelusi-orange {
+    background-color: var(--umelusi-orange) !important;
+}
+
+/* Brand Title Colors */
+.brand-capital { color: #ed2f38; }
+.brand-partners { color: #50a8b0; }
+.brand-finserve { color: #f9b316; }
+.brand-fund-managers { color: #e6801d; }
+
+/* ========================================================= */
+/* 4. ACCESSIBILITY */
+/* ========================================================= */
+
 a:focus,
 button:focus,
 input:focus,
 select:focus,
 textarea:focus,
 [tabindex]:focus {
-    outline: 3px solid var(--umelusi-orange);
+    outline: 3px solid #FF9933;
     outline-offset: 2px;
     border-radius: 2px;
 }
@@ -80,53 +113,41 @@ textarea:focus,
 }
 
 /* ========================================================= */
-/* 4. TYPOGRAPHY & TEXT COLORS */
-/* ========================================================= */
-
-.text-brand {
-    color: var(--fund-primary);
-}
-
-.text-umelusi-orange {
-    color: var(--umelusi-orange) !important;
-}
-
-.text-umelusi-blue {
-    color: var(--umelusi-dark-navy) !important;
-}
-
-/* Brand Title Colors */
-.brand-capital { color: #ed2f38; }
-.brand-partners { color: #50a8b0; }
-.brand-finserve { color: #f9b316; }
-.brand-fund-managers { color: #e6801d; }
-
-/* ========================================================= */
 /* 5. BUTTON STYLES */
 /* ========================================================= */
 
-/* Primary Buttons */
-.btn-brand,
-.btn-umelusi-orange {
-    background-color: var(--umelusi-orange);
+.btn-brand {
+    background-color: #FF9933;
     color: #fff;
     border: none;
     padding: 0.75rem 1.5rem;
     transition: background-color 0.3s ease;
 }
 
-.btn-brand:hover,
-.btn-umelusi-orange:hover {
+.btn-brand:hover {
     background-color: #e6801d;
     color: #fff;
 }
 
-/* Filled Orange Button */
+.btn-umelusi-orange {
+    background-color: #FF9933;
+    border-color: #FF9933;
+    color: #FFFFFF !important;
+    font-weight: 600;
+}
+
+.btn-umelusi-orange:hover,
+.btn-umelusi-orange:focus {
+    background-color: #e68a2e;
+    border-color: #e68a2e;
+    color: #FFFFFF !important;
+}
+
 .btn-filled-orange {
-    background-color: var(--umelusi-orange);
+    background-color: #FF9933;
     color: white;
     font-weight: 700;
-    border: 2px solid var(--umelusi-orange);
+    border: 2px solid #FF9933;
     border-radius: 8px;
     transition: all 0.3s ease;
 }
@@ -139,14 +160,13 @@ textarea:focus,
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Outline Buttons */
 .btn-outline-orange {
-    color: var(--umelusi-orange);
-    border-color: var(--umelusi-orange);
+    color: #FF9933;
+    border-color: #FF9933;
 }
 
 .btn-outline-orange:hover {
-    background-color: var(--umelusi-orange);
+    background-color: #FF9933;
     color: #000;
 }
 
@@ -166,11 +186,12 @@ textarea:focus,
     color: var(--umelusi-orange);
     border-color: var(--umelusi-orange);
     font-weight: 600;
+    transition: background-color 0.3s;
 }
 
 .btn-outline-umelusi-orange:hover {
-    background-color: var(--umelusi-orange);
-    color: #fff;
+    background-color: #ffaa66;
+    color: var(--umelusi-primary-dark);
     border-color: #ffaa66;
 }
 
@@ -185,7 +206,15 @@ textarea:focus,
     color: #fff;
 }
 
-/* Secondary Buttons */
+.btn-warning {
+    background-color: #FF9933;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #e8841f;
+}
+
 .btn-outline-secondary,
 .back-to-careers {
     display: inline-block;
@@ -200,24 +229,30 @@ textarea:focus,
 
 .btn-outline-secondary:hover,
 .back-to-careers:hover {
-    background-color: var(--umelusi-orange);
+    background-color: #ff9933;
     color: #fff;
-    border-color: var(--umelusi-orange);
+    border-color: #ff9933;
 }
 
-/* Special Buttons */
-.btn-warning {
-    background-color: var(--umelusi-orange);
-    border: none;
+.btn-brand-outline {
+    border: 2px solid #d46e1c;
+    background-color: transparent;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 500;
+    color: #d46e1c;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
-.btn-warning:hover {
-    background-color: #e8841f;
+.btn-brand-outline:hover {
+    background-color: #d46e1c;
+    color: #ffffff;
 }
 
 .league-button {
-    background-color: var(--umelusi-orange);
-    color: var(--umelusi-dark-navy);
+    background-color: #FF9933;
+    color: #000033;
     font-weight: 700;
     border: none;
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -225,14 +260,17 @@ textarea:focus,
 
 .league-button:hover {
     background-color: #e68a2e;
-    color: var(--umelusi-dark-navy);
+    color: #000033;
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Back to Top Button */
+/* ========================================================= */
+/* 6. BACK TO TOP BUTTON */
+/* ========================================================= */
+
 #back-to-top {
-    background-color: var(--umelusi-orange);
+    background-color: #ff9933;
     border: none;
     border-radius: 50%;
     width: 40px;
@@ -254,10 +292,9 @@ textarea:focus,
 }
 
 /* ========================================================= */
-/* 6. NAVIGATION */
+/* 7. NAVIGATION */
 /* ========================================================= */
 
-/* Navbar */
 .navbar {
     background-color: transparent;
     transition: background-color 0.3s ease, padding 0.3s ease;
@@ -290,7 +327,7 @@ textarea:focus,
 }
 
 .navbar .nav-link:hover {
-    color: var(--umelusi-orange) !important;
+    color: #ff9933 !important;
 }
 
 .navbar .dropdown-menu {
@@ -302,11 +339,14 @@ textarea:focus,
 }
 
 .navbar .dropdown-item:hover {
-    background-color: var(--umelusi-orange);
+    background-color: #ff9933;
     color: #ffffff;
 }
 
-/* Breadcrumb */
+/* ========================================================= */
+/* 8. BREADCRUMB */
+/* ========================================================= */
+
 .breadcrumb-nav {
     background-color: #f8f9fa;
     border-bottom: 1px solid #eee;
@@ -321,7 +361,7 @@ textarea:focus,
 
 .breadcrumb-item a {
     text-decoration: none;
-    color: var(--umelusi-orange);
+    color: #FF9933;
 }
 
 .breadcrumb-item a:hover {
@@ -334,7 +374,7 @@ textarea:focus,
 }
 
 /* ========================================================= */
-/* 7. CARD COMPONENTS */
+/* 9. COMPONENTS: CARDS */
 /* ========================================================= */
 
 /* Brand Cards */
@@ -351,7 +391,7 @@ textarea:focus,
 .brand-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-    border-color: var(--umelusi-orange) !important;
+    border-color: #FF9933 !important;
 }
 
 .brand-logo {
@@ -375,7 +415,7 @@ textarea:focus,
 }
 
 .product-card:hover {
-    border-color: var(--umelusi-orange);
+    border-color: #FF9933;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     transform: translateY(-4px);
     background: #fefefe;
@@ -389,26 +429,15 @@ textarea:focus,
     flex-shrink: 0;
 }
 
-/* Service Focus Cards (Capital Page) */
-.service-focus-card {
-    border-top: 5px solid var(--capital-primary);
-    background-color: #f8f9fa;
-    color: #333333;
-    transition: all 0.3s ease;
-    border-radius: 8px;
-    padding: 1.5rem;
-    height: 100%;
+.product-card h5 {
+    margin-bottom: 0.3rem;
+    color: #333;
 }
 
-.service-focus-card:hover {
-    box-shadow: 0 8px 16px rgba(255, 153, 51, 0.25);
-    transform: translateY(-5px);
-}
-
-.service-focus-card .icon {
-    color: var(--capital-primary);
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+.product-card p {
+    color: #555;
+    font-size: 0.95rem;
+    margin-bottom: 0;
 }
 
 /* Pillar Cards */
@@ -433,6 +462,43 @@ textarea:focus,
     border-radius: 8px;
 }
 
+.pillars-heading {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--fund-primary);
+    border-left: 6px solid var(--fund-primary);
+    padding-left: 1rem;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+/* Service Focus Cards (Capital) */
+.service-focus-card {
+    border-top: 5px solid var(--capital-primary);
+    background-color: #f8f9fa;
+    color: #333333;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    padding: 1.5rem;
+    height: 100%;
+}
+
+.service-focus-card:hover {
+    box-shadow: 0 8px 16px rgba(255, 153, 51, 0.25);
+    transform: translateY(-5px);
+}
+
+.service-focus-card .icon {
+    color: var(--capital-primary);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.service-focus-card h5,
+.service-focus-card p {
+    color: #333333 !important;
+}
+
 /* Staff/Leader Cards */
 .leader-card,
 .staff-card {
@@ -448,6 +514,17 @@ textarea:focus,
 .staff-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.leader-card h6 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.leader-card .role {
+    font-size: 0.95rem;
+    color: #666;
 }
 
 .leader-img,
@@ -472,7 +549,25 @@ textarea:focus,
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* Director Card */
+.job-card .card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.job-card h5 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.job-card p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+/* Director Cards */
 .director-card {
     background-color: var(--card-bg-light);
     border: none;
@@ -492,10 +587,23 @@ textarea:focus,
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.director-name {
+    color: var(--umelusi-dark-navy);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.director-position {
+    color: var(--umelusi-orange);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
 /* Vision & Mission Cards */
 .vision-mission-card-styled {
     border-radius: 12px;
-    border: 1px solid var(--umelusi-orange) !important;
+    border: 1px solid #FF9933 !important;
     transition: all 0.3s ease;
 }
 
@@ -506,7 +614,7 @@ textarea:focus,
 
 .vision-mission-card-styled .card-title,
 .vision-mission-card-styled .card-title i {
-    color: var(--umelusi-orange) !important;
+    color: #FF9933 !important;
 }
 
 /* Feature Cards */
@@ -519,24 +627,10 @@ textarea:focus,
 }
 
 .feature-card-styled:hover {
-    border-color: var(--umelusi-orange);
+    border-color: #FF9933;
     background-color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 8px 15px rgba(255, 153, 51, 0.15) !important;
-}
-
-/* Contact Form Card */
-.contact-form-card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.contact-form-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
 }
 
 /* Resource Cards */
@@ -553,17 +647,12 @@ textarea:focus,
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Message Card */
-.message-card {
-    background: #f7f7f7;
-    border: 1px solid #eeeeee;
-    border-radius: 12px;
-    padding: 30px;
-    height: 100%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+.resource-card .card-title,
+.report-card .card-title {
+    min-height: 50px;
 }
 
-/* Article Card */
+/* Article Cards */
 .article-card {
     border: 1px solid #eee;
     border-radius: 6px;
@@ -577,11 +666,89 @@ textarea:focus,
     transform: translateY(-4px);
 }
 
+.article-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.article-content {
+    padding: 1rem;
+}
+
+.article-content h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #d46e1c;
+}
+
+.article-content p {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Message Cards */
+.message-card {
+    background: #f7f7f7;
+    border: 1px solid #eeeeee;
+    border-radius: 12px;
+    padding: 30px;
+    height: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.message-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.portrait {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.person-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.person-position {
+    font-size: 0.9rem;
+    color: #FF9933;
+    font-weight: 500;
+    margin: 0;
+}
+
+.message-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* Contact Form Card */
+.contact-form-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
 /* ========================================================= */
-/* 8. CAROUSELS & SLIDERS */
+/* 10. COMPONENTS: CAROUSELS */
 /* ========================================================= */
 
-/* Board & Executive Carousels */
 .carousel-track {
     position: relative;
     width: 100%;
@@ -633,6 +800,20 @@ textarea:focus,
     flex-shrink: 0;
 }
 
+.carousel-content h5 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #333;
+}
+
+.carousel-content p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
 .carousel-btn {
     background-color: #ffc285;
     color: #333;
@@ -650,7 +831,7 @@ textarea:focus,
 }
 
 .carousel-btn:hover {
-    background-color: var(--umelusi-orange);
+    background-color: #FF9933;
     color: #fff;
 }
 
@@ -671,7 +852,7 @@ textarea:focus,
 }
 
 .executive-carousel .carousel-btn {
-    background-color: var(--umelusi-orange);
+    background-color: #FF9933;
     color: white;
     font-size: 1.5rem;
     padding: 0.5rem 1rem;
@@ -680,6 +861,23 @@ textarea:focus,
 
 .executive-carousel .carousel-btn:hover {
     background-color: #e67d00;
+}
+
+/* Carousel Positioning */
+.board-carousel .prev-btn {
+    left: -3rem;
+}
+
+.board-carousel .next-btn {
+    right: -3rem;
+}
+
+.executive-carousel .prev-btn {
+    left: -2rem;
+}
+
+.executive-carousel .next-btn {
+    right: -2rem;
 }
 
 /* Latest News Carousel */
@@ -692,6 +890,26 @@ textarea:focus,
     background-color: rgba(0, 0, 0, 0.6);
     padding: 1rem;
     border-radius: 10px;
+}
+
+.carousel-caption h2 {
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+.carousel-caption p {
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.carousel-caption .btn-primary {
+    background-color: #ff9933;
+    border-color: #ff9933;
+}
+
+.carousel-caption .btn-primary:hover {
+    background-color: #e68a2e;
+    border-color: #e68a2e;
 }
 
 .carousel-control-prev-icon,
@@ -707,11 +925,165 @@ textarea:focus,
     opacity: 1;
 }
 
+.carousel-indicators [data-bs-target] {
+    background-color: var(--umelusi-orange);
+}
+
 /* ========================================================= */
-/* 9. HERO SECTIONS */
+/* 11. COMPONENTS: TABS & PAGINATION */
 /* ========================================================= */
 
-/* General Hero Styles */
+/* Portfolio Tabs */
+.nav-pills .nav-link {
+    color: #495057;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    margin: 0 5px;
+    font-weight: 600;
+}
+
+.nav-pills .nav-link.active, .nav-pills .nav-link:hover {
+    color: #fff;
+    background-color: #FF9933;
+    border-color: #FF9933;
+}
+
+/* Resources & Insights Tabs */
+.resources-insights .nav-tabs {
+    border-bottom: 2px solid #ff9933;
+}
+
+.resources-insights .nav-tabs .nav-link {
+    color: #423f33;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    transition: color 0.3s ease;
+}
+
+.resources-insights .nav-tabs .nav-link.active {
+    color: #ff9933;
+    font-weight: bold;
+    border: none;
+    border-bottom: 2px solid #ff9933;
+}
+
+.resources-insights .nav-tabs .nav-link:hover {
+    color: #ff9933;
+}
+
+/* Resource Hub Tabs */
+.resource-tabs .nav-link {
+    color: var(--umelusi-primary-dark);
+    border: 1px solid var(--umelusi-primary-dark);
+    margin: 0 5px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    border-radius: 50px;
+}
+
+.resource-tabs .nav-link:hover {
+    background-color: var(--umelusi-light-bg);
+    color: var(--umelusi-primary-dark);
+}
+
+.resource-tabs .nav-link.active {
+    background-color: var(--umelusi-orange);
+    color: #fff;
+    border-color: var(--umelusi-orange);
+    box-shadow: 0 4px 10px rgba(160, 82, 45, 0.4);
+}
+
+/* Hierarchy Page Tabs */
+.nav-tabs {
+    border-bottom: 2px solid #ddd;
+}
+
+.nav-tabs .nav-link {
+    color: #555;
+    font-weight: 600;
+    border: none;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+    padding: 15px 20px;
+}
+
+.nav-tabs .nav-link:hover {
+    color: #FF9933;
+}
+
+.nav-tabs .nav-link.active {
+    color: #FF9933;
+    background-color: transparent;
+    border-bottom: 3px solid #FF9933;
+}
+
+/* Pagination */
+.page-item.active .page-link {
+    background-color: #ff9933;
+    border-color: #ff9933;
+    color: white;
+}
+
+.page-link {
+    color: #333;
+    border-radius: 4px;
+}
+
+/* Article Filters */
+.tabs-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.filter-btn {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid #f58632;
+    background-color: transparent;
+    color: #d46e1c;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.filter-btn:hover {
+    background-color: #d46e1c;
+    color: #fff;
+}
+
+.filter-btn.active {
+    background-color: #d46e1c;
+    color: #fff;
+}
+
+.article-filters .btn {
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.article-filters .btn-outline-secondary {
+    color: #6c757d;
+    border-color: #ced4da;
+}
+
+.article-filters .btn-outline-secondary.active,
+.article-filters .btn-outline-secondary:hover {
+    color: var(--umelusi-primary-dark);
+    background-color: var(--umelusi-orange);
+    border-color: var(--umelusi-orange);
+    box-shadow: 0 2px 5px rgba(255, 153, 51, 0.4);
+}
+
+/* ========================================================= */
+/* 12. HERO SECTIONS */
+/* ========================================================= */
+
+/* General Hero */
 .brand-hero {
     color: white;
     padding: 6rem 2rem;
@@ -796,6 +1168,7 @@ textarea:focus,
     padding-top: 10rem;
     padding-bottom: 5rem;
     color: white;
+    height: 55vh;
 }
 
 .fund-managers-hero::before {
@@ -814,11 +1187,44 @@ textarea:focus,
     z-index: 2;
 }
 
+.fund-managers-hero h1,
+.fund-managers-hero p {
+    color: #FFFFFF !important;
+}
+
 /* FinServ Hero */
 .finserve-hero {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), 
                 url('images/finserve-hero-bg.jpg') center/cover no-repeat;
-    min-height: 600px;
+    height: 55vh;
+}
+
+.finserve-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+    z-index: 1;
+}
+
+.finserve-hero .hero-text {
+    position: relative;
+    z-index: 2;
+}
+
+.finserve-hero .btn-brand {
+    background-color: var(--bs-warning, #ffc107);
+    border-color: var(--bs-warning, #ffc107);
+    color: #333;
+    font-weight: bold;
+}
+
+.finserve-hero .btn-brand:hover {
+    background-color: #e0a800;
+    border-color: #e0a800;
 }
 
 /* Capital Hero */
@@ -826,9 +1232,22 @@ textarea:focus,
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
                 url('images/capital-hero.jpg') no-repeat center center;
     background-size: cover;
-    height: 50vh;
+    height: 55vh;
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.capital-hero .btn-brand,
+.capital-contact-form .btn-primary {
+    background-color: var(--capital-primary) !important;
+    border-color: var(--capital-primary) !important;
+    color: white !important;
+}
+
+.capital-hero .btn-brand:hover,
+.capital-contact-form .btn-primary:hover {
+    background-color: var(--capital-dark) !important;
+    border-color: var(--capital-dark) !important;
 }
 
 /* Markets Hero */
@@ -864,11 +1283,23 @@ textarea:focus,
     padding: 2rem;
 }
 
+.markets-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.markets-hero p {
+    font-size: 1.75rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    margin-top: 1rem;
+}
+
 /* Partners Hero */
 .partners-hero {
     background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), 
                 url("images/partners-hero.jpg") center/cover no-repeat;
-    max-height: 70vh;
+    height: 55vh;
 }
 
 /* Resources Hero */
@@ -893,10 +1324,21 @@ textarea:focus,
     z-index: 1;
 }
 
+.resources-hero .btn-orange {
+    background-color: #f58632;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.resources-hero .btn-orange:hover {
+    background-color: #d46e1c;
+}
+
 /* Pressroom Hero */
 .pressroom-hero {
     background: url('images/pressroom-hero.jpg') center/cover no-repeat;
-    height: 300px;
+    height: 55vh;
     position: relative;
     display: flex;
     align-items: center;
@@ -915,7 +1357,7 @@ textarea:focus,
 
 /* Contact Hero */
 .contact-hero {
-    height: 40vh;
+    height: 55vh;
     min-height: 250px;
     background: url('images/contact-hero.jpg') no-repeat center center;
     background-size: cover;
@@ -935,7 +1377,7 @@ textarea:focus,
 
 /* Hierarchy Hero */
 .hierarchy-hero {
-    height: 60vh;
+    height: 55vh;
     min-height: 400px;
     overflow: hidden;
     background: #2c3e50;
@@ -971,8 +1413,7 @@ textarea:focus,
     text-align: center;
     overflow: hidden;
     padding: 0;
-    max-height: 65vh;
-    min-height: 400px;
+    height: 55vh;
 }
 
 .hero-video {
@@ -994,7 +1435,7 @@ textarea:focus,
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 51, 0.75);
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 2;
 }
 
@@ -1012,8 +1453,37 @@ textarea:focus,
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
+.hero-content h1 {
+    color: white;
+    font-size: 3.5rem;
+}
+
+.hero-content p.lead {
+    color: #e0e0e0;
+    font-size: 1.25rem;
+}
+
+/* Article Hero */
+.article-hero {
+    background: url('images/article-banner.jpg') center center / cover no-repeat;
+    background-color: var(--umelusi-orange);
+    color: #fff;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.article-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.article-hero p {
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
 /* ========================================================= */
-/* 10. PAGE SECTIONS */
+/* 13. PAGE SECTIONS */
 /* ========================================================= */
 
 /* Welcome Section */
@@ -1025,10 +1495,90 @@ textarea:focus,
     padding: 150px 0;
 }
 
+.welcome-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.welcome-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.welcome-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.welcome-section .btn-primary {
+    background-color: #ff9933;
+    border-color: #ff9933;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.welcome-section .btn-primary:hover {
+    background-color: #e68a2e;
+    border-color: #e68a2e;
+}
+
 /* Help Section */
 .help-section {
     background-color: #ffffff;
     padding: 60px 0;
+}
+
+.help-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.help-section .card {
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 1rem;
+    text-align: center;
+}
+
+.help-section .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.help-section img {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.help-section p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.help-section span {
+    font-size: 1.2rem;
+    color: #ff9933;
+}
+
+.help-section .btn-outline-primary {
+    background-color: #ffffff;
+    color: #ff9933;
+    border: 1px solid #ff9933;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.help-section .btn-outline-primary:hover {
+    background-color: #ff9933;
+    color: #ffffff;
+    border-color: #ff9933;
 }
 
 .ecosystem-logo {
@@ -1051,43 +1601,111 @@ textarea:focus,
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
 }
 
+.service-card .card-text {
+    text-align: center;
+}
+
 /* Resources & Insights Section */
 .resources-insights {
     background-color: #ffffff;
     padding: 60px 0;
 }
 
-/* Resource Hub Section */
-.resource-tabs .nav-link {
-    color: var(--umelusi-primary-dark);
-    border: 1px solid var(--umelusi-primary-dark);
-    margin: 0 5px;
-    padding: 10px 20px;
-    transition: all 0.3s ease;
-    font-weight: 600;
-    border-radius: 50px;
+.resources-insights h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #423f33;
 }
 
-.resource-tabs .nav-link:hover {
-    background-color: var(--umelusi-light-bg);
-    color: var(--umelusi-primary-dark);
+.resources-insights .tab-content .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.resource-tabs .nav-link.active {
-    background-color: var(--umelusi-orange);
-    color: #fff;
-    border-color: var(--umelusi-orange);
-    box-shadow: 0 4px 10px rgba(160, 82, 45, 0.4);
+.resources-insights .tab-content .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Article Filters */
-.article-filters .btn {
-    border-radius: 50px;
+.resources-insights .tab-content img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.resources-insights .tab-content h5 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #423f33;
+}
+
+.resources-insights .tab-content p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #423f33;
+}
+
+.tabs-container {
+    padding: 3rem 1.5rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.tabs-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.view-all-link {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    color: #d46e1c;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.view-all-link:hover {
+    color: #d46e1c;
+}
+
+/* Staff Grid */
+.staff-grid .row.g-4 {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 1.5rem;
+}
+
+.staff-grid {
+    background-color: #f8f9fa;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+}
+
+/* Market Ticker */
+#market-ticker .table-dark {
+    --bs-table-bg: transparent;
+    --bs-table-color: white;
+    --bs-table-border-color: transparent;
+}
+
+#market-ticker td {
+    border-top: none;
+    padding: 0.25rem 0.5rem;
     font-weight: 500;
-    transition: all 0.2s;
 }
 
-/* Markets Dashboard */
+#market-ticker .table-responsive {
+    white-space: nowrap;
+}
+
+/* Markets Content */
 .markets-content h2 {
     font-weight: 600;
     margin-bottom: 2rem;
@@ -1114,7 +1732,7 @@ textarea:focus,
 }
 
 #convert-btn {
-    background-color: var(--umelusi-orange);
+    background-color: #ff9933;
     color: white;
     font-weight: 500;
     border: none;
@@ -1158,11 +1776,27 @@ textarea:focus,
     border-bottom: 1px solid var(--umelusi-primary-dark);
 }
 
-/* Project Case Study Section */
+.accordion-body {
+    background-color: #ffffff;
+    font-size: 0.95rem;
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+
+.accordion-button:not(.collapsed)::after {
+    color: var(--umelusi-orange);
+    transform: rotate(180deg);
+}
+
+.accordion-button::after {
+    filter: brightness(0.5);
+}
+
+/* Project Case Study */
 .section-heading {
     font-weight: 700;
     color: lightgray !important;
-    border-bottom: 2px solid var(--umelusi-orange);
+    border-bottom: 2px solid #FF9933;
     display: inline-block;
     padding-bottom: 8px;
     margin-bottom: 20px;
@@ -1205,6 +1839,10 @@ textarea:focus,
     position: relative;
 }
 
+.text-muted-light {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
 /* Executive Message Section */
 .executive-message-section {
     padding: 5rem 0;
@@ -1232,20 +1870,6 @@ textarea:focus,
     width: 90%;
     margin-right: 20px;
     scroll-snap-align: start;
-}
-
-.message-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.portrait {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 15px;
 }
 
 /* Golf League Section */
@@ -1337,27 +1961,109 @@ textarea:focus,
     margin-bottom: 40px;
 }
 
-/* Pillars Section */
-.pillars-heading {
-    font-size: 4rem;
-    font-weight: 700;
-    color: var(--fund-primary);
-    border-left: 6px solid var(--fund-primary);
-    padding-left: 1rem;
-    line-height: 1.2;
-    word-break: break-word;
-}
-
-/* Capital Image Side */
+/* Why Partner Section */
 .capital-image-side {
     object-fit: cover;
     width: 100%;
     max-height: 400px;
 }
 
+/* Board Section */
+.board-section {
+    padding: 60px 0;
+    background-color: #ffffff;
+}
+
 /* ========================================================= */
-/* 11. FORM STYLES */
+/* 14. CONTACT FORMS */
 /* ========================================================= */
+
+.contact-section {
+    background-color: white;
+    padding: 4rem 1rem;
+}
+
+.contact-section h2 {
+    color: var(--fund-primary);
+}
+
+.contact-section .form-control:focus {
+    border-color: var(--fund-primary);
+    box-shadow: 0 0 0 0.25rem rgba(245, 134, 50, 0.25);
+}
+
+/* Partners Contact */
+#contact-partners {
+    background-color: #f8f9fa;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+#contact-partners h2 {
+    font-size: 2.2rem;
+    color: #004b3b;
+    margin-bottom: 15px;
+}
+
+#contact-partners p {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+#contact-partners .contact-form {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+#contact-partners .form-group {
+    margin-bottom: 20px;
+}
+
+#contact-partners input,
+#contact-partners select,
+#contact-partners textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+#contact-partners input:focus,
+#contact-partners select:focus,
+#contact-partners textarea:focus {
+    border-color: #00a86b;
+    outline: none;
+}
+
+#contact-partners .cta-btn {
+    background-color: #004b3b;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#contact-partners .cta-btn:hover {
+    background-color: #00a86b;
+}
+
+#contact-partners .success-message {
+    margin-top: 25px;
+    background-color: #e6f7ee;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #00a86b;
+    color: #004b3b;
+}
 
 /* Form Controls */
 .form-control:focus,
@@ -1372,7 +2078,10 @@ textarea:focus,
     margin-bottom: 0.5rem;
 }
 
-/* Contact Form Submit Button */
+.form-label span.text-danger {
+    color: #dc3545;
+}
+
 .contact-submit-btn {
     background: linear-gradient(135deg, var(--umelusi-orange) 0%, #ff8c42 100%);
     border: none;
@@ -1389,6 +2098,21 @@ textarea:focus,
     box-shadow: 0 4px 12px rgba(255, 153, 51, 0.3);
 }
 
+.contact-submit-btn:disabled {
+    background: linear-gradient(135deg, #cccccc 0%, #aaaaaa 100%);
+    transform: none;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.contact-submit-btn.btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+}
+
+.contact-submit-btn.btn-success:hover {
+    background: linear-gradient(135deg, #218838 0%, #1e7e34 100%);
+}
+
 /* Form Validation */
 .form-control.is-invalid,
 .form-select.is-invalid {
@@ -1400,6 +2124,12 @@ textarea:focus,
     padding-right: calc(1.5em + 0.75rem);
 }
 
+.form-control.is-invalid:focus,
+.form-select.is-invalid:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
 .invalid-feedback {
     color: #dc3545;
     font-size: 0.875rem;
@@ -1407,35 +2137,44 @@ textarea:focus,
     font-weight: 500;
 }
 
-/* Loading Button State */
-.btn-loading {
-    position: relative;
-    color: transparent !important;
+/* ========================================================= */
+/* 15. MODAL STYLES */
+/* ========================================================= */
+
+.modal-content {
+    border-radius: 10px;
+    border: none;
 }
 
-.btn-loading::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 50%;
-    left: 50%;
-    margin-top: -10px;
-    margin-left: -10px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: white;
-    animation: button-spinner 0.8s linear infinite;
+.modal-header {
+    background-color: #50a8b0;
+    color: white;
+    border-bottom: none;
 }
 
-@keyframes button-spinner {
-    to {
-        transform: rotate(360deg);
-    }
+.modal-title {
+    font-weight: 600;
+}
+
+.modal-content .btn-brand {
+    background-color: #50a8b0;
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content .btn-brand:hover {
+    background-color: #3b858c;
+    color: #fff;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #50a8b0;
+    box-shadow: 0 0 0 0.2rem rgba(80, 168, 176, 0.25);
 }
 
 /* ========================================================= */
-/* 12. NOTIFICATIONS & MESSAGES */
+/* 16. NOTIFICATIONS & MESSAGES */
 /* ========================================================= */
 
 /* Success Message */
@@ -1449,6 +2188,37 @@ textarea:focus,
     box-shadow: 0 4px 12px rgba(40, 167, 69, 0.15);
 }
 
+.umelusi-success-message i {
+    color: #28a745;
+    filter: drop-shadow(0 2px 4px rgba(40, 167, 69, 0.3));
+}
+
+.umelusi-success-message h5 {
+    color: #155724;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.umelusi-success-message p {
+    color: #0c4128;
+    margin-bottom: 0.5rem;
+}
+
+.umelusi-success-message .reference-number {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #b1dfbb;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-family: 'Courier New', monospace;
+}
+
+.umelusi-success-message .reference-number strong {
+    color: #28a745;
+    font-weight: 700;
+}
+
 /* Error Message */
 .umelusi-error-message {
     background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
@@ -1458,6 +2228,39 @@ textarea:focus,
     border-radius: 8px;
     padding: 1.5rem;
     box-shadow: 0 4px 12px rgba(220, 53, 69, 0.15);
+}
+
+.umelusi-error-message i {
+    color: #dc3545;
+    filter: drop-shadow(0 2px 4px rgba(220, 53, 69, 0.3));
+}
+
+.umelusi-error-message h5 {
+    color: #721c24;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.umelusi-error-message p {
+    color: #491217;
+    margin-bottom: 0.5rem;
+}
+
+.umelusi-error-message .retry-btn {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    font-weight: 600;
+    padding: 0.375rem 1.5rem;
+    margin-top: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.umelusi-error-message .retry-btn:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
 }
 
 /* Floating Notification */
@@ -1493,12 +2296,117 @@ textarea:focus,
     border-left: 4px solid #bd2130;
 }
 
+#notification-container i {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+
+/* Brand-Specific Notifications */
+.umelusi-brand-success {
+    background: linear-gradient(135deg, var(--umelusi-orange) 0%, #ff8c42 100%);
+    border-left: 6px solid #e67e22;
+}
+
+.umelusi-brand-error {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    border-left: 6px solid #a93226;
+}
+
 /* ========================================================= */
-/* 13. FOOTER */
+/* 17. BADGES */
+/* ========================================================= */
+
+.badge {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.badge.bg-umelusi-orange {
+    background-color: var(--umelusi-orange) !important;
+    color: var(--umelusi-primary-dark);
+}
+
+.report-card .badge.bg-umelusi-blue {
+    background-color: var(--umelusi-primary-dark) !important;
+    color: #fff !important;
+}
+
+/* ========================================================= */
+/* 18. LOADING STATES & ANIMATIONS */
+/* ========================================================= */
+
+.btn-loading {
+    position: relative;
+    color: transparent !important;
+}
+
+.btn-loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-top: -10px;
+    margin-left: -10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: button-spinner 0.8s linear infinite;
+}
+
+@keyframes button-spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes formSuccess {
+    0% {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+    }
+}
+
+.success-animation {
+    animation: formSuccess 0.5s ease-out;
+}
+
+/* ========================================================= */
+/* 19. FOOTER */
 /* ========================================================= */
 
 footer {
     background-color: #f8f9fa;
+}
+
+footer a {
+    color: #6c757d;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: var(--umelusi-orange);
 }
 
 .footer-logo {
@@ -1537,7 +2445,7 @@ footer {
 }
 
 /* ========================================================= */
-/* 14. MAP & EMBEDDED CONTENT */
+/* 20. MAP & EMBEDDED CONTENT */
 /* ========================================================= */
 
 .map-placeholder {
@@ -1553,60 +2461,7 @@ footer {
 }
 
 /* ========================================================= */
-/* 15. BADGES */
-/* ========================================================= */
-
-.badge {
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-weight: 700;
-}
-
-.badge.bg-umelusi-orange {
-    background-color: var(--umelusi-orange) !important;
-    color: var(--umelusi-primary-dark);
-}
-
-.report-card .badge.bg-umelusi-blue {
-    background-color: var(--umelusi-primary-dark) !important;
-    color: #fff !important;
-}
-
-/* ========================================================= */
-/* 16. ANIMATIONS */
-/* ========================================================= */
-
-@keyframes formSuccess {
-    0% {
-        transform: scale(0.95);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
-    }
-}
-
-.success-animation {
-    animation: formSuccess 0.5s ease-out;
-}
-
-/* ========================================================= */
-/* 17. MEDIA QUERIES */
+/* 21. MEDIA QUERIES */
 /* ========================================================= */
 
 @media (max-width: 768px) {
@@ -1658,6 +2513,12 @@ footer {
         padding: 0.4rem 0.8rem;
     }
 
+    .board-carousel .prev-btn,
+    .board-carousel .next-btn {
+        left: 1rem;
+        right: 1rem;
+    }
+
     .executive-carousel .prev-btn,
     .executive-carousel .next-btn {
         display: none;
@@ -1695,10 +2556,18 @@ footer {
         .message-card-wrapper {
             width: 30%;
         }
+        
+        .director-portrait {
+            margin-bottom: 0;
+        }
+        
+        .carousel-control-prev, .carousel-control-next {
+            width: 5%;
+        }
     }
 }
 
-/* Large screens */
+/* Additional responsive adjustments */
 @media (min-width: 992px) {
     .director-portrait {
         margin-bottom: 0;
