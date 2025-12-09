@@ -1427,6 +1427,8 @@ textarea:focus,
 
 /* FinServ Hero */
 .finserve-hero {
+    position: relative;
+    overflow: hidden;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), 
                 url('images/finserve-hero-bg.jpg') center/cover no-repeat;
     height: 55vh;
@@ -1435,10 +1437,7 @@ textarea:focus,
 .finserve-hero::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
     z-index: 1;
 }
@@ -1447,6 +1446,7 @@ textarea:focus,
     position: relative;
     z-index: 2;
 }
+
 
 .finserve-hero .btn-brand {
     background-color: var(--bs-warning, #ffc107);
