@@ -52,7 +52,7 @@ collections:
         label: "Resources Data"
         name: "resources_data"
         fields:
-          - { label: "Resources", name: "resources", widget: "list", fields: [
+          - { label: "Resources", name: "items", widget: "list", fields: [  # Changed from "resources" to "items"
               { label: "Title", name: "title", widget: "string" },
               { label: "Slug", name: "slug", widget: "string" },
               { label: "Description", name: "description", widget: "text" },
@@ -63,5 +63,5 @@ collections:
               { label: "Published", name: "published", widget: "boolean", default: false },
               { label: "Featured", name: "featured", widget: "boolean", default: false },
               { label: "Thumbnail Image", name: "thumbnail", widget: "image", required: false },
-              { label: "PDF File", name: "file", widget: "file", required: false }
+              { label: "PDF File", name: "file", widget: "file", required: false }  # ✅ This adds file upload
           ]}
