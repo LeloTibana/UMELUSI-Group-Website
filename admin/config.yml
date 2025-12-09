@@ -49,9 +49,9 @@ collections:
     label: "Resources"
     files:
       -file: "_data/resources.json"
-        label: "Resources Data"
-        name: "resources_data"
-        fields:
+      label: "Resources Data"
+      name: "resources_data"
+      fields:
           - { label: "Resources", name: "resources", widget: "list", fields: [
               { label: "Title", name: "title", widget: "string" },
               { label: "Slug", name: "slug", widget: "string" },
