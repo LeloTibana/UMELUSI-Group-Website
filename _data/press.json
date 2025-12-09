@@ -2,13 +2,13 @@
   "articles": [
     {
       "published": true,
-      "title": "Test Article ",
-      "slug": "test-article-for-testing",
-      "date": "2025-12-04T12:57:00.000+02:00",
+      "title": "Test Article",
+      "slug": "test-article",
+      "date": "2025-12-09T11:30:00.000+02:00",
       "category": "Press Release",
-      "excerpt": "A simple test article to test whether an article from Netlify CMS works",
-      "body": "Good day viewer,\\\n\\\nYou are currently viewing a new article written by Mphumelelo, a novice web developer.",
-      "image": "/images/Umelusi-2ndLogo.png"
+      "image": "/images/Umelusi-FundManagers2.png",
+      "excerpt": "A Simple Test Article to demonstrate Decap CMS",
+      "body": "# Good Day \n\nThis is a simple test article to demonstrate the Decap CMS"
     }
   ]
 }
