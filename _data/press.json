@@ -1,24 +1,3 @@
 {
-  "articles": [
-    {
-      "published": true,
-      "title": "Test Article",
-      "slug": "test-article",
-      "date": "2025-12-09T11:30:00.000+02:00",
-      "category": "Press Release",
-      "image": "/images/Umelusi-FundManagers2.png",
-      "excerpt": "A Simple Test Article to demonstrate Decap CMS",
-      "body": "# Good Day \n\nThis is a simple test article to demonstrate the Decap CMS"
-    },
-    {
-      "published": true,
-      "title": "new  interview",
-      "slug": "new-interview",
-      "date": "2025-12-10T11:23:00.000+02:00",
-      "category": "Interview",
-      "image": "/images/Umelusi-Capital.png",
-      "excerpt": "qwerty",
-      "body": "qwerty"
-    }
-  ]
+  "articles": []
 }
