@@ -1715,6 +1715,51 @@ textarea:focus,
     color: #ccc;
 }
 
+/* About Us ESSENTIAL FIXES ONLY */
+.welcome-section {
+    position: relative;
+    min-height: 70vh;
+    overflow: hidden; /* FIX 1: Prevents horizontal overflow */
+    display: flex;
+    align-items: center;
+    padding: 4rem 0;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden; /* FIX 2: Contains video */
+}
+
+#hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover; /* FIX 3: Proper video sizing */
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 0; /* FIX 4: Between video and text */
+}
+
+.welcome-section .container {
+    position: relative;
+    z-index: 2; /* FIX 5: Above both video and overlay */
+}
+
 /* ========================================================= */
 /* 13. PAGE SECTIONS */
 /* ========================================================= */
