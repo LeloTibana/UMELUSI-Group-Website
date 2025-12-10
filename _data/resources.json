@@ -37,6 +37,19 @@
       "type": "Market Insight",
       "description": "This is a test resource paper written by Mphumelelo",
       "category": "Test"
+    },
+    {
+      "slug": "Umelusi-newsletter ",
+      "thumbnail": "/images/Umelusi-2ndLogo.png",
+      "featured": false,
+      "published": true,
+      "date": "2025-12-10T11:33:00.000+02:00",
+      "title": "Umelusi Fund Managers Celebrates Successful Close of Golf Business League Season",
+      "content": "please download PDF",
+      "type": "Report",
+      "file": "/images/doc-20251117-wa0011..pdf",
+      "description": "Umelusi Fund Managers Celebrates Successful\nClose of Golf Business League Season",
+      "category": "Newsletter "
     }
   ]
 }
