@@ -2793,6 +2793,7 @@ footer a:hover {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3; /* Limits to 3 lines */
+    line-clamp: 3; /* Standard property for compatibility */
     -webkit-box-orient: vertical;
 }
 
