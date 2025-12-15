@@ -453,42 +453,60 @@ function setupResourcesTabs() {
 }
 
 // ============================================
-// BREADCRUMB TRAIL
+// BREADCRUMB TRAIL - Fixed Version
 // ============================================
+
+// Page titles are defined earlier in this file; reuse the existing PAGE_TITLES constant to avoid redeclaration.
 
 function setupBreadcrumb() {
     const breadcrumbContainer = document.getElementById("breadcrumb-trail");
     if (!breadcrumbContainer) return;
 
     let currentPage = window.location.pathname.split("/").pop() || "index.html";
-    let trail = JSON.parse(localStorage.getItem("breadcrumbTrail")) || [];
-    
-    // Add home if trail is empty and not already on home
-    if (!trail.length && currentPage !== "index.html") {
-        trail.push({ title: "Home", file: "index.html" });
+    if (!currentPage.endsWith(".html") && currentPage !== "") currentPage = "index.html"; // safety
+
+    // Load trail from localStorage
+    let trail = JSON.parse(localStorage.getItem("breadcrumbTrail") || "[]");
+
+    // If on home and trail has items, optionally clear (or keep history)
+    if (currentPage === "index.html") {
+        trail = []; // Reset on home visit
     }
-    
-    // Remove current page if it exists
+
+    // Remove duplicates of current page (in case of refresh)
     trail = trail.filter(p => p.file !== currentPage);
-    
-    // Add current page
+
+    // Add Home if not present and not on home
+    if (currentPage !== "index.html" && !trail.some(p => p.file === "index.html")) {
+        trail.unshift({ title: "Home", file: "index.html" });
+    }
+
+    // Add current page at the end
     trail.push({ 
-        title: PAGE_TITLES[currentPage] || currentPage.replace(".html", ""), 
+        title: PAGE_TITLES[currentPage] || currentPage.replace(".html", "").replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase()), 
         file: currentPage 
     });
-    
-    // Keep only last 5 items
+
+    // Limit trail length (optional, keep last 5 including current)
     if (trail.length > 5) trail = trail.slice(-5);
-    
-    // Save and render
+
+    // Save back to localStorage
     localStorage.setItem("breadcrumbTrail", JSON.stringify(trail));
-    
-    breadcrumbContainer.innerHTML = trail.map((p, i) =>
-        i === trail.length - 1 
-            ? `<li class="breadcrumb-item active">${p.title}</li>` 
-            : `<li class="breadcrumb-item"><a href="${p.file}">${p.title}</a></li>`
-    ).join("");
+
+    // Render breadcrumb
+    breadcrumbContainer.innerHTML = trail.map((p, i) => {
+        if (i === trail.length - 1) {
+            return `<li class="breadcrumb-item active" aria-current="page">${p.title}</li>`;
+        } else {
+            return `<li class="breadcrumb-item"><a href="${p.file}">${p.title}</a></li>`;
+        }
+    }).join("");
 }
+
+// Run on page load
+document.addEventListener("DOMContentLoaded", setupBreadcrumb);
+
+
 
 // ============================================
 // NETLIFY FORMS ENHANCEMENT

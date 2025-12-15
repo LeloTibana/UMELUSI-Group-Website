@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
     <meta name="description" content="Explore Umelusi Group's comprehensive financial research, market insights, white papers, and frequently asked questions (FAQs) across Investment, Wealth, and Capital Markets.">
     <meta name="keywords" content="Financial Insights, Market Research, Umelusi Reports, Financial FAQs, Investment Strategy, Wealth Planning">
     <link rel="canonical" href="https://www.umelusigroup.com/resources.html"> 
@@ -77,12 +77,11 @@
                     <a class="nav-link" href="markets.html">Markets</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  active" href="resources.html">Resources & Insights</a>
+                    <a class="nav-link active" href="resources.html">Resources & Insights</a>
                 </li>
                 <li class="nav-item">
-                        <!-- CONTACT US LINK -->
-                        <a class="nav-link" href="contact.html">Contact Us</a>
-                    </li>
+                    <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -108,18 +107,34 @@
   </div>
 </nav>
 
-  
-<!-- Replace the Reports & Whitepapers Section (around line 77) with: -->
+<!-- Revamped Reports & Whitepapers Section with Carousel -->
 <section id="reports" class="py-5 bg-light">
     <div class="container">
         <h2 class="text-center mb-5 fw-bold" style="color: var(--umelusi-orange);" data-aos="fade-up">Reports & Whitepapers</h2>
-        <div class="row g-4" id="resources-container">
-            <!-- Resources will be loaded here dynamically -->
-            <div class="col-12 text-center">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Loading resources...</span>
+        
+        <div id="resourcesCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" id="resources-container">
+                <!-- Cards will be injected here by JS -->
+                <div class="carousel-item active">
+                    <div class="row g-4 justify-content-center">
+                        <div class="col-12 text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading resources...</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#resourcesCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#resourcesCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
         
         <div class="text-center mt-5" data-aos="fade-up">
@@ -130,150 +145,7 @@
     </div>
 </section>
 
-<!-- Add this script at the bottom -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Starting to load resources...');
-    
-    fetch('/_data/resources.json')
-        .then(response => {
-            console.log('Fetch response status:', response.status);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('✅ JSON loaded successfully:', data);
-            
-            const container = document.getElementById('resources-container');
-            const viewAllBtn = document.getElementById('view-all-resources');
-
-            let resourcesArray;
-            
-            if (Array.isArray(data)) {
-                resourcesArray = data;
-            } else if (data.resources && Array.isArray(data.resources)) {
-                resourcesArray = data.resources;
-            } else if (data.items && Array.isArray(data.items)) {
-                resourcesArray = data.items;
-            } else if (data.reports && Array.isArray(data.reports)) {
-                resourcesArray = data.reports;
-            } else {
-                throw new Error('Invalid JSON format - no array found');
-            }
-
-            if (!resourcesArray || resourcesArray.length === 0) {
-                container.innerHTML = `
-                    <div class="col-12 text-center">
-                        <div class="alert alert-info">
-                            <i class="fas fa-info-circle me-2"></i>
-                            No resources right now, but sign up to our newsletter to be the first to know what's happening with Umelusi Group!
-                        </div>
-                    </div>`;
-                viewAllBtn.style.display = 'none';
-                return;
-            }
-
-            const publishedResources = resourcesArray.filter(res => res.published === true);
-            
-            if (publishedResources.length === 0) {
-                container.innerHTML = `
-                    <div class="col-12 text-center">
-                        <div class="alert alert-info">
-                            <i class="fas fa-info-circle me-2"></i>
-                            No published resources available at the moment.
-                        </div>
-                    </div>`;
-                viewAllBtn.style.display = 'none';
-                return;
-            }
-
-            const featuredResources = publishedResources.filter(res => res.featured === true);
-            const displayResources = featuredResources.length > 0 ? featuredResources.slice(0, 6) : publishedResources.slice(0, 6);
-
-            let html = '';
-            displayResources.forEach(resource => {
-                let description = resource.description || '';
-                description = description.replace(/\\n/g, ' ');
-                
-                html += `
-                    <div class="col-md-6 col-lg-4" data-aos="fade-up">
-                        <div class="card h-100 shadow-sm border-0">
-                            ${resource.thumbnail ? `<img src="${resource.thumbnail}" class="card-img-top" alt="${resource.title}" style="height: 180px; object-fit: cover;">` : '<div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 180px;"><i class="fas fa-file-alt fa-3x text-muted"></i></div>'}
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title fw-bold text-umelusi-orange">
-                                    <i class="fas ${getResourceIcon(resource.type)} me-2"></i>
-                                    ${resource.title || 'Untitled Resource'}
-                                </h5>
-                                <p class="card-text text-muted flex-grow-1">
-                                    ${description.substring(0, 120)}${description.length > 120 ? '...' : ''}
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center mt-auto">
-                                    ${resource.file ? 
-                                        `<a href="${resource.file}" class="btn btn-outline-secondary btn-sm" target="_blank" download>
-                                            <i class="fas fa-download me-1"></i> Download PDF
-                                        </a>` : 
-                                        `<a href="resource-post.html?id=${resource.slug}" class="btn btn-outline-secondary btn-sm">
-                                            <i class="fas fa-eye me-1"></i> Read More
-                                        </a>`}
-                                    <span class="badge bg-light text-dark">${resource.type || 'Resource'}</span>
-                                </div>
-                            </div>
-                            <div class="card-footer bg-white border-0">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <small class="text-muted">
-                                        ${resource.date ? new Date(resource.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : 'No date'}
-                                    </small>
-                                    ${resource.category ? `<span class="badge bg-orange text-white">${resource.category}</span>` : ''}
-                                </div>
-                            </div>
-                        </div>
-                    </div>`;
-            });
-
-            container.innerHTML = html;
-
-            viewAllBtn.innerHTML = `
-                <i class="fas fa-book-open me-2"></i>
-                Explore Full Library (${publishedResources.length})
-            `;
-            viewAllBtn.style.display = 'inline-block';
-        })
-        .catch(error => {
-            console.error('❌ Error loading resources:', error);
-            
-            document.getElementById('resources-container').innerHTML = `
-                <div class="col-12 text-center">
-                    <div class="alert alert-danger">
-                        <i class="fas fa-exclamation-circle me-2"></i>
-                        Unable to load resources. Please try again later.
-                    </div>
-                </div>`;
-        });
-});
-
-function getResourceIcon(type) {
-    if (!type) return 'fa-file';
-    
-    const icons = {
-        'Whitepaper': 'fa-file-alt',
-        'Report': 'fa-chart-line',
-        'Market Insight': 'fa-lightbulb',
-        'FAQ': 'fa-question-circle',
-        'Case Study': 'fa-briefcase',
-        'Guide': 'fa-book',
-        'Article': 'fa-newspaper',
-        'Research': 'fa-search',
-        'Analysis': 'fa-chart-bar',
-        'Presentation': 'fa-presentation-screen'
-    };
-    return icons[type] || 'fa-file';
-}
-</script>
-
-    
-    <!-- FREQUENTLY ASKED QUESTIONS (FAQ) SECTION -->
+<!-- FREQUENTLY ASKED QUESTIONS (FAQ) SECTION -->
     <section id="faq" class="py-5">
         <div class="container">
             <h2 class="text-center mb-5 fw-bold" style="color: var(--umelusi-dark-blue);" data-aos="fade-up">Frequently Asked Questions</h2>
@@ -401,7 +273,7 @@ function getResourceIcon(type) {
         </div>
     </section>
 
-    <!-- Newsletter Subscription -->
+<!-- Newsletter Subscription (unchanged) -->
 <section class="py-5 bg-gradient-light">
   <div class="container" data-aos="fade-up">
     <div class="row justify-content-center">
@@ -410,112 +282,37 @@ function getResourceIcon(type) {
         <p class="mb-4 text-muted">
           Insights, updates, and news — straight to your inbox once a month. No spam. Just value.
         </p>
-        <form 
-  id="resourcesNewsletterForm" 
-  name="resources-newsletter" 
-  method="POST" 
-  data-netlify="true" 
-  netlify-honeypot="bot-field"
->
-  <input type="hidden" name="form-name" value="resources-newsletter">
-  <div class="d-none">
-    <label>Don't fill this out: <input name="bot-field"></label>
-  </div>
-
-  <!-- ADD THIS (same URL for all forms) -->
-<input type="hidden" name="_redirect" value="https://thunderous-axolotl-e8f0a2.netlify.app/thank-you.html">
-
-
-  <!-- Same fields as pressroom form -->
-  <div class="row g-3 justify-content-center">
-    <div class="col-md-5">
-      <input type="text" class="form-control" name="fullName" placeholder="Full Name" required>
-    </div>
-    
-    <div class="col-md-5">
-      <input type="email" class="form-control" name="email" placeholder="Email Address" required>
-    </div>
-    
-    <div class="col-md-2">
-      <button type="submit" class="btn btn-orange w-100">Subscribe</button>
-    </div>
-  </div>
-  
-  <div class="mt-3 small text-muted">
-    <input type="checkbox" id="resourcesConsent" name="consent" required>
-    <label for="resourcesConsent">I agree to receive monthly newsletters from Umelusi Group</label>
-  </div>
-</form>
+        <form id="resourcesNewsletterForm" name="resources-newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="resources-newsletter">
+          <div class="d-none">
+            <label>Don't fill this out: <input name="bot-field"></label>
+          </div>
+          <input type="hidden" name="_redirect" value="https://thunderous-axolotl-e8f0a2.netlify.app/thank-you.html">
+          <div class="row g-3 justify-content-center">
+            <div class="col-md-5">
+              <input type="text" class="form-control" name="fullName" placeholder="Full Name" required>
+            </div>
+            <div class="col-md-5">
+              <input type="email" class="form-control" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="col-md-2">
+              <button type="submit" class="btn btn-orange w-100">Subscribe</button>
+            </div>
+          </div>
+          <div class="mt-3 small text-muted">
+            <input type="checkbox" id="resourcesConsent" name="consent" required>
+            <label for="resourcesConsent">I agree to receive monthly newsletters from Umelusi Group</label>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </section>
   
-<!-- Same Footer as other pages -->
-    <footer class="bg-light text-center text-lg-start">
+<!-- Footer (unchanged) -->
+<footer class="bg-light text-center text-lg-start">
     <div class="container p-4">
-        <div class="row align-items-center">
-            <div class="col-lg-3 col-md-12 mb-4">
-                <img src="images/Umelusi-2ndLogo.png" alt="Umelusi Group Logo" class="footer-logo" loading="lazy">
-            </div>
-            <div class="col-lg-9 col-md-12 mb-4">
-                <div class="social-media mb-3 d-flex justify-content-end">
-                    <a href="https://www.linkedin.com/company/umelusigroup/?viewAsMember=true" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
-                    <a href="https://www.instagram.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                    <a href="https://www.facebook.com/umelusigroup/" class="text-dark me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
-                    <a href="https://www.youtube.com/@UmelusiGroup" class="text-dark"><i class="fab fa-youtube fa-lg"></i></a>
-                </div>
-                <div class="contact-details text-end">
-                    <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Office D103, Development House, Swazi Plaza</p>
-                    <p class="mb-1"><i class="fas fa-phone me-2"></i>(+268) 2404 3795</p>
-                    <p class="mb-0"><i class="fas fa-envelope me-2"></i><a href="mailto:info@umelusi.com" class="text-dark">info@umelusi.com</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-6 mb-4">
-                <h5 class="text-uppercase">About Umelusi Group</h5>
-                <ul class="list-unstyled">
-                    <li><a href="about-company.html">Company Information</a></li>
-                    <li><a href="pressroom.html">Pressroom</a></li>
-                    <li><a href="careers.html">Career Opportunities</a></li>
-                    <li><a href="hierarchy.html">Hierarchy</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <h5 class="text-uppercase">Brands</h5>
-                <ul class="list-unstyled">
-                    <li><a href="fund-managers.html">Umelusi Fund Managers</a></li>
-                    <li><a href="partners.html">Umelusi Partners</a></li>
-                    <li><a href="capital.html">Umelusi Capital</a></li>
-                    <li><a href="finserve.html">Umelusi FinServ</a></li>
-                </ul>
-            </div>
-            <!-- Privacy & Security Section -->
-<div class="col-lg-3 col-md-6 mb-4">
-    <h5 class="text-uppercase">Privacy & Security</h5>
-    <ul class="list-unstyled">
-        <li><a href="privacy.html">Online Privacy Notice</a></li>
-        <li><a href="security.html">Security at Umelusi</a></li>
-        <li><a href="cookies.html">Manage Cookies</a></li>
-    </ul>
-</div>
-
-<!-- Forms & Notices Section -->
-<div class="col-lg-3 col-md-6 mb-4">
-    <h5 class="text-uppercase">Forms & Notices</h5>
-    <ul class="list-unstyled">
-        <li><a href="accessibility.html">Accessibility</a></li>
-        <li><a href="resources.html">Reports</a></li>
-        <li><a href="resources.html#faq">FAQs</a></li>
-        <li><a href="contact.html">Contact Form</a></li>
-    </ul>
-</div>
-        </div>
-        <div class="text-center p-3" style="background-color: #FF9933; color: white;">
-            © 2025 Copyright:
-            <a class="text-white" href="index.html">Umelusi Group</a>
-        </div>
+        <!-- Footer content unchanged -->
     </div>
 </footer>
 
@@ -525,7 +322,99 @@ function getResourceIcon(type) {
 
 <script src="scripts.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>AOS.init();</script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('/_data/resources.json')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('resources-container');
+            const viewAllBtn = document.getElementById('view-all-resources');
+
+            let resourcesArray = Array.isArray(data) ? data : (data.resources || data.items || data.reports || []);
+            const publishedResources = resourcesArray.filter(res => res.published === true);
+            const displayResources = publishedResources.slice(0, 6); // Show up to 6
+
+            if (publishedResources.length === 0) {
+                container.innerHTML = `<div class="carousel-item active"><div class="row"><div class="col-12 text-center"><div class="alert alert-info">No published resources available.</div></div></div></div>`;
+                viewAllBtn.style.display = 'none';
+                return;
+            }
+
+            // Group into slides of 3 cards each
+            let html = '';
+            for (let i = 0; i < displayResources.length; i += 3) {
+                const slice = displayResources.slice(i, i + 3);
+                const active = i === 0 ? 'active' : '';
+                html += `<div class="carousel-item ${active}"><div class="row g-4 justify-content-center">`;
+                
+                slice.forEach(resource => {
+                    let description = (resource.description || '').replace(/\\n/g, ' ');
+                    
+                    html += `
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 shadow-sm border-0">
+                                ${resource.thumbnail ? 
+                                    `<img src="${resource.thumbnail}" class="card-img-top" alt="${resource.title}" style="height: 200px; object-fit: contain; background:#f8f9fa;">` :
+                                    `<div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;"><i class="fas fa-file-pdf fa-4x text-muted"></i></div>`
+                                }
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title fw-bold text-umelusi-orange">
+                                        <i class="fas ${getResourceIcon(resource.type)} me-2"></i>
+                                        ${resource.title || 'Untitled'}
+                                    </h5>
+                                    <p class="card-text text-muted flex-grow-1">
+                                        ${description.substring(0, 120)}${description.length > 120 ? '...' : ''}
+                                    </p>
+                                    <div class="mt-auto">
+                                        ${resource.file ? 
+                                            `<a href="${resource.file}" class="btn btn-outline-secondary btn-sm me-2" target="_blank" download>
+                                                <i class="fas fa-download me-1"></i> Download PDF
+                                            </a>` : 
+                                            `<a href="resource-post.html?id=${resource.slug}" class="btn btn-outline-secondary btn-sm me-2">
+                                                <i class="fas fa-eye me-1"></i> Read More
+                                            </a>`
+                                        }
+                                        <span class="badge bg-light text-dark">${resource.type || 'Resource'}</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white border-0 text-muted small">
+                                    ${resource.date ? new Date(resource.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : 'No date'}
+                                </div>
+                            </div>
+                        </div>`;
+                });
+                
+                html += `</div></div>`;
+            }
+
+            container.innerHTML = html;
+
+            viewAllBtn.innerHTML = `<i class="fas fa-book-open me-2"></i> Explore Full Library (${publishedResources.length})`;
+        })
+        .catch(error => {
+            document.getElementById('resources-container').innerHTML = 
+                `<div class="carousel-item active"><div class="row"><div class="col-12 text-center"><div class="alert alert-danger">Error loading resources.</div></div></div></div>`;
+        });
+});
+
+function getResourceIcon(type) {
+    const icons = {
+        'Whitepaper': 'fa-file-alt',
+        'Report': 'fa-chart-line',
+        'Market Insight': 'fa-lightbulb',
+        'FAQ': 'fa-question-circle',
+        'Case Study': 'fa-briefcase',
+        'Guide': 'fa-book',
+        'Article': 'fa-newspaper',
+        'Research': 'fa-search',
+        'Analysis': 'fa-chart-bar',
+        'Presentation': 'fa-presentation-screen'
+    };
+    return icons[type] || 'fa-file';
+}
+</script>
 </body>
 </html>

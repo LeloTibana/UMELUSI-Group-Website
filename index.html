@@ -220,207 +220,210 @@
                 </div>
             </div>
         </section>
+
+<!-- ADD THE DIVIDER HERE -->
+<div class="orange-divider"></div>
         
-        <!-- EXECUTIVE MESSAGES -->
-        <section id="executive-messages" class="executive-message-section" aria-labelledby="executive-heading">
-            <div class="container">
-                <header class="text-center mb-5">
-                    <h2 id="executive-heading" class="fw-bold usp-title">A Message From Our Team</h2>
-                    <p class="lead text-muted mx-auto" style="max-width: 800px;">
-                        Our commitment to your financial success is driven by the expertise and vision of our executive team.
-                    </p>
-                </header>
-                
-                <!-- Horizontal Scroller -->
-                <div class="message-slider" role="list" aria-label="Executive team messages">
-                    <!-- Card 1 -->
-                    <div class="message-card-wrapper" role="listitem">
-                        <div class="message-card">
-                            <div class="message-header">
-                                <img src="images/thabo.png" 
-                                     alt="Portrait of Thabo Magagula, Umelusi Group Director" 
-                                     class="portrait"
-                                     width="80" 
-                                     height="80"
-                                     loading="lazy">
-                                <div>
-                                    <p class="person-name">Thabo Magagula</p>
-                                    <p class="person-position">Umelusi Group Director</p>
-                                </div>
-                            </div>
-                            <blockquote class="message-text">
-                                "Our strategy is simple: combine deep African market expertise with global governance standards. 
-                                We are here not just to manage wealth, but to steward legacies."
-                            </blockquote>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 2 -->
-                    <div class="message-card-wrapper" role="listitem">
-                        <div class="message-card">
-                            <div class="message-header">
-                                <img src="images/lindifa.png" 
-                                     alt="Portrait of Lindifa Ngwenya, Head of Investments" 
-                                     class="portrait"
-                                     width="80" 
-                                     height="80"
-                                     loading="lazy">
-                                <div>
-                                    <p class="person-name">Lindifa Ngwenya</p>
-                                    <p class="person-position">Head of Investments</p>
-                                </div>
-                            </div>
-                            <blockquote class="message-text">
-                                "Disciplined capital deployment and rigorous risk assessment are the cornerstones of our investment philosophy. 
-                                We seek value where others see only volatility."
-                            </blockquote>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 3 -->
-                    <div class="message-card-wrapper" role="listitem">
-                        <div class="message-card">
-                            <div class="message-header">
-                                <img src="images/muzi.png" 
-                                     alt="Portrait of Muzi Dlamini, Chief Financial Officer" 
-                                     class="portrait"
-                                     width="80" 
-                                     height="80"
-                                     loading="lazy">
-                                <div>
-                                    <p class="person-name">Muzi Dlamini</p>
-                                    <p class="person-position">Chief Financial Officer (CFO)</p>
-                                </div>
-                            </div>
-                            <blockquote class="message-text">
-                                "Financial integrity and transparent reporting define every division of the Umelusi Group. 
-                                We ensure robust compliance that protects our clients and our future."
-                            </blockquote>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 4 -->
-                    <div class="message-card-wrapper" role="listitem">
-                        <div class="message-card">
-                            <div class="message-header">
-                                <img src="images/simphiwe.png" 
-                                     alt="Portrait of Simphiwe Lukhele, Investment Analyst" 
-                                     class="portrait"
-                                     width="80" 
-                                     height="80"
-                                     loading="lazy">
-                                <div>
-                                    <p class="person-name">Simphiwe Lukhele</p>
-                                    <p class="person-position">Investment Analyst</p>
-                                </div>
-                            </div>
-                            <blockquote class="message-text">
-                                "Our analytical depth allows us to spot emergent opportunities and mitigate threats, 
-                                ensuring the investment strategies we build are forward-looking and resilient."
-                            </blockquote>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 5 -->
-                    <div class="message-card-wrapper" role="listitem">
-                        <div class="message-card">
-                            <div class="message-header">
-                                <img src="images/nolwazi.png" 
-                                     alt="Portrait of Nolwazi Mafu, Financial and Admin Officer" 
-                                     class="portrait"
-                                     width="80" 
-                                     height="80"
-                                     loading="lazy">
-                                <div>
-                                    <p class="person-name">Nolwazi Mafu</p>
-                                    <p class="person-position">Financial and Admin Officer</p>
-                                </div>
-                            </div>
-                            <blockquote class="message-text">
-                                "The operational backbone of the Group is efficiency and accuracy. 
-                                We handle the complexity so our partners can focus entirely on strategic decisions."
-                            </blockquote>
-                        </div>
+        <!-- EXECUTIVE MESSAGES – LARGE PORTRAIT CAROUSEL -->
+<section id="executive-messages" class="py-5" aria-labelledby="executive-heading">
+    <div class="container">
+        <header class="text-center mb-5">
+            <h2 id="executive-heading" class="fw-bold usp-title">A Message From Our Team</h2>
+            <p class="lead text-muted mx-auto" style="max-width: 800px;">
+                Our commitment to your financial success is driven by the expertise and vision of our executive team.
+            </p>
+        </header>
+
+        <!-- Bootstrap Carousel -->
+        <div id="executiveCarousel" class="carousel slide exec-portrait-carousel" data-bs-ride="false">
+            <!-- Indicators (optional – hidden) -->
+            <div class="carousel-indicators d-none">
+                <button type="button" data-bs-target="#executiveCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#executiveCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#executiveCarousel" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#executiveCarousel" data-bs-slide-to="3"></button>
+                <button type="button" data-bs-target="#executiveCarousel" data-bs-slide-to="4"></button>
+            </div>
+
+            <div class="carousel-inner">
+
+                <!-- ==== SLIDE 1 ==== -->
+                <div class="carousel-item active">
+                    <img src="images/thabo.png" alt="Portrait of Thabo Magagula, Umelusi Group Director"
+                         class="portrait-big" loading="lazy">
+                    <div class="message-content">
+                        <p class="person-name">Thabo Magagula</p>
+                        <p class="person-position">Umelusi Group Director</p>
+                        <blockquote class="message-text">
+                            "Our strategy is simple: combine deep African market expertise with global governance standards. 
+                            We are here not just to manage wealth, but to steward legacies."
+                        </blockquote>
                     </div>
                 </div>
-                
-                <p class="small text-center text-muted mt-4" role="note">
-                    *Scroll horizontally to view all messages.
-                </p>
+
+                <!-- ==== SLIDE 2 ==== -->
+                <div class="carousel-item">
+                    <img src="images/lindifa.png" alt="Portrait of Lindifa Ngwenya, Head of Investments"
+                         class="portrait-big" loading="lazy">
+                    <div class="message-content">
+                        <p class="person-name">Lindifa Ngwenya</p>
+                        <p class="person-position">Head of Investments</p>
+                        <blockquote class="message-text">
+                            "Disciplined capital deployment and rigorous risk assessment are the cornerstones of our investment philosophy. 
+                            We seek value where others see only volatility."
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- ==== SLIDE 3 ==== -->
+                <div class="carousel-item">
+                    <img src="images/muzi.png" alt="Portrait of Muzi Dlamini, Chief Financial Officer"
+                         class="portrait-big" loading="lazy">
+                    <div class="message-content">
+                        <p class="person-name">Muzi Dlamini</p>
+                        <p class="person-position">Chief Financial Officer (CFO)</p>
+                        <blockquote class="message-text">
+                            "Financial integrity and transparent reporting define every division of the Umelusi Group. 
+                            We ensure robust compliance that protects our clients and our future."
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- ==== SLIDE 4 ==== -->
+                <div class="carousel-item">
+                    <img src="images/simphiwe.png" alt="Portrait of Simphiwe Lukhele, Investment Analyst"
+                         class="portrait-big" loading="lazy">
+                    <div class="message-content">
+                        <p class="person-name">Simphiwe Lukhele</p>
+                        <p class="person-position">Investment Analyst</p>
+                        <blockquote class="message-text">
+                            "Our analytical depth allows us to spot emergent opportunities and mitigate threats, 
+                            ensuring the investment strategies we build are forward-looking and resilient."
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- ==== SLIDE 5 ==== -->
+                <div class="carousel-item">
+                    <img src="images/nolwazi.png" alt="Portrait of Nolwazi Mafu, Financial and Admin Officer"
+                         class="portrait-big" loading="lazy">
+                    <div class="message-content">
+                        <p class="person-name">Nolwazi Mafu</p>
+                        <p class="person-position">Financial and Admin Officer</p>
+                        <blockquote class="message-text">
+                            "The operational backbone of the Group is efficiency and accuracy. 
+                            We handle the complexity so our partners can focus entirely on strategic decisions."
+                        </blockquote>
+                    </div>
+                </div>
+
             </div>
-        </section>
+
+            <!-- Left / Right Arrows -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#executiveCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#executiveCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <!-- Optional note (kept for accessibility) -->
+        <p class="small text-center text-muted mt-4">
+            Use the arrows to navigate through the messages.
+        </p>
+    </div>
+</section>
         
-        <!-- BRAND ECOSYSTEM -->
-        <section id="brand-ecosystem" class="py-5 bg-light" aria-labelledby="brands-heading">
-            <div class="container text-center mb-5">
-                <h2 id="brands-heading" class="fw-bold usp-title mb-3">Learn More About Our Brands</h2>
-                <p class="lead text-muted mx-auto" style="max-width: 800px;">
-                    Explore the specialized expertise within the Umelusi Group ecosystem.
-                </p>
-            </div>
-            
-            <div class="row text-center g-4">
-                <!-- Brand 1 -->
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <article class="card p-3 shadow-sm h-100 service-card d-flex flex-column">
-                        <img src="images/logo-finserve.png" 
-                             alt="Umelusi FinServe Logo" 
-                             class="ecosystem-logo mx-auto mb-3"
-                             width="120" 
-                             height="60"
-                             loading="lazy">
-                        <h3 class="card-title h4">Umelusi FinServ</h3>
-                        <p class="card-text flex-grow-1">Trusted Foreign Exchange and Western Union Services</p>
-                        <a href="finserve.html" class="btn btn-brand mt-auto">Learn More</a>
-                    </article>
-                </div>
-                
-                <!-- Brand 2 -->
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <article class="card p-3 shadow-sm h-100 service-card d-flex flex-column">
-                        <img src="images/Umelusi-Capital.png" 
-                             alt="Umelusi Capital Logo" 
-                             class="ecosystem-logo mx-auto mb-3"
-                             width="120" 
-                             height="60"
-                             loading="lazy">
-                        <h3 class="card-title h4">Umelusi Capital</h3>
-                        <p class="card-text flex-grow-1">Securities trading, capital raising, and structured finance solutions.</p>
-                        <a href="capital.html" class="btn btn-brand mt-auto">Learn More</a>
-                    </article>
-                </div>
-                
-                <!-- Brand 3 -->
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <article class="card p-3 shadow-sm h-100 service-card d-flex flex-column">
-                        <img src="images/Umelusi-Partners.png" 
-                             alt="Umelusi Partners Logo" 
-                             class="ecosystem-logo mx-auto mb-3"
-                             width="120" 
-                             height="60"
-                             loading="lazy">
-                        <h3 class="card-title h4">Umelusi Partners</h3>
-                        <p class="card-text flex-grow-1">Specialist consulting in strategy, risk, and transformation.</p>
-                        <a href="partners.html" class="btn btn-brand mt-auto">Learn More</a>
-                    </article>
-                </div>
-                
-                <!-- Brand 4 -->
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <article class="card p-3 shadow-sm h-100 service-card d-flex flex-column">
-                        <img src="images/Umelusi-FundManagers2.png" 
-                             alt="Umelusi Fund Managers Logo" 
-                             class="ecosystem-logo mx-auto mb-3"
-                             width="120" 
-                             height="60"
-                             loading="lazy">
-                        <h3 class="card-title h4">Umelusi Fund Managers</h3>
-                        <p class="card-text flex-grow-1">Managing collective investment schemes and pooled funds.</p>
-                        <a href="fund-managers.html" class="btn btn-brand mt-auto">Learn More</a>
-                    </article>
+<!-- BRAND ECOSYSTEM - Flip Card Reveal with Even Grid -->
+<section id="brand-ecosystem" class="py-5 bg-light" aria-labelledby="brands-heading">
+    <div class="container text-center mb-5">
+        <h2 id="brands-heading" class="fw-bold usp-title mb-3" data-aos="fade-down">Our Family of Brands</h2>
+        <p class="lead text-muted mx-auto" style="max-width: 800px;" data-aos="fade-up" data-aos-delay="200">
+            Discover the specialized expertise across the Umelusi Group ecosystem.
+        </p>
+    </div>
+    
+    <div class="row g-4 g-lg-5">
+        <!-- Brand 1 - Umelusi FinServ -->
+        <div class="col-lg-3 col-md-6" data-aos="flip-left" data-aos-delay="100">
+            <div class="brand-flip-card">
+                <div class="brand-flip-inner">
+                    <div class="brand-flip-front">
+                        <div class="brand-logo-square">
+                            <img src="images/logo-finserve.png" alt="Umelusi FinServ Logo" class="brand-flip-logo">
+                        </div>
+                        <h3 class="h4 mt-3">Umelusi FinServ</h3>
+                    </div>
+                    <div class="brand-flip-back">
+                        <h3 class="h4 mb-3">Umelusi FinServ</h3>
+                        <p>Trusted Foreign Exchange and Western Union Services across Africa with competitive rates and secure transfers.</p>
+                        <a href="finserve.html" class="btn btn-brand">Learn More</a>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+        
+        <!-- Brand 2 - Umelusi Capital -->
+        <div class="col-lg-3 col-md-6" data-aos="flip-left" data-aos-delay="300">
+            <div class="brand-flip-card">
+                <div class="brand-flip-inner">
+                    <div class="brand-flip-front">
+                        <div class="brand-logo-square">
+                            <img src="images/Umelusi-Capital.png" alt="Umelusi Capital Logo" class="brand-flip-logo">
+                        </div>
+                        <h3 class="h4 mt-3">Umelusi Capital</h3>
+                    </div>
+                    <div class="brand-flip-back">
+                        <h3 class="h4 mb-3">Umelusi Capital</h3>
+                        <p>Securities trading, capital raising, and structured finance solutions for corporate growth.</p>
+                        <a href="capital.html" class="btn btn-brand">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Brand 3 - Umelusi Partners -->
+        <div class="col-lg-3 col-md-6" data-aos="flip-left" data-aos-delay="500">
+            <div class="brand-flip-card">
+                <div class="brand-flip-inner">
+                    <div class="brand-flip-front">
+                        <div class="brand-logo-square">
+                            <img src="images/Umelusi-Partners.png" alt="Umelusi Partners Logo" class="brand-flip-logo">
+                        </div>
+                        <h3 class="h4 mt-3">Umelusi Partners</h3>
+                    </div>
+                    <div class="brand-flip-back">
+                        <h3 class="h4 mb-3">Umelusi Partners</h3>
+                        <p>Specialist consulting in strategy, risk management, and business transformation.</p>
+                        <a href="partners.html" class="btn btn-brand">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Brand 4 - Umelusi Fund Managers -->
+        <div class="col-lg-3 col-md-6" data-aos="flip-left" data-aos-delay="700">
+            <div class="brand-flip-card">
+                <div class="brand-flip-inner">
+                    <div class="brand-flip-front">
+                        <div class="brand-logo-square">
+                            <img src="images/Umelusi-FundManagers2.png" alt="Umelusi Fund Managers Logo" class="brand-flip-logo">
+                        </div>
+                        <h3 class="h4 mt-3">Umelusi Fund Managers</h3>
+                    </div>
+                    <div class="brand-flip-back">
+                        <h3 class="h4 mb-3">Umelusi Fund Managers</h3>
+                        <p>Managing collective investment schemes and pooled funds for long-term growth.</p>
+                        <a href="fund-managers.html" class="btn btn-brand">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
         
         <!-- VALUE PROPOSITION -->
         <section id="value-proposition" class="py-5 bg-white" aria-labelledby="value-heading">
@@ -757,6 +760,19 @@
             offset: 100
         });
     </script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Initialize the executive carousel
+    var executiveCarousel = document.querySelector('#executiveCarousel');
+    if (executiveCarousel) {
+        new bootstrap.Carousel(executiveCarousel, {
+            interval: false,  // Disable auto-slide – users control with arrows
+            wrap: true        // Loop back to first after last
+        });
+    }
+});
+</script>
     
     <!-- Custom Scripts -->
     <script src="scripts.js"></script>
