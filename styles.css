@@ -2953,6 +2953,25 @@ footer a:hover {
   border-top: 30px solid #FF9933;
 }
 
+.blue-divider {
+  position: relative;
+  height: 80px;
+  background-color: #2d3dce;
+  margin: 0;
+}
+
+.blue-divider::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-top: 30px solid #2d3dce;
+}
 
 /* Modern Brand Hover Cards */
 .brand-hover-card {
