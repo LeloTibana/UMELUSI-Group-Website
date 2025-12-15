@@ -22,7 +22,7 @@ collections:
               { label: "Featured Image", name: "image", widget: "image" },
               { label: "Excerpt", name: "excerpt", widget: "text" },
               { label: "Body", name: "body", widget: "markdown" },
-              { label: "Published", name: "published", widget: "boolean", default: true }
+              { label: "Published", name: "published", widget: "boolean", default: true },
               { label: "Attached PDF", name: "pdf", widget: "file", required: false, media_folder: "/uploads/press", public_folder: "/uploads/press" }
           ]}
 
@@ -53,7 +53,7 @@ collections:
         label: "Resources Data"
         name: "resources_data"
         fields:
-          - { label: "Resources", name: "items", widget: "list", fields: [  # Changed from "resources" to "items"
+          - { label: "Resources", name: "items", widget: "list", fields: [
               { label: "Title", name: "title", widget: "string" },
               { label: "Slug", name: "slug", widget: "string" },
               { label: "Description", name: "description", widget: "text" },
@@ -64,5 +64,5 @@ collections:
               { label: "Published", name: "published", widget: "boolean", default: false },
               { label: "Featured", name: "featured", widget: "boolean", default: false },
               { label: "Thumbnail Image", name: "thumbnail", widget: "image", required: false },
-              { label: "PDF File", name: "file", widget: "file", required: false }  # ✅ This adds file upload
+              { label: "PDF File", name: "file", widget: "file", required: false }
           ]}
