@@ -290,7 +290,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(data => {
-            // ✅ FIX: correctly read array from JSON object
             if (!Array.isArray(data.articles)) {
                 throw new Error('JSON format invalid - "articles" is not an array');
             }
@@ -333,7 +332,6 @@ function displayArticles(articles) {
     noResults.classList.add('d-none');
     document.getElementById('pagination-controls').classList.remove('d-none');
 
-    // ✅ pagination slice
     const start = (currentPage - 1) * articlesPerPage;
     const end = start + articlesPerPage;
     const paginatedArticles = articles.slice(start, end);
@@ -352,9 +350,22 @@ function displayArticles(articles) {
                         <p class="press-summary">
                             ${article.excerpt ? article.excerpt.substring(0,150) + '...' : ''}
                         </p>
+
+                        <!-- PDF Embed Viewer (only if pdf field exists) -->
+                        ${article.pdf ? `
+                        <div class="pdf-viewer mt-4 mb-3 border rounded p-3 bg-white">
+                            <h6 class="fw-bold mb-3 text-umelusi-orange">View Full Press Release</h6>
+                            <embed src="${article.pdf}" type="application/pdf" width="100%" height="500px" />
+                            <div class="text-center mt-3">
+                                <a href="${article.pdf}" download class="btn btn-sm btn-orange">
+                                    <i class="fas fa-download me-2"></i> Download PDF
+                                </a>
+                            </div>
+                        </div>
+                        ` : ''}
+
                     </div>
                     <div class="mt-auto pt-3">
-                        <!-- ✅ FIX: Make sure this link is correct -->
                         <a href="press-article.html?id=${article.slug}" class="btn btn-sm btn-orange w-100">
                             Read More
                         </a>
@@ -368,6 +379,7 @@ function displayArticles(articles) {
     setupPaginationControls(articles.length);
 }
 
+// Rest of your functions (setupFilters, filterArticles, setupPaginationControls) remain unchanged
 function setupFilters() {
     const filterButtons = document.querySelectorAll('.press-filters button');
 
@@ -377,7 +389,7 @@ function setupFilters() {
             this.classList.add('active');
 
             currentFilter = this.dataset.filter;
-            currentPage = 1; // ✅ reset page on new filter
+            currentPage = 1;
 
             filterArticles();
         });
