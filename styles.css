@@ -2957,7 +2957,7 @@ footer a:hover {
 .blue-divider {
   position: relative;
   height: 80px;
-  background-color: #2d3dce;
+  background-color: #50A9B1;
   margin: 0;
 }
 
@@ -2971,7 +2971,7 @@ footer a:hover {
   height: 0;
   border-left: 40px solid transparent;
   border-right: 40px solid transparent;
-  border-top: 30px solid #2d3dce;
+  border-top: 30px solid #50A9B1;
 }
 
 /* Modern Brand Hover Cards */
