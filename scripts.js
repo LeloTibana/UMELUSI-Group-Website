@@ -740,7 +740,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // =========================================================
-// REPLACE "BRAND" / "BRANDS" TEXT WITH "SUBSIDIARY" / "SUBSIDIARIES"
+// REPLACE "BRAND" / "Subsidiaries" TEXT WITH "SUBSIDIARY" / "SUBSIDIARIES"
 // =========================================================
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -754,14 +754,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Replace in navbar
-    replaceText('.navbar .dropdown-toggle', 'Brands', 'Subsidiaries');
+    replaceText('.navbar .dropdown-toggle', 'Subsidiaries', 'Subsidiaries');
     replaceText('.navbar .dropdown-item', 'Brand', 'Subsidiary');
 
     // Replace in footer
-    replaceText('footer h5', 'Brands', 'Subsidiaries');
+    replaceText('footer h5', 'Subsidiaries', 'Subsidiaries');
 
-    // Replace any other visible "Brands" text on page
-    replaceText('h1, h2, h3, h4, h5, h6, p, li, span, a', 'Brands', 'Subsidiaries');
+    // Replace any other visible "Subsidiaries" text on page
+    replaceText('h1, h2, h3, h4, h5, h6, p, li, span, a', 'Subsidiaries', 'Subsidiaries');
     replaceText('h1, h2, h3, h4, h5, h6, p, li, span, a', 'Brand', 'Subsidiary');
 });
 
