@@ -116,3 +116,15 @@ collections:
               { label: "Category", name: "category", widget: "select", options: ["M&A", "Capital Raising", "Debt Markets", "Market Commentary"] },
               { label: "Published", name: "published", widget: "boolean", default: true }
           ]}
+  - name: "team"
+    label: "Team Hierarchy"
+    folder: "_data/team"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Position", name: "position", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Photo", name: "image", widget: "image", required: true }
+      - { label: "Department", name: "department", widget: "select", options: ["Senior Management", "FinServ", "Partners", "Capital", "Fund Managers", "Support Staff", "Admin Staff"], required: true }
+      - { label: "Order", name: "order", widget: "number", default: 99 }
