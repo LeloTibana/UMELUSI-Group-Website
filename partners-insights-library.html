@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umelusi Partners Insights Library</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html" aria-label="Umelusi Group Home">
+                <img src="images/Umelusi-2ndLogo.png" 
+                     alt="Umelusi Group Logo" 
+                     class="navbar-logo" 
+                     width="180" 
+                     height="60"
+                     loading="eager">
+            </a>
+            
+            <button class="navbar-toggler" 
+                    type="button" 
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" 
+                    aria-expanded="false" 
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" 
+                           href="#" 
+                           role="button" 
+                           data-bs-toggle="dropdown" 
+                           aria-expanded="false">
+                            About Us
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="about-company.html">Company Information</a></li>
+                            <li><a class="dropdown-item" href="board-of-directors.html">Board of Directors</a></li>
+                            <li><a class="dropdown-item" href="pressroom.html">Pressroom</a></li>
+                            <li><a class="dropdown-item" href="careers.html">Career Opportunities</a></li>
+                            <li><a class="dropdown-item" href="hierarchy.html">Hierarchy</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" 
+                           href="#" 
+                           role="button" 
+                           data-bs-toggle="dropdown" 
+                           aria-expanded="false">
+                            Brands
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="fund-managers.html">Umelusi Fund Managers</a></li>
+                            <li><a class="dropdown-item" href="partners.html">Umelusi Partners</a></li>
+                            <li><a class="dropdown-item" href="capital.html">Umelusi Capital</a></li>
+                            <li><a class="dropdown-item" href="finserve.html">Umelusi FinServ</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="markets.html">Markets</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="resources.html">Resources & Insights</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="py-5">
+        <div class="container">
+            <h1 class="text-center mb-5">Partners Insights Library</h1>
+            
+            <!-- Search Bar -->
+            <div class="row mb-4">
+                <div class="col-md-6 mx-auto">
+                    <div class="input-group">
+                        <input type="text" id="insights-search" class="form-control" placeholder="Search insights...">
+                        <button class="btn btn-partners-primary" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category Filters -->
+            <div class="row mb-4 justify-content-center">
+                <div class="col-md-8">
+                    <div class="d-flex flex-wrap justify-content-center gap-2">
+                        <button class="btn btn-outline-partners category-filter active" data-category="all">All</button>
+                        <button class="btn btn-outline-partners category-filter" data-category="Strategy">Strategy</button>
+                        <button class="btn btn-outline-partners category-filter" data-category="Digital">Digital Transformation</button>
+                        <button class="btn btn-outline-partners category-filter" data-category="Public">Public Sector</button>
+                        <button class="btn btn-outline-partners category-filter" data-category="Operations">Operations</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Insights Grid -->
+            <div class="row g-4" id="insights-library-grid"></div>
+            
+            <!-- Pagination -->
+            <div class="text-center mt-5">
+                <nav aria-label="Insights pagination">
+                    <ul class="pagination justify-content-center" id="insights-pagination"></ul>
+                </nav>
+            </div>
+            
+            <!-- Back Button -->
+            <div class="text-center mt-5">
+                <a href="partners.html" class="btn btn-outline-partners btn-lg">
+                    <i class="fas fa-arrow-left me-2"></i> Back to Partners Page
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-light text-center text-lg-start" role="contentinfo">
+        <div class="container p-4">
+            <!-- Logo and Social -->
+            <div class="row align-items-center">
+                <div class="col-lg-3 col-md-12 mb-4">
+                    <img src="images/Umelusi-2ndLogo.png" 
+                         alt="Umelusi Group Logo" 
+                         class="footer-logo"
+                         width="200"
+                         height="70"
+                         loading="lazy">
+                </div>
+                
+                <div class="col-lg-9 col-md-12 mb-4">
+                    <div class="social-media mb-3 d-flex justify-content-end">
+                        <a href="https://www.linkedin.com/company/umelusigroup/?viewAsMember=true" 
+                           class="text-dark me-3"
+                           aria-label="Visit our LinkedIn page">
+                            <i class="fab fa-linkedin fa-lg"></i>
+                        </a>
+                        <a href="https://www.instagram.com/umelusigroup/" 
+                           class="text-dark me-3"
+                           aria-label="Visit our Instagram page">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                        <a href="https://www.facebook.com/umelusigroup/" 
+                           class="text-dark me-3"
+                           aria-label="Visit our Facebook page">
+                            <i class="fab fa-facebook-f fa-lg"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@UmelusiGroup" 
+                           class="text-dark"
+                           aria-label="Visit our YouTube channel">
+                            <i class="fab fa-youtube fa-lg"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="contact-details text-end">
+                        <address>
+                            <p class="mb-1">
+                                <i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>
+                                Office D103, Development House, Swazi Plaza
+                            </p>
+                            <p class="mb-1">
+                                <i class="fas fa-phone me-2" aria-hidden="true"></i>
+                                (+268) 2404 3795
+                            </p>
+                            <p class="mb-0">
+                                <i class="fas fa-envelope me-2" aria-hidden="true"></i>
+                                <a href="mailto:info@umelusi.com" class="text-dark">info@umelusi.com</a>
+                            </p>
+                        </address>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer Links -->
+            <div class="row">
+                <!-- About Links -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="text-uppercase">About Umelusi Group</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about-company.html">Company Information</a></li>
+                        <li><a href="pressroom.html">Pressroom</a></li>
+                        <li><a href="careers.html">Career Opportunities</a></li>
+                        <li><a href="hierarchy.html">Hierarchy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Brand Links -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="text-uppercase">Brands</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="fund-managers.html">Umelusi Fund Managers</a></li>
+                        <li><a href="partners.html">Umelusi Partners</a></li>
+                        <li><a href="capital.html">Umelusi Capital</a></li>
+                        <li><a href="finserve.html">Umelusi FinServ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Privacy & Security -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="text-uppercase">Privacy & Security</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="privacy.html">Online Privacy Notice</a></li>
+                        <li><a href="security.html">Security at Umelusi</a></li>
+                        <li><a href="cookies.html">Manage Cookies</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Forms & Notices -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="text-uppercase">Forms & Notices</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="resources.html">Reports</a></li>
+                        <li><a href="resources.html#faq">FAQs</a></li>
+                        <li><a href="contact.html">Contact Form</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: #FF9933; color: white;">
+                <small>
+                    © 2025 Copyright:
+                    <a class="text-white" href="index.html">Umelusi Group</a>
+                    | All rights reserved.
+                </small>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let allInsights = [];
+        let filteredInsights = [];
+        let currentPage = 1;
+        const itemsPerPage = 6;
+        
+        // Load insights
+        fetch('/_data/partners-insights.json')
+            .then(response => response.json())
+            .then(data => {
+                allInsights = data.insights;
+                filteredInsights = allInsights;
+                renderInsights();
+                renderPagination();
+            })
+            .catch(() => {
+                document.getElementById('insights-library-grid').innerHTML = '<p class="text-center">No insights available.</p>';
+            });
+        
+        // Search
+        document.getElementById('insights-search').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            filteredInsights = allInsights.filter(insight => 
+                insight.title.toLowerCase().includes(searchTerm) || 
+                insight.excerpt.toLowerCase().includes(searchTerm)
+            );
+            currentPage = 1;
+            renderInsights();
+            renderPagination();
+        });
+        
+        // Filters
+        document.querySelectorAll('.category-filter').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.category-filter').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                filteredInsights = (category === 'all') 
+                    ? allInsights 
+                    : allInsights.filter(insight => insight.category === category);
+                currentPage = 1;
+                renderInsights();
+                renderPagination();
+            });
+        });
+        
+        // Render function
+        function renderInsights() {
+            const grid = document.getElementById('insights-library-grid');
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const paginated = filteredInsights.slice(start, end);
+            
+            grid.innerHTML = paginated.map(insight => `
+                <div class="col-md-6 col-lg-4">
+                    <div class="insight-card">
+                        <img src="${insight.image}" alt="${insight.title}">
+                        <div class="p-4">
+                            <h5>${insight.title}</h5>
+                            <p>${insight.excerpt}</p>
+                            <a href="${insight.link}" class="btn btn-partners-primary btn-sm">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Pagination
+        function renderPagination() {
+            const pagination = document.getElementById('insights-pagination');
+            const pageCount = Math.ceil(filteredInsights.length / itemsPerPage);
+            let html = '';
+            
+            for (let i = 1; i <= pageCount; i++) {
+                html += `
+                    <li class="page-item ${i === currentPage ? 'active' : ''}">
+                        <a class="page-link" href="#" data-page="${i}">${i}</a>
+                    </li>
+                `;
+            }
+            
+            pagination.innerHTML = html;
+            
+            pagination.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    currentPage = parseInt(this.dataset.page);
+                    renderInsights();
+                    renderPagination();
+                });
+            });
+        }
+    });
+    </script>
+</body>
+</html>

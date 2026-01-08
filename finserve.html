@@ -32,95 +32,12 @@
 
     <!-- Local stylesheet (existing) -->
     <link href="styles.css" rel="stylesheet">
-
-    <!-- Page-specific styles: tabs, tighter spacing, FinServ yellow (#f9b316) -->
-    <style>
-        /* Tighter spacing overall */
-        section:not(.brand-hero):not(.markets-content) {
-            padding-top: 2rem !important;
-            padding-bottom: 2rem !important;
-        }
-
-        /* FinServ Yellow */
-        .finserv-yellow { color: #f9b316 !important; }
-        .bg-finserv-yellow { background-color: #f9b316 !important; }
-        .border-finserv-yellow { border-color: #f9b316 !important; }
-        .btn-finserv {
-            background-color: #f9b316;
-            color: #000;
-            border: none;
-        }
-        .btn-finserv:hover {
-            background-color: #e0a300;
-            color: #000;
-        }
-
-        /* Tab styles */
-        .nav-tabs .nav-link {
-            border: none;
-            padding: 0.8rem 1.5rem;
-            font-weight: 600;
-            color: #423f33;
-        }
-        .nav-tabs .nav-link.active {
-            color: #f9b316;
-            border-bottom: 3px solid #f9b316;
-        }
-        .nav-tabs .nav-link:hover {
-            color: #f9b316;
-        }
-
-        /* Carousel controls styling */
-        .carousel-control-prev-icon, .carousel-control-next-icon {
-            background-color: rgba(0,0,0,0.5);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-        }
-
-        /* Service carousel images */
-        .service-carousel-img {
-            max-height: 350px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-    </style>
-
-    <!-- Structured Data (kept original) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FinancialService",
-      "name": "Umelusi FinServ",
-      "url": "https://www.umelusigroup.com/finserve.html",
-      "logo": "https://www.umelusigroup.com/images/logo-finserve.png",
-      "description": "Financial services brand focused on foreign exchange and money transfer services.",
-      "parentOrganization": {
-        "@type": "FinancialService",
-        "name": "Umelusi Group"
-      },
-      "serviceType": "Foreign Exchange, Money Transfer, Western Union Services",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "(+268) 2404 3795",
-        "contactType": "customer service",
-        "areaServed": "Africa",
-        "availableLanguage": "English"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Office D103, Development House, Swazi Plaza",
-        "addressLocality": "Mbabane",
-        "addressCountry": "Eswatini"
-      }
-    }
-    </script>
 </head>
 <body>
     <!-- Skip Navigation Link -->
     <a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
     
-    <!-- Navigation (kept EXACTLY as original) -->
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html" aria-label="Umelusi Group Home">
@@ -172,7 +89,7 @@
                            data-bs-toggle="dropdown" 
                            aria-expanded="false"
                            aria-current="page">
-                            Brands
+                            Subsidiaries
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="fund-managers.html">Umelusi Fund Managers</a></li>
@@ -198,437 +115,396 @@
         </div>
     </nav>
     
-    <!-- Main Content -->
-    <main id="main-content">
-        
-        <!-- Hero Section (kept EXACTLY as original) -->
-        <header class="brand-hero finserve-hero text-white d-flex align-items-center">
-            <div class="container hero-text" data-aos="fade-right">
-                <h1 class="display-4 fw-bold mb-3">Umelusi FinServ: Money Transfer & Foreign Exchange</h1>
-                <p class="lead mb-4">
-                    Umelusi FinServ is your trusted local hub for Western Union Services, providing fast, reliable, 
-                    and secure money transfers and competitive foreign exchange rates for business and personal needs.
-                </p>
-                <a href="#contact-finserve" class="btn btn-lg btn-umelusi-orange">
-                    Get Started
-                </a>
-            </div>
-        </header>
-        
-        <!-- Breadcrumb (kept same) -->
-        <nav aria-label="Breadcrumb" class="breadcrumb-nav py-3" data-aos="fade-down">
-            <div class="container">
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Umelusi FinServ</li>
-                </ol>
-            </div>
-        </nav>
-        
-        <!-- Live Market Data (kept EXACTLY as original) -->
-        <section class="markets-content py-5" id="markets-data" aria-labelledby="markets-heading">
-            <div class="container" data-aos="fade-up">
-                <h2 id="markets-heading" class="text-center mb-4">Live Market Data</h2>
-                <div class="row g-4">
-                    <div class="col-lg-4">
-                        <h3 class="h5 mb-3 text-umelusi-orange">Live Global Indices</h3>
-                        <div id="global-indices" class="tradingview-widget-container"></div>
-                    </div>
-                    <div class="col-lg-4">
-                        <h3 class="h5 mb-3 text-umelusi-orange">Live Currency Rates</h3>
-                        <div id="currency-rates" class="tradingview-widget-container"></div>
-                    </div>
-                    <div class="col-lg-4">
-                        <h3 class="h5 mb-3 text-umelusi-orange">Cryptocurrency Prices</h3>
-                        <div id="crypto-prices" class="tradingview-widget-container"></div>
+    <!-- Hero Carousel -->
+    <section class="finserv-hero carousel slide" id="finservHeroCarousel" data-bs-ride="carousel" data-bs-interval="8000">
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="background-image: url('images/UFS1.png');">
+                <div class="hero-content container">
+                    <div>
+                        <h1 class="display-4 fw-bold">Global Money Transfer</h1>
+                        <p class="lead">Fast, secure Western Union services worldwide.</p>
+                        <a href="#contact-finserve" class="btn btn-finserv btn-lg">Get Started</a>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Currency Converter -->
-                        <div class="mb-5">
-                            <h3 class="text-center mb-3 finserv-yellow">Real-Time Currency Converter</h3>
-                            <p class="text-center mb-4 text-muted">Quick indicative conversions. Retail rates at the counter may differ slightly.</p>
-                            <div class="converter-box mx-auto p-4 bg-white rounded shadow-sm">
-                                <div class="row g-3">
-                                    <div class="col-md-3">
-                                        <label for="from-currency" class="form-label fw-bold">From</label>
-                                        <select id="from-currency" class="form-select"></select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="to-currency" class="form-label fw-bold">To</label>
-                                        <select id="to-currency" class="form-select"></select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="amount" class="form-label fw-bold">Amount</label>
-                                        <input type="number" id="amount" class="form-control" value="100">
-                                    </div>
-                                    <div class="col-md-3 d-flex align-items-end">
-                                        <button id="convert-btn" class="btn btn-finserv w-100">Convert</button>
-                                    </div>
-                                </div>
-                                <div class="mt-4 text-center">
-                                    <h4 id="conversion-result" class="finserv-yellow"></h4>
-                                </div>
-                            </div>
-                        </div>
-
-        <!-- New Tabs Section -->
-        <section class="py-4 bg-white">
-            <div class="container">
-                <ul class="nav nav-tabs justify-content-center mb-4" id="finservTabs" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active finserv-yellow" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab">About FinServ</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link finserv-yellow" id="services-tab" data-bs-toggle="tab" data-bs-target="#services" type="button" role="tab">FinServ Services</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link finserv-yellow" id="requirements-tab" data-bs-toggle="tab" data-bs-target="#requirements" type="button" role="tab">FinServ Requirements</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link finserv-yellow" id="locations-tab" data-bs-toggle="tab" data-bs-target="#locations" type="button" role="tab">FinServ Locations</button>
-                    </li>
-                </ul>
-                
-                <div class="tab-content" id="finservTabsContent">
-                    <!-- Tab 1: About FinServ -->
-                    <div class="tab-pane fade show active" id="about" role="tabpanel">
-                        <div class="row g-4 text-center">
-                            <div class="col-md-4">
-                                <div class="p-4 border rounded shadow-sm bg-light">
-                                    <i class="fas fa-globe fa-3x finserv-yellow mb-3"></i>
-                                    <h4 class="finserv-yellow mb-2">Global Reach, Local Service</h4>
-                                    <p>As the transactional arm of Umelusi Group, we combine international networks with local expertise to deliver seamless money transfer and FX services.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="p-4 border rounded shadow-sm bg-light">
-                                    <i class="fas fa-lock fa-3x finserv-yellow mb-3"></i>
-                                    <h4 class="finserv-yellow mb-2">Secure & Regulated</h4>
-                                    <p>Fully compliant with financial regulations and partnered with Western Union for trusted, secure transactions worldwide.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="p-4 border rounded shadow-sm bg-light">
-                                    <i class="fas fa-users fa-3x finserv-yellow mb-3"></i>
-                                    <h4 class="finserv-yellow mb-2">Customer-Centric</h4>
-                                    <p>Personalised service at our branches in Mbabane and Manzini, with competitive rates and expert guidance.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Tab 2: FinServ Services (with carousel for Western Union & FX) -->
-                    <div class="tab-pane fade" id="services" role="tabpanel">
-                        
-                        
-                        
-
-                        <!-- Services Carousel -->
-                        <div id="servicesCarousel" class="carousel slide mb-5" data-bs-ride="false">
-                            <div class="carousel-inner">
-                                <!-- Slide 1: Western Union -->
-                                <div class="carousel-item active">
-                                    <div class="row align-items-center">
-                                        <div class="col-lg-6">
-                                            <img src="https://1000logos.net/wp-content/uploads/2020/07/Western-Union-Logo.jpg" alt="Western Union Logo" class="img-fluid service-carousel-img shadow">
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <h3 class="finserv-yellow mb-4">Western Union Money Transfer Services</h3>
-                                            <p class="lead">Send and receive money worldwide in minutes with the trusted global leader.</p>
-                                            <ul class="list-unstyled">
-                                                <li><i class="fas fa-clock text-success me-2"></i>Fast transfers – available in minutes for cash pickup</li>
-                                                <li><i class="fas fa-globe text-success me-2"></i>Reach over 200 countries and territories</li>
-                                                <li><i class="fas fa-mobile-alt text-success me-2"></i>Direct to bank or mobile wallet</li>
-                                                <li><i class="fas fa-search-dollar text-success me-2"></i>Real-time tracking with MTCN</li>
-                                                <li><i class="fas fa-shield-alt text-success me-2"></i>Advanced encryption and fraud protection</li>
-                                                <li><i class="fas fa-headset text-success me-2"></i>24/7 customer support</li>
-                                            </ul>
-                                            <p>Ideal for remittances, emergencies, or business payments.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Slide 2: Foreign Exchange -->
-                                <div class="carousel-item">
-                                    <div class="row align-items-center flex-row-reverse">
-                                        <div class="col-lg-6">
-                                            <img src="https://www.shutterstock.com/image-vector/counter-currency-exchange-service-female-600nw-2345870531.jpg" alt="Currency Exchange Counter Illustration" class="img-fluid service-carousel-img shadow">
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <h3 class="finserv-yellow mb-4">Foreign Exchange Services</h3>
-                                            <p class="lead">Competitive rates and expert advice with no hidden fees.</p>
-                                            <ul class="list-unstyled">
-                                                <li><i class="fas fa-dollar-sign text-success me-2"></i>Major currencies in stock: USD, EUR, GBP, ZAR</li>
-                                                <li><i class="fas fa-coins text-success me-2"></i>Cash, travellers cheques, prepaid cards</li>
-                                                <li><i class="fas fa-chart-line text-success me-2"></i>Rate alerts & forward contracts</li>
-                                                <li><i class="fas fa-hand-holding-usd text-success me-2"></i>Bulk corporate rates</li>
-                                                <li><i class="fas fa-comments text-success me-2"></i>Personalised currency advice</li>
-                                                <li><i class="fas fa-ban text-success me-2"></i>No commission charges</li>
-                                            </ul>
-                                            <p>Perfect for travel, trade, or hedging.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Carousel Controls -->
-                            <button class="carousel-control-prev" type="button" data-bs-target="#servicesCarousel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#servicesCarousel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Tab 3: FinServ Requirements -->
-                    <div class="tab-pane fade" id="requirements" role="tabpanel">
-                        <div class="row g-4">
-                            <div class="col-md-6">
-                                <div class="p-4 border rounded shadow-sm bg-light">
-                                    <i class="fas fa-id-card fa-3x finserv-yellow mb-3"></i>
-                                    <h4 class="finserv-yellow mb-3">Personal Identification</h4>
-                                    <ul>
-                                        <li>Valid passport, driver's license or national ID</li>
-                                        <li>Proof of address (utility bill or bank statement less than 3 months old)</li>
-                                        <li>For non-residents: valid visa or work permit</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="p-4 border rounded shadow-sm bg-light">
-                                    <i class="fas fa-file-alt fa-3x finserv-yellow mb-3"></i>
-                                    <h4 class="finserv-yellow mb-3">Transaction Documentation</h4>
-                                    <ul>
-                                        <li>Source of funds declaration for amounts over certain thresholds</li>
-                                        <li>Recipient details for Western Union transfers</li>
-                                        <li>Invoice or purpose statement for business FX transactions</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-center mt-4 text-muted">Requirements ensure compliance with anti-money laundering regulations and secure processing.</p>
-                    </div>
-                    
-                    <!-- Tab 4: FinServ Locations -->
-                    <div class="tab-pane fade" id="locations" role="tabpanel">
-                        <div class="row g-4">
-                            <div class="col-md-6">
-                                <div class="card shadow-sm h-100">
-                                    <div class="card-body text-center p-4">
-                                        <h4 class="finserv-yellow mb-3">Corporate Plaza - Mbabane</h4>
-                                        <p class="mb-3">
-                                            Ground Floor, Office D09A, Corporate Plaza<br>
-                                            Gwamile Street, Mbabane<br>
-                                            Eswatini
-                                        </p>
-                                        <div class="map-embed">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3590.566609413!2d31.1385!3d-26.3235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ee9b4e4b4e4b4e4%3A0x1234567890abcdef!2sCorporate%20Plaza!5e0!3m2!1sen!2ssz!4v1702650000000" 
-                                                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card shadow-sm h-100">
-                                    <div class="card-body text-center p-4">
-                                        <h4 class="finserv-yellow mb-3">Riverstone Mall - Manzini</h4>
-                                        <p class="mb-3">
-                                            Shop 106, Riverstone Mall<br>
-                                            Ngwane Street, Manzini<br>
-                                            Eswatini
-                                        </p>
-                                        <div class="map-embed">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3592.123456789!2d31.3667!3d-26.4956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ee9c4c4c4c4c4c4%3A0xfedcba9876543210!2sRiverstone%20Mall!5e0!3m2!1sen!2ssz!4v1702650000000" 
-                                                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="carousel-item" style="background-image: url('images/UFS2.png');">
+                <div class="hero-content container">
+                    <div>
+                        <h1 class="display-4 fw-bold">Competitive Forex Rates</h1>
+                        <p class="lead">Best rates for all major currencies with no hidden fees.</p>
+                        <a href="#contact-finserve" class="btn btn-finserv btn-lg">Get Started</a>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Explore Other Brands (kept EXACTLY as original, with yellow accents) -->
-        <section class="py-5 bg-light" aria-labelledby="other-brands-heading">
-            <div class="container">
-                <h3 id="other-brands-heading" class="text-center mb-5 fw-bold finserv-yellow">Explore Other Umelusi Brands</h3>
-                <div class="row g-4 justify-content-center">
-                    
-                    <!-- Umelusi Fund Managers -->
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <article class="brand-card d-block text-center h-100 p-4 bg-white rounded shadow-sm">
-                            <img src="images/Umelusi-FundManagers2.png" 
-                                 alt="Umelusi Fund Managers Logo" 
-                                 class="brand-logo mb-3"
-                                 width="120"
-                                 height="60"
-                                 loading="lazy">
-                            <h4 class="h5 fw-bold mb-2 finserv-yellow">Umelusi Fund Managers</h4>
-                            <p class="text-muted mb-3">Investment & Wealth Management</p>
-                            <a href="fund-managers.html" class="btn btn-finserv">Learn More</a>
-                        </article>
+            <div class="carousel-item" style="background-image: url('images/UFS3.png');">
+                <div class="hero-content container">
+                    <div>
+                        <h1 class="display-4 fw-bold">Business FX Solutions</h1>
+                        <p class="lead">Tailored foreign exchange for corporate clients.</p>
+                        <a href="#contact-finserve" class="btn btn-finserv btn-lg">Get Started</a>
                     </div>
-                    
-                    <!-- Umelusi Partners -->
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                        <article class="brand-card d-block text-center h-100 p-4 bg-white rounded shadow-sm">
-                            <img src="images/logo-partners.png" 
-                                 alt="Umelusi Partners Logo" 
-                                 class="brand-logo mb-3"
-                                 width="120"
-                                 height="60"
-                                 loading="lazy">
-                            <h4 class="h5 fw-bold mb-2 finserv-yellow">Umelusi Partners</h4>
-                            <p class="text-muted mb-3">Strategic advisory & consulting</p>
-                            <a href="partners.html" class="btn btn-finserv">Learn More</a>
-                        </article>
-                    </div>
-                    
-                    <!-- Umelusi Capital -->
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                        <article class="brand-card d-block text-center h-100 p-4 bg-white rounded shadow-sm">
-                            <img src="images/Umelusi-Capital.png" 
-                                 alt="Umelusi Capital Logo" 
-                                 class="brand-logo mb-3"
-                                 width="120"
-                                 height="60"
-                                 loading="lazy">
-                            <h4 class="h5 fw-bold mb-2 finserv-yellow">Umelusi Capital</h4>
-                            <p class="text-muted mb-3">Corporate Finance & Investment Banking</p>
-                            <a href="capital.html" class="btn btn-finserv">Learn More</a>
-                        </article>
-                    </div>
-                    
                 </div>
             </div>
-        </section>
-        
-        <!-- Contact Form Section (kept EXACTLY as original - with yellow accents) -->
-        <section id="contact-finserve" class="contact-form py-5 bg-white" aria-labelledby="contact-heading">
-            <div class="container" data-aos="fade-up">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 mb-5 mb-lg-0">
-                        <h2 id="contact-heading" class="fw-bold mb-3 finserv-yellow">Start Your Transaction</h2>
-                        <p class="lead mb-4">
-                            Connect with our FinServ team for competitive exchange rates, secure money transfers, 
-                            and personalized payment solutions.
-                        </p>
-                        
-                        <div class="contact-info mt-4 p-4 bg-light rounded shadow-sm">
-                            <h3 class="h5 mb-3 fw-bold finserv-yellow">Quick Contact</h3>
-                            <ul class="list-unstyled mb-0">
-                                <li class="mb-2">
-                                    <i class="fas fa-phone finserv-yellow me-2" aria-hidden="true"></i>
-                                    <a href="tel:+26824043795">(+268) 2404 3795</a>
-                                </li>
-                                <li class="mb-2">
-                                    <i class="fab fa-whatsapp finserv-yellow me-2" aria-hidden="true"></i>
-                                    <a href="tel:+26824043795">(+268) 7908 2228</a>
-                                </li>
-                                <li class="mb-2">
-                                    <i class="fas fa-envelope finserv-yellow me-2" aria-hidden="true"></i>
-                                    <a href="mailto:finserv@umelusi.com">finserv@umelusi.com</a>
-                                </li>
-                                <li>
-                                    <i class="fas fa-map-marker-alt finserv-yellow me-2" aria-hidden="true"></i>
-                                    Office D09A, Development House, Swazi Plaza, Mbabane
-                                </li>
+        </div>
+
+        <!-- FinServ Logo on right -->
+        <img src="images/logo-finserve.png" alt="Umelusi FinServ Logo" class="finserv-logo">
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#finservHeroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#finservHeroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </section>
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="breadcrumb-nav py-3 bg-light">
+        <div class="container">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Umelusi FinServ</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Live Market Data (kept as is) -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold" style="color: #f9b316;">Live Market Data</h2>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h3 class="h5 mb-3" style="color: #f9b316;">Live Global Indices</h3>
+                    <div id="global-indices" class="tradingview-widget-container"></div>
+                </div>
+                <div class="col-lg-4">
+                    <h3 class="h5 mb-3" style="color: #f9b316;">Live Currency Rates</h3>
+                    <div id="currency-rates" class="tradingview-widget-container"></div>
+                </div>
+                <div class="col-lg-4">
+                    <h3 class="h5 mb-3" style="color: #f9b316;">Cryptocurrency Prices</h3>
+                    <div id="crypto-prices" class="tradingview-widget-container"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Currency Converter (kept as is) -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold" style="color: #f9b316;">Real-Time Currency Converter</h2>
+            <p class="text-center mb-4 text-muted">Quick indicative conversions. Retail rates at the counter may differ slightly.</p>
+            <div class="converter-box mx-auto p-4 bg-white rounded shadow-sm" style="max-width: 800px;">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label for="from-currency" class="form-label fw-bold">From</label>
+                        <select id="from-currency" class="form-select"></select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="to-currency" class="form-label fw-bold">To</label>
+                        <select id="to-currency" class="form-select"></select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="amount" class="form-label fw-bold">Amount</label>
+                        <input type="number" id="amount" class="form-control" value="100">
+                    </div>
+                    <div class="col-md-3 d-flex align-items-end">
+                        <button id="convert-btn" class="btn btn-finserv w-100">Convert</button>
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <h4 id="conversion-result" class="text-muted"></h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold" style="color: #f9b316;">Our Services</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body p-4">
+                            <h4 class="finserv-yellow mb-3">Western Union Money Transfer</h4>
+                            <p class="lead mb-4">Send and receive money to over 200 countries and territories.</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle finserv-yellow me-2"></i> Instant transfers</li>
+                                <li class="mb-2"><i class="fas fa-check-circle finserv-yellow me-2"></i> Competitive rates</li>
+                                <li class="mb-2"><i class="fas fa-check-circle finserv-yellow me-2"></i> Secure and reliable</li>
+                                <li class="mb-2"><i class="fas fa-check-circle finserv-yellow me-2"></i> Multiple payout options</li>
                             </ul>
                         </div>
                     </div>
-                    
-                    <div class="col-lg-6">
-                        <div class="p-4 p-lg-5 shadow-lg rounded bg-light">
-                            <h3 class="h4 mb-4 text-center fw-bold finserv-yellow">Transaction Inquiry Form</h3>
-                            
-                            <!-- Netlify Form (kept exactly) -->
-                            <form name="finserve-contact" 
-                                  method="POST" 
-                                  data-netlify="true" 
-                                  netlify-honeypot="bot-field">
-                                
-                                <input type="hidden" name="form-name" value="finserve-contact">
-                                <input type="hidden" name="_redirect" 
-                                       value="https://thunderous-axolotl-e8f0a2.netlify.app/thank-you.html">
-                                
-                                <!-- Honeypot Field -->
-                                <div class="d-none" aria-hidden="true">
-                                    <label>Don't fill this out: <input name="bot-field"></label>
-                                </div>
-                                
-                                <!-- Form Fields -->
-                                <div class="mb-3">
-                                    <label for="finserve-name" class="form-label fw-bold">Full Name <span class="text-danger">*</span></label>
-                                    <input type="text" 
-                                           class="form-control" 
-                                           id="finserve-name" 
-                                           name="fullName" 
-                                           placeholder="Enter your full name" 
-                                           required>
-                                </div>
-                                
-                                <div class="mb-3">
-                                    <label for="finserve-email" class="form-label fw-bold">Email Address <span class="text-danger">*</span></label>
-                                    <input type="email" 
-                                           class="form-control" 
-                                           id="finserve-email" 
-                                           name="email" 
-                                           placeholder="example@user.com" 
-                                           required>
-                                </div>
-                                
-                                <div class="mb-3">
-                                    <label for="finserve-organization" class="form-label fw-bold">Organization (If applicable)</label>
-                                    <input type="text" 
-                                           class="form-control" 
-                                           id="finserve-organization" 
-                                           name="organization" 
-                                           placeholder="Enter your organization name">
-                                </div>
-                                
-                                <div class="mb-3">
-                                    <label for="finserve-service" class="form-label fw-bold">Type of Service <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="finserve-service" name="serviceType" required>
-                                        <option value="">Select a service need</option>
-                                        <option value="western-union">Western Union Money Transfer</option>
-                                        <option value="forex-buy">Foreign Currency Purchase (Buy Forex)</option>
-                                        <option value="forex-sell">Foreign Currency Sale (Sell Forex)</option>
-                                        <option value="business-payments">International Business Payments</option>
-                                        <option value="general-inquiry">General Inquiry</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="mb-4">
-                                    <label for="finserve-message" class="form-label fw-bold">Briefly Outline Your Transaction Need</label>
-                                    <textarea class="form-control" 
-                                              id="finserve-message" 
-                                              name="message" 
-                                              rows="4" 
-                                              placeholder="e.g., I need to send $500 to Kenya via Western Union, or I require ZAR for an upcoming trip..."></textarea>
-                                </div>
-                                
-                                <button type="submit" class="btn btn-finserv w-100 py-3 fw-bold">
-                                    Contact FinServ for Rates
-                                </button>
-                            </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body p-4">
+                            <h4 class="finserv-yellow mb-3">Foreign Exchange</h4>
+                            <p class="lead mb-4">Buy and sell foreign currency at competitive rates.</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle finserv-yellow me-2"></i> Major currencies available</li>
+                                <li class="mb-2"><i class="fas fa-check-circle finserv-yellow me-2"></i> No hidden fees</li>
+                                <li class="mb-2"><i class="fas fa-check-circle finserv-yellow me-2"></i> Spot and forward contracts</li>
+                                <li class="mb-2"><i class="fas fa-check-circle finserv-yellow me-2"></i> Business FX solutions</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
-    
-    <!-- Footer (kept EXACTLY as original) -->
-    <footer class="bg-light text-center text-lg-start">
+        </div>
+    </section>
+
+    <!-- Requirements Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold" style="color: #f9b316;">Transaction Requirements</h2>
+            <div class="accordion" id="requirementsAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#foreignExchange" aria-expanded="true">
+                            Foreign Exchange Requirements
+                        </button>
+                    </h2>
+                    <div id="foreignExchange" class="accordion-collapse collapse show">
+                        <div class="accordion-body">
+                            <h5 class="finserv-yellow mb-3">Eswatini Resident</h5>
+                            <ul>
+                                <li>Original ID/Passport (not copies)</li>
+                                <li>Proof of residence: A utility bill (water or electricity) or lease agreement, not older than 3 months.</li>
+                                <li>Flight ticket (Travelling outside CMA)</li>
+                                <li>Source of funds (Travelling outside CMA)</li>
+                                <li>Country visa (Buy Transactions)</li>
+                            </ul>
+                            
+                            <h5 class="finserv-yellow mb-3">Non-resident (Permit)</h5>
+                            <ul>
+                                <li>Original Valid Passport</li>
+                                <li>Original Valid Permit (A4 with photo)</li>
+                                <li>Flight ticket (Travelling outside CMA)</li>
+                                <li>Source of funds (Travelling outside CMA)</li>
+                                <li>Country visa (Buy Transactions)</li>
+                            </ul>
+                            
+                            <h5 class="finserv-yellow mb-3">Visitor</h5>
+                            <ul>
+                                <li>Original Passport</li>
+                                <li>Immigration visa/permit/stamp</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#westernUnion" type="button">
+                            Western Union Requirements
+                        </button>
+                    </h2>
+                    <div id="westernUnion" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <h5 class="finserv-yellow mb-3">Eswatini Resident</h5>
+                            <ul>
+                                <li>Original National ID Card</li>
+                                <li>Passport (Include police report if ID is Lost)</li>
+                                <li>Proof of residence: A utility bill (water or electricity) or lease agreement, no older than 3 months.</li>
+                            </ul>
+                            
+                            <h5 class="finserv-yellow mb-3">Non-Resident (Permit)</h5>
+                            <ul>
+                                <li>Original Valid Passport</li>
+                                <li>Original Valid Permit</li>
+                                <li>Proof of residence (applicable yearly)</li>
+                                <li>Source of funds (Pay slip applicable yearly)</li>
+                            </ul>
+                            
+                            <h5 class="finserv-yellow mb-3">Visitors</h5>
+                            <ul>
+                                <li>Original Valid Passport</li>
+                                <li>Immigration visa/permit/stamp</li>
+                                <li>Proof of residence (Sending & transactions above SZL 5,000)</li>
+                                <li>Source of funds (Sending transactions)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PDF Download Button -->
+            <div class="text-center mt-5">
+                <a href="downloads/umelusi-finserv-requirements.pdf" class="btn btn-finserv btn-lg" download>
+                    <i class="fas fa-download me-2"></i> Download Requirements PDF
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold" style="color: #f9b316;">Our Locations</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <h4 class="finserv-yellow mb-3">Swazi Plaza - Mbabane</h4>
+                            <p>Office D09A, Development House<br>Mbabane, Eswatini</p>
+                            <p><i class="fas fa-phone me-2"></i>+268 2404 3795</p>
+                            <p><i class="fab fa-whatsapp me-2"></i>+268 7908 2228</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <h4 class="finserv-yellow mb-3">Riverstone Mall - Manzini</h4>
+                            <p>Shop 106, Riverstone Mall<br>Manzini, Eswatini</p>
+                            <p><i class="fas fa-phone me-2"></i>+268 2505 8293</p>
+                            <p><i class="fab fa-whatsapp me-2"></i>+268 7908 2228</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <h4 class="finserv-yellow mb-3">King Mswati III Airport</h4>
+                            <p>King Mswati III International Airport<br>Sikhuphe, Eswatini</p>
+                            <p><i class="fas fa-phone me-2"></i>+268 2505 8293</p>
+                            <p><i class="fab fa-whatsapp me-2"></i>+268 7908 2228</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Explore Other Brands (kept) -->
+    <section class="py-5 bg-light" aria-labelledby="other-brands-heading">
+        <div class="container">
+            <h3 id="other-brands-heading" class="text-center mb-5 fw-bold" style="color: #f9b316;">Explore Other Umelusi Brands</h3>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="subsidiary-card">
+                        <img src="images/Umelusi-FundManagers2.png" alt="Umelusi Fund Managers">
+                        <h5>Umelusi Fund Managers</h5>
+                        <p class="text-muted">Investment & Wealth Management</p>
+                        <a href="fund-managers.html" class="btn btn-outline-finserv">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="subsidiary-card">
+                        <img src="images/logo-partners.png" alt="Umelusi Partners">
+                        <h5>Umelusi Partners</h5>
+                        <p class="text-muted">Strategic Consulting & Advisory</p>
+                        <a href="partners.html" class="btn btn-outline-finserv">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="subsidiary-card">
+                        <img src="images/Umelusi-Capital.png" alt="Umelusi Capital">
+                        <h5>Umelusi Capital</h5>
+                        <p class="text-muted">Corporate Finance & Investment Banking</p>
+                        <a href="capital.html" class="btn btn-outline-finserv">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form (structure kept, locations added) -->
+    <section id="contact-finserve" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h2 class="fw-bold mb-3" style="color: #f9b316;">Contact Umelusi FinServ</h2>
+                    <p class="lead mb-4">
+                        Get in touch for competitive exchange rates, secure money transfers, and personalized payment solutions.
+                    </p>
+                    
+                    <div class="contact-info mt-4 p-4 bg-light rounded shadow-sm">
+                        <h3 class="h5 mb-3 fw-bold" style="color: #f9b316;">Our Locations & Contacts</h3>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-3">
+                                <strong>Swazi Plaza - Mbabane</strong><br>
+                                Office D09A, Development House<br>
+                                <i class="fas fa-phone me-2"></i>(+268) 2404 3795<br>
+                                <i class="fab fa-whatsapp me-2"></i>(+268) 7908 2228
+                            </li>
+                            <li class="mb-3">
+                                <strong>Riverstone Mall - Manzini</strong><br>
+                                Shop 106<br>
+                                <i class="fas fa-phone me-2"></i>(+268) 2505 8293<br>
+                                <i class="fab fa-whatsapp me-2"></i>(+268) 7908 2228
+                            </li>
+                            <li>
+                                <strong>King Mswati III Airport</strong><br>
+                                Sikhuphe<br>
+                                <i class="fas fa-phone me-2"></i>(+268) 2505 8293<br>
+                                <i class="fab fa-whatsapp me-2"></i>(+268) 7908 2228
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="p-4 p-lg-5 shadow-lg rounded bg-white">
+                        <h3 class="h4 mb-4 text-center fw-bold" style="color: #f9b316;">Transaction Inquiry Form</h3>
+                        
+                        <form name="finserve-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                            <input type="hidden" name="form-name" value="finserve-contact">
+                            <input type="hidden" name="_redirect" value="https://thunderous-axolotl-e8f0a2.netlify.app/thank-you.html">
+                            
+                            <div class="d-none">
+                                <label>Don't fill this out: <input name="bot-field"></label>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="finserve-name" class="form-label fw-bold">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="finserve-name" name="fullName" placeholder="Enter your full name" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="finserve-email" class="form-label fw-bold">Email Address <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="finserve-email" name="email" placeholder="example@user.com" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="finserve-organization" class="form-label fw-bold">Organization (If applicable)</label>
+                                <input type="text" class="form-control" id="finserve-organization" name="organization" placeholder="Enter your organization name">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="finserve-service" class="form-label fw-bold">Type of Service <span class="text-danger">*</span></label>
+                                <select class="form-select" id="finserve-service" name="serviceType" required>
+                                    <option value="">Select a service need</option>
+                                    <option value="western-union">Western Union Money Transfer</option>
+                                    <option value="forex-buy">Foreign Currency Purchase (Buy Forex)</option>
+                                    <option value="forex-sell">Foreign Currency Sale (Sell Forex)</option>
+                                    <option value="business-payments">International Business Payments</option>
+                                    <option value="general-inquiry">General Inquiry</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="finserve-message" class="form-label fw-bold">Briefly Outline Your Transaction Need</label>
+                                <textarea class="form-control" id="finserve-message" name="message" rows="4" placeholder="e.g., I need to send $500 to Kenya via Western Union, or I require ZAR for an upcoming trip..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-finserv w-100 py-3 fw-bold">
+                                Submit Inquiry
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-light text-center text-lg-start" role="contentinfo">
         <div class="container p-4">
+            <!-- Logo and Social -->
             <div class="row align-items-center">
                 <div class="col-lg-3 col-md-12 mb-4">
                     <img src="images/Umelusi-2ndLogo.png" 
@@ -682,74 +558,100 @@
                 </div>
             </div>
             
+            <!-- Footer Links -->
             <div class="row">
+                <!-- About Links -->
                 <div class="col-lg-3 col-md-6 mb-4">
-                    <h5 class="text-uppercase fw-bold">About Umelusi Group</h5>
+                    <h5 class="text-uppercase">About Umelusi Group</h5>
                     <ul class="list-unstyled">
-                        <li><a href="about-company.html" class="text-decoration-none">Company Information</a></li>
-                        <li><a href="board-of-directors.html" class="text-decoration-none">Board of Directors</a></li>
-                        <li><a href="pressroom.html" class="text-decoration-none">Pressroom</a></li>
-                        <li><a href="careers.html" class="text-decoration-none">Career Opportunities</a></li>
-                        <li><a href="hierarchy.html" class="text-decoration-none">Hierarchy</a></li>
+                        <li><a href="about-company.html">Company Information</a></li>
+                        <li><a href="pressroom.html">Pressroom</a></li>
+                        <li><a href="careers.html">Career Opportunities</a></li>
+                        <li><a href="hierarchy.html">Hierarchy</a></li>
                     </ul>
                 </div>
                 
+                <!-- Brand Links -->
                 <div class="col-lg-3 col-md-6 mb-4">
-                    <h5 class="text-uppercase fw-bold">Brands</h5>
+                    <h5 class="text-uppercase">Brands</h5>
                     <ul class="list-unstyled">
-                        <li><a href="fund-managers.html" class="text-decoration-none">Umelusi Fund Managers</a></li>
-                        <li><a href="partners.html" class="text-decoration-none">Umelusi Partners</a></li>
-                        <li><a href="capital.html" class="text-decoration-none">Umelusi Capital</a></li>
-                        <li><a href="finserve.html" class="text-decoration-none active fw-bold" aria-current="page">Umelusi FinServ</a></li>
+                        <li><a href="fund-managers.html">Umelusi Fund Managers</a></li>
+                        <li><a href="partners.html">Umelusi Partners</a></li>
+                        <li><a href="capital.html">Umelusi Capital</a></li>
+                        <li><a href="finserve.html">Umelusi FinServ</a></li>
                     </ul>
                 </div>
                 
+                <!-- Privacy & Security -->
                 <div class="col-lg-3 col-md-6 mb-4">
-                    <h5 class="text-uppercase fw-bold">Privacy & Security</h5>
+                    <h5 class="text-uppercase">Privacy & Security</h5>
                     <ul class="list-unstyled">
-                        <li><a href="privacy.html" class="text-decoration-none">Online Privacy Notice</a></li>
-                        <li><a href="security.html" class="text-decoration-none">Security at Umelusi</a></li>
-                        <li><a href="cookies.html" class="text-decoration-none">Manage Cookies</a></li>
+                        <li><a href="privacy.html">Online Privacy Notice</a></li>
+                        <li><a href="security.html">Security at Umelusi</a></li>
+                        <li><a href="cookies.html">Manage Cookies</a></li>
                     </ul>
                 </div>
                 
+                <!-- Forms & Notices -->
                 <div class="col-lg-3 col-md-6 mb-4">
-                    <h5 class="text-uppercase fw-bold">Forms & Notices</h5>
+                    <h5 class="text-uppercase">Forms & Notices</h5>
                     <ul class="list-unstyled">
-                        <li><a href="accessibility.html" class="text-decoration-none">Accessibility</a></li>
-                        <li><a href="resources.html" class="text-decoration-none">Reports</a></li>
-                        <li><a href="resources.html#faq" class="text-decoration-none">FAQs</a></li>
-                        <li><a href="contact.html" class="text-decoration-none">Contact Form</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="resources.html">Reports</a></li>
+                        <li><a href="resources.html#faq">FAQs</a></li>
+                        <li><a href="contact.html">Contact Form</a></li>
                     </ul>
                 </div>
             </div>
             
+            <!-- Copyright -->
             <div class="text-center p-3" style="background-color: #FF9933; color: white;">
                 <small>
                     © 2025 Copyright:
-                    <a class="text-white text-decoration-none fw-bold" href="index.html">Umelusi Group</a>
+                    <a class="text-white" href="index.html">Umelusi Group</a>
                     | All rights reserved.
                 </small>
             </div>
         </div>
     </footer>
+    
+    <!-- MODALS -->
+    <!-- Contact Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-brand text-white">
+                    <h3 class="modal-title" id="contactModalLabel">Request a Consultation</h3>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <!-- Modal content would go here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Floating Message Us Button -->
+<a href="contact.html" class="message-us-btn" aria-label="Message Us">
+  <i class="fas fa-comment-dots"></i>
+  <span>Message Us</span>
+</a>
 
-    <!-- Back to Top Button (kept) -->
+    <!-- Back to Top Button -->
     <button id="back-to-top" 
-            class="btn btn-umelusi-orange btn-floating rounded-circle shadow" 
-            style="position: fixed; bottom: 20px; right: 20px; display: none; width: 50px; height: 50px;"
-            aria-label="Scroll back to top">
-        <i class="fas fa-arrow-up"></i>
+            class="btn btn-floating" 
+            aria-label="Scroll back to top"
+            style="position: fixed; bottom: 20px; right: 20px; display: none;">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
     <!-- Scripts (kept) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init();</script>
     <script src="scripts.js"></script>
-
+    
+    <!-- Currency Converter Script (kept) -->
     <script>
-        AOS.init({ duration: 700, once: true, offset: 90 });
-
         (function(){
             const rates = {
                 USD: 1,

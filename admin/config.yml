@@ -66,3 +66,53 @@ collections:
               { label: "Thumbnail Image", name: "thumbnail", widget: "image", required: false },
               { label: "PDF File", name: "file", widget: "file", required: false }
           ]}
+
+  - name: "partners_insights"
+    label: "Partners Insights & News"
+    files:
+      - file: "_data/partners-insights.json"  # Added .json extension
+        label: "Partners Insights Data"
+        name: "partners_insights_data"
+        fields:
+          - { label: "Insights", name: "insights", widget: "list", fields: [
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Slug", name: "slug", widget: "string", required: true },  <!-- NEW -->
+              { label: "Excerpt", name: "excerpt", widget: "text" },
+              { label: "Full Content", name: "content", widget: "markdown" },  <!-- For individual pages -->
+              { label: "Image", name: "image", widget: "image" },
+              { label: "Category", name: "category", widget: "select", options: ["Strategy", "Digital", "Public", "Operations"] },
+              { label: "Published", name: "published", widget: "boolean", default: true }
+          ]}
+          
+  - name: "fm_insights"
+    label: "Fund Managers Insights & News"
+    files:
+      - file: "_data/fm-insights.json"
+        label: "Fund Managers Insights Data"
+        name: "fm_insights_data"
+        fields:
+          - { label: "Insights", name: "insights", widget: "list", fields: [
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Slug", name: "slug", widget: "string", required: true },  <!-- NEW -->
+              { label: "Excerpt", name: "excerpt", widget: "text" },
+              { label: "Full Content", name: "content", widget: "markdown" },
+              { label: "Image", name: "image", widget: "image" },
+              { label: "Category", name: "category", widget: "select", options: ["Market", "Investment", "Economy", "Portfolio"] },
+              { label: "Published", name: "published", widget: "boolean", default: true }
+          ]}
+  - name: "capital_insights"
+    label: "Capital Insights & News"
+    files:
+      - file: "_data/capital-insights.json"
+        label: "Capital Insights Data"
+        name: "capital_insights_data"
+        fields:
+          - { label: "Insights", name: "insights", widget: "list", fields: [
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Slug", name: "slug", widget: "string" },
+              { label: "Excerpt", name: "excerpt", widget: "text" },
+              { label: "Image", name: "image", widget: "image" },
+              { label: "Link", name: "link", widget: "string" },
+              { label: "Category", name: "category", widget: "select", options: ["M&A", "Capital Raising", "Debt Markets", "Market Commentary"] },
+              { label: "Published", name: "published", widget: "boolean", default: true }
+          ]}

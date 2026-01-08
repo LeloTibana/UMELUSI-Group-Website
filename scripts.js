@@ -739,6 +739,32 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 100);
 });
 
+// =========================================================
+// REPLACE "BRAND" / "BRANDS" TEXT WITH "SUBSIDIARY" / "SUBSIDIARIES"
+// =========================================================
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Function to replace text in elements
+    function replaceText(selector, oldText, newText) {
+        document.querySelectorAll(selector).forEach(el => {
+            if (el.textContent.includes(oldText)) {
+                el.textContent = el.textContent.replace(new RegExp(oldText, 'g'), newText);
+            }
+        });
+    }
+
+    // Replace in navbar
+    replaceText('.navbar .dropdown-toggle', 'Brands', 'Subsidiaries');
+    replaceText('.navbar .dropdown-item', 'Brand', 'Subsidiary');
+
+    // Replace in footer
+    replaceText('footer h5', 'Brands', 'Subsidiaries');
+
+    // Replace any other visible "Brands" text on page
+    replaceText('h1, h2, h3, h4, h5, h6, p, li, span, a', 'Brands', 'Subsidiaries');
+    replaceText('h1, h2, h3, h4, h5, h6, p, li, span, a', 'Brand', 'Subsidiary');
+});
+
 // ============================================
 // WINDOW EVENT LISTENERS
 // ============================================

@@ -50,6 +50,9 @@ a:hover {
   --umelusi-primary-dark: #A0522D;
   --umelusi-light-bg: #fff8ed;
   --umelusi-blue: #50A9B1;
+  --umelusi-fm: #e6801d;
+  --umelus-red: #ed2f38;
+  --umelusi-yellow: #f9b316;
   
   /* Fund Managers Colors */
   --fund-primary: #f58632;
@@ -1320,7 +1323,7 @@ textarea:focus,
 /* Home Page Hero */
 .hero-section {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   padding: 0;
   margin-top: -85px;
@@ -1375,95 +1378,197 @@ textarea:focus,
   z-index: 2;
 }
 
+
+
 /* Fund Managers Hero */
-.fund-managers-hero {
-  background-image: url('images/fund-manager-hero-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  padding-top: 10rem;
-  padding-bottom: 5rem;
-  color: white;
-  height: 55vh;
+.fm-hero .carousel-item::before {
+  background: rgba(0, 0, 51, 0.45);
 }
 
-.fund-managers-hero::before {
-  content: '';
+.fm-hero .hero-content {
+  padding-left: 5%;
+  padding-right: 40%;
+}
+
+.fm-hero .fm-logo {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 300px;
 }
 
-.fund-managers-hero > .container {
-  position: relative;
-  z-index: 2;
-}
-
-.fund-managers-hero h1,
-.fund-managers-hero p {
-  color: #FFFFFF !important;
-}
-
-/* FinServ Hero */
-.finserve-hero {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
-  url('images/finserve-hero-bg.jpg') center/cover no-repeat;
-  height: 55vh;
-}
-
-.finserve-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
-  z-index: 1;
-}
-
-.finserve-hero .hero-text {
-  position: relative;
-  z-index: 2;
-}
-
-.finserve-hero .btn-brand {
-  background-color: var(--bs-warning, #ffc107);
-  border-color: var(--bs-warning, #ffc107);
-  color: #333;
-  font-weight: bold;
-}
-
-.finserve-hero .btn-brand:hover {
-  background-color: #e0a800;
-  border-color: #e0a800;
-}
-
-/* Capital Hero */
-.capital-hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-  url('images/capital-hero.jpg') no-repeat center center;
-  background-size: cover;
-  height: 55vh;
+/* FM Orange Buttons */
+.btn-fm-primary {
+  background-color: #e6801d;
   color: white;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  border-radius: 50px;
+  padding: 0.8rem 2rem;
+  font-weight: 600;
 }
 
-.capital-hero .btn-brand,
-.capital-contact-form .btn-primary {
-  background-color: var(--capital-primary) !important;
-  border-color: var(--capital-primary) !important;
-  color: white !important;
+.btn-fm-primary:hover {
+  background-color: #cc6d17;
 }
 
-.capital-hero .btn-brand:hover,
-.capital-contact-form .btn-primary:hover {
-  background-color: var(--capital-dark) !important;
-  border-color: var(--capital-dark) !important;
+.btn-outline-fm {
+  border: 2px solid #e6801d;
+  color: #e6801d;
+  border-radius: 50px;
+}
+
+.btn-outline-fm:hover {
+  background-color: #e6801d;
+  color: white;
+}
+
+/* Pillar Cards */
+.fm-pillar-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2.5rem;
+  height: 100%;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: transform 0.3s;
+}
+
+.fm-pillar-card:hover {
+  transform: translateY(-10px);
+}
+
+/* ========================================================= */
+/* FINSERV PAGE - YELLOW THEME (#f9b316) */
+/* ========================================================= */
+
+.finserv-hero .carousel-item::before {
+  background: rgba(0, 0, 51, 0.45);
+}
+
+.finserv-hero .hero-content {
+  padding-left: 5%;
+  padding-right: 40%;
+}
+
+.finserv-hero .finserv-logo {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 300px;
+}
+
+/* FinServ Yellow Buttons */
+.btn-finserv {
+  background-color: #f9b316;
+  color: #000;
+  border-radius: 50px;
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+}
+
+.btn-finserv:hover {
+  background-color: #e0a300;
+}
+
+.btn-outline-finserv {
+  border: 2px solid #f9b316;
+  color: #f9b316;
+  border-radius: 50px;
+}
+
+.btn-outline-finserv:hover {
+  background-color: #f9b316;
+  color: #000;
+}
+
+/* Accordion Styling */
+.accordion-button {
+  font-weight: 600;
+  color: #f9b316;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #fff8ed;
+  color: #f9b316;
+}
+
+/* Locations Cards */
+.card-body p {
+  margin-bottom: 0.5rem;
+}
+
+/* ========================================================= */
+/* UMELUSI CAPITAL - RED THEME (#ed2f38) */
+/* ========================================================= */
+
+.capital-hero .carousel-item::before {
+  background: rgba(0, 0, 51, 0.45);
+}
+
+.capital-hero .hero-content {
+  padding-left: 5%;
+  padding-right: 40%;
+}
+
+.capital-hero .capital-logo {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 300px;
+}
+
+/* Capital Red Buttons */
+.btn-capital-primary {
+  background-color: #ed2f38;
+  color: white;
+  border-radius: 50px;
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.btn-capital-primary:hover {
+  background-color: #d61e28;
+  color: white;
+}
+
+.btn-outline-capital {
+  border: 2px solid #ed2f38;
+  color: #ed2f38;
+  border-radius: 50px;
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+}
+
+.btn-outline-capital:hover {
+  background-color: #ed2f38;
+  color: white;
+}
+
+/* Service Cards */
+.capital-service-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2.5rem;
+  height: 100%;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.capital-service-card:hover {
+  transform: translateY(-10px);
+}
+
+.capital-service-card i {
+  color: #ed2f38;
+}
+
+/* Headings & Accents */
+.capital-section h2,
+.capital-section h3,
+.capital-section h5 {
+  color: #ed2f38 !important;
 }
 
 /* Markets Hero */
@@ -1511,12 +1616,7 @@ textarea:focus,
   margin-top: 1rem;
 }
 
-/* Partners Hero */
-.partners-hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-  url("images/partners-hero.jpg") center/cover no-repeat;
-  height: 55vh;
-}
+
 
 /* Resources Hero */
 .resources-hero {
@@ -1741,6 +1841,404 @@ textarea:focus,
 .welcome-section .container {
   position: relative;
   z-index: 2;
+}
+
+/* ========================================================= */
+/* PARTNERS HERO CAROUSEL - EXTERNAL CSS FIX */
+/* ========================================================= */
+
+.partners-hero {
+  position: relative;
+  height: 70vh;
+  overflow: hidden;
+}
+
+.partners-hero .carousel-inner {
+  height: 100%;
+}
+
+.partners-hero .carousel-item {
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.partners-hero .carousel-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 51, 0.45); /* Lighter overlay - reduced from 0.6 to 0.45 for better image visibility */
+  z-index: 1;
+}
+
+.partners-hero .hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 3%;
+  padding-right: 35%; /* Space for logo on right */
+  color: white;
+}
+
+.partners-hero .hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+}
+
+.partners-hero .hero-content p.lead {
+  font-size: 1.4rem;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+  max-width: 100%;
+}
+
+.partners-hero .partners-logo {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 300px;
+  z-index: 2;
+}
+
+/* Carousel Controls */
+.partners-hero .carousel-control-prev,
+.partners-hero .carousel-control-next {
+  width: 60px;
+  height: 60px;
+  background: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.7;
+}
+
+.partners-hero .carousel-control-prev:hover,
+.partners-hero .carousel-control-next:hover {
+  opacity: 1;
+  background: rgba(255,255,255,0.6);
+}
+
+/* Button - Umelusi Blue */
+.partners-hero .btn-umelusi-blue {
+  background-color: #50A9B1;
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.partners-hero .btn-umelusi-blue:hover {
+  background-color: #3d8a9b;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .partners-hero {
+    height: 60vh;
+  }
+  .partners-hero .hero-content {
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+  }
+  .partners-hero .hero-content p.lead {
+    max-width: 100%;
+  }
+  .partners-hero .partners-logo {
+    max-width: 200px;
+    right: 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .partners-hero .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  .partners-hero .partners-logo {
+    position: relative;
+    margin: 2rem auto 0;
+    max-width: 180px;
+  }
+}
+
+/* ========================================================= */
+/* PARTNERS PAGE SECTIONS - REPURPOSED & IMPROVED */
+/* ========================================================= */
+
+/* General section title with blue accent */
+.section-title {
+  position: relative;
+  display: inline-block;
+  font-size: 3rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 80px;
+  height: 6px;
+  background-color: #50A9B1;
+}
+
+/* Service / Value Cards */
+.partners-service-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2.5rem 2rem;
+  height: 100%;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.partners-service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.partners-service-card h4 {
+  color: #50A9B1;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+  background: white;
+  border-left: 6px solid #50A9B1;
+  padding: 2.5rem;
+  border-radius: 0 12px 12px 0;
+  height: 100%;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.testimonial-card p.fst-italic {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  flex-grow: 1;
+}
+
+.testimonial-card .quote-author {
+  margin-top: 1.5rem;
+  font-weight: 700;
+  color: #50A9B1;
+}
+
+/* Flagship Case Study - Equal height cards */
+.case-study-section .case-card {
+  background: white;
+  border-radius: 15px;
+  padding: 3rem;
+  height: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.case-study-section .case-card.text-card {
+  background: #f8f9fa;
+}
+
+.case-study-section .case-card.quote-card {
+  background: #ffffff;
+  text-align: center;
+}
+
+.case-study-section .case-card img {
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  margin: 0 auto 1.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .case-study-section .row > div {
+    margin-bottom: 2rem;
+  }
+}
+
+/* ========================================================= */
+/* PARTNERS PAGE - BUTTON STYLING FOR INSIGHTS & SUBSIDIARIES */
+/* ========================================================= */
+
+/* Primary Button - Solid Umelusi Blue (#50A9B1) */
+.btn-partners-primary {
+  background-color: #50A9B1;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(80, 169, 177, 0.2);
+}
+
+.btn-partners-primary:hover,
+.btn-partners-primary:focus {
+  background-color: #3d8a9b;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(80, 169, 177, 0.3);
+}
+
+/* Outline Button - Used in Subsidiaries section */
+.btn-outline-partners {
+  background-color: transparent;
+  color: #50A9B1;
+  border: 2px solid #50A9B1;
+  border-radius: 50px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-partners:hover,
+.btn-outline-partners:focus {
+  background-color: #50A9B1;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(80, 169, 177, 0.3);
+}
+
+/* Insights "Read More" Button - Smaller variant */
+.btn-insight-readmore {
+  background-color: #50A9B1;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 0.6rem 1.8rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-insight-readmore:hover {
+  background-color: #3d8a9b;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Subsidiaries Card Container - Consistent look */
+.subsidiary-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.subsidiary-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.subsidiary-card img {
+  margin-bottom: 1.5rem;
+  height: 80px;
+  object-fit: contain;
+}
+
+.subsidiary-card h5 {
+  color: #50A9B1;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.subsidiary-card p {
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+}
+
+
+/* ========================================================= */
+/* INSIGHTS CARDS - FIX CROPPING & SHOW FULL IMAGE */
+/* ========================================================= */
+
+.insight-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  background: white;
+}
+
+.insight-card .image-wrapper {
+  flex-shrink: 0;
+  width: 100%;
+  background: #f8f9fa;  /* Light gray background for padding/space */
+  padding: 1.5rem 1rem; /* Space around image */
+  text-align: center;
+}
+
+.insight-card .image-wrapper img {
+  max-width: 100%;
+  max-height: 280px;     /* Adjust this value if cards get too tall/short */
+  height: auto;
+  width: auto;
+  object-fit: contain;   /* Key: shows full image, no crop */
+  display: block;
+  margin: 0 auto;
+}
+
+.insight-card .card-body {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.insight-card h5 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: inherit; /* Will use page-specific color (orange or blue) */
+}
+
+.insight-card p {
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.insight-card .btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* Mobile tweak */
+@media (max-width: 768px) {
+  .insight-card .image-wrapper {
+    padding: 1rem;
+  }
+  .insight-card .image-wrapper img {
+    max-height: 220px;
+  }
 }
 
 /* ========================================================= */
@@ -3136,4 +3634,65 @@ footer a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+/* ========================================================= */
+/* FLOATING "MESSAGE US" BUTTON - FIXED RIGHT SIDE */
+/* ========================================================= */
+
+.message-us-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 100px; /* Adjust position as needed */
+  background-color: #FF9933;
+  color: white;
+  font-weight: 600;
+  padding: 14px 20px;
+  border-radius: 50px;
+  box-shadow: 0 6px 20px rgba(255, 153, 51, 0.4);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.message-us-btn:hover {
+  background-color: #e68a2e;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 153, 51, 0.5);
+}
+
+.message-us-btn i {
+  font-size: 1.4rem;
+}
+
+/* Hide text on small screens, keep only icon */
+@media (max-width: 991.98px) {
+  .message-us-btn {
+    padding: 14px 16px;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    justify-content: center;
+  }
+  
+  .message-us-btn span {
+    display: none;
+  }
+  
+  .message-us-btn i {
+    font-size: 1.6rem;
+  }
+}
+
+/* Optional: Hide completely on very small phones if needed */
+@media (max-width: 480px) {
+  .message-us-btn {
+    bottom: 80px;
+    right: 15px;
+  }
 }
