@@ -76,9 +76,9 @@ collections:
         fields:
           - { label: "Insights", name: "insights", widget: "list", fields: [
               { label: "Title", name: "title", widget: "string" },
-              { label: "Slug", name: "slug", widget: "string", required: true },  <!-- NEW -->
+              { label: "Slug", name: "slug", widget: "string", required: true },
               { label: "Excerpt", name: "excerpt", widget: "text" },
-              { label: "Full Content", name: "content", widget: "markdown" },  <!-- For individual pages -->
+              { label: "Full Content", name: "content", widget: "markdown" },
               { label: "Image", name: "image", widget: "image" },
               { label: "Category", name: "category", widget: "select", options: ["Strategy", "Digital", "Public", "Operations"] },
               { label: "Published", name: "published", widget: "boolean", default: true }
@@ -93,7 +93,7 @@ collections:
         fields:
           - { label: "Insights", name: "insights", widget: "list", fields: [
               { label: "Title", name: "title", widget: "string" },
-              { label: "Slug", name: "slug", widget: "string", required: true },  <!-- NEW -->
+              { label: "Slug", name: "slug", widget: "string", required: true },
               { label: "Excerpt", name: "excerpt", widget: "text" },
               { label: "Full Content", name: "content", widget: "markdown" },
               { label: "Image", name: "image", widget: "image" },
