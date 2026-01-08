@@ -10,40 +10,23 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-   <!-- NAVIGATION -->
+   <!-- Sticky Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html" aria-label="Umelusi Group Home">
-                <img src="images/Umelusi-2ndLogo.png" 
-                     alt="Umelusi Group Logo" 
-                     class="navbar-logo" 
-                     width="180" 
-                     height="60"
-                     loading="eager">
-            </a>
-            
-            <button class="navbar-toggler" 
-                    type="button" 
-                    data-bs-toggle="collapse" 
-                    data-bs-target="#navbarNav" 
-                    aria-controls="navbarNav" 
-                    aria-expanded="false" 
-                    aria-label="Toggle navigation">
+            <a class="navbar-brand" href="index.html">
+                <!-- Ensure you have this logo image at the path: images/Umelusi-2ndLogo.png -->
+                <img src="images/Umelusi-2ndLogo.png" alt="Umelusi Group Logo" class="navbar-logo" id="umelusi-logo" />
+              </a>          
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
                     </li>
-                    
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" 
-                           href="#" 
-                           role="button" 
-                           data-bs-toggle="dropdown" 
-                           aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             About Us
                         </a>
                         <ul class="dropdown-menu">
@@ -54,13 +37,8 @@
                             <li><a class="dropdown-item" href="hierarchy.html">Hierarchy</a></li>
                         </ul>
                     </li>
-                    
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" 
-                           href="#" 
-                           role="button" 
-                           data-bs-toggle="dropdown" 
-                           aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Subsidiaries
                         </a>
                         <ul class="dropdown-menu">
@@ -70,17 +48,15 @@
                             <li><a class="dropdown-item" href="finserve.html">Umelusi FinServ</a></li>
                         </ul>
                     </li>
-                    
                     <li class="nav-item">
                         <a class="nav-link" href="markets.html">Markets</a>
                     </li>
-                    
                     <li class="nav-item">
                         <a class="nav-link" href="resources.html">Resources & Insights</a>
                     </li>
-                    
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
+                        <!-- CONTACT US LINK -->
+                        <a class="nav-link " href="contact.html">Contact Us</a>
                     </li>
                 </ul>
             </div>
